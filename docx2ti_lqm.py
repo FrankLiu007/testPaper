@@ -250,10 +250,10 @@ def processPaper(doc):
         if i<len(dati_indexs)-1:
             next_row, next_text,mode_text=dati_indexs[i+1]
             tis=parse_one_titype(curr_row, next_row, xiaoti_indexs, paragraphs)
-            print('tis=', tis)
+            # print('tis=', tis)
         else:
             tis=parse_one_titype(curr_row, len(paragraphs), xiaoti_indexs, paragraphs)
-            print('tis=', tis)
+            # print('tis=', tis)
         all_ti.append(tis)
         i=i+1
         curr_row=next_row

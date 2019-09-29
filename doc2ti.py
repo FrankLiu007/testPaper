@@ -2,6 +2,8 @@ import docx
 
 import re
 
+import  json
+
 def get_title(doc , curr_index , e_index):
     paragraphs = doc.paragraphs
     title = ''
@@ -22,7 +24,7 @@ def get_title(doc , curr_index , e_index):
 
 def get_subject(tt):
     stem = re.findall(r'^[0-9]{1,2}\.(.*)$', tt)
-    stem = stem[0].strip()
+    stem = '<span>' + stem[0].strip() + '</span>'
     return stem
 
 def get_option(tt):
@@ -163,7 +165,7 @@ def getWriting(doc , b_index , e_index , ans):
     type = 'GENERAL'
     title = ''
     options = []
-    solution = []
+    solution = ''
     questions = []
 
     stem = get_title(doc , b_index , e_index)[0]
@@ -194,7 +196,9 @@ def processReadings(doc,ti_index, curr_paragraph_index):
             stem = get_title(doc , b_index , e_index)[0]
             ans = processAnswer('36', '41', '1')
             temp_que = get_temp_que('GENERAL' , stem , [] , '')
-            result = get_one_item('' , '阅读理解' , ans ,temp_que )
+            question = []
+            question.append(temp_que)
+            result = get_one_item('' , '阅读理解' , ans ,question )
             all_readings.append(result)
             break
 
@@ -232,7 +236,7 @@ def processApplication(doc,ti_index, curr_paragraph_index):
             type = 'GENERAL'
             stem = ''
             options = []
-            solution = []
+            solution = ''
             temp_que = get_temp_que(type, stem, options, solution)
             questions = []
             questions.append(temp_que)
@@ -315,6 +319,7 @@ curr_paragraph_index=-1
 ti_index=0
 
 answer = ''
+all_data = []
 all_reading = []
 all_application = []
 all_writing = []
@@ -354,6 +359,13 @@ while(1):
         all_writing = processWriting(doc , ti_index , curr_paragraph_index)
         break
 
+all_data.extend(all_reading)
+all_data.extend(all_application)
+all_data.extend(all_writing)
+
+fp = open('data.json' , 'w' , encoding='utf-8')
+json.dump(all_data , fp)
+fp.close()
 
 
 
