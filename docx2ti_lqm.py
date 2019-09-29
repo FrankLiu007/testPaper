@@ -21,6 +21,20 @@ def get_next_number(text):
             if num2[i]==text:
                 next_number = num2[i+1]
     return next_number
+###计算模式字符串
+def get_mode_string(text):
+    tt=text[0:3]
+    k=0
+    mode_string=''
+    for i in range(0,3):
+        if isNumber(text[i]):
+            k=i
+            break
+    if k==0:
+        if text[1] in ['\t', ' ']:
+            mode_string=''
+    return mode_string
+
 def analys_layout(doc):
     '''
 
@@ -72,31 +86,20 @@ def analys_layout(doc):
             if paragraphs[row].text.startswith(text[:n]+next_number+text[n+1]):
                 #print('next_string:', text[:n] + next_number + text[n + 1], paragraphs[row].text)
                 next_number = get_next_number(next_number)
-                tmp_mode.append( (row,paragraphs[row].text, mode_text) )
+                tmp_mode.append( (row,paragraphs[row].text, text[:n]+mode_text+text[n+1]) )
         if len(tmp_mode)>1:
             tree.append(tmp_mode.copy())
 
     return tree
-
-##获取一张试卷的主要的题 的类型
-def get_main_mode(tree):
-    ##对于试卷来说，题号总是递增，找到最长的模式，即为题目的模式, index为模式号
-    m=len(tree[0])
-    index=0
-    for i in range(1, len(tree)):
-        if len(tree[i])>m:
-            m=len(tree[i])
-            index=i
-    return index
-
 
 ##获取1个选项，[A-G]. 形式的
 def get_option(text):
     text=text.strip()
     indexs=[]
     options=[]
-    for item in re.finditer(r'[A-G]\.', text):
+    for item in re.finditer(r'[A-G][\.．]', text):
         indexs.append((item.group(),item.span()))
+    print('in get_option,text=', text)
     if indexs[0][1]!=(0,2):  ###校检结果，保证
         print('获取选择题选项出错，请检查试题格式')
         print('text=' , text)
@@ -141,10 +144,10 @@ def parse_one_titype(curr_row, next_row,xiaoti_indexs ,paragraphs ):
 
             if xiaoti_indexs[i+1][0]<next_row:
                 ti=parse_ti(xiaoti_indexs, xiaoti_indexs[i][0], xiaoti_indexs[i+1][0],paragraphs )
-                print('ti=', ti)
             else:
                 ti=parse_ti(xiaoti_indexs, xiaoti_indexs[i][0], next_row, paragraphs)
-                print('ti=', ti)
+                tis.append(ti)
+                break
             tis.append(ti)
         i=i+1
 
@@ -154,7 +157,7 @@ def isObjective( curr_row, next_row, paragraphs):
     # print('next_row=',next_row)
     for i in range(curr_row, next_row):
         text=paragraphs[i].text.strip()
-        if re.match(r'[A-G][．\.].*', text):
+        if re.match(r'[A-G][．\.]', text):
             return (True,i)
     return (False,-1)
 
@@ -169,11 +172,9 @@ def parse_ti(xiaoti_indexs, curr_row, next_row , paragraphs):
         for i in range(curr_row, index):
             ti['title'].append(i)
         for j in range(index,next_row):
-            options.extend( get_option(paragraphs[j].text) )
-        if verify_options(options):
-            ti['options']=options
-        else:
-            pass
+            options.append( j )
+        ti['options'] = options
+
     else:
         for i in range(curr_row, next_row):
             ti['title'].append(i)
@@ -187,6 +188,39 @@ def verify_options(options):
 
     pass
 
+###计算主要模式在tree的位置
+def get_main_modes(tree):
+    data=[]
+    i=0
+    while(i<len(tree)):
+        data.append((i,len(tree[i]), tree[i][0][2] ))   ##i为
+        i=i+1
+    data.sort(key=lambda x:x[1], reverse=True)
+    print('data=', data)
+
+    primary_mode_index=data[0][0]  ###最长的肯定是主模式，
+    primary_mode_text = data[0][2]
+    second_mode_index = data[1][0]
+
+    if  primary_mode_text[0]!='1':
+        print('试卷格式可能有问题')
+        print('模式字符串是：',primary_mode_text )
+
+    if len(data)>=3:
+        i=1
+        while(i<len(data)):
+            if data[i][2][0]==primary_mode_text[0]:
+                i = i + 1
+                continue
+            if '一' in data[i][2] and (not '(' in data[i][2]) and  (not '（' in data[i][2]) :
+                second_mode_index=data[i][0]
+                break
+            i = i + 1
+
+    return (second_mode_index, primary_mode_index)
+
+
+
 def processPaper(doc):
     '''
     默认，试卷，题目大题是 一、 这种形式
@@ -197,16 +231,8 @@ def processPaper(doc):
     tree=analys_layout(doc)
     # 获取一份试卷主要的大题和主干小题的在tree里的索引
 
-    data=[]
-    i=0
-    while(i<len(tree)):
-        data.append((i,len(tree[i])))
-        i=i+1
-    data.sort(key=lambda x:x[1])
-    dati_mode_index=data[0][0]
-    xiao_mode_index=data[1][0]
-    # dati_mode_index=get_ti_mode(tree, '一、', 0)
-    # xiao_mode_index=get_ti_mode(tree, '1．', dati_mode_index)  ##获取试卷题目的模式
+    dati_mode_index, xiao_mode_index=get_main_modes(tree)   ##试卷的主要2层模式
+    print('mode_index,', dati_mode_index, xiao_mode_index)
 
 
 ####获取所有大题的  小题
