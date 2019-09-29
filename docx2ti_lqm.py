@@ -154,7 +154,7 @@ def isObjective( curr_row, next_row, paragraphs):
     # print('next_row=',next_row)
     for i in range(curr_row, next_row):
         text=paragraphs[i].text.strip()
-        if re.match(r'[A-G]\..*', text):
+        if re.match(r'[A-G][．\.].*', text):
             return (True,i)
     return (False,-1)
 
