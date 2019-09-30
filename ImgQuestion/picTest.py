@@ -1,7 +1,10 @@
 import docx
 from lxml import etree
 import uuid
-doc = docx.Document('test.docx')
+import os
+doc=docx.Document('ImgQuestion/test.docx')
+if not os.path.exists('img'):
+    os.mkdir('img')
 
 def get_tag(el):
     tag = el.tag
@@ -51,6 +54,7 @@ def git_reall_pic(doc , pic_list):
     return pic_list
 
 index = 0
+
 all_pic_list = []
 paragraphs = doc.paragraphs
 
@@ -64,12 +68,5 @@ while(1):
     index+=1
     if index == len(paragraphs):
         break
-
-
-
-
-
-
-
 
 
