@@ -188,33 +188,34 @@ def verify_options(options):
     pass
 
 ###计算主要模式在tree的位置
+##2019.9.30,主模式确定后，副模式应该在主模式之前（行号更小）
 def get_main_modes(tree):
     data=[]
     i=0
     while(i<len(tree)):
-        data.append((i,len(tree[i]), tree[i][0][2] ))   ##i为
+        data.append((i,len(tree[i]), tree[i][0][2], tree[i][0][0] ))   ##i为
         i=i+1
     data.sort(key=lambda x:x[1], reverse=True)
     print('data=', data)
 
     primary_mode_index=data[0][0]  ###最长的肯定是主模式，
     primary_mode_text = data[0][2]
+    min_row=data[0][-1]
     second_mode_index = data[1][0]
 
     if  primary_mode_text[0]!='1':
         print('试卷格式可能有问题')
         print('模式字符串是：',primary_mode_text )
 
-    if len(data)>=3:
-        i=1
-        while(i<len(data)):
-            if data[i][2][0]==primary_mode_text[0]:
-                i = i + 1
-                continue
-            if '一' in data[i][2] and (not '(' in data[i][2]) and  (not '（' in data[i][2]) :
-                second_mode_index=data[i][0]
-                break
+    i=1
+    while(i<len(data)):
+        if data[i][2][0]==primary_mode_text[0]:
             i = i + 1
+            continue
+        if '一' in data[i][2] and data[i][-1]<min_row :
+            second_mode_index=data[i][0]
+            break
+        i = i + 1
 
     return (second_mode_index, primary_mode_index)
 
