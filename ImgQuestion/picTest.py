@@ -31,7 +31,6 @@ def git_pic(tree):
             value = blip_attr[attr]
             if 'embed' in attr:
                 one_mes['rId'] = value
-
         pic_mes.append(one_mes)
 
     return pic_mes
@@ -63,7 +62,6 @@ while(1):
     result = git_pic(tree)
     pic_list = git_reall_pic(doc , result)
     all_pic_list.extend(pic_list)
-    print(all_pic_list)
     # 对象里面的tag就是要显示的标签
     index+=1
     if index == len(paragraphs):

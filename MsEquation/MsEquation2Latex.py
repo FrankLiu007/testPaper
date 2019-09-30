@@ -45,12 +45,17 @@ def get_html(str1):
     document = document + "<script type='text/javascript' async src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML'></script></body></html>"
     return  document
 if __name__ == "__main__":
-    path='MsEquation/equation1.docx'
+    # path='MsEquation/equation1.docx'
+    path = 'equation1.docx'
     doc=docx.Document(path)
     MSequation2latex(doc)
-    doc.save('MsEquation/out.docx')
-    with open("MsEquation/out.docx", "rb") as docx_file:
+    # doc.save('MsEquation/out.docx')
+    doc.save('out.docx')
+    # with open("MsEquation/out.docx", "rb") as docx_file:
+    with open("out.docx", "rb") as docx_file:
         result = mammoth.convert_to_html(docx_file)
         html =get_html(result.value)
-        with open('MsEquation/abc.html', 'w', encoding='utf-8') as f:
+        print(html , "58")
+        # with open('MsEquation/abc.html', 'w', encoding='utf-8') as f:
+        with open('abc.html', 'w', encoding='utf-8') as f:
             f.write(html)
