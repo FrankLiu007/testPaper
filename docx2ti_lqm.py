@@ -174,7 +174,6 @@ def parse_ti(xiaoti_indexs, curr_row, next_row , paragraphs):
         for j in range(index,next_row):
             options.append( j )
         ti['options'] = options
-
     else:
         for i in range(curr_row, next_row):
             ti['title'].append(i)
