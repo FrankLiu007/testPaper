@@ -230,10 +230,8 @@ def processPaper(doc):
     paragraphs=doc.paragraphs
     tree=analys_layout(doc)
     # 获取一份试卷主要的大题和主干小题的在tree里的索引
-
     dati_mode_index, xiao_mode_index=get_main_modes(tree)   ##试卷的主要2层模式
     print('mode_index,', dati_mode_index, xiao_mode_index)
-
 
 ####获取所有大题的  小题
     j=0
@@ -246,15 +244,15 @@ def processPaper(doc):
     curr_row, text, mode_text = dati_indexs[0]
     i=0
     all_ti=[]
-    while(i<len(dati_indexs)):
+    while(i<len(dati_indexs)):   ##处理1种题型
         if i<len(dati_indexs)-1:
             next_row, next_text,mode_text=dati_indexs[i+1]
-            tis=parse_one_titype(curr_row, next_row, xiaoti_indexs, paragraphs)
+            tis=parse_one_titype(curr_row, next_row, xiaoti_indexs, paragraphs)   ##处理1种题型的所有题目
             # print('tis=', tis)
         else:
             tis=parse_one_titype(curr_row, len(paragraphs), xiaoti_indexs, paragraphs)
             # print('tis=', tis)
-        all_ti.append(tis)
+        all_ti.append( (curr_row,tis) )
         i=i+1
         curr_row=next_row
 
