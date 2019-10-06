@@ -1,9 +1,9 @@
 import docx
-from docx2ti_lqm import processPaper
+from docx_utils.parse_paper import processPaper
 import re
 from lxml import etree
 from dwml import omml
-from docx_namespaces import namespaces as docx_nsmap
+from docx_utils.namespaces import namespaces as docx_nsmap
 import uuid
 import os
 
@@ -319,7 +319,7 @@ if __name__ == "__main__":
     for dati in all_ti_index:
 
         curr_dati_row = dati[0]
-        # =guess_titype(paragraphs[curr_dati_row].text)
+        guess_titype(paragraphs[curr_dati_row].text)
 
         xiaoti_indexes=dati[1]
         curr_row=xiaoti_indexes[0]
@@ -328,10 +328,4 @@ if __name__ == "__main__":
 
             curr_index, ti =parse_ti(doc,  xiaoti_indexes, curr_index, curr_dati_row, mode_text)
             tis.append(ti)
-
-
-
-
-
-
 

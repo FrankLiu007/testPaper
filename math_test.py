@@ -1,7 +1,7 @@
 import docx
 import re
 from lxml import etree
-from docx2ti_lqm import processPaper
+from parse_docx_paper import processPaper
 from MsEquation.MsEquation2Latex import get_latex
 
 

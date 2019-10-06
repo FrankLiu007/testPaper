@@ -2,10 +2,10 @@ import docx
 import re
 from lxml import etree
 import uuid
-from docx_namespaces import  namespaces as nsmap
+from docx_utils.namespaces import  namespaces as docx_nsmap
 
 def git_pic(tree):
-    pics = tree.xpath('.//w:drawing' , namespaces = nsmap)
+    pics = tree.xpath('.//w:drawing' , namespaces = docx_nsmap)
     pic_mes = []
     for pic in pics:
         one_mes = dict()
@@ -16,7 +16,7 @@ def git_pic(tree):
         one_mes['height'] = height
         # inline_ele = pic.xpath('.//wp:inline' , namespaces = pic.nsmap)[0]
         # a_graphic = inline_ele.getchildren()[len(inline_ele)-1]
-        blip = pic.xpath('.//a:blip ' , namespaces = nsmap)[0]
+        blip = pic.xpath('.//a:blip ' , namespaces = docx_nsmap)[0]
         blip_attr = blip.attrib
         for attr in blip_attr:
             value = blip_attr[attr]
@@ -262,8 +262,51 @@ def get_main_modes(tree):
 
     return (second_mode_index, primary_mode_index)
 
+def check_run(child):
+    i=0
+    # print('child=', child)
+    run=child.__copy__()
+    rPr=run.xpath('.//w:rPr', namespaces=run.nsmap) ##删除run的属性
 
+    if len(rPr)>1:
+        print('docx格式出错了，len(w:rPr)!=1')
+    elif len(rPr)==1:
+        run.remove(rPr[0])
+    # else: 没有rPr,啥都不用做
 
+    wt=run.xpath('.//w:t', namespaces=run.nsmap)
+    wdrawing=run.xpath('.//w:drawing', namespaces=run.nsmap)
+    moMath=run.xpath('.//m:oMath', namespaces=docx_nsmap)
+    i=len(wt)+len(wdrawing)+len(moMath)
+    return i
+
+###删除空白行
+def remove_blank_paragraph(doc):
+    is_blank=True
+
+    i=len(doc.paragraphs)-1
+    nn=0    ##number of blank paragraphs
+    while(i>=0):
+        text=''
+        paragraph=doc.paragraphs[i]
+        for run in paragraph.runs:
+            wdrawing = run.xpath('.//w:drawing', namespaces=run.nsmap)
+            if len(wdrawing)>0:
+                is_blank=False
+                break
+            moMath = run.xpath('.//m:oMath', namespaces=docx_nsmap)
+            if len(moMath)>0:
+                is_blank=False
+                break
+            text=text+run.text
+        if text.strip()=='':
+            is_blank=True
+        if is_blank:
+            doc.paragraphs.remove(paragraph)
+            nn=nn+1
+    print('空白段落总数：', nn)
+
+    return 0
 def processPaper(doc):
     '''
     默认，试卷，题目大题是 一、 这种形式
