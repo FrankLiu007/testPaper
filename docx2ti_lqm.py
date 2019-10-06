@@ -1,5 +1,48 @@
 import docx
 import re
+from lxml import etree
+import uuid
+from docx_namespaces import  namespaces as nsmap
+
+def git_pic(tree):
+    pics = tree.xpath('.//w:drawing' , namespaces = nsmap)
+    pic_mes = []
+    for pic in pics:
+        one_mes = dict()
+        size_ele = pic.xpath('.//wp:extent ' , namespaces = pic.nsmap)[0]
+        width = int(size_ele.attrib['cx'])/(360000*0.0264583)
+        height = int(size_ele.attrib['cy'])/(360000*0.0264583)
+        one_mes['width'] = width
+        one_mes['height'] = height
+        # inline_ele = pic.xpath('.//wp:inline' , namespaces = pic.nsmap)[0]
+        # a_graphic = inline_ele.getchildren()[len(inline_ele)-1]
+        blip = pic.xpath('.//a:blip ' , namespaces = nsmap)[0]
+        blip_attr = blip.attrib
+        for attr in blip_attr:
+            value = blip_attr[attr]
+            if 'embed' in attr:
+                one_mes['rId'] = value
+        pic_mes.append(one_mes)
+
+    return pic_mes
+
+####
+def git_reall_pic(doc , pic_list):
+    for pic in pic_list:
+        pic_name = pic['rId']
+        img = doc.part.rels[pic_name].target_ref
+        img_part = doc.part.related_parts[pic_name]
+        path = str(uuid.uuid1()).replace('-' , '')
+        path ='img/'+path+ '.jpeg'
+        pic['path'] = path
+
+        tag = '<img src="'+path+'" width='+str(pic["width"])+' height='+str(pic["height"])+'>'
+        pic['tag'] = tag
+
+        with open(path,'wb') as f:
+            f.write(img_part._blob)
+
+    return pic_list
 #判断是否为标题
 def isNumber(char):
 

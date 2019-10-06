@@ -177,6 +177,7 @@ def paragraph2html(doc, index):
             continue
         elif vv==0:
             print('run里面没有找到合适元素！')
+            print('run=', child)
             continue
         html=''
         tag = get_tag(child)
@@ -209,7 +210,7 @@ def options2html(doc, row):
     tree=etree.fromstring(paragraph._element.xml)
     children=tree.getchildren()
     for child in children:
-        if re.findall(r'^\{.*\}(.*)', child.tag)[0]=='pPr':
+        if re.findall(r'^\{.*\}(.*)', child.tag)[0]=='pPr':   ##段落的属性，略过
             continue
         vv = check_run(child)
         if vv > 1:
@@ -260,7 +261,6 @@ def paragraphs2htmls(doc, title_indexes):
 
 def parse_ti(doc, xiaoti_indexes, curr_index , curr_dati_row, mode_text):
     paragraphs=doc.paragraphs
-    ti={}
     curr_row=xiaoti_indexes[curr_index]['title'][0]
     #####上一个题目的结尾的行号+1
     if curr_index==0:
@@ -277,6 +277,7 @@ def parse_ti(doc, xiaoti_indexes, curr_index , curr_dati_row, mode_text):
         ti = parse_xiaoti(doc, xiaoti_indexes, curr_index)
         return (curr_index + 1, ti)
 
+    ti={}
     lst=list(range(title_start_row, curr_row))
     ti['title']=paragraphs2htmls(doc, lst)
 
@@ -304,11 +305,6 @@ def parse_xiaoti(doc, xiaoti_indexes, curr_index):
         q['options'] = get_option_htmls(doc, option_indexes)
     return q
 
-def parse_questions(xiaoti_indexes, i, n):
-    pass
-#判断该题是否有材料
-def has_material():
-    pass
 if __name__ == "__main__":
     path='src/2019年全国II卷文科综合高考真题.docx'
     doc=docx.Document(path)
