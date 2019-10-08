@@ -221,7 +221,7 @@ def paragraph2html(doc, index):
         vv = check_run(child)
         if vv > 1:
             print('run中包含了多个类型 ')
-            print('run=', child)
+            exit()
             continue
         elif vv == 0:
             print('run里面没有找到合适元素！')
@@ -267,7 +267,7 @@ def options2html(doc, row):
         if vv > 1:
             print('run中包含了多个类型 ')
             print('run=', child)
-            continue
+            exit()
         elif vv == 0:
             print('run里面没有找到合适元素！')
             continue
@@ -372,7 +372,7 @@ if __name__ == "__main__":
     for dati in all_ti_index:
 
         curr_dati_row = dati[0]
-        guess_titype(paragraphs[curr_dati_row].text)
+        # guess_titype(paragraphs[curr_dati_row].text)
 
         xiaoti_indexes = dati[1]
         curr_row = xiaoti_indexes[0]
