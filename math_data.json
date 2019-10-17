@@ -1,0 +1,436 @@
+[
+  {
+    "title": "",
+    "category": "\u5355\u9879\u9009\u62e9",
+    "reference": "C",
+    "questions": [
+      {
+        "type": "SINGLE",
+        "stem": "<span>1\uff0e\u5df2\u77e5\u96c6\u5408\\(M=\\{x\\left|-4&lt;x&lt;2\\right.\\}\uff0cN=\\{x\\left|x^{2}-x-6\\right.&lt;\\left.0\\right\\}\\)\uff0c\u5219\\(M\u2229N\\) =</span>",
+        "solution": "C",
+        "options": [
+          {
+            "label": "A",
+            "content": "\\(\\{x\\left|-4&lt;x&lt;\\right.\\left.3\\right\\}\\)"
+          },
+          {
+            "label": "B",
+            "content": "\\(\\{x\\left|-4&lt;x&lt;\\right.\\left.-2\\right\\}\\)"
+          },
+          {
+            "label": "C",
+            "content": "\\(\\{x\\left|-2&lt;x&lt;\\right.\\left.2\\right\\}\\)"
+          },
+          {
+            "label": "D",
+            "content": "\\(\\{x\\left|2&lt;x&lt;\\right.\\left.3\\right\\}\\"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "",
+    "category": "\u5355\u9879\u9009\u62e9",
+    "reference": "C",
+    "questions": [
+      {
+        "type": "SINGLE",
+        "stem": "<span>2\uff0e\u8bbe\u590d\u6570z\u6ee1\u8db3\\(\\left|z-i\\right|=1\\)\uff0cz\u5728\u590d\u5e73\u9762\u5185\u5bf9\u5e94\u7684\u70b9\u4e3a(x\uff0cy)\uff0c\u5219</span>",
+        "solution": "C",
+        "options": [
+          { "label": "A", "content": "\\((x+1)^{2}+y^{2}=1\\)" },
+          { "label": "B", "content": "\\((x-1)^{2}+y^{2}=1\\)" },
+          { "label": "C", "content": "\\(x^{2}+(y-1)^{2}=1\\)" },
+          { "label": "D", "content": "\\(x^{2}+(y+1)^{2}=1\\" }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "",
+    "category": "\u5355\u9879\u9009\u62e9",
+    "reference": "B",
+    "questions": [
+      {
+        "type": "SINGLE",
+        "stem": "<span>3\uff0e\u5df2\u77e5\\(\u00a0a=log_{2}0.2\uff0cb=2^{0.2}\uff0cc=0.2^{0.3}\\)\uff0c\u5219</span>",
+        "solution": "B",
+        "options": [
+          { "label": "A", "content": "\\(a&lt;b&lt;c\\)" },
+          { "label": "B", "content": "\\(a&lt;c&lt;b\\)" },
+          { "label": "C", "content": "\\(c&lt;a&lt;b\\)" },
+          { "label": "D", "content": "\\(b&lt;c&lt;a\\" }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "",
+    "category": "\u5355\u9879\u9009\u62e9",
+    "reference": "B",
+    "questions": [
+      {
+        "type": "SINGLE",
+        "stem": "<span>4\uff0e\u53e4\u5e0c\u814a\u65f6\u671f\uff0c\u4eba\u4eec\u8ba4\u4e3a\u6700\u7f8e\u4eba\u4f53\u7684\u5934\u9876\u81f3\u809a\u8110\u7684\u957f\u5ea6\u4e0e\u809a\u8110\u81f3\u8db3\u5e95\u7684\u957f\u5ea6\u4e4b\u6bd4\u662f\\(\\frac{\\sqrt{5}-1}{2}\\)\uff08\\(\\frac{\\sqrt{5}-1}{2}\\)\u22480.618\uff0c\u79f0\u4e3a\u9ec4\u91d1\u5206\u5272\u6bd4\u4f8b)\uff0c\u8457\u540d\u7684\u201c\u65ad\u81c2\u7ef4\u7eb3\u65af\u201d\u4fbf\u662f\u5982\u6b64\uff0e\u6b64\u5916\uff0c\u6700\u7f8e\u4eba\u4f53\u7684\u5934\u9876\u81f3\u54bd\u5589\u7684\u957f\u5ea6\u4e0e\u54bd\u5589\u81f3\u809a\u8110\u7684\u957f\u5ea6\u4e4b\u6bd4\u4e5f\u662f\\(\\frac{\\sqrt{5}-1}{2}\\)\uff0e\u82e5\u67d0\u4eba\u6ee1\u8db3\u4e0a\u8ff0\u4e24\u4e2a\u9ec4\u91d1\u5206\u5272\u6bd4\u4f8b\uff0c\u4e14\u817f\u957f\u4e3a105 cm\uff0c\u5934\u9876\u81f3\u8116\u5b50\u4e0b\u7aef\u7684\u957f\u5ea6\u4e3a26 cm\uff0c\u5219\u5176\u8eab\u9ad8\u53ef\u80fd\u662f<br/><img src=\"img\\b7e3946eee2d11e982c2f8a2d6c0fa12.png\" width=56.0001 height=157.1114></span>",
+        "solution": "B",
+        "options": [
+          { "label": "A", "content": "165 cm" },
+          { "label": "B", "content": "175 cm" },
+          { "label": "C", "content": "185 cm" },
+          { "label": "D", "content": "190 c" }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "",
+    "category": "\u5355\u9879\u9009\u62e9",
+    "reference": "D",
+    "questions": [
+      {
+        "type": "SINGLE",
+        "stem": "<span>5\uff0e\u51fd\u6570f(x)=<img src=\"img\\b7e4cb68ee2d11e9a87cf8a2d6c0fa12.wmf\" width=66.0001 height=42.0001>\u5728\\([-\u03c0,\u03c0]\\)\u7684\u56fe\u50cf\u5927\u81f4\u4e3a</span>",
+        "solution": "D",
+        "options": [
+          {
+            "label": "A",
+            "content": "<img src=\"img\\b7e567a6ee2d11e9b0c4f8a2d6c0fa12.png\" width=155.0002 height=70.0001>"
+          },
+          {
+            "label": "B",
+            "content": "<img src=\"img\\b7e5b580ee2d11e9bb42f8a2d6c0fa12.png\" width=157.0002 height=76.0001>"
+          },
+          {
+            "label": "C",
+            "content": "<img src=\"img\\b7e60374ee2d11e9bbddf8a2d6c0fa12.png\" width=166.0002 height=81.0001>"
+          },
+          {
+            "label": "D",
+            "content": "<img src=\"img\\b7e6500cee2d11e99208f8a2d6c0fa12.png\" width=165.0002 height=83.0001"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "",
+    "category": "\u5355\u9879\u9009\u62e9",
+    "reference": "A",
+    "questions": [
+      {
+        "type": "SINGLE",
+        "stem": "<span>6\uff0e\u6211\u56fd\u53e4\u4ee3\u5178\u7c4d\u300a\u5468\u6613\u300b\u7528\u201c\u5366\u201d\u63cf\u8ff0\u4e07\u7269\u7684\u53d8\u5316\uff0e\u6bcf\u4e00\u201c\u91cd\u5366\u201d\u7531\u4ece\u4e0b\u5230\u4e0a\u6392\u5217\u76846\u4e2a\u723b\u7ec4\u6210\uff0c\u723b\u5206\u4e3a\u9633\u723b\u201c\u2014\u2014\u201d\u548c\u9634\u723b\u201c\u2014 \u2014\u201d\uff0c\u5982\u56fe\u5c31\u662f\u4e00\u91cd\u5366\uff0e\u5728\u6240\u6709\u91cd\u5366\u4e2d\u968f\u673a\u53d6\u4e00\u91cd\u5366\uff0c\u5219\u8be5\u91cd\u5366\u6070\u67093\u4e2a\u9633\u723b\u7684\u6982\u7387\u662f<br/><img src=\"img\\b7e7af1eee2d11e99fd9f8a2d6c0fa12.tif\" width=114.0001 height=102.1139></span>",
+        "solution": "A",
+        "options": [
+          { "label": "A", "content": "\\(\\frac{5}{16}\\)" },
+          { "label": "B", "content": "\\(\\frac{11}{32}\\)" },
+          { "label": "C", "content": "\\(\\frac{21}{32}\\)" },
+          { "label": "D", "content": "\\(\\frac{11}{16}\\)" }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "",
+    "category": "\u5355\u9879\u9009\u62e9",
+    "reference": "B",
+    "questions": [
+      {
+        "type": "SINGLE",
+        "stem": "<span>7\uff0e\u5df2\u77e5\u975e\u96f6\u5411\u91cfa\uff0cb\u6ee1\u8db3\\(|a|=2|b|\\)\uff0c\u4e14\\((a-b)\u22a5\\)b\uff0c\u5219a\u4e0eb\u7684\u5939\u89d2\u4e3a</span>",
+        "solution": "B",
+        "options": [
+          { "label": "A", "content": "\\(\\frac{\u03c0}{6}\\) " },
+          { "label": "B", "content": "\\(\\frac{\u03c0}{3}\\)" },
+          { "label": "C", "content": "\\(\\frac{2\u03c0}{3}\\) " },
+          { "label": "D", "content": "\\(\\frac{5\u03c0}{6}\\)" }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "",
+    "category": "\u5355\u9879\u9009\u62e9",
+    "reference": "A",
+    "questions": [
+      {
+        "type": "SINGLE",
+        "stem": "<span>8\uff0e\u5982\u56fe\u662f\u6c42\\(\\frac{1}{2+\\frac{1}{2+\\frac{1}{2}}}\\)\u7684\u7a0b\u5e8f\u6846\u56fe\uff0c\u56fe\u4e2d\u7a7a\u767d\u6846\u4e2d\u5e94\u586b\u5165<br/><img src=\"img\\b7e9aa92ee2d11e9ab7ef8a2d6c0fa12.tif\" width=167.0002 height=269.2475></span>",
+        "solution": "A",
+        "options": [
+          { "label": "A", "content": "A=\\(\\frac{1}{2+A}\\)" },
+          { "label": "B", "content": "A=\\(2+\\frac{1}{A}\\)" },
+          { "label": "C", "content": "A=\\(\\frac{1}{1+2A}\\)" },
+          { "label": "D", "content": "A=\\(1+\\frac{1}{2A}\\" }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "",
+    "category": "\u5355\u9879\u9009\u62e9",
+    "reference": "A",
+    "questions": [
+      {
+        "type": "SINGLE",
+        "stem": "<span>9\uff0e\u8bb0\u4e3a\u7b49\u5dee\u6570\u5217\\(\\{a_{n}\\}\\)\u7684\u524dn\u9879\u548c\uff0e\u5df2\u77e5\\(S_{4}=0\uff0ca_{5}=5\\)\uff0c\u5219</span>",
+        "solution": "A",
+        "options": [
+          { "label": "A", "content": "\\(a_{n}=2n-5\\)" },
+          { "label": "B", "content": "\\(\u00a0a_{n}=3n-10\\)" },
+          { "label": "C", "content": "\\(S_{n}=2n^{2}-8n\\)" },
+          { "label": "D", "content": "\\(S_{n}=\\frac{1}{2}n^{2}-2n\\" }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "",
+    "category": "\u5355\u9879\u9009\u62e9",
+    "reference": "B",
+    "questions": [
+      {
+        "type": "SINGLE",
+        "stem": "<span>10\uff0e\u5df2\u77e5\u692d\u5706C\u7684\u7126\u70b9\u4e3a\\(F_{1}(-1,0)\uff0cF_{2}(1,0)\\)\uff0c\u8fc7F2\u7684\u76f4\u7ebf\u4e0eC\u4ea4\u4e8eA\uff0cB\u4e24\u70b9\uff0e\u82e5\\(|AF_{2}|=2|F_{2}B|\\)\uff0c\\(|AB|=|BF_{1}|\\)\uff0c\u5219C\u7684\u65b9\u7a0b\u4e3a</span>",
+        "solution": "B",
+        "options": [
+          { "label": "A", "content": "\\(\\frac{x^{2}}{2}+y^{2}=1\\)" },
+          {
+            "label": "B",
+            "content": "\\(\\frac{x^{2}}{3}+\\frac{y^{2}}{2}=1\\)"
+          },
+          {
+            "label": "C",
+            "content": "\\(\\frac{x^{2}}{4}+\\frac{y^{2}}{3}=1\\)"
+          },
+          {
+            "label": "D",
+            "content": "\\(\\frac{x^{2}}{5}+\\frac{y^{2}}{4}=1\\"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "",
+    "category": "\u5355\u9879\u9009\u62e9",
+    "reference": "C",
+    "questions": [
+      {
+        "type": "SINGLE",
+        "stem": "<span>11\uff0e\u5173\u4e8e\u51fd\u6570\\(f(x)=\\sin(|)x|+|\\sin( )x|\\)\u6709\u4e0b\u8ff0\u56db\u4e2a\u7ed3\u8bba\uff1a<br/>\u2460f(x)\u662f\u5076\u51fd\u6570\u2461f(x)\u5728\u533a\u95f4\uff08\\(\\frac{\u03c0}{2}\\)\uff0c\\(\u03c0\\)\uff09\u5355\u8c03\u9012\u589e<br/>\u2462f(x)\u5728\\([-\u03c0,\u03c0]\\)\u67094\u4e2a\u96f6\u70b9\u2463f(x)\u7684\u6700\u5927\u503c\u4e3a2<br/>\u5176\u4e2d\u6240\u6709\u6b63\u786e\u7ed3\u8bba\u7684\u7f16\u53f7\u662f</span>",
+        "solution": "C",
+        "options": [
+          { "label": "A", "content": "\u2460\u2461\u2463 " },
+          { "label": "B", "content": "\u2461\u2463" },
+          { "label": "C", "content": "\u2460\u2463" },
+          { "label": "D", "content": "\u2460" }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "",
+    "category": "\u5355\u9879\u9009\u62e9",
+    "reference": "D",
+    "questions": [
+      {
+        "type": "SINGLE",
+        "stem": "<span>12\uff0e\u5df2\u77e5\u4e09\u68f1\u9525P\u2212ABC\u7684\u56db\u4e2a\u9876\u70b9\u5728\u7403O\u7684\u7403\u9762\u4e0a\uff0cPA=PB=PC\uff0c\u25b3ABC\u662f\u8fb9\u957f\u4e3a2\u7684\u6b63\u4e09\u89d2\u5f62\uff0cE\uff0cF\u5206\u522b\u662fPA\uff0cAB\u7684\u4e2d\u70b9\uff0c\u2220CEF=90\u00b0\uff0c\u5219\u7403O\u7684\u4f53\u79ef\u4e3a</span>",
+        "solution": "D",
+        "options": [
+          { "label": "A", "content": "\\(8\\sqrt{6}\u03c0\\)" },
+          { "label": "B", "content": "\\(4\\sqrt{6}\u03c0\\) " },
+          { "label": "C", "content": "\\(2\\sqrt{6}\u03c0\\)" },
+          { "label": "D", "content": "\\(\\sqrt{6}\u03c0\\" }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "",
+    "category": "\u586b\u7a7a\u9898",
+    "reference": "y=3x",
+    "questions": [
+      {
+        "type": "GENERAL",
+        "stem": "<span>13\uff0e\u66f2\u7ebf\\(y=3(x^{2}+x)e^{x}\\)\u5728\u70b9\\((0\uff0c0)\\)\u5904\u7684\u5207\u7ebf\u65b9\u7a0b\u4e3a____________\uff0e</span>",
+        "solution": "y=3x",
+        "options": []
+      }
+    ]
+  },
+  {
+    "title": "",
+    "category": "\u586b\u7a7a\u9898",
+    "reference": "\\(\\frac{121}{3}\\)",
+    "questions": [
+      {
+        "type": "GENERAL",
+        "stem": "<span>14\uff0e\u8bb0Sn\u4e3a\u7b49\u6bd4\u6570\u5217{an}\u7684\u524dn\u9879\u548c\uff0e\u82e5\\(a_{1}=\\frac{1}{3}\uff0ca_{4}^{2}=a_{6}\\)\uff0c\u5219S5=____________\uff0e</span>",
+        "solution": "\\(\\frac{121}{3}\\)",
+        "options": []
+      }
+    ]
+  },
+  {
+    "title": "",
+    "category": "\u586b\u7a7a\u9898",
+    "reference": "18",
+    "questions": [
+      {
+        "type": "GENERAL",
+        "stem": "<span>15\uff0e\u7532\u3001\u4e59\u4e24\u961f\u8fdb\u884c\u7bee\u7403\u51b3\u8d5b\uff0c\u91c7\u53d6\u4e03\u573a\u56db\u80dc\u5236\uff08\u5f53\u4e00\u961f\u8d62\u5f97\u56db\u573a\u80dc\u5229\u65f6\uff0c\u8be5\u961f\u83b7\u80dc\uff0c\u51b3\u8d5b\u7ed3\u675f\uff09\uff0e\u6839\u636e\u524d\u671f\u6bd4\u8d5b\u6210\u7ee9\uff0c\u7532\u961f\u7684\u4e3b\u5ba2\u573a\u5b89\u6392\u4f9d\u6b21\u4e3a\u201c\u4e3b\u4e3b\u5ba2\u5ba2\u4e3b\u5ba2\u4e3b\u201d\uff0e\u8bbe\u7532\u961f\u4e3b\u573a\u53d6\u80dc\u7684\u6982\u7387\u4e3a0.6\uff0c\u5ba2\u573a\u53d6\u80dc\u7684\u6982\u7387\u4e3a0.5\uff0c\u4e14\u5404\u573a\u6bd4\u8d5b\u7ed3\u679c\u76f8\u4e92\u72ec\u7acb\uff0c\u5219\u7532\u961f\u4ee54\u22361\u83b7\u80dc\u7684\u6982\u7387\u662f____________\uff0e</span>",
+        "solution": "18",
+        "options": []
+      }
+    ]
+  },
+  {
+    "title": "",
+    "category": "\u586b\u7a7a\u9898",
+    "reference": "2",
+    "questions": [
+      {
+        "type": "GENERAL",
+        "stem": "<span>16\uff0e\u5df2\u77e5\u53cc\u66f2\u7ebfC\uff1a\\(\\frac{x^{2}}{a^{2}}-\\frac{y^{2}}{b^{2}}=1(a&gt;0,b&gt;0)\\)\u7684\u5de6\u3001\u53f3\u7126\u70b9\u5206\u522b\u4e3aF1\uff0cF2\uff0c\u8fc7F1\u7684\u76f4\u7ebf\u4e0eC\u7684\u4e24\u6761\u6e10\u8fd1\u7ebf\u5206\u522b\u4ea4\u4e8eA\uff0cB\u4e24\u70b9\uff0e\u82e5\\(\\vec{F_{1}A}=\\vec{AB}\\)\uff0c\\(\\vec{F_{1}B}\u22c5\\vec{F_{2}B}=0\\)\uff0c\u5219C\u7684\u79bb\u5fc3\u7387\u4e3a____________\uff0e</span>",
+        "solution": "2",
+        "options": []
+      }
+    ]
+  },
+  {
+    "title": "\\(\u25b3ABC\\)\u7684\u5185\u89d2A\uff0cB\uff0cC\u7684\u5bf9\u8fb9\u5206\u522b\u4e3aa\uff0cb\uff0cc\uff0c\u8bbe\\((sinB-sinC)^{2}=sin^{2}A-sinBsinC\\).",
+    "category": "\u89e3\u7b54\u9898",
+    "reference": "\u89e3\uff1a\uff081\uff09\u7531\u5df2\u77e5\u5f97\\(sin^{2}B+sin^{2}C-sin^{2}A=sinBsinC\\)\uff0c\u6545\u7531\u6b63\u5f26\u5b9a\u7406\u5f97\\(b^{2}+c^{2}-a^{2}=bc\\)\uff0e<br/>\u7531\u4f59\u5f26\u5b9a\u7406\u5f97\\(\\cos(A)=\\frac{b^{2}+c^{2}-a^{2}}{2bc}=\\frac{1}{2}\\)\uff0e<br/>\u56e0\u4e3a\\(0^{\u00b0}&lt;A&lt;180^{\u00b0}\\)\uff0c\u6240\u4ee5\\(A=60^{\u00b0}\\)\uff0e<br/>\uff082\uff09\u7531\uff081\uff09\u77e5\\(B=120^{\u00b0}-C\\)\uff0c\u7531\u9898\u8bbe\u53ca\u6b63\u5f26\u5b9a\u7406\u5f97\\(\\sqrt{2}\\sin(A)+\\sin(\\left(120^{\u00b0}-C\\right))=2\\sin(C)\\)\uff0c<br/>\u5373\\(\\frac{\\sqrt{6}}{2}+\\frac{\\sqrt{3}}{2}\\cos(C)+\\frac{1}{2}\\sin(C)=2\\sin(C)\\)\uff0c\u53ef\u5f97\\(\\cos(\\left(C+60^{\u00b0}\\right))=-\\frac{\\sqrt{2}}{2}\\)\uff0e<br/>\u7531\u4e8e\\(0^{\u00b0}&lt;C&lt;120^{\u00b0}\\)\uff0c\u6240\u4ee5\\(\\sin(\\left(C+60^{\u00b0}\\right))=\\frac{\\sqrt{2}}{2}\\)\uff0c\u6545<br/>\\(\\sin(\\left(C+60^{\u00b0}\\right))=\\frac{\\sqrt{2}}{2}\\)<br/>\\(=\\sin(\\left(C+60^{\u00b0}\\right))\\cos(6)0^{\u00b0}-\\cos(\\left(C+60^{\u00b0}\\right))\\sin(6)0^{\u00b0}\\)<br/>\\(=\\frac{\\sqrt{6}+\\sqrt{2}}{4}\\)\uff0e",
+    "questions": [
+      {
+        "type": "GENERAL",
+        "stem": "<span>\uff081\uff09\u6c42A\uff1b</span>",
+        "solution": "",
+        "options": []
+      },
+      {
+        "type": "GENERAL",
+        "stem": "<span>\uff082\uff09\u82e5\\(\\sqrt{2}a+b=2c\\)\uff0c\u6c42sinC\uff0e</span>",
+        "solution": "",
+        "options": []
+      }
+    ]
+  },
+  {
+    "title": "\u5982\u56fe\uff0c\u76f4\u56db\u68f1\u67f1ABCD\u2013A1B1C1D1\u7684\u5e95\u9762\u662f\u83f1\u5f62\uff0cAA1=4\uff0cAB=2\uff0c\u2220BAD=60\u00b0\uff0cE\uff0cM\uff0cN\u5206\u522b\u662fBC\uff0cBB1\uff0cA1D\u7684\u4e2d\u70b9\uff0e<img src=\"img\\b7f6e82cee2d11e98be3f8a2d6c0fa12.png\" width=107.0001 height=132.0002>",
+    "category": "\u89e3\u7b54\u9898",
+    "reference": "\u89e3\uff1a\uff081\uff09\u8fde\u7ed3B1C\uff0cME\uff0e<br/>\u56e0\u4e3aM\uff0cE\u5206\u522b\u4e3aBB1\uff0cBC\u7684\u4e2d\u70b9\uff0c<br/>\u6240\u4ee5ME\u2225B1C\uff0c\u4e14ME=\\(\\frac{1}{2}\\)B1C\uff0e<br/>\u53c8\u56e0\u4e3aN\u4e3aA1D\u7684\u4e2d\u70b9\uff0c\u6240\u4ee5ND=\\(\\frac{1}{2}\\)A1D\uff0e<br/>\u7531\u9898\u8bbe\u77e5A1B1DC\uff0c\u53ef\u5f97B1CA1D\uff0c\u6545MEND\uff0c<br/>\u56e0\u6b64\u56db\u8fb9\u5f62MNDE\u4e3a\u5e73\u884c\u56db\u8fb9\u5f62\uff0cMN\u2225ED\uff0e<br/>\u53c8MN\\(\u2284\\)\u5e73\u9762EDC1\uff0c\u6240\u4ee5MN\u2225\u5e73\u9762C1DE\uff0e<br/>\uff082\uff09\u7531\u5df2\u77e5\u53ef\u5f97DE\u22a5DA\uff0e<br/>\u4ee5D\u4e3a\u5750\u6807\u539f\u70b9\uff0c\\(\\vec{DA}\\)\u7684\u65b9\u5411\u4e3ax\u8f74\u6b63\u65b9\u5411\uff0c\u5efa\u7acb\u5982\u56fe\u6240\u793a\u7684\u7a7a\u95f4\u76f4\u89d2\u5750\u6807\u7cfbD\u2212xyz\uff0c\u5219<br/><img src=\"img\\b80ab0b0ee2d11e9ad36f8a2d6c0fapng\" width=20004 height=37117><br/>\\(A(2,0,0)\\)\uff0cA1(2\uff0c0\uff0c4)\uff0c\\(M(1,\\sqrt{3},2)\\)\uff0c\\(N(1,0,2)\\)\uff0c\\(\\vec{A_{1}A}=(0,0,-4)\\)\uff0c\\(\\vec{A_{1}M}=(-1,\\sqrt{3},-2)\\)\uff0c\\(\\vec{A_{1}N}=(-1,0,-2)\\)\uff0c\\(\\vec{MN}=(0,-\\sqrt{3},0)\\)\uff0e<br/>\u8bbe\\(m=(x,y,z)\\)\u4e3a\u5e73\u9762A1MA\u7684\u6cd5\u5411\u91cf\uff0c\u5219\\(\\left\\{\\begin{matrix}m\u22c5\\vec{A_{1}M}=0\\\\m\u22c5\\vec{A_{1}A}=0\\end{matrix}\\right.\\)\uff0c<br/>\u6240\u4ee5\\(\\left\\{\\begin{matrix}-x+\\sqrt{3}y-2z=0\uff0c\\\\-4z=\\end{matrix}\\right.\\)\u53ef\u53d6\\(m=(\\sqrt{3},1,0)\\)\uff0e<br/>\u8bbe\\(n=(p,q,r)\\)\u4e3a\u5e73\u9762A1MN\u7684\u6cd5\u5411\u91cf\uff0c\u5219\\(\\left\\{\\begin{matrix}n\u22c5\\vec{MN}=0\uff0c\\\\n\u22c5\\vec{A_{1}N}=\\end{matrix}\\right.\\)<br/>\u6240\u4ee5\\(\\left\\{\\begin{matrix}-\\sqrt{3}q=0\uff0c\\\\-p-2r=\\end{matrix}\\right.\\)\u53ef\u53d6\\(n=(2,0,-1)\\)\uff0e<br/>\u4e8e\u662f\\(\\cos(\u27e8)m,n\u27e9=\\frac{m\u22c5n}{|m\u2016n|}=\\frac{2\\sqrt{3}}{2\u00d7\\sqrt{5}}=\\frac{\\sqrt{15}}{5}\\)\uff0c<br/>\u6240\u4ee5\u4e8c\u9762\u89d2\\(A-MA_{1}-N\\)\u7684\u6b63\u5f26\u503c\u4e3a\\(\\frac{\\sqrt{10}}{5}\\)\uff0e",
+    "questions": [
+      {
+        "type": "GENERAL",
+        "stem": "<span>\uff081\uff09\u8bc1\u660e\uff1aMN\u2225\u5e73\u9762C1DE\uff1b</span>",
+        "solution": "",
+        "options": []
+      },
+      {
+        "type": "GENERAL",
+        "stem": "<span>\uff082\uff09\u6c42\u4e8c\u9762\u89d2A\u2212MA1\u2212N\u7684\u6b63\u5f26\u503c\uff0e</span>",
+        "solution": "",
+        "options": []
+      }
+    ]
+  },
+  {
+    "title": "\u5df2\u77e5\u629b\u7269\u7ebfC\uff1ay2=3x\u7684\u7126\u70b9\u4e3aF\uff0c\u659c\u7387\u4e3a\u7684\u76f4\u7ebfl\u4e0eC\u7684\u4ea4\u70b9\u4e3aA\uff0cB\uff0c\u4e0ex\u8f74\u7684\u4ea4\u70b9\u4e3aP\uff0e",
+    "category": "\u89e3\u7b54\u9898",
+    "reference": "\u89e3\uff1a\u8bbe\u76f4\u7ebf\\(l:y=\\frac{3}{2}x+t,A\\left(x_{1},y_{1}\\right),B\\left(x_{2},y_{2}\\right)\\)\uff0e<br/>\uff081\uff09\u7531\u9898\u8bbe\u5f97\\(F\\left(\\frac{3}{4},0\\right)\\)\uff0c\u6545\\(|AF|+|BF|=x_{1}+x_{2}+\\frac{3}{2}\\)\uff0c\u7531\u9898\u8bbe\u53ef\u5f97\\(x_{1}+x_{2}=\\frac{5}{2}\\)\uff0e<br/>\u7531\\(\\left\\{\\begin{matrix}y=\\frac{3}{2}x+t\\\\y^{2}=3x\\end{matrix}\\right.\\)\uff0c\u53ef\u5f97\\(9x^{2}+12(t-1)x+4t^{2}=0\\)\uff0c\u5219\\(x_{1}+x_{2}=-\\frac{12(t-1)}{9}\\)\uff0e<br/>\u4ece\u800c\\(-\\frac{12(t-1)}{9}=\\frac{5}{2}\\)\uff0c\u5f97\\(t=-\\frac{7}{8}\\)\uff0e<br/>\u6240\u4ee5\\(l\\)\u7684\u65b9\u7a0b\u4e3a\\(y=\\frac{3}{2}x-\\frac{7}{8}\\)\uff0e<br/>\uff082\uff09\u7531\\(\\vec{AP}=3\\vec{PB}\\)\u53ef\u5f97\\(y_{1}=-3y_{2}\\)\uff0e<br/>\u7531\\(\\left\\{\\begin{matrix}y=\\frac{3}{2}x+t\\\\y^{2}=3x\\end{matrix}\\right.\\)\uff0c\u53ef\u5f97\\(y^{2}-2y+2t=0\\)\uff0e<br/>\u6240\u4ee5\\(y_{1}+y_{2}=2\\)\uff0e\u4ece\u800c\\(-3y_{2}+y_{2}=2\\)\uff0c\u6545\\(y_{2}=-1,y_{1}=3\\)\uff0e<br/>\u4ee3\u5165\\(C\\)\u7684\u65b9\u7a0b\u5f97\\(x_{1}=3,x_{2}=\\frac{1}{3}\\)\uff0e<br/>\u6545\\(|AB|=\\frac{4\\sqrt{13}}{3}\\)\uff0e",
+    "questions": [
+      {
+        "type": "GENERAL",
+        "stem": "<span>\uff081\uff09\u82e5|AF|+|BF|=4\uff0c\u6c42l\u7684\u65b9\u7a0b\uff1b</span>",
+        "solution": "",
+        "options": []
+      },
+      {
+        "type": "GENERAL",
+        "stem": "<span>\uff082\uff09\u82e5<img src=\"img\\b7f955dcee2d11e9bbf2f8a2d6c0fa12.wmf\" width=70.0001 height=22.0000>\uff0c\u6c42|AB|\uff0e</span>",
+        "solution": "",
+        "options": []
+      }
+    ]
+  },
+  {
+    "title": "\u5df2\u77e5\u51fd\u6570\\(f(x)=\\sin(x)-ln(1+x)\\)\uff0c\\(f^{'}(x)\\)\u4e3a\\(f(x)\\)\u7684\u5bfc\u6570\uff0e\u8bc1\u660e\uff1a",
+    "category": "\u89e3\u7b54\u9898",
+    "reference": "\u89e3\uff1a\uff081\uff09\u8bbe\\(g(x)=f'(x)\\)\uff0c\u5219\\(g(x)=\\cos(x)-\\frac{1}{1+x}\\)\uff0c\\(g'(x)=-\\sin(x)+\\frac{1}{(1+x)^{2}}\\).<br/>\u5f53\\(x\\in \\left(-1,\\frac{\u03c0}{2}\\right)\\)\u65f6\uff0c\\(g'(x)\\)\u5355\u8c03\u9012\u51cf\uff0c\u800c\\(g'(0)&gt;0,g'(\\frac{\u03c0}{2})&lt;0\\)\uff0c\u53ef\u5f97\\(g'(x)\\)\u5728\\(\\left(-1,\\frac{\u03c0}{2}\\right)\\)\u6709\u552f\u4e00\u96f6\u70b9\uff0c<br/>\u8bbe\u4e3a\\(\u03b1\\).<br/>\u5219\u5f53\\(x\\in (-1,\u03b1)\\)\u65f6\uff0c\\(g'(x)&gt;0\\)\uff1b\u5f53\\(x\\in \\left(\u03b1,\\frac{\u03c0}{2}\\right)\\)\u65f6\uff0c\\(g'(x)&lt;0\\).<br/>\u6240\u4ee5\\(g(x)\\)\u5728\\((-1,\u03b1)\\)\u5355\u8c03\u9012\u589e\uff0c\u5728\\(\\left(\u03b1,\\frac{\u03c0}{2}\\right)\\)\u5355\u8c03\u9012\u51cf\uff0c\u6545\\(g(x)\\)\u5728\\(\\left(-1,\\frac{\u03c0}{2}\\right)\\)\u5b58\u5728\u552f\u4e00\u6781\u5927\u503c\u70b9\uff0c\u5373\\(f'(x)\\)\u5728\\(\\left(-1,\\frac{\u03c0}{2}\\right)\\)\u5b58\u5728\u552f\u4e00\u6781\u5927\u503c\u70b9.<br/>\uff082\uff09\\(f(x)\\)\u7684\u5b9a\u4e49\u57df\u4e3a\\((-1,+\\infty )\\).<br/>\uff08i\uff09\u5f53\\(x\\in (-1,0]\\)\u65f6\uff0c\u7531\uff081\uff09\u77e5\uff0c\\(f'(x)\\)\u5728\\((-1,0)\\)\u5355\u8c03\u9012\u589e\uff0c\u800c\\(f'(0)=0\\)\uff0c\u6240\u4ee5\u5f53\\(x\\in (-1,0)\\)\u65f6\uff0c\\(f'(x)&lt;0\\)\uff0c\u6545\\(f(x)\\)\u5728\\((-1,0)\\)\u5355\u8c03\u9012\u51cf\uff0c\u53c8\\(f(0)=0\\)\uff0c\u4ece\u800c\\(x=0\\)\u662f\\(f(x)\\)\u5728\\((-1,0]\\)\u7684\u552f\u4e00\u96f6\u70b9.<br/>\uff08ii\uff09\u5f53\\(x\\in \\left(0,\\frac{\u03c0}{2}\\right)\\)\u65f6\uff0c\u7531\uff081\uff09\u77e5\uff0c\\(f'(x)\\)\u5728\\((0,\u03b1)\\)\u5355\u8c03\u9012\u589e\uff0c\u5728\\(\\left(\u03b1,\\frac{\u03c0}{2}\\right)\\)\u5355\u8c03\u9012\u51cf\uff0c\u800c\\(f'(0)=0\\)\uff0c\\(f'\\left(\\frac{\u03c0}{2}\\right)&lt;0\\)\uff0c\u6240\u4ee5\u5b58\u5728\\(\u03b2\\in \\left(\u03b1,\\frac{\u03c0}{2}\\right)\\)\uff0c\u4f7f\u5f97\\(f'(\u03b2)=0\\)\uff0c\u4e14\u5f53\\(x\\in (0,\u03b2)\\)\u65f6\uff0c\\(f'(x)&gt;0\\)\uff1b\u5f53\\(x\\in \\left(\u03b2,\\frac{\u03c0}{2}\\right)\\)\u65f6\uff0c\\(f'(x)&lt;0\\).\u6545\\(f(x)\\)\u5728\\((0,\u03b2)\\)\u5355\u8c03\u9012\u589e\uff0c\u5728\\(\\left(\u03b2,\\frac{\u03c0}{2}\\right)\\)\u5355\u8c03\u9012\u51cf.<br/>\u53c8\\(f(0)=0\\)\uff0c\\(f\\left(\\frac{\u03c0}{2}\\right)=1-ln(1+\\frac{\u03c0}{2})&gt;0\\)\uff0c\u6240\u4ee5\u5f53\\(x\\in \\left(0,\\frac{\u03c0}{2}\\right)\\)\u65f6\uff0c\\(f(x)&gt;0\\).\u4ece\u800c\uff0c\\(f(x)\\) \u5728\\(\\left(0,\\frac{\u03c0}{2}\\right)\\)\u6ca1\u6709\u96f6\u70b9.<br/>\uff08iii\uff09\u5f53\\(x\\in \\left(\\frac{\u03c0}{2},\u03c0\\right)\\)\u65f6\uff0c\\(f'(x)&lt;0\\)\uff0c\u6240\u4ee5\\(f(x)\\)\u5728\\(\\left(\\frac{\u03c0}{2},\u03c0\\right)\\)\u5355\u8c03\u9012\u51cf.\u800c\\(f\\left(\\frac{\u03c0}{2}\\right)&gt;0\\)\uff0c\\(f(\u03c0)&lt;0\\)\uff0c\u6240\u4ee5\\(f(x)\\)\u5728\\(\\left(\\frac{\u03c0}{2},\u03c0\\right)\\)\u6709\u552f\u4e00\u96f6\u70b9.<br/>\uff08iv\uff09\u5f53\\(x\\in (\u03c0,+\\infty )\\)\u65f6\uff0c\\(ln(x+1)&gt;1\\)\uff0c\u6240\u4ee5\\(f(x)\\) &lt;0\uff0c\u4ece\u800c\\(f(x)\\)\u5728\\((\u03c0,+\\infty )\\)\u6ca1\u6709\u96f6\u70b9.<br/>\u7efc\u4e0a\uff0c\\(f(x)\\)\u6709\u4e14\u4ec5\u67092\u4e2a\u96f6\u70b9.",
+    "questions": [
+      {
+        "type": "GENERAL",
+        "stem": "<span>\uff081\uff09\\(f^{'}(x)\\)\u5728\u533a\u95f4\\((-1,\\frac{\u03c0}{2})\\)\u5b58\u5728\u552f\u4e00\u6781\u5927\u503c\u70b9\uff1b</span>",
+        "solution": "",
+        "options": []
+      },
+      {
+        "type": "GENERAL",
+        "stem": "<span>\uff082\uff09\\(f(x)\\)\u6709\u4e14\u4ec5\u67092\u4e2a\u96f6\u70b9\uff0e</span>",
+        "solution": "",
+        "options": []
+      }
+    ]
+  },
+  {
+    "title": "\u4e3a\u6cbb\u7597\u67d0\u79cd\u75be\u75c5\uff0c\u7814\u5236\u4e86\u7532\u3001\u4e59\u4e24\u79cd\u65b0\u836f\uff0c\u5e0c\u671b\u77e5\u9053\u54ea\u79cd\u65b0\u836f\u66f4\u6709\u6548\uff0c\u4e3a\u6b64\u8fdb\u884c\u52a8\u7269\u8bd5\u9a8c\uff0e\u8bd5\u9a8c\u65b9\u6848\u5982\u4e0b\uff1a\u6bcf\u4e00\u8f6e\u9009\u53d6\u4e24\u53ea\u767d\u9f20\u5bf9\u836f\u6548\u8fdb\u884c\u5bf9\u6bd4\u8bd5\u9a8c\uff0e\u5bf9\u4e8e\u4e24\u53ea\u767d\u9f20\uff0c\u968f\u673a\u9009\u4e00\u53ea\u65bd\u4ee5\u7532\u836f\uff0c\u53e6\u4e00\u53ea\u65bd\u4ee5\u4e59\u836f\uff0e\u4e00\u8f6e\u7684\u6cbb\u7597\u7ed3\u679c\u5f97\u51fa\u540e\uff0c\u518d\u5b89\u6392\u4e0b\u4e00\u8f6e\u8bd5\u9a8c\uff0e\u5f53\u5176\u4e2d\u4e00\u79cd\u836f\u6cbb\u6108\u7684\u767d\u9f20\u6bd4\u53e6\u4e00\u79cd\u836f\u6cbb\u6108\u7684\u767d\u9f20\u591a4\u53ea\u65f6\uff0c\u5c31\u505c\u6b62\u8bd5\u9a8c\uff0c\u5e76\u8ba4\u4e3a\u6cbb\u6108\u53ea\u6570\u591a\u7684\u836f\u66f4\u6709\u6548\uff0e\u4e3a\u4e86\u65b9\u4fbf\u63cf\u8ff0\u95ee\u9898\uff0c\u7ea6\u5b9a\uff1a\u5bf9\u4e8e\u6bcf\u8f6e\u8bd5\u9a8c\uff0c\u82e5\u65bd\u4ee5\u7532\u836f\u7684\u767d\u9f20\u6cbb\u6108\u4e14\u65bd\u4ee5\u4e59\u836f\u7684\u767d\u9f20\u672a\u6cbb\u6108\u5219\u7532\u836f\u5f971\u5206\uff0c\u4e59\u836f\u5f97\\(-1\\)\u5206\uff1b\u82e5\u65bd\u4ee5\u4e59\u836f\u7684\u767d\u9f20\u6cbb\u6108\u4e14\u65bd\u4ee5\u7532\u836f\u7684\u767d\u9f20\u672a\u6cbb\u6108\u5219\u4e59\u836f\u5f971\u5206\uff0c\u7532\u836f\u5f97\\(-1\\)\u5206\uff1b\u82e5\u90fd\u6cbb\u6108\u6216\u90fd\u672a\u6cbb\u6108\u5219\u4e24\u79cd\u836f\u5747\u5f970\u5206\uff0e\u7532\u3001\u4e59\u4e24\u79cd\u836f\u7684\u6cbb\u6108\u7387\u5206\u522b\u8bb0\u4e3a\u03b1\u548c\u03b2\uff0c\u4e00\u8f6e\u8bd5\u9a8c\u4e2d\u7532\u836f\u7684\u5f97\u5206\u8bb0\u4e3aX\uff0e",
+    "category": "\u89e3\u7b54\u9898",
+    "reference": "\u89e3\uff1a\uff081\uff09X\u7684\u6240\u6709\u53ef\u80fd\u53d6\u503c\u4e3a\\(-1,0,1\\).<br/>\\(\\begin{matrix}P(X=-1)=(1-\u03b1)\u03b2\uff0c\\\\P(X=0)=\u03b1\u03b2+(1-\u03b1)(1-\u03b2)\uff0c\\\\P(X=1)=\u03b1(1-\u03b2)\uff0c\\end{matrix}\\) <br/>\u6240\u4ee5\\(X\\)\u7684\u5206\u5e03\u5217\u4e3a<br/><img src=\"img\\b816b646ee2d11e9af42f8a2d6c0fapng\" width=44672 height=12001><br/>\uff082\uff09\uff08i\uff09\u7531\uff081\uff09\u5f97\\(a=4,\u2003b=5,\u2003c=1\\).<br/>\u56e0\u6b64\\(p_{i}=4p_{i-1}+5 p_{i}+1p_{i+1}\\)\uff0c\u6545\\(1\\left(p_{i+1}-p_{i}\\right)=4\\left(p_{i}-p_{i-1}\\right)\\)\uff0c\u5373<br/>\\(p_{i+1}-p_{i}=4\\left(p_{i}-p_{i-1}\\right)\\).<br/>\u53c8\u56e0\u4e3a\\(p_{1}-p_{0}=p_{1}\\ne 0\\)\uff0c\u6240\u4ee5\\(\\left\\{p_{i+1}-p_{i}\\right\\}(i=0,1,2,\\cdots ,7)\\)\u4e3a\u516c\u6bd4\u4e3a4\uff0c\u9996\u9879\u4e3a\\(p_{1}\\)\u7684\u7b49\u6bd4\u6570\u5217\uff0e<br/>\uff08ii\uff09\u7531\uff08i\uff09\u53ef\u5f97<br/>\\(p_{8} =p_{8}-p_{7}+p_{7}-p_{6}+\\cdots +p_{1}-p_{0}+p_{0} =\\left(p_{8}-p_{7}\\right)+\\left(p_{7}-p_{6}\\right)+\\cdots +\\left(p_{1}-p_{0}\\right)=\\frac{4^{8}-1}{3}p_{1}\\).<br/>\u7531\u4e8e\\(p_{8}=1\\)\uff0c\u6545\\(p_{1}=\\frac{3}{4^{8}-1}\\)\uff0c\u6240\u4ee5<br/>\\(p_{4} =\\left(p_{4}-p_{3}\\right)+\\left(p_{3}-p_{2}\\right)+\\left(p_{2}-p_{1}\\right)+\\left(p_{1}-p_{0}\\right)=\\frac{4^{4}-1}{3}p_{1} =\\frac{1}{257}.\\) <br/>\\(p_{4}\\)\u8868\u793a\u6700\u7ec8\u8ba4\u4e3a\u7532\u836f\u66f4\u6709\u6548\u7684\u6982\u7387\uff0c\u7531\u8ba1\u7b97\u7ed3\u679c\u53ef\u4ee5\u770b\u51fa\uff0c\u5728\u7532\u836f\u6cbb\u6108\u7387\u4e3a5\uff0c\u4e59\u836f\u6cbb\u6108\u7387\u4e3a8\u65f6\uff0c\u8ba4\u4e3a\u7532\u836f\u66f4\u6709\u6548\u7684\u6982\u7387\u4e3a\\(p_{4}=\\frac{1}{257}\u22480039\\)\uff0c\u6b64\u65f6\u5f97\u51fa\u9519\u8bef\u7ed3\u8bba\u7684\u6982\u7387\u975e\u5e38\u5c0f\uff0c\u8bf4\u660e\u8fd9\u79cd\u8bd5\u9a8c\u65b9\u6848\u5408\u7406.",
+    "questions": [
+      {
+        "type": "GENERAL",
+        "stem": "<span>\uff081\uff09\u6c42\\(X\\)\u7684\u5206\u5e03\u5217\uff1b</span>",
+        "solution": "",
+        "options": []
+      },
+      {
+        "type": "GENERAL",
+        "stem": "<span>\uff082\uff09\u82e5\u7532\u836f\u3001\u4e59\u836f\u5728\u8bd5\u9a8c\u5f00\u59cb\u65f6\u90fd\u8d4b\u4e884\u5206\uff0c\\(p_{i}(i=0,1,\\cdots ,8)\\)\u8868\u793a\u201c\u7532\u836f\u7684\u7d2f\u8ba1\u5f97\u5206\u4e3a\\(i\\)\u65f6\uff0c\u6700\u7ec8\u8ba4\u4e3a\u7532\u836f\u6bd4\u4e59\u836f\u66f4\u6709\u6548\u201d\u7684\u6982\u7387\uff0c\u5219\\(p_{0}=0\\)\uff0c\\(p_{8}=1\\)\uff0c\\(p_{i}=ap_{i-1}+bp_{i}+cp_{i+1}(i=1,2,\\cdots ,7)\\)\uff0c\u5176\u4e2d\\(a=P(X=-1)\\)\uff0c\\(b=P(X=0)\\)\uff0c\\(c=P(X=1)\\)\uff0e\u5047\u8bbe\\(\u03b1=0.5\\)\uff0c\\(\u03b2=0.8\\)\uff0e(i)\u8bc1\u660e\uff1a\\(\\{p_{i+1}-p_{i}\\}(i=0,1,2,\\cdots ,7)\\)\u4e3a\u7b49\u6bd4\u6570\u5217\uff1b(ii)\u6c42\\(p_{4}\\)\uff0c\u5e76\u6839\u636e\\(p_{4}\\)\u7684\u503c\u89e3\u91ca\u8fd9\u79cd\u8bd5\u9a8c\u65b9\u6848\u7684\u5408\u7406\u6027\uff0e</span>",
+        "solution": "",
+        "options": []
+      }
+    ]
+  },
+  {
+    "title": "22\uff0e[\u9009\u4fee4\u20144\uff1a\u5750\u6807\u7cfb\u4e0e\u53c2\u6570\u65b9\u7a0b]\uff0810\u5206\uff09\u5728\u76f4\u89d2\u5750\u6807\u7cfbxOy\u4e2d\uff0c\u66f2\u7ebfC\u7684\u53c2\u6570\u65b9\u7a0b\u4e3a\uff08t\u4e3a\u53c2\u6570\uff09\uff0e\u4ee5\u5750\u6807\u539f\u70b9O\u4e3a\u6781\u70b9\uff0cx\u8f74\u7684\u6b63\u534a\u8f74\u4e3a\u6781\u8f74\u5efa\u7acb\u6781\u5750\u6807\u7cfb\uff0c\u76f4\u7ebfl\u7684\u6781\u5750\u6807\u65b9\u7a0b\u4e3a\uff0e",
+    "category": "\u89e3\u7b54\u9898",
+    "reference": "\u89e3\uff1a\uff081\uff09\u56e0\u4e3a\\(-1&lt;\\frac{1-t^{2}}{1+t^{2}}\\leq 1\\)\uff0c\u4e14\\(x^{2}+\\left(\\frac{y}{2}\\right)^{2}=\\left(\\frac{1-t^{2}}{1+t^{2}}\\right)^{2}+\\frac{4t^{2}}{\\left(1+t^{2}\\right)^{2}}=1\\)\uff0c\u6240\u4ee5C\u7684\u76f4\u89d2\u5750\u6807\u65b9\u7a0b\u4e3a\\(x^{2}+\\frac{y^{2}}{4}=1(x\\ne -1)\\).<br/>\\(l\\)\u7684\u76f4\u89d2\u5750\u6807\u65b9\u7a0b\u4e3a\\(2x+\\sqrt{3}y+11=0\\).<br/>\uff082\uff09\u7531\uff081\uff09\u53ef\u8bbeC\u7684\u53c2\u6570\u65b9\u7a0b\u4e3a\\(\\left\\{\\begin{matrix}x=\\cos(\u03b1),\\\\y=2\\sin(\u03b1)\\end{matrix}\\right.\\)\uff08\\(\u03b1\\)\u4e3a\u53c2\u6570\uff0c\\(-\u03c0&lt;\u03b1&lt;\u03c0\\)\uff09.<br/>C\u4e0a\u7684\u70b9\u5230\\(l\\)\u7684\u8ddd\u79bb\u4e3a\\(\\frac{|2\\cos(\u03b1)+2\\sqrt{3}\\sin(\u03b1)+11|}{\\sqrt{7}}=\\frac{4\\cos(\\left(\u03b1-\\frac{\u03c0}{3}\\right))+11}{\\sqrt{7}}\\).<br/>\u5f53\\(\u03b1=-\\frac{2\u03c0}{3}\\)\u65f6\uff0c\\(4\\cos(\\left(\u03b1-\\frac{\u03c0}{3}\\right))+11\\)\u53d6\u5f97\u6700\u5c0f\u503c7\uff0c\u6545C\u4e0a\u7684\u70b9\u5230\\(l\\)\u8ddd\u79bb\u7684\u6700\u5c0f\u503c\u4e3a\\(\\sqrt{7}\\).",
+    "questions": [
+      {
+        "type": "GENERAL",
+        "stem": "<span>\uff081\uff09\u6c42C\u548cl\u7684\u76f4\u89d2\u5750\u6807\u65b9\u7a0b\uff1b</span>",
+        "solution": "",
+        "options": []
+      },
+      {
+        "type": "GENERAL",
+        "stem": "<span>\uff082\uff09\u6c42C\u4e0a\u7684\u70b9\u5230l\u8ddd\u79bb\u7684\u6700\u5c0f\u503c\uff0e</span>",
+        "solution": "",
+        "options": []
+      }
+    ]
+  },
+  {
+    "title": "23\uff0e[\u9009\u4fee4\u20145\uff1a\u4e0d\u7b49\u5f0f\u9009\u8bb2]\uff0810\u5206\uff09\u5df2\u77e5a\uff0cb\uff0cc\u4e3a\u6b63\u6570\uff0c\u4e14\u6ee1\u8db3abc=1\uff0e\u8bc1\u660e\uff1a",
+    "category": "\u89e3\u7b54\u9898",
+    "reference": "",
+    "questions": [
+      {
+        "type": "GENERAL",
+        "stem": "<span>\uff081\uff09\\(\\frac{1}{a}+\\frac{1}{b}+\\frac{1}{c}\\leq a^{2}+b^{2}+c^{2}\\)\uff1b</span>",
+        "solution": "",
+        "options": []
+      },
+      {
+        "type": "GENERAL",
+        "stem": "<span>\uff082\uff09\\((a+b)^{3}+(b+c)^{3}+(c+a)^{3}\\geq 24\\)\uff0e</span>",
+        "solution": "",
+        "options": []
+      }
+    ]
+  }
+]

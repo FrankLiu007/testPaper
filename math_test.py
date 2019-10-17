@@ -1,13 +1,10 @@
 import docx
+import json
 import re
 from lxml import etree
-from parse_docx_paper import processPaper
+from docx_utils.parse_paper import processPaper
 from MsEquation.MsEquation2Latex import get_latex
-
-
-### 生成tree
-def get_tree(index):
-    return etree.fromstring(doc.paragraphs[index]._element.xml)
+from docx_utils.ti2html import parse_ti
 
 ### 获取标签
 def get_tag(el):
@@ -34,7 +31,6 @@ def get_content(el):
 
     return text
 
-
 ### 获取title
 def get_title(doc , title_index):
     title = ''
@@ -48,41 +44,28 @@ def get_title(doc , title_index):
     return title
 
 ### 获取options
-def get_options(doc , ops_index):
-    option_list = []
-    for index in ops_index:
-        ops_tree = etree.fromstring(doc.paragraphs[index]._element.xml)
-        ops_children = ops_tree.getchildren()
-        content = ''
-        for child in ops_children:
-            res = get_content(child)
-            if res == '':
-                res = 'br'
-            content += res
+def get_options(ops):
+    options = []
 
-    content = content.split('br')
-    for op in content:
-        if op:
-            temp_op = dict()
-            options = re.findall(r'([A-D])[.．]\s{0,1}(.+)' , op)
-            temp_op["label"] = options[0][0]
-            temp_op["content"] = options[0][1]
-            option_list.append(temp_op)
+    for item in ops:
+        temp_ops = dict()
+        res = re.findall(r'([A-Z])[.．]\s{0,1}(.*)' , item)
+        temp_ops['label'] = res[0][0]
+        temp_ops['content'] = res[0][1]
+        options.append(temp_ops)
 
-    return option_list
+    return options
+
+
 
 ### 生成question
 def create_que(type , stem , solution , options):
-    print(stem , '76')
     temp_que = dict()
     temp_que["type"] = type
-    temp_que["stem"] = stem
+    temp_que["stem"] = '<span>'+ stem +'</span>'
     temp_que["solution"] = solution
     temp_que["options"] = options
 
-    print(temp_que['stem'])
-
-    exit()
     return temp_que
 
 ### 生成subject
@@ -91,65 +74,152 @@ def create_subject(title , category , reference , questions):
     temp_sub["title"] = title
     temp_sub["category"] = category
     temp_sub["reference"] = reference
-    temp_sub["question"] = questions
+    temp_sub["questions"] = questions
 
     return temp_sub
 
-
 ### 选择题处理
-def handle_choice(doc , choice_item):
+def handle_choice(choice_sub):
     title = ''
     reference = ''
     questions = []
     category = '单项选择'
-    tit_index = choice_item["title"]
-    ops_index = choice_item['options']
 
     solution = ''
     type = 'SINGLE'
-    stem = '<span>' + get_title(doc, tit_index) +'</span>'
-    options = get_options(doc , ops_index)
+    stem = choice_sub['title']
+    options = get_options(choice_sub['options'])
     temp_que = create_que(type , stem , solution , options)
     questions.append(temp_que)
 
     subject = create_subject(title , category , reference , questions)
 
-    print(subject , '120')
-    exit()
+    return subject
+
+### 非选择题处理
+def handle_non_choice(sub):
+    subject = dict()
+    tit_list = sub['title'].split('<br/>')
+
+    title = ''
+    reference = ''
+    solution = ''
+    options = []
+    type = 'GENERAL'
+    stem_list = []
+    questions = []
+
+    if len(tit_list) == 1:
+        stem_list.append(tit_list[0])
+    else:
+        i = 0
+        flag = 0
+        text = ''
+        while 1:
+            if re.match('^(\(|\（)\d{1,2}(\)|\）)', tit_list[i]) is None: # 不是以序号开头
+                pass
+            else:   # 以序号开头
+                if flag == 0:
+                    flag = 1
+                    title = text
+                    text = ''
+                else:
+                    stem_list.append(text)
+                    text = ''
+
+            text += tit_list[i]
+            i+=1
+
+            if(i==len(tit_list)):
+                if flag == 0:
+                    title = ''
+                stem_list.append(text)
+                break
+
+    category = '填空题' if len(title)==0 else '解答题'
+
+    for stem in stem_list:
+        temp_que = create_que(type , stem , solution , options)
+        questions.append(temp_que)
+
+    subject = create_subject(title ,category , reference , questions )
 
     return subject
 
-def paraghraph2html(paragraph, has_options):
-    children = paragraph.getchildren()
-    print(children , '124')
-    exit()
+def handle_sub(sub):
+    if 'options' not in sub:    #没有options选项
+        sub = handle_non_choice(sub)
+    else:                   # 有options选项
+        sub = handle_choice(sub)
+
+    return sub
+
+def get_ans(doc , que_indexes):
+    all_ans = []
+    for que_index in que_indexes:
+        ans_tit = que_index[0]
+        ans_indexes = que_index[1]
+        curr_index = 0
+        while curr_index<len(ans_indexes):
+            curr_index , ans = parse_ti(doc , ans_indexes , curr_index ,ans_tit, '')
+            content = re.sub(r'\d{1,2}[.．]\s{0,}', '', ans['title'])
+            all_ans.append(content)
+
+    return all_ans
+
+def merge_ans(subjects , ans_list):
+    for i in range(0 , len(subjects)-1):
+        sub = subjects[i]
+        sub['reference'] = ans_list[i].strip()
+        if len(sub['questions']) == 1:
+            sub['questions'][0]['solution'] = ans_list[i].strip()
+
+    return subjects
+
+
+
+
 ###------------------------------------
 path = 'src/2019年全国I卷理科数学高考真题.docx'
 doc = docx.Document(path)
-data_list = processPaper(doc)
+dati_list = processPaper(doc)
 
 choice_que = []
 completion_que = []
 answer_que = []
 
-index = 0
-for dati in data_list:
 
-    i=0
-    dati_row=dati[0]
-    ti={}
-    while(i<len(dati[1])):
-        title_indexs=dati[1][i]['title']
-        option_indexs=dati[1][i]['options']
-        htmls=''
-        for index in title_indexs:
-            html=paraghraph2html(doc.paragraphs[index],False)
-            htmls=htmls+html
-        ti['title']=htmls.copy()
-        for index in option_indexs:
-            html=paraghraph2html(doc.paragraphs[index], True)
+if __name__ == "__main__":
+    path = 'src/2019年全国I卷理科数学高考真题.docx'
+    ans_path = 'src/2019年全国I卷理科数学高考真题答案.docx'
+    doc = docx.Document(path)
+    ans_doc = docx.Document(ans_path)
+    paragraphs = doc.paragraphs
+    all_subject = processPaper(doc)
+    all_ans = processPaper(ans_doc)
 
-            htmls=htmls+html
+    index = 0
+
+    i = 0
+    mode_text = r'据此完成\d～\d题'  ##模式字符串
+    subjects = []
+
+    for subject in all_subject:
+        sub_tit = subject[0]    # 题型段落index
+        sub_list = subject[1]   # 题目集合
+        curr_sub_index = 0      # 当前题目的index
+        curr_que = sub_list[0]  #  当前题目
+        curr_index =0
+
+        while curr_sub_index<len(sub_list):
+            curr_sub_index , sub = parse_ti(doc , sub_list , curr_sub_index , sub_tit , mode_text)
+            sub = handle_sub(sub)
+            subjects.append(sub)
 
 
+    ans_list = get_ans(ans_doc, all_ans)
+    subjects = merge_ans(subjects , ans_list)
 
+    fp = open('math_data.json', 'w', encoding='utf-8')
+    json.dump(subjects, fp)
+    fp.close()

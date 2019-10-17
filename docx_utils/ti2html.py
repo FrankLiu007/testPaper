@@ -44,6 +44,7 @@ def get_question_quantity(paragraph, mode_text):
 
 
 ####--------------------------------------
+## 获取材料题的位置
 def find_title_row(doc, b_row, curr_row, mode_text):
     if b_row > curr_row:
         print('开始行<结束行')
@@ -58,6 +59,23 @@ def find_title_row(doc, b_row, curr_row, mode_text):
 
     return -1
 
+## 获取各个选项
+def get_options(option_html):
+    ops = []
+    last_index = 0
+    for i in range(ord('B') , ord('Z')):
+        item = chr(i)
+        index1 = option_html.find(item+'．')
+        index2 = option_html.find(item + '.')
+        index = index1 if index1>-1 else index2
+        option = option_html[last_index:index]
+        if len(option) == 0:
+            return ops
+        last_index = index
+        ops.append(option)
+
+    return ops
+
 
 ### 获取标签
 def get_tag(child):
@@ -66,28 +84,28 @@ def get_tag(child):
     :param child: etree.Element,一般为一个run
     :return: 返回该run里面的内容的类型的字符串
     '''
+
     if child.tag.split('}')[-1] == 'pPr':
         return 'w:pPr'
+
+    if child.tag.split('}')[-1] == 'oMath' or child.tag.split('}')[-1] == 'oMathPara':
+        return 'm:oMath'
 
     wt = child.xpath('.//w:t', namespaces=child.nsmap)
     if len(wt) == 1:
         return 'w:t'
+
     wdrawing = child.xpath('.//w:drawing', namespaces=child.nsmap)
     if len(wdrawing) == 1:
         return 'w:drawing'
-    moMath = child.xpath('.//m:oMath', namespaces=child.nsmap)
-    if len(moMath) == 1:
-        return 'm:oMath'
-
 
 ##处理w:t元素
 def w_t2html(child):
     t = child.xpath('.//w:t/text()', namespaces=child.nsmap)[0]
     text = t.replace('<', '&lt;').replace('>', '&gt;')
 
-    html = '<span>' + text + '</span>'
+    html = text
     return html
-
 
 ##处理w:drawing元素
 def w_drawing2html(doc, child):
@@ -123,27 +141,33 @@ def w_drawing2html(doc, child):
         if not os.path.exists('image_prefix/'):
             os.mkdir('image_prefix/')
 
+
     html = '<img src="' + path + '" width=' + "{:.4f}".format(one_mes["width"]) + \
            ' height=' + "{:.4f}".format(one_mes["height"]) + '>'
     img_part = doc.part.related_parts[pic_name]
     with open(path, 'wb') as f:
         f.write(img_part._blob)
-    return html
 
+    return html
 
 ##处理m:oMath元素
 def o_math2html(child):
-    tt = etree.Element('oMathPara')
-    tt.append(child.__copy__())  ####使用copy， 不影响原来的结构
+    tag = child.tag.split('}')[-1]
+
+    if tag == 'oMath':
+        tt = etree.Element('oMathPara')
+        tt.append(child.__copy__())  ####使用copy， 不影响原来的结构
+    else:
+        tt = child
+
     mm = etree.tostring(tt).decode('utf-8')
     for math in omml.load_string(mm):
         text = math.latex
         break
 
     text = text.replace('<', '&lt;').replace('>', '&gt;')
-    html = '<span>' + '$$' + text + '$$' + '</span>'
+    html = '\(' + text + '\)'
     return html
-
 
 ###处理title，得到title的htmls
 def get_title_htmls(doc, titles_index):
@@ -158,23 +182,27 @@ def get_title_htmls(doc, titles_index):
 
 ###检测1个run里面是否有多种内容，这种情况是无效的！！
 def check_run(child):
+    tag = get_tag(child)
+    if tag == 'm:oMath' or tag == 'm:oMathPara' or tag=='w:tab':
+        return  1
+
     i = 0
     # print('child=', child)
     run = child.__copy__()
     rPr = run.xpath('.//w:rPr', namespaces=run.nsmap)  ##删除run的属性
 
     if len(rPr) > 1:
+        print(child , '184')
         print('docx格式出错了，len(w:rPr)!=1')
     elif len(rPr) == 1:
         run.remove(rPr[0])
     # else: 没有rPr,啥都不用做
 
-    wt = run.xpath('.//w:t', namespaces=run.nsmap)
+    wt = run.xpath('./w:t', namespaces=run.nsmap)
     wdrawing = run.xpath('.//w:drawing', namespaces=run.nsmap)
-    moMath = run.xpath('.//m:oMath', namespaces=docx_nsmap)
-    i = len(wt) + len(wdrawing) + len(moMath)
-    return i
+    i = len(wt) + len(wdrawing)
 
+    return i
 
 def merge_wt(tree):  ###一个段落
     children = tree.getchildren()
@@ -207,25 +235,25 @@ def merge_wt(tree):  ###一个段落
 
     return result
 
-
 def paragraph2html(doc, index):
     tree = etree.fromstring(doc.paragraphs[index]._element.xml)
     nsmap = tree.nsmap
     children = tree.getchildren()
     htmls = []
     for child in children:
-
         tag = get_tag(child)
+
         if tag=='w:pPr':
             continue
         vv = check_run(child)
+
         if vv > 1:
             print('run中包含了多个类型 ')
             exit()
             continue
         elif vv == 0:
-            print('run里面没有找到合适元素！')
-            print('run=', child)
+            # print('run里面没有找到合适元素！')
+            # print('run=', child)
             continue
         html = ''
 
@@ -235,13 +263,14 @@ def paragraph2html(doc, index):
             html = w_drawing2html(doc, child)
         elif tag == 'm:oMath' or tag == 'm:oMathPara':  ##处理数学公式
             html = o_math2html(child)
+
         elif tag == 'table':  ##处理表格
             pass
-        if html != '':
-            htmls.append(html)
+
+        # if html != ' ':   空格也应该原样输出，因为有时候存在特意的空格
+        htmls.append(html)
 
     return ''.join(htmls)
-
 
 def check_options(options):
     for i in range(1, len(options)):
@@ -249,7 +278,6 @@ def check_options(options):
             print('获取options错误，请检查')
             return False
     return True
-
 
 ###获取选项的文本 + 特殊格式
 ###默认认为选项的字体等信息是不重要的！！！！
@@ -261,6 +289,7 @@ def options2html(doc, row):
     children = tree.getchildren()
     for child in children:
         tag = get_tag(child)
+
         if tag=='w:pPr':
             continue
         vv = check_run(child)
@@ -273,28 +302,27 @@ def options2html(doc, row):
             continue
 
         if tag == 'w:t':
-            text = text + child.xpath('.//w:t/text()', namespaces=docx_nsmap)[0]
-
+            text = text + child.xpath('./w:t/text()', namespaces=docx_nsmap)[0]
         elif tag == 'w:drawing':
             html = w_drawing2html(doc, child)
             text = text + html
-        elif tag == 'o:oMath':
+        elif tag == 'm:oMath':
             text = text + o_math2html(child)
         elif tag == '':
             pass
 
     return text
 
-
 ###处理options，得到options的html
 def get_option_htmls(doc, options_indexes):
     options_htmls = []
+    option_html = ''
+
     for index in options_indexes:
         # tree = etree.fromstring(doc.paragraphs[index]._element.xml)
-        option_html = options2html(doc, index)
-        ops = re.findall(r'([A-G][.．]\s{0,1}[^A-G]*)', option_html)
-        print('option_text', doc.paragraphs[index].text)
-        options_htmls.extend(ops)
+        option_html += options2html(doc, index)
+    ops = get_options(option_html)
+    options_htmls.extend(ops)
 
     if not check_options(options_htmls):
         print('选项识别错误')
@@ -308,8 +336,19 @@ def paragraphs2htmls(doc, title_indexes):
     paragraphs = doc.paragraphs
     htmls = []
     for index in title_indexes:
-        htmls.append(paragraph2html(doc, index))
-    return ''.join(htmls)
+        text = paragraph2html(doc, index)
+
+        reg = r'\d{1,2}[.．]\s{0,1}(\(|\（)\d{1,2}.{1}(\)|\）)'
+        text = re.sub(reg , '' , text)
+        if re.match(r'^\（[\u4e00-\u9fa5]+\）' , text) is None:
+            pass
+        else:
+            text = ''
+
+        if len(text)>0:
+            htmls.append(text)
+
+    return '<br/>'.join(htmls)
 
 
 def parse_ti(doc, xiaoti_indexes, curr_index, curr_dati_row, mode_text):
@@ -326,7 +365,7 @@ def parse_ti(doc, xiaoti_indexes, curr_index, curr_dati_row, mode_text):
             last_row = xiaoti_indexes[curr_index - 1]['title'][-1]
 
     title_start_row = find_title_row(doc, last_row + 1, curr_row, mode_text)
-    if title_start_row == -1:  ###不是，大题包含小题模式（先有材料，然后跟几个题）
+    if title_start_row == -1:  ###不是大题包含小题模式（先有材料，然后跟几个题）
         ti = parse_xiaoti(doc, xiaoti_indexes, curr_index)
         return (curr_index + 1, ti)
 
@@ -352,9 +391,11 @@ def parse_xiaoti(doc, xiaoti_indexes, curr_index):
     title_indexes = xiaoti_indexes[curr_index]['title']
 
     q['title'] = paragraphs2htmls(doc, title_indexes)
+
     if 'options' in xiaoti_indexes[curr_index]:
         option_indexes = xiaoti_indexes[curr_index]['options']
         q['options'] = get_option_htmls(doc, option_indexes)
+
     return q
 
 
