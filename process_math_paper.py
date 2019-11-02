@@ -154,9 +154,9 @@ def handle_sub(sub):
 
     return sub
 
-def get_answer(doc , que_indexes):
+def get_answer(doc , question_indexes):
     all_ans = []
-    for que_index in que_indexes:
+    for que_index in question_indexes:
         ans_tit = que_index[0]
         ans_indexes = que_index[1]
         curr_index = 0
@@ -190,7 +190,7 @@ if __name__ == "__main__":
     index = 0
 
     i = 0
-    mode_text = r'据此完成\d～\d题'  ##模式字符串
+    mode_text = r'完成\d～\d题'  ##模式字符串
     subjects = []
 
     for subject in all_subject:  ##每个大题
@@ -209,6 +209,5 @@ if __name__ == "__main__":
     ans_list = get_answer(ans_doc, all_ans)
     subjects = merge_answer(subjects , ans_list)
 
-    fp = open('math_data.json', 'w', encoding='utf-8')
-    json.dump(subjects, fp, ensure_ascii=False,indent = 4, separators=(',', ': '))
-    fp.close()
+    with  open('math_data.json', 'w', encoding='utf-8') as fp:
+        json.dump(subjects, fp, ensure_ascii=False,indent = 4, separators=(',', ': '))
