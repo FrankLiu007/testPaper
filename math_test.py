@@ -59,7 +59,7 @@ def get_options(ops):
 
 
 ### 生成question
-def create_que(type , stem , solution , options):
+def create_question(type , stem , solution , options):
     temp_que = dict()
     temp_que["type"] = type
     temp_que["stem"] = '<span>'+ stem +'</span>'
@@ -89,8 +89,8 @@ def handle_choice(choice_sub):
     type = 'SINGLE'
     stem = choice_sub['title']
     options = get_options(choice_sub['options'])
-    temp_que = create_que(type , stem , solution , options)
-    questions.append(temp_que)
+    temp_question = create_question(type , stem , solution , options)
+    questions.append(temp_question)
 
     subject = create_subject(title , category , reference , questions)
 
@@ -139,7 +139,7 @@ def handle_non_choice(sub):
     category = '填空题' if len(title)==0 else '解答题'
 
     for stem in stem_list:
-        temp_que = create_que(type , stem , solution , options)
+        temp_que = create_question(type , stem , solution , options)
         questions.append(temp_que)
 
     subject = create_subject(title ,category , reference , questions )
@@ -154,7 +154,7 @@ def handle_sub(sub):
 
     return sub
 
-def get_ans(doc , que_indexes):
+def get_answer(doc , que_indexes):
     all_ans = []
     for que_index in que_indexes:
         ans_tit = que_index[0]
@@ -167,7 +167,7 @@ def get_ans(doc , que_indexes):
 
     return all_ans
 
-def merge_ans(subjects , ans_list):
+def merge_answer(subjects , ans_list):
     for i in range(0 , len(subjects)-1):
         sub = subjects[i]
         sub['reference'] = ans_list[i].strip()
@@ -177,19 +177,8 @@ def merge_ans(subjects , ans_list):
     return subjects
 
 
-
-
-###------------------------------------
-path = 'src/2019年全国I卷理科数学高考真题.docx'
-doc = docx.Document(path)
-dati_list = processPaper(doc)
-
-choice_que = []
-completion_que = []
-answer_que = []
-
-
 if __name__ == "__main__":
+
     path = 'src/2019年全国I卷理科数学高考真题.docx'
     ans_path = 'src/2019年全国I卷理科数学高考真题答案.docx'
     doc = docx.Document(path)
@@ -204,11 +193,11 @@ if __name__ == "__main__":
     mode_text = r'据此完成\d～\d题'  ##模式字符串
     subjects = []
 
-    for subject in all_subject:
+    for subject in all_subject:  ##每个大题
         sub_tit = subject[0]    # 题型段落index
         sub_list = subject[1]   # 题目集合
         curr_sub_index = 0      # 当前题目的index
-        curr_que = sub_list[0]  #  当前题目
+        curr_question = sub_list[0]  #  当前题目
         curr_index =0
 
         while curr_sub_index<len(sub_list):
@@ -217,9 +206,9 @@ if __name__ == "__main__":
             subjects.append(sub)
 
 
-    ans_list = get_ans(ans_doc, all_ans)
-    subjects = merge_ans(subjects , ans_list)
+    ans_list = get_answer(ans_doc, all_ans)
+    subjects = merge_answer(subjects , ans_list)
 
     fp = open('math_data.json', 'w', encoding='utf-8')
-    json.dump(subjects, fp)
+    json.dump(subjects, fp, ensure_ascii=False,indent = 4, separators=(',', ': '))
     fp.close()

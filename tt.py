@@ -35,6 +35,10 @@ def merge_wt(tree):  ###一个段落
         if tag=='w:pPr':
             i=i+1
             continue
+        if tag=='w:pPr':
+            i=i+1
+            continue
+
         if tag == 'w:t':  ###当前run是w:t
             if last_is_wt:  ##上一个run也是w:t
                 if  check_rPr( last_wt_run, child): #上一个run的w:t和这次的格式一样，可以合并
@@ -64,6 +68,8 @@ def merge_wt(tree):  ###一个段落
             result.append(child.__copy__())
 
         i = i + 1
+    ##-----------------while结束
+
     if last_wt_run!='' and last_is_wt:   ###如果最后一个run是w:t，需要处理
         print('append result', last_wt_run.text)
         result.append(last_wt_run.__copy__())

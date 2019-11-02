@@ -138,23 +138,23 @@ def analys_layout(doc):
 ##获取1个选项，[A-G]. 形式的
 def get_option(text):
     text=text.strip()
-    indexs=[]
+    indexes=[]
     options=[]
     for item in re.finditer(r'[A-G][\.．]', text):
-        indexs.append((item.group(),item.span()))
+        indexes.append((item.group(),item.span()))
     print('in get_option,text=', text)
-    if indexs[0][1]!=(0,2):  ###校检结果，保证
+    if indexes[0][1]!=(0,2):  ###校检结果，保证
         print('获取选择题选项出错，请检查试题格式')
         print('text=' , text)
 
     i=0
-    while(i<len(indexs)):
-        b=indexs[i][1][0]
-        if i==len(indexs)-1:
+    while(i<len(indexes)):
+        b=indexes[i][1][0]
+        if i==len(indexes)-1:
             options.append((option_text[0], text[b:].strip()))
             break
-        e=indexs[i+1][1][0]
-        option_text=indexs[i][0]
+        e=indexes[i+1][1][0]
+        option_text=indexes[i][0]
         options.append((option_text[0],text[b:e].strip()))
         b=e
         i=i+1
@@ -173,22 +173,22 @@ def get_ti_mode(tree, mode_text, start_position):
     return None
 
 ###处理1种题型（带题目类型的）
-def parse_one_titype(curr_row, next_row,xiaoti_indexs ,paragraphs ):
+def parse_one_titype(curr_row, next_row,xiaoti_indexes ,paragraphs ):
     tis=[]
     i=0
-    while(i<len(xiaoti_indexs)):
-        # r,text,mode_text=xiaoti_indexs[i]
-        if xiaoti_indexs[i][0]>curr_row:
-            if i==len(xiaoti_indexs)-1:
-                ti = parse_ti(xiaoti_indexs, xiaoti_indexs[i][0], next_row, paragraphs)
+    while(i<len(xiaoti_indexes)):
+        # r,text,mode_text=xiaoti_indexes[i]
+        if xiaoti_indexes[i][0]>curr_row:
+            if i==len(xiaoti_indexes)-1:
+                ti = parse_ti(xiaoti_indexes, xiaoti_indexes[i][0], next_row, paragraphs)
 
                 tis.append(ti)
                 break
 
-            if xiaoti_indexs[i+1][0]<next_row:
-                ti=parse_ti(xiaoti_indexs, xiaoti_indexs[i][0], xiaoti_indexs[i+1][0],paragraphs )
+            if xiaoti_indexes[i+1][0]<next_row:
+                ti=parse_ti(xiaoti_indexes, xiaoti_indexes[i][0], xiaoti_indexes[i+1][0],paragraphs )
             else:
-                ti=parse_ti(xiaoti_indexs, xiaoti_indexs[i][0], next_row, paragraphs)
+                ti=parse_ti(xiaoti_indexes, xiaoti_indexes[i][0], next_row, paragraphs)
                 tis.append(ti)
                 break
             tis.append(ti)
@@ -205,8 +205,8 @@ def isObjective( curr_row, next_row, paragraphs):
     return (False,-1)
 
 ####解析1道题
-def parse_ti(xiaoti_indexs, curr_row, next_row , paragraphs):
-    # curr_row=xiaoti_indexs
+def parse_ti(xiaoti_indexes, curr_row, next_row , paragraphs):
+    # curr_row=xiaoti_indexes
     objective,index= isObjective( curr_row, next_row,paragraphs)
     ti={}
     ti['title']=[]
@@ -324,19 +324,19 @@ def processPaper(doc):
     tis=[]
 
     print('tree=', tree)
-    dati_indexs=tree[dati_mode_index]
-    xiaoti_indexs=tree[xiao_mode_index]
+    dati_indexes=tree[dati_mode_index]
+    xiaoti_indexes=tree[xiao_mode_index]
 
-    curr_row, text, mode_text = dati_indexs[0]
+    curr_row, text, mode_text = dati_indexes[0]
     i=0
     all_ti=[]
-    while(i<len(dati_indexs)):   ##处理1种题型
-        if i<len(dati_indexs)-1:
-            next_row, next_text,mode_text=dati_indexs[i+1]
-            tis=parse_one_titype(curr_row, next_row, xiaoti_indexs, paragraphs)   ##处理1种题型的所有题目
+    while(i<len(dati_indexes)):   ##处理1种题型
+        if i<len(dati_indexes)-1:
+            next_row, next_text,mode_text=dati_indexes[i+1]
+            tis=parse_one_titype(curr_row, next_row, xiaoti_indexes, paragraphs)   ##处理1种题型的所有题目
             # print('tis=', tis)
         else:
-            tis=parse_one_titype(curr_row, len(paragraphs), xiaoti_indexs, paragraphs)
+            tis=parse_one_titype(curr_row, len(paragraphs), xiaoti_indexes, paragraphs)
             # print('tis=', tis)
         all_ti.append( (curr_row,tis) )
         i=i+1
