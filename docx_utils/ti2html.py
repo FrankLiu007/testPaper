@@ -53,7 +53,7 @@ def find_title_row(doc, b_row, curr_row, mode_text):
         return -1
 
     for i in range(b_row, curr_row):
-        x = re.findall(r'据此完成(\d)～(\d)题', doc.paragraphs[i].text)
+        x = re.findall(mode_text, doc.paragraphs[i].text)
         if len(x) != 0:
             return i
 
@@ -351,7 +351,7 @@ def paragraphs2htmls(doc, title_indexes):
     return '<br/>'.join(htmls)
 
 
-def parse_ti(doc, xiaoti_indexes, curr_index, curr_dati_row, mode_text):
+def get_ti_content(doc, xiaoti_indexes, curr_index, curr_dati_row, mode_text):
     paragraphs = doc.paragraphs
     curr_row = xiaoti_indexes[curr_index]['title'][0]
     #####上一个题目的结尾的行号+1
@@ -400,13 +400,13 @@ def parse_xiaoti(doc, xiaoti_indexes, curr_index):
 
 
 if __name__ == "__main__":
-    path = 'src/2019年全国II卷文科综合高考真题.docx'
+    path = '../src/2019年全国II卷文科综合高考真题.docx'
     doc = docx.Document(path)
     all_ti_index = processPaper(doc)
     paragraphs = doc.paragraphs
 
     i = 0
-    mode_text = r'据此完成\d～\d题'  ##模式字符串
+    mode_text = r'完成\d～\d题'  ##模式字符串
 
     tis = []
     # while(i<len(all_ti_index)):

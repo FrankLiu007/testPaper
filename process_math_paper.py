@@ -4,7 +4,7 @@ import re
 from lxml import etree
 from docx_utils.parse_paper import processPaper
 from MsEquation.MsEquation2Latex import get_latex
-from docx_utils.ti2html import parse_ti
+from docx_utils.ti2html import get_ti_content
 
 ### 获取标签
 def get_tag(el):
@@ -161,7 +161,7 @@ def get_answer(doc , question_indexes):
         ans_indexes = que_index[1]
         curr_index = 0
         while curr_index<len(ans_indexes):
-            curr_index , ans = parse_ti(doc , ans_indexes , curr_index ,ans_tit, '')
+            curr_index , ans = get_ti_content(doc , ans_indexes , curr_index ,ans_tit, '')
             content = re.sub(r'\d{1,2}[.．]\s{0,}', '', ans['title'])
             all_ans.append(content)
 
@@ -201,7 +201,7 @@ if __name__ == "__main__":
         curr_index =0
 
         while curr_sub_index<len(sub_list):
-            curr_sub_index , sub = parse_ti(doc , sub_list , curr_sub_index , sub_tit , mode_text)
+            curr_sub_index , sub = get_ti_content(doc , sub_list , curr_sub_index , sub_tit , mode_text)
             sub = handle_sub(sub)
             subjects.append(sub)
 
