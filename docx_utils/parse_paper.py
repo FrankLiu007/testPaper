@@ -189,14 +189,13 @@ def get_ti_mode(tree, mode_text, start_position):
 def parse_one_titype(curr_row, next_row, xiaoti_indexes, paragraphs):  ##处理1个大题，例如 “一、选择题”
     tis = []
     i = 0
-    score=re.findall(r'每小题(\d{1,2})分' , paragraphs[curr_row].text)   ###大概率是选择题
+
     while (i < len(xiaoti_indexes)):
         # r,text,mode_text=xiaoti_indexes[i]
         if xiaoti_indexes[i][0] > curr_row:
             if i == len(xiaoti_indexes) - 1:   ###处理最后一个小题
                 ti = parse_ti(xiaoti_indexes, xiaoti_indexes[i][0], next_row, paragraphs)
-                if score:
-                    ti['score']=score[0]
+
                 tis.append(ti)
                 break
 
@@ -204,12 +203,8 @@ def parse_one_titype(curr_row, next_row, xiaoti_indexes, paragraphs):  ##处理1
                 ti = parse_ti(xiaoti_indexes, xiaoti_indexes[i][0], xiaoti_indexes[i + 1][0], paragraphs)
             else:
                 ti = parse_ti(xiaoti_indexes, xiaoti_indexes[i][0], next_row, paragraphs)
-                if score:
-                    ti['score']=score[0]
                 tis.append(ti)
                 break
-            if score:
-                ti['score'] = score[0]
             tis.append(ti)
         i = i + 1
 
@@ -333,8 +328,7 @@ def remove_blank_paragraph(doc):
 
     return 0
 
-def get_score(text):
-    return  re.findall(r'(\d{1,2})分' , text)[0]
+
 
 def processPaper(doc):
     '''

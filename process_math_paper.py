@@ -28,7 +28,6 @@ def get_content(el):
         text = '<span>' + omath + '</span>'
     elif el_tag == 'drawing':
         text = 'pic'
-
     return text
 
 ### 获取title

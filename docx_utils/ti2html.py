@@ -338,8 +338,8 @@ def paragraphs2htmls(doc, title_indexes):
     for index in title_indexes:
         text = paragraph2html(doc, index)
 
-        reg = r'\d{1,2}[.．]\s{0,1}(\(|\（)\d{1,2}.{1}(\)|\）)'
-        text = re.sub(reg , '' , text)
+        # reg = r'\d{1,2}[.．]\s{0,1}(\(|\（)\d{1,2}.{1}(\)|\）)'
+        # text = re.sub(reg , '' , text)
         if re.match(r'^\（[\u4e00-\u9fa5]+\）' , text) is None:
             pass
         else:
@@ -351,25 +351,25 @@ def paragraphs2htmls(doc, title_indexes):
     return '<br/>'.join(htmls)
 
 
-def get_ti_content(doc, xiaoti_indexes, curr_index, curr_dati_row, mode_text):
+def get_ti_content(doc, xiaoti_indexes, curr_xiaoti_index, curr_dati_row, mode_text):
     paragraphs = doc.paragraphs
-    curr_row = xiaoti_indexes[curr_index]['title'][0]
+    curr_row = xiaoti_indexes[curr_xiaoti_index]['title'][0]
     #####上一个题目的结尾的行号+1
-    if curr_index == 0:
+    if curr_xiaoti_index == 0:
         last_row = curr_dati_row
     else:
-        if 'options' in xiaoti_indexes[curr_index - 1]:
-            print('xiaoti_indexes[{0}]'.format(curr_index - 1), xiaoti_indexes[curr_index - 1])
-            last_row = xiaoti_indexes[curr_index - 1]['options'][-1]
+        if 'options' in xiaoti_indexes[curr_xiaoti_index - 1]:
+            print('xiaoti_indexes[{0}]'.format(curr_xiaoti_index - 1), xiaoti_indexes[curr_xiaoti_index - 1])
+            last_row = xiaoti_indexes[curr_xiaoti_index - 1]['options'][-1]
         else:
-            last_row = xiaoti_indexes[curr_index - 1]['title'][-1]
+            last_row = xiaoti_indexes[curr_xiaoti_index - 1]['title'][-1]
 
     title_start_row = find_title_row(doc, last_row + 1, curr_row, mode_text)
     if title_start_row == -1:  ###不是大题包含小题模式（先有材料，然后跟几个题）
-        ti = parse_xiaoti(doc, xiaoti_indexes, curr_index)
-        return (curr_index + 1, ti)
+        ti = parse_xiaoti(doc, xiaoti_indexes, curr_xiaoti_index)
+        return (curr_xiaoti_index + 1, {'title':'', 'questions':[ti] })
 
-    ti = {}
+    ti = {}     ####开始处理大题包含小题的模式（材料题）
     lst = list(range(title_start_row, curr_row))
     ti['title'] = paragraphs2htmls(doc, lst)
 
@@ -377,12 +377,12 @@ def get_ti_content(doc, xiaoti_indexes, curr_index, curr_dati_row, mode_text):
     n = get_question_quantity(paragraphs[title_start_row], mode_text)
     questions = []
     while (i < n):
-        question = parse_xiaoti(doc, xiaoti_indexes, curr_index + i)
+        question = parse_xiaoti(doc, xiaoti_indexes, curr_xiaoti_index + i)
         questions.append(question)
         i = i + 1
     ti['questions'] = questions
 
-    return (curr_index + n, ti)
+    return (curr_xiaoti_index + n, ti)
 
 
 ##处理1个小题
@@ -390,14 +390,15 @@ def parse_xiaoti(doc, xiaoti_indexes, curr_index):
     q = {}
     title_indexes = xiaoti_indexes[curr_index]['title']
 
-    q['title'] = paragraphs2htmls(doc, title_indexes)
-
+    q['stem'] = paragraphs2htmls(doc, title_indexes)
+    q['index'] = re.findall(r'^(\d{1,2})[.．]\s{0,}', q['stem'])[0]
     if 'options' in xiaoti_indexes[curr_index]:
         option_indexes = xiaoti_indexes[curr_index]['options']
         q['options'] = get_option_htmls(doc, option_indexes)
+        if '一项' in doc.paragraphs[title_indexes[0]].text:
+            q['type']='single'
 
     return q
-
 
 if __name__ == "__main__":
     path = '../src/2019年全国II卷文科综合高考真题.docx'
