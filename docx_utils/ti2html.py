@@ -60,7 +60,7 @@ def find_title_row(doc, b_row, curr_row, mode_text):
     return -1
 
 ## 获取各个选项
-def get_options(option_html):
+def split_options(option_html):
     ops = []
     last_index = 0
     for i in range(ord('B') , ord('Z')):
@@ -68,11 +68,12 @@ def get_options(option_html):
         index1 = option_html.find(item+'．')
         index2 = option_html.find(item + '.')
         index = index1 if index1>-1 else index2
-        option = option_html[last_index:index]
+        option=option_html[last_index:last_index+1]
+        htmls = option_html[last_index+2:index]
         if len(option) == 0:
             return ops
         last_index = index
-        ops.append(option)
+        ops.append({'label':option, 'content':htmls.strip() })
 
     return ops
 
@@ -274,7 +275,7 @@ def paragraph2html(doc, index):
 
 def check_options(options):
     for i in range(1, len(options)):
-        if ord(options[i][0]) - ord(options[i - 1][0]) != 1:
+        if ord(options[i]['label']) - ord(options[i - 1]['label']) != 1:
             print('获取options错误，请检查')
             return False
     return True
@@ -298,7 +299,7 @@ def options2html(doc, row):
             print('run=', child)
             exit()
         elif vv == 0:
-            print('run里面没有找到合适元素！')
+            print('options2html: run里面没有找到合适元素！')
             continue
 
         if tag == 'w:t':
@@ -315,14 +316,12 @@ def options2html(doc, row):
 
 ###处理options，得到options的html
 def get_option_htmls(doc, options_indexes):
-    options_htmls = []
+
     option_html = ''
 
     for index in options_indexes:
-        # tree = etree.fromstring(doc.paragraphs[index]._element.xml)
-        option_html += options2html(doc, index)
-    ops = get_options(option_html)
-    options_htmls.extend(ops)
+        option_html += options2html(doc, index)   ###所有options组合起来的html
+    options_htmls = split_options(option_html)   ###把每个optiion拆分出来
 
     if not check_options(options_htmls):
         print('选项识别错误')
@@ -359,14 +358,14 @@ def get_ti_content(doc, xiaoti_indexes, curr_xiaoti_index, curr_dati_row, mode_t
         last_row = curr_dati_row
     else:
         if 'options' in xiaoti_indexes[curr_xiaoti_index - 1]:
-            print('xiaoti_indexes[{0}]'.format(curr_xiaoti_index - 1), xiaoti_indexes[curr_xiaoti_index - 1])
+            # print('xiaoti_indexes[{0}]'.format(curr_xiaoti_index - 1), xiaoti_indexes[curr_xiaoti_index - 1])
             last_row = xiaoti_indexes[curr_xiaoti_index - 1]['options'][-1]
         else:
             last_row = xiaoti_indexes[curr_xiaoti_index - 1]['title'][-1]
 
     title_start_row = find_title_row(doc, last_row + 1, curr_row, mode_text)
     if title_start_row == -1:  ###不是大题包含小题模式（先有材料，然后跟几个题）
-        ti = parse_xiaoti(doc, xiaoti_indexes, curr_xiaoti_index)
+        ti = get_xiaoti_content(doc, xiaoti_indexes, curr_xiaoti_index)
         return (curr_xiaoti_index + 1, {'title':'', 'questions':[ti] })
 
     ti = {}     ####开始处理大题包含小题的模式（材料题）
@@ -377,7 +376,7 @@ def get_ti_content(doc, xiaoti_indexes, curr_xiaoti_index, curr_dati_row, mode_t
     n = get_question_quantity(paragraphs[title_start_row], mode_text)
     questions = []
     while (i < n):
-        question = parse_xiaoti(doc, xiaoti_indexes, curr_xiaoti_index + i)
+        question = get_xiaoti_content(doc, xiaoti_indexes, curr_xiaoti_index + i)
         questions.append(question)
         i = i + 1
     ti['questions'] = questions
@@ -386,12 +385,15 @@ def get_ti_content(doc, xiaoti_indexes, curr_xiaoti_index, curr_dati_row, mode_t
 
 
 ##处理1个小题
-def parse_xiaoti(doc, xiaoti_indexes, curr_index):
+def get_xiaoti_content(doc, xiaoti_indexes, curr_index):
     q = {}
     title_indexes = xiaoti_indexes[curr_index]['title']
 
-    q['stem'] = paragraphs2htmls(doc, title_indexes)
-    q['index'] = re.findall(r'^(\d{1,2})[.．]\s{0,}', q['stem'])[0]
+    xx = paragraphs2htmls(doc, title_indexes)
+    q['stem']=re.sub(r'\d{1,2}[.．]\s{0,}', '', xx)   ###去除题号
+
+    q['index'] = re.findall(r'^(\d{1,2})[.．]\s{0,}', xx)[0]   ###获取题号
+
     if 'options' in xiaoti_indexes[curr_index]:
         option_indexes = xiaoti_indexes[curr_index]['options']
         q['options'] = get_option_htmls(doc, option_indexes)

@@ -3,7 +3,8 @@ from docx_utils.parse_paper import  processPaper
 from docx_utils.ti2html import  get_ti_content
 import  re
 import json
-
+import sys
+import os
 '''
 ###获取答案
 #答案和试卷不一样，答案一定是先有题号，然后跟着答案。
@@ -33,6 +34,7 @@ def merge_answer(tis , answer_list):
         ti['reference']=reference
     return 0
 
+#####给题目增加分数和题型
 def add_score_and_titype(ti, text):
     score = re.findall(r'每小题(\d{1,2})分', text)     ##，每个小题的分数
 
@@ -65,31 +67,7 @@ def add_score_and_titype(ti, text):
     if not score:
         ti['score'] = ss
     return 0
-
-#-----------------------------------------------
-def format_tis(tis):
-    result=[]
-    for ti in tis:
-        x={}
-        x['title']=ti['title']
-        x['category']=ti['category']
-        x['reference']=ti['reference']
-        x['questions']=[]
-        for q in ti['questions']:
-            x['questions'].append({'stem':q['title'], 'options':q['options'], 'type':q['type'], 'solution':q['solution'], })
-        result.append(x.copy())
-    return result
-def decide_titype(text):
-    pass
-if __name__ == "__main__":
-
-    paper_path = 'src/2019年全国I卷理科数学高考真题.docx'
-    doc = docx.Document(paper_path)
-    all_ti_index = processPaper(doc)
-    paragraphs = doc.paragraphs
-
-###处理试卷
-    i = 0
+def get_tis(all_ti_index):
     mode_text = r'完成\d{1,2}～\d{1,2}题'  ##模式字符串
     tis = []
     # while(i<len(all_ti_index)):
@@ -104,13 +82,37 @@ if __name__ == "__main__":
             curr_index, ti = get_ti_content(doc, xiaoti_indexes, curr_index, curr_dati_row, mode_text)
             add_score_and_titype(ti, paragraphs[curr_dati_row].text)
             tis.append(ti)
+    return  tis
+#-----------------------------------------
+def decide_titype(text):
+    pass
+if __name__ == "__main__":
+
+    if len(sys.argv)==5:
+        paper_path=sys.argv[1]
+        answer_path=sys.argv[2]
+
+    else:
+        print('参数错误，正确用法： process_3x_paper.py 真题.docx 答案.docx')
+        paper_path = 'src/2019年全国II卷文科综合高考真题.docx'
+        answer_path = 'src/2019年全国II卷文科综合高考真题-答案.docx'
+
+
+    doc = docx.Document(paper_path)
+    all_ti_index = processPaper(doc)
+    paragraphs = doc.paragraphs
+
+###处理试卷
+    i = 0
+    tis=get_tis(all_ti_index)
 
 ####处理答案
-    answer_path = 'src/2019年全国I卷理科数学高考真题答案.docx'
+
     doc = docx.Document(answer_path)
     all_answer_index = processPaper(doc)
     answers=get_answer(doc,all_answer_index )
     merge_answer(tis, answers)
 
-    with  open('output_data.json', 'w', encoding='utf-8') as fp:
+    out_path=os.path.splitext(paper_path)[0]+'.json'
+    with  open(out_path, 'w', encoding='utf-8') as fp:
         json.dump(tis, fp, ensure_ascii=False,indent = 4, separators=(',', ': '))

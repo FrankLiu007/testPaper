@@ -24,9 +24,7 @@ def git_pic(tree):
             if 'embed' in attr:
                 one_mes['rId'] = value
         pic_mes.append(one_mes)
-
     return pic_mes
-
 
 ####
 def git_reall_pic(doc, pic_list):
@@ -55,7 +53,6 @@ def isNumber(char):
         return True
     return False
 
-
 ##获取下一个数字
 def get_next_number(text):
     num1 = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
@@ -68,7 +65,6 @@ def get_next_number(text):
             if num2[i] == text:
                 next_number = num2[i + 1]
     return next_number
-
 
 ###计算模式字符串
 def get_mode_string(text):
@@ -363,30 +359,6 @@ def processPaper(doc):
         curr_row = next_row
 
     return all_ti
-
-
-###获取题型 ---必须以(一、)(二、)开头
-# def get_ti_types(tree):
-#     i = 0
-#     mode_index = -1
-#     ti_types = []
-#     while (i < len(tree)):
-#         for row, text, mode_text in tree[i]:
-#             if text.strip().startswith('一、'):  ##大题肯定以 '一、'开始
-#                 mode_index = i
-#                 break
-#         if mode_index != -1:
-#             break
-#         i = i + 1
-#
-#     for i in range(0, len(tree[mode_index])):
-#         row, text, mode_text = tree[mode_index][i]
-#         x = text.find('题')
-#         if x != -1:
-#             ti_types.append((row, text[2:x + 1]))
-#         else:
-#             ti_types.append((row, remove_brackets(text.strip())))
-#     return (mode_index, ti_types)
 
 
 ####删除括号及其里面的内容
