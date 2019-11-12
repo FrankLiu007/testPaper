@@ -4,7 +4,6 @@ import docx
 ### 获取标签
 def get_tag(child):
     '''
-
     :param child: etree.Element,一般为一个run
     :return: 返回该run里面的内容的类型的字符串
     '''

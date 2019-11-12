@@ -104,33 +104,42 @@ def get_tag(child):
 def w_t2html(child):
     t = child.xpath('.//w:t/text()', namespaces=child.nsmap)[0]
     text = t.replace('<', '&lt;').replace('>', '&gt;')
-
     html = text
     return html
 
 ##处理w:drawing元素
+'''
+需要处理inline模式和float模式的2种图片，
+
+'''
 def w_drawing2html(doc, child):
-    pics = child.xpath('.//w:drawing', namespaces=child.nsmap)
+    pics = child.xpath('.//w:drawing', namespaces=docx_nsmap)
     if len(pics) != 1:
         print("docx格式可能错误，w:drawing可能包含多张图片！")
         return 0
 
+
     pic = pics[0]
+    mode=''
+    if pic.xpath('.//wp:inline', namespaces=docx_nsmap):
+        mode='inline'
+    if pic.xpath('.//wp:anchor', namespaces=docx_nsmap):
+        mode='anchor'
+
     one_mes = dict()
-    size_ele = pic.xpath('.//wp:extent ', namespaces=pic.nsmap)[0]
+    size_ele = pic.xpath('.//wp:extent ', namespaces=docx_nsmap)[0]
     width = int(size_ele.attrib['cx']) / (360000 * 0.0264583)
     height = int(size_ele.attrib['cy']) / (360000 * 0.0264583)
     one_mes['width'] = width
     one_mes['height'] = height
-    inline_ele = pic.xpath('.//wp:inline', namespaces=pic.nsmap)[0]
-    a_graphic = inline_ele.getchildren()[len(inline_ele) - 1]
-    blip = pic.xpath('.//a:blip ', namespaces=a_graphic.nsmap)[0]
+    # element = pic.xpath('.//wp:'+mode, namespaces=pic.nsmap)[0]
+    # a_graphic = pic.xpath('.//wp:'+mode+'//a:graphic', namespaces=docx_nsmap)
+    blip = pic.xpath('.//a:blip ', namespaces=docx_nsmap)[0]
     blip_attr = blip.attrib
     for attr in blip_attr:
-        value = blip_attr[attr]
         if 'embed' in attr:
-            one_mes['rId'] = value
-
+            one_mes['rId'] = blip_attr[attr]
+            break
     pic_name = one_mes['rId']
     img = doc.part.rels[pic_name].target_ref
     ext = os.path.splitext(img)[-1]
@@ -142,14 +151,13 @@ def w_drawing2html(doc, child):
         if not os.path.exists('image_prefix/'):
             os.mkdir('image_prefix/')
 
-
     html = '<img src="' + path + '" width=' + "{:.4f}".format(one_mes["width"]) + \
            ' height=' + "{:.4f}".format(one_mes["height"]) + '>'
     img_part = doc.part.related_parts[pic_name]
     with open(path, 'wb') as f:
         f.write(img_part._blob)
 
-    return html
+    return {'html':html, 'mode':mode}
 
 ##处理m:oMath元素
 def o_math2html(child):
@@ -166,19 +174,24 @@ def o_math2html(child):
         text = math.latex
         break
 
-    text = text.replace('<', '&lt;').replace('>', '&gt;')
+    text = text.replace('<', '&lt;').replace('>', '&gt;')   ##处理大于号、小于号
     html = '\(' + text + '\)'
     return html
 
 ###处理title，得到title的htmls
 def get_title_htmls(doc, titles_index):
-    paragraphs = doc.paragraphs
 
     htmls = []
+    images=[]
     for index in titles_index:
-        html = paragraph2html(doc, index)
-        htmls.append(html.copy())
-    return ''.join(htmls)
+        result = paragraph2html(doc, index)
+        htmls.append(result['htmls'].copy())
+        images.append(result['images'])
+    if len(images)>1:
+        print('Warning! 该题目的标题部分包含', len(images), '张图片！')
+
+
+    return ''.join(htmls)+'</br>'.join(images)
 
 
 ###检测1个run里面是否有多种内容，这种情况是无效的！！
@@ -238,9 +251,10 @@ def merge_wt(tree):  ###一个段落
 
 def paragraph2html(doc, index):
     tree = etree.fromstring(doc.paragraphs[index]._element.xml)
-    nsmap = tree.nsmap
+
     children = tree.getchildren()
     htmls = []
+
     for child in children:
         tag = get_tag(child)
 
@@ -260,16 +274,20 @@ def paragraph2html(doc, index):
 
         if tag == 'w:t':  ##处理文本
             html = w_t2html(child)
+            htmls.append(html)
         elif tag == 'w:drawing':  ##处理图片
-            html = w_drawing2html(doc, child)
+            result = w_drawing2html(doc, child)
+            if result['mode']=='inline':  ##不处理浮动图片，留到别处统一处理
+                htmls.append(result['html'])
+
         elif tag == 'm:oMath' or tag == 'm:oMathPara':  ##处理数学公式
             html = o_math2html(child)
-
+            htmls.append(html)
         elif tag == 'table':  ##处理表格
             pass
 
         # if html != ' ':   空格也应该原样输出，因为有时候存在特意的空格
-        htmls.append(html)
+
 
     return ''.join(htmls)
 
@@ -285,6 +303,7 @@ def check_options(options):
 def options2html(doc, row):
     # result=[]
     text = ''
+    images=''
     paragraph = doc.paragraphs[row]
     tree = etree.fromstring(paragraph._element.xml)
     children = tree.getchildren()
@@ -305,8 +324,9 @@ def options2html(doc, row):
         if tag == 'w:t':
             text = text + child.xpath('./w:t/text()', namespaces=docx_nsmap)[0]
         elif tag == 'w:drawing':
-            html = w_drawing2html(doc, child)
-            text = text + html
+            result = w_drawing2html(doc, child)
+            if result['mode']=='inline':  ##不处理浮动图片，留到后面一起处理
+                text = text + result['html']
         elif tag == 'm:oMath':
             text = text + o_math2html(child)
         elif tag == '':
@@ -334,21 +354,38 @@ def get_option_htmls(doc, options_indexes):
 def paragraphs2htmls(doc, title_indexes):
     paragraphs = doc.paragraphs
     htmls = []
+
     for index in title_indexes:
-        text = paragraph2html(doc, index)
+        html = paragraph2html(doc, index)
 
         # reg = r'\d{1,2}[.．]\s{0,1}(\(|\（)\d{1,2}.{1}(\)|\）)'
         # text = re.sub(reg , '' , text)
-        if re.match(r'^\（[\u4e00-\u9fa5]+\）' , text) is None:
+        if re.match(r'^\（[\u4e00-\u9fa5]+\）' , html) is None:   ##不包含中文字符
             pass
         else:
-            text = ''
+            html = ''
+        htmls.extend(html)
 
-        if len(text)>0:
-            htmls.append(text)
 
-    return '<br/>'.join(htmls)
+    return ''.join(htmls)
+###单独处理浮动的图片
+def get_float_image( doc, xiaoti_indexes, curr_xiaoti_index):
+    paragraphs=doc.paragraphs
+    htmls=[]
+    indexes=[]
+    indexes.extend(xiaoti_indexes[curr_xiaoti_index]['title'])
+    if 'options' in xiaoti_indexes[curr_xiaoti_index]:
+        indexes.extend(xiaoti_indexes[curr_xiaoti_index]['options'])
 
+    for index in indexes:
+        tree=etree.fromstring(doc.paragraphs[index]._element.xml)
+        x=tree.xpath('.//w:drawing', namespaces=docx_nsmap)
+        if x:
+            result=w_drawing2html(doc, x[0].getparent())
+            if result['mode']=='anchor':
+                htmls.append(result['html'])
+
+    return ''.join(htmls)
 
 def get_ti_content(doc, xiaoti_indexes, curr_xiaoti_index, curr_dati_row, mode_text):
     paragraphs = doc.paragraphs
@@ -366,6 +403,8 @@ def get_ti_content(doc, xiaoti_indexes, curr_xiaoti_index, curr_dati_row, mode_t
     title_start_row = find_title_row(doc, last_row + 1, curr_row, mode_text)
     if title_start_row == -1:  ###不是大题包含小题模式（先有材料，然后跟几个题）
         ti = get_xiaoti_content(doc, xiaoti_indexes, curr_xiaoti_index)
+        image_html=get_float_image(doc, xiaoti_indexes, curr_xiaoti_index)
+        ti['stem']=ti['stem']+'</br>' + image_html
         return (curr_xiaoti_index + 1, {'title':'', 'questions':[ti] })
 
     ti = {}     ####开始处理大题包含小题的模式（材料题）
@@ -377,6 +416,8 @@ def get_ti_content(doc, xiaoti_indexes, curr_xiaoti_index, curr_dati_row, mode_t
     questions = []
     while (i < n):
         question = get_xiaoti_content(doc, xiaoti_indexes, curr_xiaoti_index + i)
+        image_html = get_float_image(doc, xiaoti_indexes, curr_xiaoti_index+i)
+        question['stem'] = question['stem'] + '</br>' + image_html
         questions.append(question)
         i = i + 1
     ti['questions'] = questions
@@ -392,7 +433,7 @@ def get_xiaoti_content(doc, xiaoti_indexes, curr_index):
     xx = paragraphs2htmls(doc, title_indexes)
     q['stem']=re.sub(r'\d{1,2}[.．]\s{0,}', '', xx)   ###去除题号
 
-    q['index'] = re.findall(r'^(\d{1,2})[.．]\s{0,}', xx)[0]   ###获取题号
+    q['index'] = re.findall(r'^(\d{1,2})[.．、]\s{0,}', xx)[0]   ###获取题号
 
     if 'options' in xiaoti_indexes[curr_index]:
         option_indexes = xiaoti_indexes[curr_index]['options']
@@ -422,5 +463,5 @@ if __name__ == "__main__":
         curr_row = xiaoti_indexes[0]
         curr_index = 0
         while (curr_index < len(xiaoti_indexes)):
-            curr_index, ti = parse_ti(doc, xiaoti_indexes, curr_index, curr_dati_row, mode_text)
+            curr_index, ti = get_ti_content(doc, xiaoti_indexes, curr_index, curr_dati_row, mode_text)
             tis.append(ti)

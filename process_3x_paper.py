@@ -36,7 +36,7 @@ def merge_answer(tis , answer_list):
 
 #####给题目增加分数和题型
 def add_score_and_titype(ti, text):
-    score = re.findall(r'每小题(\d{1,2})分', text)     ##，每个小题的分数
+    score = re.findall(r'每[小]{0,1}题(\d{1,2})分', text)     ##，每个小题的分数
 
     ###题型 titpye
     xx=re.findall(r'(.{1,8}题)', text)[0]
@@ -62,7 +62,10 @@ def add_score_and_titype(ti, text):
             q['score'] = int(score[0])
         else:
             s = re.findall(r'["(","（"](\d{1,2})分[")","）"]', q['stem'])
-            q['score'] = int(s[0])
+            if s:
+                q['score'] = int(s[0])
+            else:
+                q['score']=0
             ss = ss + q['score']
     if not score:
         ti['score'] = ss
@@ -97,6 +100,7 @@ if __name__ == "__main__":
         paper_path = 'src/2019年全国II卷文科综合高考真题.docx'
         answer_path = 'src/2019年全国II卷文科综合高考真题-答案.docx'
 
+    paper_path = 'src/高二物理滚动检测卷.docx'
 
     doc = docx.Document(paper_path)
     all_ti_index = processPaper(doc)
@@ -106,13 +110,13 @@ if __name__ == "__main__":
     i = 0
     tis=get_tis(all_ti_index)
 
-####处理答案
-
-    doc = docx.Document(answer_path)
-    all_answer_index = processPaper(doc)
-    answers=get_answer(doc,all_answer_index )
-    merge_answer(tis, answers)
-
-    out_path=os.path.splitext(paper_path)[0]+'.json'
-    with  open(out_path, 'w', encoding='utf-8') as fp:
-        json.dump(tis, fp, ensure_ascii=False,indent = 4, separators=(',', ': '))
+# ####处理答案
+#
+#     doc = docx.Document(answer_path)
+#     all_answer_index = processPaper(doc)
+#     answers=get_answer(doc,all_answer_index )
+#     merge_answer(tis, answers)
+#
+#     out_path=os.path.splitext(paper_path)[0]+'.json'
+#     with  open(out_path, 'w', encoding='utf-8') as fp:
+#         json.dump(tis, fp, ensure_ascii=False,indent = 4, separators=(',', ': '))

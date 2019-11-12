@@ -3,47 +3,7 @@ import re
 from lxml import etree
 import uuid
 from docx_utils.namespaces import namespaces as docx_nsmap
-
-
-def git_pic(tree):
-    pics = tree.xpath('.//w:drawing', namespaces=docx_nsmap)
-    pic_mes = []
-    for pic in pics:
-        one_mes = dict()
-        size_ele = pic.xpath('.//wp:extent ', namespaces=pic.nsmap)[0]
-        width = int(size_ele.attrib['cx']) / (360000 * 0.0264583)
-        height = int(size_ele.attrib['cy']) / (360000 * 0.0264583)
-        one_mes['width'] = width
-        one_mes['height'] = height
-        # inline_ele = pic.xpath('.//wp:inline' , namespaces = pic.nsmap)[0]
-        # a_graphic = inline_ele.getchildren()[len(inline_ele)-1]
-        blip = pic.xpath('.//a:blip ', namespaces=docx_nsmap)[0]
-        blip_attr = blip.attrib
-        for attr in blip_attr:
-            value = blip_attr[attr]
-            if 'embed' in attr:
-                one_mes['rId'] = value
-        pic_mes.append(one_mes)
-    return pic_mes
-
-####
-def git_reall_pic(doc, pic_list):
-    for pic in pic_list:
-        pic_name = pic['rId']
-        img = doc.part.rels[pic_name].target_ref
-        img_part = doc.part.related_parts[pic_name]
-        path = str(uuid.uuid1()).replace('-', '')
-        path = 'img/' + path + '.jpeg'
-        pic['path'] = path
-
-        tag = '<img src="' + path + '" width=' + str(pic["width"]) + ' height=' + str(pic["height"]) + '>'
-        pic['tag'] = tag
-
-        with open(path, 'wb') as f:
-            f.write(img_part._blob)
-
-    return pic_list
-
+#####主要是进行版面分析，把每个题的标题、选项等部分所在的段落号，计算出来
 
 # 判断是否为标题
 def isNumber(char):
@@ -80,7 +40,6 @@ def get_mode_string(text):
             mode_string = ''
     return mode_string
 
-
 def analys_layout(doc):
     '''
 
@@ -95,7 +54,7 @@ def analys_layout(doc):
     ##找出所有带数字的行和行号(  中文数字 一， 阿拉伯数字 1 )
     while (row < len(paragraphs)):
         text = paragraphs[row].text.strip()
-        for n in range(0, 3):
+        for n in range(0, 4):
             if n >= len(text):
                 continue
             if isNumber(text[n]):
@@ -124,7 +83,7 @@ def analys_layout(doc):
             text=text[:n+1]+'.'+text[n+2:] ###全角半角“.”的转换，防止用户没有正确使用“.”号
 
         for row in range(begin_row + 1, len(paragraphs)):  ###查找某个模式的所有的值
-            tt=paragraphs[row].text
+            tt=paragraphs[row].text.strip()
             if len(tt)<n+2:
                 continue
             x=tt.find('．')
@@ -167,19 +126,6 @@ def get_option(text):
         b = e
         i = i + 1
     return options
-
-
-##获取某个题型模式
-def get_ti_mode(tree, mode_text, start_position):
-    i = start_position
-    while (i < len(tree)):
-
-        leaf = tree[i]
-        if leaf[0][1].strip().startswith(mode_text):
-            print('i=', i, 'leaf=', tree[i])
-            return i
-        i = i + 1
-    return None
 
 
 def parse_one_titype(curr_row, next_row, xiaoti_indexes, paragraphs):  ##处理1个大题，例如 “一、选择题”
@@ -236,11 +182,6 @@ def parse_ti(xiaoti_indexes, curr_row, next_row, paragraphs):
             ti['title'].append(i)
 
     return ti
-
-
-def verify_options(options):
-    pass
-
 
 ###计算主要模式在tree的位置
 ##2019.9.30,主模式确定后，副模式应该在主模式之前（行号更小）
@@ -334,6 +275,7 @@ def processPaper(doc):
     '''
     paragraphs = doc.paragraphs
     tree = analys_layout(doc)
+
     # 获取一份试卷主要的大题和主干小题的在tree里的索引
     dati_mode_index, xiao_mode_index = get_main_modes(tree)  ##试卷的主要2层模式
 
@@ -371,7 +313,6 @@ def remove_brackets(sentence):
 试卷的格式，我们认为只有2级，
 1.大题（一、填空题）
 2. 小题（19.）
-
 '''
 
 if __name__ == "__main__":
