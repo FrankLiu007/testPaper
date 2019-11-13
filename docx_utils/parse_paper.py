@@ -40,6 +40,8 @@ def get_mode_string(text):
             mode_string = ''
     return mode_string
 
+#分析试卷的版面
+# 大题模式为中文数字一 ， 小题模式为 阿拉伯数字 1
 def analys_layout(doc):
     '''
 
@@ -264,8 +266,105 @@ def remove_blank_paragraph(doc):
     print('空白段落总数：', nn)
 
     return 0
+##new version of analys_layout
+def find_xiaoti_row(dati_start_row,doc):
+    xiaoti_row=[]
+
+    paragraphs=doc.paragraphs
+    curr_number=0
+    for n in range(dati_start_row,len(doc.paragraphs)):
+        text=paragraphs[n].text.strip()
+        x=''
+        if len(text)<4:
+            continue
+        for i in range(0,4):
+            if text[i].isdecimal():
+                x=x+text[i]
+            else:
+                break
+        if x and re.match(r'^\d{1,2}[\s\.、．]', text):
+            if curr_number!=int(x)-1:
+                print(text)
+                print('in find_xiaoti_row： 格式识别错误！')
+                continue
+            curr_number = curr_number + 1
+            xiaoti_row.append((n , text,x ))
+
+    return xiaoti_row
+
+####找出大题的行
+def   find_dati_row( doc):
+    paragraphs=doc.paragraphs;
+    num2 = {'一':'1','二':'2','三':'3','四':'4','五':'5','六':'6','七':'7','八':'8','九':'9', '十':'10'}
+
+    mode_text=''
+    dati_row=[]
+    ###get mode text
+    for i in range(0, len(paragraphs)):
+        text=paragraphs[i].text.strip()
+        x=''
+        if len(text)<4:
+            continue
+        for j in range(0,4):
+            if text[j] in num2:
+                x=x+text[j]
+                if mode_text=='' and x=='一':
+                    mode_text=text[:j+2]
+                    break
+        if mode_text:
+            # mode.append((i, mode_text))
+            break
+    if not mode_text:
+        print('没有找到大题特征字符：一')
+        return 0
+
+    curr_number = '一'
+    ss = mode_text
+    p = mode_text.find('一')
+    for i in range(0, len(paragraphs)):
+        text=paragraphs[i].text.strip()
+
+        if re.match(r'[\s\.、.]',mode_text[p+1] ) :  ###（一、一 一. ）等大题模式
+            rr= '^'+mode_text[:p] + curr_number + r'[\s\.、.]'
+            if re.match(rr, text):
+                dati_row.append((i, text, ss,))
+                next_number = get_next_number(curr_number)
+                ss = mode_text.replace('一', next_number)
+                curr_number = next_number
+        else:  ##不是（一、一 一. ）等大题模式，比如（第一部分 ）
+            if text.startswith(ss):
+                dati_row.append((i, ss, text))
+                next_number = get_next_number(curr_number)
+                ss = mode_text.replace('一', next_number)
+                curr_number = next_number
+
+    return dati_row
 
 
+def processPaper2(doc):
+    paragraphs=doc.paragraphs
+
+    dati_indexes=find_dati_row( doc)
+    xiaoti_indexes=find_xiaoti_row(dati_indexes[0][0], doc)
+
+    ####获取所有大题的  小题
+    tis = []
+    curr_row, text, mode_text = dati_indexes[0]
+    i = 0
+    all_ti = []
+    while (i < len(dati_indexes)):  ##处理1种题型
+        if i < len(dati_indexes) - 1:
+            next_row, next_text, mode_text = dati_indexes[i + 1]
+            tis = parse_one_titype(curr_row, next_row, xiaoti_indexes, paragraphs)  ##处理1种题型的所有题目
+            # print('tis=', tis)
+        else:
+            tis = parse_one_titype(curr_row, len(paragraphs), xiaoti_indexes, paragraphs)  ##处理最后一个大题，例如“三、综合题”
+            # print('tis=', tis)
+        all_ti.append((curr_row, tis))
+        i = i + 1
+        curr_row = next_row
+
+    return all_ti
 
 def processPaper(doc):
     '''
