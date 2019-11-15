@@ -6,8 +6,8 @@ from dwml import omml
 from docx_utils.namespaces import namespaces as docx_nsmap
 import uuid
 import os
+from . import settings
 
-image_prefix = 'img'
 '''
 试卷的格式，我们认为只有2级，
 1.大题（一、填空题）
@@ -113,6 +113,25 @@ def w_t2html(child):
 
 '''
 def w_drawing2html(doc, child):
+
+    img_dir=settings.img_dir
+    http_head=settings.http_head
+
+    ##--检查img_dir参数检查-----------
+    if img_dir == '':
+        print('还未设置img_dir！')
+        exit(0)
+    else:
+        if not os.path.exists(img_dir):
+            os.mkdir(img_dir)
+    #####检查http_head是否设置
+    if http_head == '':
+        print('还未设置http_head！')
+        exit(0)
+    if http_head[-1] != '/':
+        http_head = http_head + '/'
+    ##-----------------------------
+
     pics = child.xpath('.//w:drawing', namespaces=docx_nsmap)
     if len(pics) != 1:
         print("docx格式可能错误，w:drawing可能包含多张图片！")
@@ -144,17 +163,11 @@ def w_drawing2html(doc, child):
     img = doc.part.rels[pic_name].target_ref
     ext = os.path.splitext(img)[-1]
     path = str(uuid.uuid1()).replace('-', '') + ext
-    try:  ###看看是否存在全局变量image_prefix
-        path = os.path.join(image_prefix, path)
-    except:
-        path = os.path.join('image_prefix/', path)
-        if not os.path.exists('image_prefix/'):
-            os.mkdir('image_prefix/')
 
-    html = '<img src="' + path + '" width=' + "{:.4f}".format(one_mes["width"]) + \
+    html = '<img src="' + http_head + path + '" width=' + "{:.4f}".format(one_mes["width"]) + \
            ' height=' + "{:.4f}".format(one_mes["height"]) + '>'
     img_part = doc.part.related_parts[pic_name]
-    with open(path, 'wb') as f:
+    with open(os.path.join(img_dir, path), 'wb') as f:
         f.write(img_part._blob)
 
     return {'html':html, 'mode':mode}
@@ -349,7 +362,6 @@ def get_option_htmls(doc, options_indexes):
 
     return options_htmls
 
-
 ##for titel, 不包含选项的段落，可以直接转换
 def paragraphs2htmls(doc, title_indexes):
     paragraphs = doc.paragraphs
@@ -366,7 +378,6 @@ def paragraphs2htmls(doc, title_indexes):
             html = ''
         htmls.extend(html)
 
-
     return ''.join(htmls)
 ###单独处理浮动的图片
 def get_float_image( doc, xiaoti_indexes, curr_xiaoti_index):
@@ -379,12 +390,11 @@ def get_float_image( doc, xiaoti_indexes, curr_xiaoti_index):
 
     for index in indexes:
         tree=etree.fromstring(doc.paragraphs[index]._element.xml)
-        x=tree.xpath('.//w:drawing', namespaces=docx_nsmap)
+        x=tree.xpath('.//w:drawing/wp:anchor', namespaces=docx_nsmap)
         if x:
-            result=w_drawing2html(doc, x[0].getparent())
+            result=w_drawing2html(doc, x[0].getparent().getparent())
             if result['mode']=='anchor':
                 htmls.append(result['html'])
-
     return ''.join(htmls)
 
 def get_ti_content(doc, xiaoti_indexes, curr_xiaoti_index, curr_dati_row, mode_text):

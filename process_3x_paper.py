@@ -1,17 +1,18 @@
 import docx
-from docx_utils.parse_paper import  processPaper
+from docx_utils.parse_paper import  processPaper, processPaper2
 from docx_utils.ti2html import  get_ti_content
 import  re
 import json
 import sys
 import os
+from docx_utils import  settings
 '''
 ###获取答案
 #答案和试卷不一样，答案一定是先有题号，然后跟着答案。
 # 试卷则不同，试卷的选择题里面有材料题（看一段材料，做几个选择题，请参照文综试卷的选择题部分）
 '''
 def get_answer(doc , all_indexes):
-    all_ans = {}
+    all_answer = {}
     for dati in all_indexes:
         curr_dati_row = dati[0]
         xiaoti_indexes = dati[1]
@@ -22,8 +23,8 @@ def get_answer(doc , all_indexes):
                 print('答案格式错误！')
             content = re.sub(r'\d{1,2}[.．]\s{0,}', '', ans['questions'][0]['stem'])
 
-            all_ans[ans['questions'][0]['index']]=content
-    return all_ans
+            all_answer[ans['questions'][0]['index']]=content
+    return all_answer
 
 def merge_answer(tis , answer_list):
     for ti in tis:
@@ -70,8 +71,11 @@ def add_score_and_titype(ti, text):
     if not score:
         ti['score'] = ss
     return 0
-def get_tis(all_ti_index):
+
+##-----------------------------
+def get_tis(doc, all_ti_index):
     mode_text = r'完成\d{1,2}～\d{1,2}题'  ##模式字符串
+    paragraphs=doc.paragraphs
     tis = []
     # while(i<len(all_ti_index)):
     for dati in all_ti_index:
@@ -87,36 +91,57 @@ def get_tis(all_ti_index):
             tis.append(ti)
     return  tis
 #-----------------------------------------
-def decide_titype(text):
-    pass
+def docx_paper2json(data_dir, paper_path, answer_path):
+
+    doc = docx.Document(os.path.join(data_dir, paper_path))
+    all_ti_index = processPaper2(doc)
+    paragraphs = doc.paragraphs
+###处理试卷
+    i = 0
+    tis=get_tis(doc, all_ti_index)
+####处理答案
+    doc = docx.Document(os.path.join(data_dir, answer_path))
+    all_answer_index = processPaper(doc)
+    answers=get_answer(doc,all_answer_index )
+    merge_answer(tis, answers)
+
+    return tis
+
 if __name__ == "__main__":
+###run 本脚本的例子：
+## python process_3x_paper.py  src  文综  2019年全国I卷理科数学高考真题.docx 2019年全国I卷理科数学高考真题答案.docx img https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/ abc.json
+    settings.init()
 
-    if len(sys.argv)==5:
-        paper_path=sys.argv[1]
-        answer_path=sys.argv[2]
+    if len(sys.argv)==8:
+        data_dir=sys.argv[1]
+        subject=sys.argv[2]
+        paper_path=sys.argv[3]
+        answer_path=sys.argv[4]
+        img_dir=sys.argv[5]
+        http_head=sys.argv[6]
+        out_path=sys.argv[7]
 
+        settings.img_dir=os.path.join(data_dir, img_dir)
+        settings.http_head=http_head
     else:
         print('参数错误，正确用法： process_3x_paper.py 真题.docx 答案.docx')
         paper_path = 'src/2019年全国II卷文科综合高考真题.docx'
         answer_path = 'src/2019年全国II卷文科综合高考真题-答案.docx'
+        exit(0)
 
-    paper_path = 'src/高二物理滚动检测卷.docx'
 
-    doc = docx.Document(paper_path)
-    all_ti_index = processPaper(doc)
-    paragraphs = doc.paragraphs
 
-###处理试卷
-    i = 0
-    tis=get_tis(all_ti_index)
 
-# ####处理答案
-#
-#     doc = docx.Document(answer_path)
-#     all_answer_index = processPaper(doc)
-#     answers=get_answer(doc,all_answer_index )
-#     merge_answer(tis, answers)
-#
-#     out_path=os.path.splitext(paper_path)[0]+'.json'
-#     with  open(out_path, 'w', encoding='utf-8') as fp:
-#         json.dump(tis, fp, ensure_ascii=False,indent = 4, separators=(',', ': '))
+    if subject =='语文':
+        # in ['数学','物理','化学', '历史', '地理','生物']:
+        pass
+    elif subject=='英语':
+        pass
+    else :
+
+        tis=docx_paper2json(data_dir, paper_path, answer_path )
+
+    with  open(os.path.join(data_dir, out_path), 'w', encoding='utf-8') as fp:
+        json.dump(tis, fp, ensure_ascii=False,indent = 4, separators=(',', ': '))
+
+
