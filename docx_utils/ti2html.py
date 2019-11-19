@@ -67,6 +67,8 @@ def split_options(option_html):
         item = chr(i)
         index1 = option_html.find(item+'．')
         index2 = option_html.find(item + '.')
+        if index1==-1 and index2==-1:
+            break
         index = index1 if index1>-1 else index2
         option=option_html[last_index:last_index+1]
         htmls = option_html[last_index+2:index]
@@ -74,7 +76,7 @@ def split_options(option_html):
             return ops
         last_index = index
         ops.append({'label':option, 'content':htmls.strip() })
-
+    ops.append({'label':chr(i-1), 'content':option_html[last_index+2:] })
     return ops
 
 
@@ -161,8 +163,10 @@ def w_drawing2html(doc, child):
             break
     pic_name = one_mes['rId']
     img = doc.part.rels[pic_name].target_ref
+
     ext = os.path.splitext(img)[-1]
     path = str(uuid.uuid1()).replace('-', '') + ext
+
 
     html = '<img src="' + http_head + path + '" width=' + "{:.4f}".format(one_mes["width"]) + \
            ' height=' + "{:.4f}".format(one_mes["height"]) + '>'
@@ -191,22 +195,6 @@ def o_math2html(child):
     html = '\(' + text + '\)'
     return html
 
-###处理title，得到title的htmls
-def get_title_htmls(doc, titles_index):
-
-    htmls = []
-    images=[]
-    for index in titles_index:
-        result = paragraph2html(doc, index)
-        htmls.append(result['htmls'].copy())
-        images.append(result['images'])
-    if len(images)>1:
-        print('Warning! 该题目的标题部分包含', len(images), '张图片！')
-
-
-    return ''.join(htmls)+'</br>'.join(images)
-
-
 ###检测1个run里面是否有多种内容，这种情况是无效的！！
 def check_run(child):
     tag = get_tag(child)
@@ -219,7 +207,6 @@ def check_run(child):
     rPr = run.xpath('.//w:rPr', namespaces=run.nsmap)  ##删除run的属性
 
     if len(rPr) > 1:
-        print(child , '184')
         print('docx格式出错了，len(w:rPr)!=1')
     elif len(rPr) == 1:
         run.remove(rPr[0])
@@ -264,10 +251,8 @@ def merge_wt(tree):  ###一个段落
 
 def paragraph2html(doc, index):
     tree = etree.fromstring(doc.paragraphs[index]._element.xml)
-
     children = tree.getchildren()
     htmls = []
-
     for child in children:
         tag = get_tag(child)
 
@@ -298,10 +283,7 @@ def paragraph2html(doc, index):
             htmls.append(html)
         elif tag == 'table':  ##处理表格
             pass
-
         # if html != ' ':   空格也应该原样输出，因为有时候存在特意的空格
-
-
     return ''.join(htmls)
 
 def check_options(options):
@@ -331,7 +313,7 @@ def options2html(doc, row):
             print('run=', child)
             exit()
         elif vv == 0:
-            print('options2html: run里面没有找到合适元素！')
+            # print('options2html: run里面没有找到合适元素！')
             continue
 
         if tag == 'w:t':
@@ -376,9 +358,10 @@ def paragraphs2htmls(doc, title_indexes):
             pass
         else:
             html = ''
-        htmls.extend(html)
+        if html.strip()!='':
+            htmls.append(html)
 
-    return ''.join(htmls)
+    return '</br>'.join(htmls)
 ###单独处理浮动的图片
 def get_float_image( doc, xiaoti_indexes, curr_xiaoti_index):
     paragraphs=doc.paragraphs
@@ -441,16 +424,17 @@ def get_xiaoti_content(doc, xiaoti_indexes, curr_index):
     title_indexes = xiaoti_indexes[curr_index]['title']
 
     xx = paragraphs2htmls(doc, title_indexes)
-    q['stem']=re.sub(r'\d{1,2}[.．]\s{0,}', '', xx)   ###去除题号
+    q['stem']=re.sub(r'^\d{1,2}[.．]\s{0,}', '', xx)   ###去除题号
 
-    q['index'] = re.findall(r'^(\d{1,2})[.．、]\s{0,}', xx)[0]   ###获取题号
+    q['number'] = re.findall(r'^(\d{1,2})[.．、]\s{0,}', xx)[0]   ###获取题号
 
     if 'options' in xiaoti_indexes[curr_index]:
         option_indexes = xiaoti_indexes[curr_index]['options']
         q['options'] = get_option_htmls(doc, option_indexes)
         if '一项' in doc.paragraphs[title_indexes[0]].text:
-            q['type']='single'
-
+            q['type']='SINGLE'
+    else:
+        q['type'] = 'GENERAL'
     return q
 
 if __name__ == "__main__":
