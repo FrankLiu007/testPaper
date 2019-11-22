@@ -23,15 +23,21 @@ def get_answer(doc , all_indexes):
                 print('答案格式错误！')
             content = re.sub(r'\d{1,2}[.．]\s{0,}', '', ans['questions'][0]['stem'])
 
-            all_answer[ans['questions'][0]['index']]=content
+            all_answer[ans['questions'][0]['number']]=content
     return all_answer
 
 def merge_answer(tis , answer_list):
     for ti in tis:
         reference=''
         for q in ti['questions']:
-            q['solution']=answer_list[q['index']]
-            reference=reference + q['index']+'. '+ q['solution'] + '</br>'
+
+            q['solution']=answer_list[q['number']]
+            reference = reference + q['number'] + '. ' + q['solution']
+            if 'options' in q:
+                q['solution']=q['solution'].replace('<p>', '').replace('</p>', '').strip()  ####选择题的答案不能是html
+            else:
+                q.pop('solution')
+
         ti['reference']=reference
     return 0
 
@@ -49,12 +55,12 @@ def add_score_and_titype(ti, text):
             print('题型识别可能出错：', xx[b+1:e+1])
     ti['category'] = type_str
 
-    q_tpye=''
+    q_tpye='GENERAL'
     if '只有一项' in text  or '的一项是' in text :
-        q_tpye='single'
+        q_tpye='SINGLE'
 
     if score:
-        ti['score'] = int(score[0]) * len(ti['questions'])
+        ti['total'] = int(score[0]) * len(ti['questions'])
     ss=0
     for q in ti['questions']:
         if (not 'type' in q) or  (q_tpye==''):
@@ -69,7 +75,7 @@ def add_score_and_titype(ti, text):
                 q['score']=0
             ss = ss + q['score']
     if not score:
-        ti['score'] = ss
+        ti['total'] = ss
     return 0
 
 ##-----------------------------
@@ -109,7 +115,8 @@ def docx_paper2json(data_dir, paper_path, answer_path):
 
 if __name__ == "__main__":
 ###run 本脚本的例子：
-## python process_3x_paper.py  src  文综  2019年全国I卷理科数学高考真题.docx 2019年全国I卷理科数学高考真题答案.docx img https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/ abc.json
+## python docx2json.py  src  文综  2019年全国II卷文科综合高考真题.docx 2019年全国II卷文科综合高考真题-答案.docx img https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/ 文综.json
+# python docx2json.py  src  数学 2019年全国I卷理科数学高考真题.docx 2019年全国I卷理科数学高考真题答案.docx img https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/ 数学.json
     settings.init()
 
     if len(sys.argv)==8:
@@ -123,13 +130,17 @@ if __name__ == "__main__":
 
         settings.img_dir=os.path.join(data_dir, img_dir)
         settings.http_head=http_head
-    else:
+    else:    ###跑例子用的默认参数,保证在ipython下面也可以直接跑
         print('参数错误，正确用法： process_3x_paper.py 真题.docx 答案.docx')
-        paper_path = 'src/2019年全国II卷文科综合高考真题.docx'
-        answer_path = 'src/2019年全国II卷文科综合高考真题-答案.docx'
-        exit(0)
-
-
+        data_dir='src'
+        subject='数学'
+        paper_path='2019年全国I卷理科数学高考真题.docx'
+        answer_path='2019年全国I卷理科数学高考真题答案.docx'
+        img_dir='img'
+        http_head=' https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/'
+        out_path='数学.json'
+        settings.img_dir=os.path.join(data_dir, img_dir)
+        settings.http_head=http_head
 
 
     if subject =='语文':
@@ -143,5 +154,3 @@ if __name__ == "__main__":
 
     with  open(os.path.join(data_dir, out_path), 'w', encoding='utf-8') as fp:
         json.dump(tis, fp, ensure_ascii=False,indent = 4, separators=(',', ': '))
-
-

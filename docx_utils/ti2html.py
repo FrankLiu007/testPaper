@@ -6,8 +6,10 @@ from dwml import omml
 from docx_utils.namespaces import namespaces as docx_nsmap
 import uuid
 import os
+import subprocess
 from . import settings
-
+from PIL import Image
+import io
 '''
 试卷的格式，我们认为只有2级，
 1.大题（一、填空题）
@@ -105,9 +107,35 @@ def get_tag(child):
 ##处理w:t元素
 def w_t2html(child):
     t = child.xpath('.//w:t/text()', namespaces=child.nsmap)[0]
-    text = t.replace('<', '&lt;').replace('>', '&gt;')
-    html = text
-    return html
+    t=t.replace('<', '&lt;').replace('>', '&gt;')
+
+    kk = '{' + docx_nsmap['w'] + '}val'
+    ##1.处理上下标
+    ee=child.xpath('./w:rPr/w:vertAlign', namespaces=docx_nsmap)
+    if ee:
+        val = ee[0].attrib[kk]
+        if val=="subscript":
+            t='<sub>'+t+'</sub>'
+        elif val=='superscript':
+            t = '<sup>' + t + '</sup>'
+
+    ##2.处理下划线
+    ee = child.xpath('./w:rPr/w:u', namespaces=docx_nsmap)
+    if ee:
+        # if ee[0] == "": ##下划线
+        #     t = '<>' + t + '</u>'
+        # elif ee['']:  ##双下划线
+        t = '<u>' + t + '</u>'
+    ##3.处理加粗
+    ee = child.xpath('./w:rPr/w:b', namespaces=docx_nsmap)
+    if ee:
+        t = '<b>' + t + '</b>'
+    ##4.处理倾斜
+    ee = child.xpath('./w:rPr/w:i', namespaces=docx_nsmap)
+    if ee:
+        t = '<i>' + t + '</i>'
+
+    return t
 
 ##处理w:drawing元素
 '''
@@ -163,16 +191,29 @@ def w_drawing2html(doc, child):
             break
     pic_name = one_mes['rId']
     img = doc.part.rels[pic_name].target_ref
-
-    ext = os.path.splitext(img)[-1]
-    path = str(uuid.uuid1()).replace('-', '') + ext
-
-
-    html = '<img src="' + http_head + path + '" width=' + "{:.4f}".format(one_mes["width"]) + \
-           ' height=' + "{:.4f}".format(one_mes["height"]) + '>'
+    ext=os.path.splitext(img)[-1]
     img_part = doc.part.related_parts[pic_name]
-    with open(os.path.join(img_dir, path), 'wb') as f:
-        f.write(img_part._blob)
+
+    fname = str(uuid.uuid1()).replace('-', '')   ###convert all image to .png
+    if ext=='.wmf':
+        ## wmf2gd -t png -o abc.png test.wmf   --maxwidth=130 --maxpect
+        ##暂时不用imagemagick的convert
+        if os.name=='nt':###在windows上,
+            image = Image.open(io.BytesIO(img_part._blob))
+            image.save(os.path.join(img_dir, fname + '.png'))
+        else:###不是在windows上面
+            with open(fname+'.wmf', 'wb') as f:
+                f.write(img_part._blob)
+            status, output=subprocess.getstatusoutput('wmf2gd -t png -o '+ fname + '.png '+ fname+'.wmf ' + ' --maxsize --maxpect ')
+            if  status:
+                print('Warning! '+img +'转png失败！')
+    else:
+        image=Image.open(io.BytesIO(img_part._blob))
+        image.save(os.path.join(img_dir, fname+ext))          ###convert all image to .png by PIL
+
+    html = '<img src="' + http_head + fname+ext + '" width=' + "{:.4f}".format(one_mes["width"]) + \
+           ' height=' + "{:.4f}".format(one_mes["height"]) + '>'
+
 
     return {'html':html, 'mode':mode}
 
@@ -360,8 +401,12 @@ def paragraphs2htmls(doc, title_indexes):
             html = ''
         if html.strip()!='':
             htmls.append(html)
+    result=''
+    for html in htmls:
+        result=result+ '<p>'+html+'</p>'
 
-    return '</br>'.join(htmls)
+    return result
+
 ###单独处理浮动的图片
 def get_float_image( doc, xiaoti_indexes, curr_xiaoti_index):
     paragraphs=doc.paragraphs
@@ -397,7 +442,7 @@ def get_ti_content(doc, xiaoti_indexes, curr_xiaoti_index, curr_dati_row, mode_t
     if title_start_row == -1:  ###不是大题包含小题模式（先有材料，然后跟几个题）
         ti = get_xiaoti_content(doc, xiaoti_indexes, curr_xiaoti_index)
         image_html=get_float_image(doc, xiaoti_indexes, curr_xiaoti_index)
-        ti['stem']=ti['stem']+'</br>' + image_html
+        ti['stem']=ti['stem'] + image_html
         return (curr_xiaoti_index + 1, {'title':'', 'questions':[ti] })
 
     ti = {}     ####开始处理大题包含小题的模式（材料题）
@@ -410,7 +455,7 @@ def get_ti_content(doc, xiaoti_indexes, curr_xiaoti_index, curr_dati_row, mode_t
     while (i < n):
         question = get_xiaoti_content(doc, xiaoti_indexes, curr_xiaoti_index + i)
         image_html = get_float_image(doc, xiaoti_indexes, curr_xiaoti_index+i)
-        question['stem'] = question['stem'] + '</br>' + image_html
+        question['stem'] = question['stem']  + image_html
         questions.append(question)
         i = i + 1
     ti['questions'] = questions
@@ -424,9 +469,9 @@ def get_xiaoti_content(doc, xiaoti_indexes, curr_index):
     title_indexes = xiaoti_indexes[curr_index]['title']
 
     xx = paragraphs2htmls(doc, title_indexes)
-    q['stem']=re.sub(r'^\d{1,2}[.．]\s{0,}', '', xx)   ###去除题号
+    q['stem']=re.sub(r'^<p>\d{1,2}[.．]\s{0,}', '<p>', xx)   ###去除题号
 
-    q['number'] = re.findall(r'^(\d{1,2})[.．、]\s{0,}', xx)[0]   ###获取题号
+    q['number'] = re.findall(r'^<p>(\d{1,2})[.．、]\s{0,}', xx)[0]   ###获取题号
 
     if 'options' in xiaoti_indexes[curr_index]:
         option_indexes = xiaoti_indexes[curr_index]['options']

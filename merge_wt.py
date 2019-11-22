@@ -99,9 +99,8 @@ def check_rPr(last_run, run):  ##检查run的property是否相同
             val = w_u[0].attrib[kk]
             if bb[0].attrib[kk]!=val:
                 return False
-
     #上下标
-    w_vertAlign=last_run.xpath('./w:rPr/w:vertAlign ', namespaces=last_run.nsmap)
+    w_vertAlign=last_run.xpath('./w:rPr/w:vertAlign', namespaces=last_run.nsmap)
     bb = run.xpath('./w:rPr/w:vertAlign', namespaces=run.nsmap)
     if len(w_vertAlign)!=len(bb):
         return False
