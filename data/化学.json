@@ -1,0 +1,534 @@
+[
+    {
+        "title": "",
+        "questions": [
+            {
+                "stem": "<p>某试剂瓶标签上安全标志如右图，<img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/b7377bae0f1811ea9cf0bc8385e4c2b6.png\" width=74.6668 height=80.0001><img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/b73ea2be0f1811eaa736bc8385e4c2b6.png\" width=77.7334 height=79.2668>该试剂是（    ）</p>",
+                "number": "1",
+                "options": [
+                    {
+                        "label": "A",
+                        "content": "氮水"
+                    },
+                    {
+                        "label": "B",
+                        "content": "乙酸"
+                    },
+                    {
+                        "label": "C",
+                        "content": "氢氧化钠"
+                    },
+                    {
+                        "label": "D",
+                        "content": " 硝酸"
+                    }
+                ],
+                "type": "SINGLE",
+                "score": 2,
+                "solution": "D"
+            }
+        ],
+        "category": "选择题",
+        "total": 2,
+        "reference": "1. <p>D</p>"
+    },
+    {
+        "title": "",
+        "questions": [
+            {
+                "stem": "<p>我国古代典籍中有“石胆……浅碧色，烧之变白色者真”的记载，其中石胆是指</p>",
+                "number": "2",
+                "options": [
+                    {
+                        "label": "A",
+                        "content": ""
+                    },
+                    {
+                        "label": "B",
+                        "content": ""
+                    },
+                    {
+                        "label": "C",
+                        "content": ""
+                    },
+                    {
+                        "label": "D",
+                        "content": " "
+                    }
+                ],
+                "type": "SINGLE",
+                "score": 2,
+                "solution": "A"
+            }
+        ],
+        "category": "选择题",
+        "total": 2,
+        "reference": "2. <p>A</p>"
+    },
+    {
+        "title": "",
+        "questions": [
+            {
+                "stem": "<p>反应，在一定条件下于密闭容器中达到平衡。下列各项措施中，不能提高乙烷平衡转化率的是（    ）</p>",
+                "number": "3",
+                "options": [
+                    {
+                        "label": "A",
+                        "content": "增大容器容积"
+                    },
+                    {
+                        "label": "B",
+                        "content": "升高反应温度"
+                    },
+                    {
+                        "label": "C",
+                        "content": "分离出部分氢气"
+                    },
+                    {
+                        "label": "D",
+                        "content": "等容下通入惰性气体"
+                    }
+                ],
+                "type": "SINGLE",
+                "score": 2,
+                "solution": "D"
+            }
+        ],
+        "category": "选择题",
+        "total": 2,
+        "reference": "3. <p>D</p>"
+    },
+    {
+        "title": "",
+        "questions": [
+            {
+                "stem": "<p>下列各组化合物中不互为同分异构体的是（    ）</p>",
+                "number": "4",
+                "options": [
+                    {
+                        "label": "A",
+                        "content": "<img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/b7441d360f1811ea80eabc8385e4c2b6.png\" width=104.4001 height=48.4001>"
+                    },
+                    {
+                        "label": "B",
+                        "content": "<img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/b74506f60f1811eaa9dbbc8385e4c2b6.png\" width=98.6668 height=42.2667>"
+                    },
+                    {
+                        "label": "C",
+                        "content": "<img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/b7468c880f1811eaa3c2bc8385e4c2b6.png\" width=151.6002 height=42.2667>"
+                    },
+                    {
+                        "label": "D",
+                        "content": " <img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/b7479e9c0f1811eaa66dbc8385e4c2b6.png\" width=97.5335 height=44.9334>"
+                    }
+                ],
+                "type": "SINGLE",
+                "score": 2,
+                "solution": "B"
+            }
+        ],
+        "category": "选择题",
+        "total": 2,
+        "reference": "4. <p>B</p>"
+    },
+    {
+        "title": "",
+        "questions": [
+            {
+                "stem": "<p>根据右图中的能量关系，可求得的键能为（    ）</p><p><img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/b749bec80f1811eaaeabbc8385e4c2b6.png\" width=188.2002 height=108.6001></p>",
+                "number": "5",
+                "options": [
+                    {
+                        "label": "A",
+                        "content": ""
+                    },
+                    {
+                        "label": "B",
+                        "content": ""
+                    },
+                    {
+                        "label": "C",
+                        "content": ""
+                    },
+                    {
+                        "label": "D",
+                        "content": " "
+                    }
+                ],
+                "type": "SINGLE",
+                "score": 2,
+                "solution": "A"
+            }
+        ],
+        "category": "选择题",
+        "total": 2,
+        "reference": "5. <p>A</p>"
+    },
+    {
+        "title": "",
+        "questions": [
+            {
+                "stem": "<p>实验室通过称量样品受热脱水前后的质最来测定x值，下列情况会导致测定值偏低的是（    ）</p>",
+                "number": "6",
+                "options": [
+                    {
+                        "label": "A",
+                        "content": "实验前试样未经干燥"
+                    },
+                    {
+                        "label": "B",
+                        "content": "试样中含有少景碳酸氢铵"
+                    },
+                    {
+                        "label": "C",
+                        "content": "试样中含有少量氯化钠"
+                    },
+                    {
+                        "label": "D",
+                        "content": "加热过程中有试样进溅出来"
+                    }
+                ],
+                "type": "SINGLE",
+                "score": 2,
+                "solution": "C"
+            }
+        ],
+        "category": "选择题",
+        "total": 2,
+        "reference": "6. <p>C</p>"
+    },
+    {
+        "title": "",
+        "questions": [
+            {
+                "stem": "<p>今年是门捷列夫发现元素周期律150周年，联合国将2019年定为“国际化学元素周期表年”。下列有关化学元素周期表的说法正确的是（    ）</p>",
+                "number": "7",
+                "options": [
+                    {
+                        "label": "A",
+                        "content": "元素周期表共有18列"
+                    },
+                    {
+                        "label": "B",
+                        "content": "族元素的非金属性自上而下依次减弱"
+                    },
+                    {
+                        "label": "C",
+                        "content": "主族元素均呈现与其族数相同的最高化合价"
+                    },
+                    {
+                        "label": "D",
+                        "content": " 第二周期主族元素的原子半径自左向右依次增大"
+                    }
+                ],
+                "type": "GENERAL",
+                "score": 4,
+                "solution": "AB"
+            }
+        ],
+        "category": "选择题",
+        "total": 4,
+        "reference": "7. <p>AB</p>"
+    },
+    {
+        "title": "",
+        "questions": [
+            {
+                "stem": "<p>微型银-锌电池可用作电子仪器的电源，其电极分别是和，电解质为溶液，电池总反应为，下列说法正确的是（    ）</p>",
+                "number": "8",
+                "options": [
+                    {
+                        "label": "A",
+                        "content": "电池工作过程中，溶液浓度降低"
+                    },
+                    {
+                        "label": "B",
+                        "content": "电池工作过程中，电解液中向负极迁移"
+                    },
+                    {
+                        "label": "C",
+                        "content": "负极发生反应"
+                    },
+                    {
+                        "label": "D",
+                        "content": " 正极发生反应"
+                    }
+                ],
+                "type": "GENERAL",
+                "score": 4,
+                "solution": "BC"
+            }
+        ],
+        "category": "选择题",
+        "total": 4,
+        "reference": "8. <p>BC</p>"
+    },
+    {
+        "title": "",
+        "questions": [
+            {
+                "stem": "<p>一定温度下，体系中，和的关系如图所示。下列说法正确的是（    ）</p><p><img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/b753c9f60f1811ea979ebc8385e4c2b6.png\" width=144.7335 height=140.2002></p>",
+                "number": "9",
+                "options": [
+                    {
+                        "label": "A",
+                        "content": "三点对应的<img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/b7559d6e0f1811ea8d6fbc8385e4c2b6.png\" width=21.7334 height=16.7334>相等"
+                    },
+                    {
+                        "label": "B",
+                        "content": "在c点的溶解度比b点的大"
+                    },
+                    {
+                        "label": "C",
+                        "content": "溶于水形成的饱和溶液中，"
+                    },
+                    {
+                        "label": "D",
+                        "content": " b点的溶液中加入<img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/b757e5d80f1811ea80d4bc8385e4c2b6.png\" width=38.8667 height=19.0667>，固体，沿曲线向c点方向变化"
+                    }
+                ],
+                "type": "GENERAL",
+                "score": 4,
+                "solution": "AC"
+            }
+        ],
+        "category": "选择题",
+        "total": 4,
+        "reference": "9. <p>AC</p>"
+    },
+    {
+        "title": "",
+        "questions": [
+            {
+                "stem": "<p>下列说法正确的是（    ）</p>",
+                "number": "10",
+                "options": [
+                    {
+                        "label": "A",
+                        "content": "和都属于两性氧化物"
+                    },
+                    {
+                        "label": "B",
+                        "content": "悬浊液和乳浊液的分散质均为液态"
+                    },
+                    {
+                        "label": "C",
+                        "content": "和中的金属都呈现两种价态"
+                    },
+                    {
+                        "label": "D",
+                        "content": " 葡萄糖溶液和淀粉溶液都具有丁达尔效应"
+                    }
+                ],
+                "type": "GENERAL",
+                "score": 4,
+                "solution": "C"
+            }
+        ],
+        "category": "选择题",
+        "total": 4,
+        "reference": "10. <p>C</p>"
+    },
+    {
+        "title": "",
+        "questions": [
+            {
+                "stem": "<p>能正确表示下列反应的离子方程式为（    ）</p>",
+                "number": "11",
+                "options": [
+                    {
+                        "label": "A",
+                        "content": "向F溶液中通入过量"
+                    },
+                    {
+                        "label": "B",
+                        "content": "向碳酸钠溶液中通入少量"
+                    },
+                    {
+                        "label": "C",
+                        "content": "向碘化钾溶液中加入少量双氧水"
+                    },
+                    {
+                        "label": "D",
+                        "content": " 向硫化钠溶液中通入过量"
+                    }
+                ],
+                "type": "GENERAL",
+                "score": 4,
+                "solution": "BD"
+            }
+        ],
+        "category": "选择题",
+        "total": 4,
+        "reference": "11. <p>BD</p>"
+    },
+    {
+        "title": "",
+        "questions": [
+            {
+                "stem": "<p>下列化合物中，既能发生取代反应又能发生加成反应的有（    ）</p>",
+                "number": "12",
+                "options": [
+                    {
+                        "label": "A",
+                        "content": ""
+                    },
+                    {
+                        "label": "B",
+                        "content": ""
+                    },
+                    {
+                        "label": "C",
+                        "content": "<img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/b75dfc380f1811ea8e7bbc8385e4c2b6.png\" width=49.5334 height=27.8000>"
+                    },
+                    {
+                        "label": "D",
+                        "content": " <img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/b75e97fe0f1811ea8148bc8385e4c2b6.png\" width=26.6667 height=25.1334>"
+                    }
+                ],
+                "type": "GENERAL",
+                "score": 4,
+                "solution": "AD"
+            }
+        ],
+        "category": "选择题",
+        "total": 4,
+        "reference": "12. <p>AD</p>"
+    },
+    {
+        "title": "",
+        "questions": [
+            {
+                "stem": "<p>（9分）</p><p>自门捷列夫发现元素周期律以来，人类对自然的认识程度逐步加深，元素周期表中的成员数目不断增加。回答下列问题：</p><p>（1）2016年确认了四种新元素，其中一种为，中文名为“镁”。元素可由反应端<img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/b7606b6e0f1811ea8eaebc8385e4c2b6.png\" width=137.1335 height=26.6667>得到。该元素的质子数为<u>      </u>，与互为<u>     </u></p><p>（2）位于元素周期表中第族，同族元素N的一种氢化物为，写出该化合物分子的电子式<u>                </u>.该分子内存在的共价键类型有<u>       </u>.</p><p>（3）该族中的另一元素P能星现多种化合价，其中价氧化物的分子式为<u>      </u>价简单含氧酸的分子式为<u>      </u></p>",
+                "number": "13",
+                "type": "GENERAL",
+                "score": 9
+            }
+        ],
+        "category": "非选择题",
+        "total": 9,
+        "reference": "13. <p>（1）115同位素（2）极性键和非极性键（3）</p>"
+    },
+    {
+        "title": "",
+        "questions": [
+            {
+                "stem": "<p>（8分）</p><p>由羟基丁酸生成丁内酯的反应如下：</p><p><img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/b764af9c0f1811eaab57bc8385e4c2b6.png\" width=227.0670 height=40.4001></p><p>在298K下，羟基丁酸水溶液的初始浓度为，测得丁内酯的浓度随时间变化的数据如表所示。回答下列问题：</p><p>（1）该反应在50～80min内的平均反应速率为<u>     </u>。</p><p>（2）120min时羟基丁酸的转化率为<u>      </u>。</p><p>（3）298K时该反应的平衡常数<u>     </u>。</p><p>（4）为提高羟基丁酸的平衡转化率，除适当控制反应温度外，还可采取的措施是<u>      </u></p>",
+                "number": "14",
+                "type": "GENERAL",
+                "score": 8
+            }
+        ],
+        "category": "非选择题",
+        "total": 8,
+        "reference": "14. <p>（1）0007（2）5（50%）（3）（4）将内酯移走</p>"
+    },
+    {
+        "title": "",
+        "questions": [
+            {
+                "stem": "<p>（9分）</p><p>无机酸有机酯在生产中具有广泛的应用，回答下列问题：</p><p>（1）硫酸氢乙酯（<img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/b768f2680f1811ea8621bc8385e4c2b6.png\" width=92.2001 height=56.7334>）可看作是硫酸与乙醇形成的单酯，工业上常通乙烯与浓硫酸反应制得，该反应的化学方程式为<i><u>         </u></i>，反应类型为<u>          </u>，写出硫酸与乙醇形成的双酯—硫酸二乙酯（）的结构简式<u>     </u>。</p><p>（2）磷酸三丁酯常作为稀土元素富集时的萃取剂，工业上常用丁醇与三氯氧磷（<img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/b76b131c0f1811ea9422bc8385e4c2b6.png\" width=42.2667 height=31.2667>）反应来制备，该反应的化学方程式为，<u>          </u>，反应类型为<u>        </u>。写出正丁醇的任意一个醇类同分异构体的结构简式<u>           </u>。</p>",
+                "number": "15",
+                "type": "GENERAL",
+                "score": 9
+            }
+        ],
+        "category": "非选择题",
+        "total": 9,
+        "reference": "15. <p>（1）加成反应</p><p>（2）<img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/b78fbf9a0f1811ea8218bc8385e4c2bpng\" width=47338 height=6667>取代反应<img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/b790a94a0f1811ea9f9cbc8385e4c2bpng\" width=1334 height=0000>或<img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/b79145180f1811eaaa3bbc8385e4c2bpng\" width=9334 height=1334></p>"
+    },
+    {
+        "title": "",
+        "questions": [
+            {
+                "stem": "<p>（9分）</p><p>连二亚硫酸钠，俗称保险粉，易溶于水，常用于印染、纸张漂白等。回答下列问题：</p><p>（1）中S的化合价为<u>      </u>。</p><p>（2）向锌粉的悬浮液中通入，制备，生成，反应中转移的电子数为<u>    </u>mol；向溶液中加入适量，生成并有沉淀产生，该反应的化学方程式为<u>         </u></p><p>（3）电池具有高输出功率的优点。其正极为可吸附的多孔碳电极，负极为金属锂，电解液为溶解有的碳酸丙烯酯-乙腈溶液。电池放电时，正极上发生的电极反应为，电池总反应式为<u>            </u>。该电池不可用水替代混合有机溶剂，其原因是<i><u>               </u></i>。</p>",
+                "number": "16",
+                "type": "GENERAL",
+                "score": 9
+            }
+        ],
+        "category": "非选择题",
+        "total": 9,
+        "reference": "16. <p>（1）+3（2）2（3）与水反应</p>"
+    },
+    {
+        "title": "",
+        "questions": [
+            {
+                "stem": "<p>（9分）</p><p>干燥的二氧化碳和氮气反应可生成氨基甲酸铵固体，化学方程式为：</p><p>在四氯化碳中通入二氧化碳和氨制备氨基甲酸铵的实验装置如下图所示，回答下列问题：</p><p><img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/b771c4b40f1811ea9508bc8385e4c2b6.png\" width=279.2670 height=115.0668></p><p>（1）装置1用来制备二氧化碳气体：将块状石灰石放置在试管中的带孔塑料板上，漏斗中所加试剂为<u>    </u>：装置2中所加试剂为<u>    </u>；</p><p>（2）装置4中试剂为固体和：发生反应的化学方程式为<u>        </u>；试管口不能向上倾斜的原因是<u>          </u>。装置3中试剂为，其作用为<u>              </u>。</p><p>（3）反应时三颈瓶需用冷水浴冷却，其目的是<u>                       </u>。</p>",
+                "number": "17",
+                "type": "GENERAL",
+                "score": 9
+            }
+        ],
+        "category": "非选择题",
+        "total": 9,
+        "reference": "17. <p>（1）稀盐酸浓</p><p>（2）冷凝水倒流道管底部使试管破裂干燥剂（干燥氨气）</p><p>（3）降低温度，使平衡正向移动提高产量</p>"
+    },
+    {
+        "title": "",
+        "questions": [
+            {
+                "stem": "<p>[选修5——有机化学基础]（20分）</p><p>18-Ⅰ（6分）分子中只有两种不同化学环境的氢，且数目比为3:2的化合物（    ）</p>",
+                "number": "18",
+                "options": [
+                    {
+                        "label": "A",
+                        "content": "<img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/b77c92d20f1811eaaf9abc8385e4c2b6.png\" width=41.5334 height=33.9334>"
+                    },
+                    {
+                        "label": "B",
+                        "content": "<img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/b77d55980f1811ea8609bc8385e4c2b6.png\" width=43.4001 height=28.9334>"
+                    },
+                    {
+                        "label": "C",
+                        "content": "<img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/b77e66500f1811eabc16bc8385e4c2b6.png\" width=42.2667 height=32.4000>"
+                    },
+                    {
+                        "label": "D",
+                        "content": " <img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/b77f50020f1811ea8f66bc8385e4c2b6.png\" width=65.1334 height=31.2667>"
+                    }
+                ],
+                "type": "GENERAL",
+                "score": 20,
+                "solution": "18-ⅠCD18-Ⅱ（1）<img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/b7964ab80f1811ea8507bc8385e4c2bpng\" width=9334 height=2001>取代反应（2）浓，浓（3）2:1（4）41:1:2:1（5）羧基羟基（6）<img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/b79956060f1811eaa1e0bc8385e4c2bpng\" width=14001 height=7334>"
+            }
+        ],
+        "category": "选考题",
+        "total": 20,
+        "reference": "18. <p>18-ⅠCD</p><p>18-Ⅱ（1）<img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/b7964ab80f1811ea8507bc8385e4c2bpng\" width=9334 height=2001>取代反应（2）浓，浓（3）2:1（4）41:1:2:1（5）羧基羟基（6）<img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/b79956060f1811eaa1e0bc8385e4c2bpng\" width=14001 height=7334></p>"
+    },
+    {
+        "title": "",
+        "questions": [
+            {
+                "stem": "<p>[选修3——物质结构与性]（20分）</p><p>19-Ⅰ（6分）下列各组物质性质的比较，结论正确的是（    ）</p>",
+                "number": "19",
+                "options": [
+                    {
+                        "label": "A",
+                        "content": "分子的极性："
+                    },
+                    {
+                        "label": "B",
+                        "content": "物质的硬度："
+                    },
+                    {
+                        "label": "C",
+                        "content": "物质的沸点："
+                    },
+                    {
+                        "label": "D",
+                        "content": "在中的溶解度："
+                    }
+                ],
+                "type": "GENERAL",
+                "score": 20,
+                "solution": "19-ⅠAB19-Ⅱ（1）5（2）配位三角锥（3）（4）+26"
+            }
+        ],
+        "category": "选考题",
+        "total": 20,
+        "reference": "19. <p>19-ⅠAB</p><p>19-Ⅱ（1）5（2）配位三角锥（3）</p><p>（4）+26</p>"
+    }
+]

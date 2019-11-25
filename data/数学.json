@@ -1,0 +1,552 @@
+[
+    {
+        "title": "",
+        "questions": [
+            {
+                "stem": "<p>已知集合\\(M=\\{x\\left|-4&lt;x&lt;2\\right.\\}，N=\\{x\\left|x^{2}-x-6\\right.&lt;\\left.0\\right\\}\\)，则\\(M∩N\\) =</p>",
+                "number": "1",
+                "options": [
+                    {
+                        "label": "A",
+                        "content": "\\(\\{x\\left|-4&lt;x&lt;\\right.\\left.3\\right\\}\\)"
+                    },
+                    {
+                        "label": "B",
+                        "content": "\\(\\{x\\left|-4&lt;x&lt;\\right.\\left.-2\\right\\}\\)"
+                    },
+                    {
+                        "label": "C",
+                        "content": "\\(\\{x\\left|-2&lt;x&lt;\\right.\\left.2\\right\\}\\)"
+                    },
+                    {
+                        "label": "D",
+                        "content": "\\(\\{x\\left|2&lt;x&lt;\\right.\\left.3\\right\\}\\)"
+                    }
+                ],
+                "type": "SINGLE",
+                "score": 5,
+                "solution": "C"
+            }
+        ],
+        "category": "选择题",
+        "total": 5,
+        "reference": "1. <p>C</p>"
+    },
+    {
+        "title": "",
+        "questions": [
+            {
+                "stem": "<p>设复数<i>z</i>满足\\(\\left|z-i\\right|=1\\)，<i>z</i>在复平面内对应的点为(<i>x</i>，<i>y</i>)，则</p>",
+                "number": "2",
+                "options": [
+                    {
+                        "label": "A",
+                        "content": "\\((x+1)^{2}+y^{2}=1\\)"
+                    },
+                    {
+                        "label": "B",
+                        "content": "\\((x-1)^{2}+y^{2}=1\\)"
+                    },
+                    {
+                        "label": "C",
+                        "content": "\\(x^{2}+(y-1)^{2}=1\\)"
+                    },
+                    {
+                        "label": "D",
+                        "content": "\\(x^{2}+(y+1)^{2}=1\\)"
+                    }
+                ],
+                "type": "SINGLE",
+                "score": 5,
+                "solution": "C"
+            }
+        ],
+        "category": "选择题",
+        "total": 5,
+        "reference": "2. <p>C　</p>"
+    },
+    {
+        "title": "",
+        "questions": [
+            {
+                "stem": "<p>已知\\( a=log_{2}0.2，b=2^{0.2}，c=0.2^{0.3}\\)，则</p>",
+                "number": "3",
+                "options": [
+                    {
+                        "label": "A",
+                        "content": "\\(a&lt;b&lt;c\\)"
+                    },
+                    {
+                        "label": "B",
+                        "content": "\\(a&lt;c&lt;b\\)"
+                    },
+                    {
+                        "label": "C",
+                        "content": "\\(c&lt;a&lt;b\\)"
+                    },
+                    {
+                        "label": "D",
+                        "content": "\\(b&lt;c&lt;a\\)"
+                    }
+                ],
+                "type": "SINGLE",
+                "score": 5,
+                "solution": "B"
+            }
+        ],
+        "category": "选择题",
+        "total": 5,
+        "reference": "3. <p>B　</p>"
+    },
+    {
+        "title": "",
+        "questions": [
+            {
+                "stem": "<p>古希腊时期，人们认为最美人体的头顶至肚脐的长度与肚脐至足底的长度之比是\\(\\frac{\\sqrt{5}-1}{2}\\)（\\(\\frac{\\sqrt{5}-1}{2}\\)≈0.618，称为黄金分割比例)，著名的“断臂维纳斯”便是如此．此外，最美人体的头顶至咽喉的长度与咽喉至肚脐的长度之比也是\\(\\frac{\\sqrt{5}-1}{2}\\)．若某人满足上述两个黄金分割比例，且腿长为105 cm，头顶至脖子下端的长度为26 cm，则其身高可能是</p><p><img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/edfe71dc0cce11ea9968bc8385e4c2b6.png\" width=56.0001 height=157.1114></p>",
+                "number": "4",
+                "options": [
+                    {
+                        "label": "A",
+                        "content": "165 cm"
+                    },
+                    {
+                        "label": "B",
+                        "content": "175 cm"
+                    },
+                    {
+                        "label": "C",
+                        "content": "185 cm"
+                    },
+                    {
+                        "label": "D",
+                        "content": "190 cm"
+                    }
+                ],
+                "type": "SINGLE",
+                "score": 5,
+                "solution": "B"
+            }
+        ],
+        "category": "选择题",
+        "total": 5,
+        "reference": "4. <p>B　</p>"
+    },
+    {
+        "title": "",
+        "questions": [
+            {
+                "stem": "<p>函数<i>f</i>(<i>x</i>)=<img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/ee0bd6360cce11ea8699bc8385e4c2b6.wmf\" width=66.0001 height=42.0001>在\\([-π,π]\\)的图像大致为</p>",
+                "number": "5",
+                "options": [
+                    {
+                        "label": "A",
+                        "content": "<img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/ee3145e40cce11ea934fbc8385e4c2b6.png\" width=155.0002 height=70.0001>"
+                    },
+                    {
+                        "label": "B",
+                        "content": "<img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/ee3451300cce11eaac79bc8385e4c2b6.png\" width=157.0002 height=76.0001>"
+                    },
+                    {
+                        "label": "C",
+                        "content": "<img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/ee3624920cce11eab520bc8385e4c2b6.png\" width=166.0002 height=81.0001>"
+                    },
+                    {
+                        "label": "D",
+                        "content": "<img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/ee37833e0cce11ea89d2bc8385e4c2b6.png\" width=165.0002 height=83.0001>"
+                    }
+                ],
+                "type": "SINGLE",
+                "score": 5,
+                "solution": "D"
+            }
+        ],
+        "category": "选择题",
+        "total": 5,
+        "reference": "5. <p>D　</p>"
+    },
+    {
+        "title": "",
+        "questions": [
+            {
+                "stem": "<p>我国古代典籍《周易》用“卦”描述万物的变化．每一“重卦”由从下到上排列的6个爻组成，爻分为阳爻“——”和阴爻“— —”，如图就是一重卦．在所有重卦中随机取一重卦，则该重卦恰有3个阳爻的概率是</p><p><img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/ee3b78240cce11ea8d2bbc8385e4c2b6.tif\" width=114.0001 height=102.1139></p>",
+                "number": "6",
+                "options": [
+                    {
+                        "label": "A",
+                        "content": "\\(\\frac{5}{16}\\)"
+                    },
+                    {
+                        "label": "B",
+                        "content": "\\(\\frac{11}{32}\\)"
+                    },
+                    {
+                        "label": "C",
+                        "content": "\\(\\frac{21}{32}\\)"
+                    },
+                    {
+                        "label": "D",
+                        "content": "\\(\\frac{11}{16}\\) "
+                    }
+                ],
+                "type": "SINGLE",
+                "score": 5,
+                "solution": "A"
+            }
+        ],
+        "category": "选择题",
+        "total": 5,
+        "reference": "6. <p>A　</p>"
+    },
+    {
+        "title": "",
+        "questions": [
+            {
+                "stem": "<p>已知非零向量<i><b>a</b></i>，<i><b>b</b></i>满足\\(|a|=2|b|\\)，且\\((a-b)⊥\\)<i><b>b</b></i>，则<i><b>a</b></i>与<i><b>b</b></i>的夹角为</p>",
+                "number": "7",
+                "options": [
+                    {
+                        "label": "A",
+                        "content": "\\(\\frac{π}{6}\\)"
+                    },
+                    {
+                        "label": "B",
+                        "content": "\\(\\frac{π}{3}\\)"
+                    },
+                    {
+                        "label": "C",
+                        "content": "\\(\\frac{2π}{3}\\)"
+                    },
+                    {
+                        "label": "D",
+                        "content": "\\(\\frac{5π}{6}\\) "
+                    }
+                ],
+                "type": "SINGLE",
+                "score": 5,
+                "solution": "B"
+            }
+        ],
+        "category": "选择题",
+        "total": 5,
+        "reference": "7. <p>B　</p>"
+    },
+    {
+        "title": "",
+        "questions": [
+            {
+                "stem": "<p>如图是求\\(\\frac{1}{2+\\frac{1}{2+\\frac{1}{2}}}\\)的程序框图，图中空白框中应填入</p><p><img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/ee4251580cce11eab84ebc8385e4c2b6.tif\" width=167.0002 height=269.2475></p>",
+                "number": "8",
+                "options": [
+                    {
+                        "label": "A",
+                        "content": "A=\\(\\frac{1}{2+A}\\)"
+                    },
+                    {
+                        "label": "B",
+                        "content": "A=\\(2+\\frac{1}{A}\\)"
+                    },
+                    {
+                        "label": "C",
+                        "content": "A=\\(\\frac{1}{1+2A}\\)"
+                    },
+                    {
+                        "label": "D",
+                        "content": "A=\\(1+\\frac{1}{2A}\\)"
+                    }
+                ],
+                "type": "SINGLE",
+                "score": 5,
+                "solution": "A"
+            }
+        ],
+        "category": "选择题",
+        "total": 5,
+        "reference": "8. <p>A　</p>"
+    },
+    {
+        "title": "",
+        "questions": [
+            {
+                "stem": "<p>记为等差数列\\(\\{a_{n}\\}\\)的前<i>n</i>项和．已知\\(S_{4}=0，a_{5}=5\\)，则</p>",
+                "number": "9",
+                "options": [
+                    {
+                        "label": "A",
+                        "content": "\\(a_{n}=2n-5\\)"
+                    },
+                    {
+                        "label": "B",
+                        "content": "\\( a_{n}=3n-10\\)"
+                    },
+                    {
+                        "label": "C",
+                        "content": "\\(S_{n}=2n^{2}-8n\\)"
+                    },
+                    {
+                        "label": "D",
+                        "content": "\\(S_{n}=\\frac{1}{2}n^{2}-2n\\)"
+                    }
+                ],
+                "type": "SINGLE",
+                "score": 5,
+                "solution": "A"
+            }
+        ],
+        "category": "选择题",
+        "total": 5,
+        "reference": "9. <p>A　</p>"
+    },
+    {
+        "title": "",
+        "questions": [
+            {
+                "stem": "<p>已知椭圆<i>C</i>的焦点为\\(F_{1}(-1,0)，F_{2}(1,0)\\)，过<i>F</i><sub>2</sub>的直线与<i>C</i>交于<i>A</i>，<i>B</i>两点．若\\(|AF_{2}|=2|F_{2}B|\\)，\\(|AB|=|BF_{1}|\\)，则<i>C</i>的方程为</p>",
+                "number": "10",
+                "options": [
+                    {
+                        "label": "A",
+                        "content": "\\(\\frac{x^{2}}{2}+y^{2}=1\\)"
+                    },
+                    {
+                        "label": "B",
+                        "content": "\\(\\frac{x^{2}}{3}+\\frac{y^{2}}{2}=1\\)"
+                    },
+                    {
+                        "label": "C",
+                        "content": "\\(\\frac{x^{2}}{4}+\\frac{y^{2}}{3}=1\\)"
+                    },
+                    {
+                        "label": "D",
+                        "content": "\\(\\frac{x^{2}}{5}+\\frac{y^{2}}{4}=1\\)"
+                    }
+                ],
+                "type": "SINGLE",
+                "score": 5,
+                "solution": "B"
+            }
+        ],
+        "category": "选择题",
+        "total": 5,
+        "reference": "10. <p>B　</p>"
+    },
+    {
+        "title": "",
+        "questions": [
+            {
+                "stem": "<p>关于函数\\(f(x)=\\sin(|)x|+|\\sin( )x|\\)有下述四个结论：</p><p>①<i>f</i>(<i>x</i>)是偶函数②<i>f</i>(<i>x</i>)在区间（\\(\\frac{π}{2}\\)，\\(π\\)）单调递增</p><p>③<i>f</i>(<i>x</i>)在\\([-π,π]\\)有4个零点④<i>f</i>(<i>x</i>)的最大值为2</p><p>其中所有正确结论的编号是</p>",
+                "number": "11",
+                "options": [
+                    {
+                        "label": "A",
+                        "content": "①②④"
+                    },
+                    {
+                        "label": "B",
+                        "content": "②④"
+                    },
+                    {
+                        "label": "C",
+                        "content": "①④"
+                    },
+                    {
+                        "label": "D",
+                        "content": "①③"
+                    }
+                ],
+                "type": "SINGLE",
+                "score": 5,
+                "solution": "C"
+            }
+        ],
+        "category": "选择题",
+        "total": 5,
+        "reference": "11. <p>C　</p>"
+    },
+    {
+        "title": "",
+        "questions": [
+            {
+                "stem": "<p>已知三棱锥<i>P</i>−<i>ABC</i>的四个顶点在球<i>O</i>的球面上，<i>PA</i>=<i>PB</i>=<i>PC</i>，△<i>ABC</i>是边长为2的正三角形，<i>E</i>，<i>F</i>分别是<i>PA</i>，<i>A</i><i>B</i>的中点，∠<i>CEF</i>=90°，则球<i>O</i>的体积为</p>",
+                "number": "12",
+                "options": [
+                    {
+                        "label": "A",
+                        "content": "\\(8\\sqrt{6}π\\)"
+                    },
+                    {
+                        "label": "B",
+                        "content": "\\(4\\sqrt{6}π\\)"
+                    },
+                    {
+                        "label": "C",
+                        "content": "\\(2\\sqrt{6}π\\)"
+                    },
+                    {
+                        "label": "D",
+                        "content": "\\(\\sqrt{6}π\\)"
+                    }
+                ],
+                "type": "SINGLE",
+                "score": 5,
+                "solution": "D"
+            }
+        ],
+        "category": "选择题",
+        "total": 5,
+        "reference": "12. <p>D　</p>"
+    },
+    {
+        "title": "",
+        "questions": [
+            {
+                "stem": "<p>曲线\\(y=3(x^{2}+x)e^{x}\\)在点\\((0，0)\\)处的切线方程为____________．</p>",
+                "number": "13",
+                "type": "GENERAL",
+                "score": 5
+            }
+        ],
+        "category": "填空题",
+        "total": 5,
+        "reference": "13. <p><i>y</i>=3<i>x</i></p>"
+    },
+    {
+        "title": "",
+        "questions": [
+            {
+                "stem": "<p>记<i>S</i><i><sub>n</sub></i>为等比数列{<i>a</i><i><sub>n</sub></i>}的前<i>n</i>项和．若\\(a_{1}=\\frac{1}{3}，a_{4}^{2}=a_{6}\\)，则<i>S</i><sub>5</sub>=____________．</p>",
+                "number": "14",
+                "type": "GENERAL",
+                "score": 5
+            }
+        ],
+        "category": "填空题",
+        "total": 5,
+        "reference": "14. <p>\\(\\frac{121}{3}\\)</p>"
+    },
+    {
+        "title": "",
+        "questions": [
+            {
+                "stem": "<p>甲、乙两队进行篮球决赛，采取七场四胜制（当一队赢得四场胜利时，该队获胜，决赛结束）．根据前期比赛成绩，甲队的主客场安排依次为“主主客客主客主”．设甲队主场取胜的概率为0.6，客场取胜的概率为0.5，且各场比赛结果相互独立，则甲队以4∶1获胜的概率是____________．</p>",
+                "number": "15",
+                "type": "GENERAL",
+                "score": 5
+            }
+        ],
+        "category": "填空题",
+        "total": 5,
+        "reference": "15. <p>18</p>"
+    },
+    {
+        "title": "",
+        "questions": [
+            {
+                "stem": "<p>已知双曲线<i>C</i>：\\(\\frac{x^{2}}{a^{2}}-\\frac{y^{2}}{b^{2}}=1(a&gt;0,b&gt;0)\\)的左、右焦点分别为<i>F</i><sub>1</sub>，<i>F</i><sub>2</sub>，过<i>F</i><sub>1</sub>的直线与<i>C</i>的两条渐近线分别交于<i>A</i>，<i>B</i>两点．若\\(\\vec{F_{1}A}=\\vec{AB}\\)，\\(\\vec{F_{1}B}⋅\\vec{F_{2}B}=0\\)，则<i>C</i>的离心率为____________．</p>",
+                "number": "16",
+                "type": "GENERAL",
+                "score": 5
+            }
+        ],
+        "category": "填空题",
+        "total": 5,
+        "reference": "16. <p>2</p>"
+    },
+    {
+        "title": "",
+        "questions": [
+            {
+                "stem": "<p>（12分）</p><p>\\(△ABC\\)的内角<i>A</i>，<i>B</i>，<i>C</i>的对边分别为<i>a</i>，<i>b</i>，<i>c</i>，设\\((sinB-sinC)^{2}=sin^{2}A-sinBsinC\\).</p><p>（1）求<i>A</i>；</p><p>（2）若\\(\\sqrt{2}a+b=2c\\)，求sin<i>C</i>．</p>",
+                "number": "17",
+                "type": "GENERAL",
+                "score": 12
+            }
+        ],
+        "category": "解答题",
+        "total": 12,
+        "reference": "17. <p>解：（1）由已知得\\(sin^{2}B+sin^{2}C-sin^{2}A=sinBsinC\\)，故由正弦定理得\\(b^{2}+c^{2}-a^{2}=bc\\)．</p><p>由余弦定理得\\(\\cos(A)=\\frac{b^{2}+c^{2}-a^{2}}{2bc}=\\frac{1}{2}\\)．</p><p>因为\\(0^{°}&lt;A&lt;180^{°}\\)，所以\\(A=60^{°}\\)．</p><p>（2）由（1）知\\(B=120^{°}-C\\)，由题设及正弦定理得\\(\\sqrt{2}\\sin(A)+\\sin(\\left(120^{°}-C\\right))=2\\sin(C)\\)，</p><p>即\\(\\frac{\\sqrt{6}}{2}+\\frac{\\sqrt{3}}{2}\\cos(C)+\\frac{1}{2}\\sin(C)=2\\sin(C)\\)，可得\\(\\cos(\\left(C+60^{°}\\right))=-\\frac{\\sqrt{2}}{2}\\)．</p><p>由于\\(0^{°}&lt;C&lt;120^{°}\\)，所以\\(\\sin(\\left(C+60^{°}\\right))=\\frac{\\sqrt{2}}{2}\\)，故</p><p>\\(\\sin(\\left(C+60^{°}\\right))=\\frac{\\sqrt{2}}{2}\\)</p><p>\\(=\\sin(\\left(C+60^{°}\\right))\\cos(6)0^{°}-\\cos(\\left(C+60^{°}\\right))\\sin(6)0^{°}\\)</p><p>\\(=\\frac{\\sqrt{6}+\\sqrt{2}}{4}\\)．</p>"
+    },
+    {
+        "title": "",
+        "questions": [
+            {
+                "stem": "<p>（12分）</p><p>如图，直四棱柱<i>ABCD</i><i>–</i><i>A</i><sub>1</sub><i>B</i><sub>1</sub><i>C</i><sub>1</sub><i>D</i><sub>1</sub>的底面是菱形，<i>AA</i><sub>1</sub>=4，<i>AB</i>=2，∠<i>BAD</i>=60°，<i>E</i>，<i>M</i>，<i>N</i>分别是<i>BC</i>，<i>BB</i><sub>1</sub>，<i>A</i><sub>1</sub><i>D</i>的中点．</p><p><img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/ee6110020cce11eabf29bc8385e4c2b6.png\" width=107.0001 height=132.0002></p><p>（1）证明：<i>MN</i>∥平面<i>C</i><sub>1</sub><i>DE</i>；</p><p>（2）求二面角<i>A</i><i>−</i><i>MA</i><sub>1</sub><i>−</i><i>N</i>的正弦值．</p>",
+                "number": "18",
+                "type": "GENERAL",
+                "score": 12
+            }
+        ],
+        "category": "解答题",
+        "total": 12,
+        "reference": "18. <p>解：（1）连结<i>B</i><sub>1</sub><i>C</i>，<i>ME</i>．</p><p>因为<i>M</i>，<i>E</i>分别为<i>BB</i><sub>1</sub>，<i>BC</i>的中点，</p><p>所以<i>ME</i>∥<i>B</i><sub>1</sub><i>C</i>，且<i>ME</i>=\\(\\frac{1}{2}\\)<i>B</i><sub>1</sub><i>C</i>．</p><p>又因为<i>N</i>为<i>A</i><sub>1</sub><i>D</i>的中点，所以<i>ND</i>=\\(\\frac{1}{2}\\)<i>A</i><sub>1</sub><i>D</i>．</p><p>由题设知<i>A</i><sub>1</sub><i>B</i><sub>1</sub><i>DC</i>，可得<i>B</i><sub>1</sub><i>C</i><i>A</i><sub>1</sub><i>D</i>，故<i>ME</i><i>ND</i>，</p><p>因此四边形<i>M</i><i>N</i><i>DE</i>为平行四边形，<i>MN</i>∥<i>ED</i>．</p><p>又<i>MN</i>\\(⊄\\)平面<i>EDC</i><sub>1</sub>，所以<i>MN</i>∥平面<i>C</i><sub>1</sub><i>DE</i>．</p><p>（2）由已知可得<i>DE</i>⊥<i>D</i><i>A</i>．</p><p>以<i>D</i>为坐标原点，\\(\\vec{DA}\\)的方向为<i>x</i>轴正方向，建立如图所示的空间直角坐标系<i>D</i>−<i>xyz</i>，则</p><p><img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/ee9b57e20cce11eab222bc8385e4c2bpng\" width=20004 height=37117></p><p>\\(A(2,0,0)\\)，<i>A</i><sub>1</sub>(2，0，4)，\\(M(1,\\sqrt{3},2)\\)，\\(N(1,0,2)\\)，\\(\\vec{A_{1}A}=(0,0,-4)\\)，\\(\\vec{A_{1}M}=(-1,\\sqrt{3},-2)\\)，\\(\\vec{A_{1}N}=(-1,0,-2)\\)，\\(\\vec{MN}=(0,-\\sqrt{3},0)\\)．</p><p>设\\(m=(x,y,z)\\)为平面<i>A</i><sub>1</sub><i>MA</i>的法向量，则\\(\\left\\{\\begin{matrix}m⋅\\vec{A_{1}M}=0\\\\m⋅\\vec{A_{1}A}=0\\end{matrix}\\right.\\)，</p><p>所以\\(\\left\\{\\begin{matrix}-x+\\sqrt{3}y-2z=0，\\\\-4z=\\end{matrix}\\right.\\)可取\\(m=(\\sqrt{3},1,0)\\)．</p><p>设\\(n=(p,q,r)\\)为平面<i>A</i><sub>1</sub><i>MN</i>的法向量，则\\(\\left\\{\\begin{matrix}n⋅\\vec{MN}=0，\\\\n⋅\\vec{A_{1}N}=\\end{matrix}\\right.\\)</p><p>所以\\(\\left\\{\\begin{matrix}-\\sqrt{3}q=0，\\\\-p-2r=\\end{matrix}\\right.\\)可取\\(n=(2,0,-1)\\)．</p><p>于是\\(\\cos(⟨)m,n⟩=\\frac{m⋅n}{|m‖n|}=\\frac{2\\sqrt{3}}{2×\\sqrt{5}}=\\frac{\\sqrt{15}}{5}\\)，</p><p>所以二面角\\(A-MA_{1}-N\\)的正弦值为\\(\\frac{\\sqrt{10}}{5}\\)．</p>"
+    },
+    {
+        "title": "",
+        "questions": [
+            {
+                "stem": "<p>（12分）</p><p>已知抛物线<i>C</i>：<i>y</i><sup>2</sup>=3<i>x</i>的焦点为<i>F</i>，斜率为的直线<i>l</i>与<i>C</i>的交点为<i>A</i>，<i>B</i>，与<i>x</i>轴的交点为<i>P</i>．</p><p>（1）若|<i>AF</i>|+|<i>BF</i>|=4，求<i>l</i>的方程；</p><p>（2）若<img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/ee67c0ec0cce11ea8662bc8385e4c2b6.wmf\" width=70.0001 height=22.0000>，求|<i>AB</i>|．</p>",
+                "number": "19",
+                "type": "GENERAL",
+                "score": 12
+            }
+        ],
+        "category": "解答题",
+        "total": 12,
+        "reference": "19. <p>解：设直线\\(l:y=\\frac{3}{2}x+t,A\\left(x_{1},y_{1}\\right),B\\left(x_{2},y_{2}\\right)\\)．</p><p>（1）由题设得\\(F\\left(\\frac{3}{4},0\\right)\\)，故\\(|AF|+|BF|=x_{1}+x_{2}+\\frac{3}{2}\\)，由题设可得\\(x_{1}+x_{2}=\\frac{5}{2}\\)．</p><p>由\\(\\left\\{\\begin{matrix}y=\\frac{3}{2}x+t\\\\y^{2}=3x\\end{matrix}\\right.\\)，可得\\(9x^{2}+12(t-1)x+4t^{2}=0\\)，则\\(x_{1}+x_{2}=-\\frac{12(t-1)}{9}\\)．</p><p>从而\\(-\\frac{12(t-1)}{9}=\\frac{5}{2}\\)，得\\(t=-\\frac{7}{8}\\)．</p><p>所以\\(l\\)的方程为\\(y=\\frac{3}{2}x-\\frac{7}{8}\\)．</p><p>（2）由\\(\\vec{AP}=3\\vec{PB}\\)可得\\(y_{1}=-3y_{2}\\)．</p><p>由\\(\\left\\{\\begin{matrix}y=\\frac{3}{2}x+t\\\\y^{2}=3x\\end{matrix}\\right.\\)，可得\\(y^{2}-2y+2t=0\\)．</p><p>所以\\(y_{1}+y_{2}=2\\)．从而\\(-3y_{2}+y_{2}=2\\)，故\\(y_{2}=-1,y_{1}=3\\)．</p><p>代入\\(C\\)的方程得\\(x_{1}=3,x_{2}=\\frac{1}{3}\\)．</p><p>故\\(|AB|=\\frac{4\\sqrt{13}}{3}\\)．</p>"
+    },
+    {
+        "title": "",
+        "questions": [
+            {
+                "stem": "<p>（12分）</p><p>已知函数\\(f(x)=\\sin(x)-ln(1+x)\\)，\\(f^{'}(x)\\)为\\(f(x)\\)的导数．证明：</p><p>（1）\\(f^{'}(x)\\)在区间\\((-1,\\frac{π}{2})\\)存在唯一极大值点；</p><p>（2）\\(f(x)\\)有且仅有2个零点．</p>",
+                "number": "20",
+                "type": "GENERAL",
+                "score": 12
+            }
+        ],
+        "category": "解答题",
+        "total": 12,
+        "reference": "20. <p>解：（1）设\\(g(x)=f'(x)\\)，则\\(g(x)=\\cos(x)-\\frac{1}{1+x}\\)，\\(g'(x)=-\\sin(x)+\\frac{1}{(1+x)^{2}}\\).</p><p>当\\(x\\in \\left(-1,\\frac{π}{2}\\right)\\)时，\\(g'(x)\\)单调递减，而\\(g'(0)&gt;0,g'(\\frac{π}{2})&lt;0\\)，可得\\(g'(x)\\)在\\(\\left(-1,\\frac{π}{2}\\right)\\)有唯一零点，</p><p>设为\\(α\\).</p><p>则当\\(x\\in (-1,α)\\)时，\\(g'(x)&gt;0\\)；当\\(x\\in \\left(α,\\frac{π}{2}\\right)\\)时，\\(g'(x)&lt;0\\).</p><p>所以\\(g(x)\\)在\\((-1,α)\\)单调递增，在\\(\\left(α,\\frac{π}{2}\\right)\\)单调递减，故\\(g(x)\\)在\\(\\left(-1,\\frac{π}{2}\\right)\\)存在唯一极大值点，即\\(f'(x)\\)在\\(\\left(-1,\\frac{π}{2}\\right)\\)存在唯一极大值点.</p><p>（2）\\(f(x)\\)的定义域为\\((-1,+\\infty )\\).</p><p>（i）当\\(x\\in (-1,0]\\)时，由（1）知，\\(f'(x)\\)在\\((-1,0)\\)单调递增，而\\(f'(0)=0\\)，所以当\\(x\\in (-1,0)\\)时，\\(f'(x)&lt;0\\)，故\\(f(x)\\)在\\((-1,0)\\)单调递减，又\\(f(0)=0\\)，从而\\(x=0\\)是\\(f(x)\\)在\\((-1,0]\\)的唯一零点.</p><p>（ii）当\\(x\\in \\left.0,\\frac{π}{2}\\right.\\)时，由（1）知，\\(f'(x)\\)在\\((0,α)\\)单调递增，在\\(\\left(α,\\frac{π}{2}\\right)\\)单调递减，而\\(f'(0)=0\\)，\\(f'\\left(\\frac{π}{2}\\right)&lt;0\\)，所以存在\\(β\\in \\left(α,\\frac{π}{2}\\right)\\)，使得\\(f'(β)=0\\)，且当\\(x\\in (0,β)\\)时，\\(f'(x)&gt;0\\)；当\\(x\\in \\left(β,\\frac{π}{2}\\right)\\)时，\\(f'(x)&lt;0\\).故\\(f(x)\\)在\\((0,β)\\)单调递增，在\\(\\left(β,\\frac{π}{2}\\right)\\)单调递减.</p><p>又\\(f(0)=0\\)，\\(f\\left(\\frac{π}{2}\\right)=1-ln(1+\\frac{π}{2})&gt;0\\)，所以当\\(x\\in \\left.0,\\frac{π}{2}\\right.\\)时，\\(f(x)&gt;0\\).从而，\\(f(x)\\) 在\\(\\left.0,\\frac{π}{2}\\right.\\)没有零点.</p><p>（iii）当\\(x\\in \\left.\\frac{π}{2},π\\right.\\)时，\\(f'(x)&lt;0\\)，所以\\(f(x)\\)在\\(\\left(\\frac{π}{2},π\\right)\\)单调递减.而\\(f\\left(\\frac{π}{2}\\right)&gt;0\\)，\\(f(π)&lt;0\\)，所以\\(f(x)\\)在\\(\\left.\\frac{π}{2},π\\right.\\)有唯一零点.</p><p>（iv）当\\(x\\in (π,+\\infty )\\)时，\\(ln(x+1)&gt;1\\)，所以\\(f(x)\\) &lt;0，从而\\(f(x)\\)在\\((π,+\\infty )\\)没有零点.</p><p>综上，\\(f(x)\\)有且仅有2个零点.</p>"
+    },
+    {
+        "title": "",
+        "questions": [
+            {
+                "stem": "<p>（12分）</p><p>为治疗某种疾病，研制了甲、乙两种新药，希望知道哪种新药更有效，为此进行动物试验．试验方案如下：每一轮选取两只白鼠对药效进行对比试验．对于两只白鼠，随机选一只施以甲药，另一只施以乙药．一轮的治疗结果得出后，再安排下一轮试验．当其中一种药治愈的白鼠比另一种药治愈的白鼠多4只时，就停止试验，并认为治愈只数多的药更有效．为了方便描述问题，约定：对于每轮试验，若施以甲药的白鼠治愈且施以乙药的白鼠未治愈则甲药得1分，乙药得\\(-1\\)分；若施以乙药的白鼠治愈且施以甲药的白鼠未治愈则乙药得1分，甲药得\\(-1\\)分；若都治愈或都未治愈则两种药均得0分．甲、乙两种药的治愈率分别记为<i>α</i>和<i>β</i>，一轮试验中甲药的得分记为<i>X</i>．</p><p>（1）求\\(X\\)的分布列；</p><p>（2）若甲药、乙药在试验开始时都赋予4分，\\(p_{i}(i=0,1,\\cdots ,8)\\)表示“甲药的累计得分为\\(i\\)时，最终认为甲药比乙药更有效”的概率，则\\(p_{0}=0\\)，\\(p_{8}=1\\)，\\(p_{i}=ap_{i-1}+bp_{i}+cp_{i+1}(i=1,2,\\cdots ,7)\\)，其中\\(a=P(X=-1)\\)，\\(b=P(X=0)\\)，\\(c=P(X=1)\\)．假设\\(α=0.5\\)，\\(β=0.8\\)．</p><p>(i)证明：\\(\\{p_{i+1}-p_{i}\\}(i=0,1,2,\\cdots ,7)\\)为等比数列；</p><p>(ii)求\\(p_{4}\\)，并根据\\(p_{4}\\)的值解释这种试验方案的合理性．</p>",
+                "number": "21",
+                "type": "GENERAL",
+                "score": 12
+            }
+        ],
+        "category": "解答题",
+        "total": 12,
+        "reference": "21. <p>解：（1）<i>X</i>的所有可能取值为\\(-1,0,1\\).</p><p>\\(\\begin{matrix}P(X=-1)=(1-α)β，\\\\P(X=0)=αβ+(1-α)(1-β)，\\\\P(X=1)=α(1-β)，\\end{matrix}\\) </p><p>所以\\(X\\)的分布列为</p><p><img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/eefeb79e0cce11eaa75cbc8385e4c2bpng\" width=44672 height=12001></p><p>（2）（i）由（1）得\\(a=4, b=5, c=1\\).</p><p>因此\\(p_{i}=4p_{i-1}+5 p_{i}+1p_{i+1}\\)，故\\(1\\left(p_{i+1}-p_{i}\\right)=4\\left(p_{i}-p_{i-1}\\right)\\)，即</p><p>\\(p_{i+1}-p_{i}=4\\left(p_{i}-p_{i-1}\\right)\\).</p><p>又因为\\(p_{1}-p_{0}=p_{1}\\ne 0\\)，所以\\(\\left\\{p_{i+1}-p_{i}\\right\\}(i=0,1,2,\\cdots ,7)\\)为公比为4，首项为\\(p_{1}\\)的等比数列．</p><p>（ii）由（i）可得</p><p>\\(p_{8} =p_{8}-p_{7}+p_{7}-p_{6}+\\cdots +p_{1}-p_{0}+p_{0} =\\left(p_{8}-p_{7}\\right)+\\left(p_{7}-p_{6}\\right)+\\cdots +\\left(p_{1}-p_{0}\\right)=\\frac{4^{8}-1}{3}p_{1}\\).</p><p>由于\\(p_{8}=1\\)，故\\(p_{1}=\\frac{3}{4^{8}-1}\\)，所以</p><p>\\(p_{4} =\\left(p_{4}-p_{3}\\right)+\\left(p_{3}-p_{2}\\right)+\\left(p_{2}-p_{1}\\right)+\\left(p_{1}-p_{0}\\right)=\\frac{4^{4}-1}{3}p_{1} =\\frac{1}{257}.\\) </p><p>\\(p_{4}\\)表示最终认为甲药更有效的概率，由计算结果可以看出，在甲药治愈率为5，乙药治愈率为8时，认为甲药更有效的概率为\\(p_{4}=\\frac{1}{257}≈0039\\)，此时得出错误结论的概率非常小，说明这种试验方案合理.</p>"
+    },
+    {
+        "title": "",
+        "questions": [
+            {
+                "stem": "<p>[选修4—4：坐标系与参数方程]（10分）</p><p>在直角坐标系<i>xOy</i>中，曲线<i>C</i>的参数方程为（<i>t</i>为参数）．以坐标原点<i>O</i>为极点，<i>x</i>轴的正半轴为极轴建立极坐标系，直线<i>l</i>的极坐标方程为．</p><p>（1）求<i>C</i>和<i>l</i>的直角坐标方程；</p><p>（2）求<i>C</i>上的点到<i>l</i>距离的最小值．</p>",
+                "number": "22",
+                "type": "GENERAL",
+                "score": 10
+            }
+        ],
+        "category": "解答题",
+        "total": 10,
+        "reference": "22. <p>解：（1）因为\\(-1&lt;\\frac{1-t^{2}}{1+t^{2}}\\leq 1\\)，且\\(x^{2}+\\left(\\frac{y}{2}\\right)^{2}=\\left(\\frac{1-t^{2}}{1+t^{2}}\\right)^{2}+\\frac{4t^{2}}{\\left(1+t^{2}\\right)^{2}}=1\\)，所以<i>C</i>的直角坐标方程为\\(x^{2}+\\frac{y^{2}}{4}=1(x\\ne -1)\\).</p><p>\\(l\\)的直角坐标方程为\\(2x+\\sqrt{3}y+11=0\\).</p><p>（2）由（1）可设<i>C</i>的参数方程为\\(\\left\\{\\begin{matrix}x=\\cos(α),\\\\y=2\\sin(α)\\end{matrix}\\right.\\)（\\(α\\)为参数，\\(-π&lt;α&lt;π\\)）.</p><p><i>C</i>上的点到\\(l\\)的距离为\\(\\frac{|2\\cos(α)+2\\sqrt{3}\\sin(α)+11|}{\\sqrt{7}}=\\frac{4\\cos(\\left(α-\\frac{π}{3}\\right))+11}{\\sqrt{7}}\\).</p><p>当\\(α=-\\frac{2π}{3}\\)时，\\(4\\cos(\\left(α-\\frac{π}{3}\\right))+11\\)取得最小值7，故<i>C</i>上的点到\\(l\\)距离的最小值为\\(\\sqrt{7}\\).</p>"
+    },
+    {
+        "title": "",
+        "questions": [
+            {
+                "stem": "<p>[选修4—5：不等式选讲]（10分）</p><p>已知<i>a</i>，<i>b</i>，<i>c</i>为正数，且满足<i>abc</i>=1．证明：</p><p>（1）\\(\\frac{1}{a}+\\frac{1}{b}+\\frac{1}{c}\\leq a^{2}+b^{2}+c^{2}\\)；</p><p>（2）\\((a+b)^{3}+(b+c)^{3}+(c+a)^{3}\\geq 24\\)．</p>",
+                "number": "23",
+                "type": "GENERAL",
+                "score": 10
+            }
+        ],
+        "category": "解答题",
+        "total": 10,
+        "reference": "23. <p>解：（1）因为\\(a^{2}+b^{2}\\geq 2ab,b^{2}+c^{2}\\geq 2bc,c^{2}+a^{2}\\geq 2ac\\)，又\\(abc=1\\)，故有</p><p>\\(a^{2}+b^{2}+c^{2}\\geq ab+bc+ca=\\frac{ab+bc+ca}{abc}=\\frac{1}{a}+\\frac{1}{b}+\\frac{1}{c}\\).</p><p>所以\\(\\frac{1}{a}+\\frac{1}{b}+\\frac{1}{c}\\leq a^{2}+b^{2}+c^{2}\\).</p><p>（2）因为\\(a, b, c\\)为正数且\\(abc=1\\)，故有</p><p>\\((a+b)^{3}+(b+c)^{3}+(c+a)^{3}\\geq 3\\sqrt[3]{(a+b)^{3}(b+c)^{3}(a+c)^{3}}\\)</p><p>\\(=3(a+b)(b+c)(a+c)\\)</p><p>\\(\\geq 3×(2\\sqrt{ab})×(2\\sqrt{bc})×(2\\sqrt{ac})\\)</p><p>=</p><p>所以\\((a+b)^{3}+(b+c)^{3}+(c+a)^{3}\\geq 24\\).</p>"
+    }
+]

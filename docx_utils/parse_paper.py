@@ -275,7 +275,7 @@ def find_xiaoti_row(dati_start_row,doc):
     for n in range(dati_start_row,len(doc.paragraphs)):
         text=paragraphs[n].text.strip()
         x=''
-        if len(text)<4:
+        if len(text)<3:
             continue
         for i in range(0,4):
             if text[i].isdecimal():
@@ -316,7 +316,7 @@ def   find_dati_row( doc):
             break
     if not mode_text:
         print('没有找到大题特征字符：一')
-        return 0
+        exit(1)
 
     curr_number = '一'
     ss = mode_text

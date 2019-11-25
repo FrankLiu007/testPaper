@@ -107,7 +107,7 @@ def docx_paper2json(data_dir, paper_path, answer_path):
     tis=get_tis(doc, all_ti_index)
 ####处理答案
     doc = docx.Document(os.path.join(data_dir, answer_path))
-    all_answer_index = processPaper(doc)
+    all_answer_index = processPaper2(doc)
     answers=get_answer(doc,all_answer_index )
     merge_answer(tis, answers)
 
@@ -133,12 +133,12 @@ if __name__ == "__main__":
     else:    ###跑例子用的默认参数,保证在ipython下面也可以直接跑
         print('参数错误，正确用法： process_3x_paper.py 真题.docx 答案.docx')
         data_dir='src'
-        subject='数学'
-        paper_path='2019年全国I卷理科数学高考真题.docx'
-        answer_path='2019年全国I卷理科数学高考真题答案.docx'
+        subject='文综'
+        paper_path='化学试卷.docx'
+        answer_path='化学答案.docx'
         img_dir='img'
         http_head=' https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/'
-        out_path='数学.json'
+        out_path='化学.json'
         settings.img_dir=os.path.join(data_dir, img_dir)
         settings.http_head=http_head
 
