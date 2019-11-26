@@ -89,20 +89,30 @@ def get_tag(child):
     :param child: etree.Element,一般为一个run
     :return: 返回该run里面的内容的类型的字符串
     '''
+    w_pPr='{'+docx_nsmap['w']+'}pPr'
+    m_oMath='{'+docx_nsmap['m']+'}oMath'
+    m_oMathPara='{'+docx_nsmap['m']+'}oMathPara'
 
-    if child.tag.split('}')[-1] == 'pPr':
+    if w_pPr==child.tag:
         return 'w:pPr'
 
-    if child.tag.split('}')[-1] == 'oMath' or child.tag.split('}')[-1] == 'oMathPara':
+    if child.tag== m_oMath or child.tag == m_oMathPara:
         return 'm:oMath'
-
+    #w:t
     wt = child.xpath('.//w:t', namespaces=child.nsmap)
     if len(wt) == 1:
         return 'w:t'
-
+    #w:drawing
     wdrawing = child.xpath('.//w:drawing', namespaces=child.nsmap)
     if len(wdrawing) == 1:
         return 'w:drawing'
+    #w:pict
+    wpict = child.xpath('.//w:pict', namespaces=child.nsmap)
+    if len(wpict) == 1:
+        return 'w:pict'
+    wobject = child.xpath('.//w:object', namespaces=child.nsmap)
+    if len(wobject) == 1:
+        return 'w:object'
 
 ##处理w:t元素
 def w_t2html(child):
@@ -136,6 +146,38 @@ def w_t2html(child):
         t = '<i>' + t + '</i>'
 
     return t
+
+###wmf2svg -----convert by wmf2svg-0.9.8.jar--------------
+## wmf2gd -t png -o abc.png test.wmf   --maxwidth=130 --maxpect
+##测试过 imagemagick的convert、wmf2gd和pillow的save来处理wmf，效果不好
+def wmf2svg(blob, svg_path):
+    fname=uuid.uuid1().hex+'.wmf'
+    with open(fname, 'wb') as f:
+        f.write(blob)
+    cmd='java -jar docx_utils/wmf2svg-0.9.8.jar  '+fname+ '  ' + svg_path
+    status, output = subprocess.getstatusoutput(cmd)
+    if status:
+        print('Warning!\r\n ' + cmd + '\r\n wmf转png失败！')
+        return 0
+    return 1
+##mathtype2mml---
+def math_type2mml(ole_blob, mml):
+    '''
+    mathtype嵌入的数学公式,转成mathml是ruby的mathtype_to_mathml做的，(https://github.com/jure/mathtype_to_mathml)
+    1. intall mathtype_to_mathml:
+    gem install mathtype_to_mathml pry
+    2. usage:
+    require "mathtype_to_mathml"
+    MathTypeToMathML::Converter.new('oleObject1.bin').convert
+    exit
+    '''
+    fname=uuid.uuid1()+'.bin'
+    with open(fname, 'wb') as f:
+        f.write(ole_blob)
+    output = subprocess.check_output(['ruby', '-w', 'docx_utils/mathtype_ole2mathml.rb', fname])
+    mathml = output.decode('utf-8').replace('<?xml version="1.0"?>', '').replace('block','inline')  ###暂时用inline，一般试卷中的公式都是inline
+    return mathml
+
 ###处理w:object
 def w_object2html(doc, child):
     img_dir = settings.img_dir
@@ -154,36 +196,20 @@ def w_object2html(doc, child):
     ole_object = child.xpath('.//o:OLEObject', namespaces=docx_nsmap)[0]
 
     if ole_object.attrib['ProgID']=="Equation.DSMT4":  #是mathtype嵌入的数学公式,转成html
-        '''
-        mathtype嵌入的数学公式,转成mathml是ruby的mathtype_to_mathml做的，(https://github.com/jure/mathtype_to_mathml)
-        1. intall mathtype_to_mathml:
-        gem install mathtype_to_mathml pry
-        2. usage: 
-        require "mathtype_to_mathml"
-        MathTypeToMathML::Converter.new('oleObject1.bin').convert
-        exit
-        '''
-        rId=ole_object.attrib[docx_nsmap['r'] + 'id']
+        rId = ole_object.attrib['{' + docx_nsmap['r'] + '}id']
         ole['object_path'] = doc.part.rels[ole_object['rId']].target_ref
-        ole['ole_part'] = doc.part.related_parts[ole_object['rId']]
-        with open(ole['path'] , 'wb') as f:
-            f.write(ole['ole_part']._blob)
-        status, output=subprocess.getstatusoutput()
-        mathml=output
-        return {'html':mathml}
+        ole['ole_part'] = doc.part.rels[ole_object['rId']].target_part
+        mml=math_type2mml(ole['ole_part'].blob)
+        return {'html':mml}
+
     else:    ##read v:imagedata only, usually .wmf file， 暂时转换成svg
         ole['rId'] = child.xpath('.//v:imagedata', namespaces=docx_nsmap).attrib[docx_nsmap['r'] + 'id']
         ole['img_path'] = doc.part.rels[ole['rId']].target_ref
-        ole['img_part'] = doc.part.related_parts[ole['rId']]
+        ole['img_part'] = doc.part.rels[ole['rId']].target_part
         ext = os.path.splitext(ole['path'])[-1]
         if ext=='.wmf':
-            with open(ole['img_path'], 'wb') as f:
-                f.write(ole['img_part']._blob)
-            fname = str(uuid.uuid1()).replace('-', '')
-            out_img_path = fname + '.svg'
-            status, output = subprocess.getstatusoutput( 'java -jar docx_utils/wmf2svg-0.9.8.jar ' + ole['path'] + ' ' + out_img_path)
-            if status:
-                print('Warning! ' + ole['path'] + '转png失败！')
+            out_img_path = str(uuid.uuid1()).replace('-', '') + '.svg'
+            wmf2svg(ole['img_part'].blob , out_img_path)
             html = '<img src="' + http_head + out_img_path + '" width=' + "{:.4f}".format(ole["width"]) + \
                    ' height=' + "{:.4f}".format(ole["height"]) + '>'
 
@@ -191,23 +217,9 @@ def w_object2html(doc, child):
 
 ##------另外一种格式的图片，只有inline 模式-------------
 def w_pict2html(doc, child):
-
+    print('call w_pict2html')
     img_dir=settings.img_dir
     http_head=settings.http_head
-    ##--检查img_dir参数检查-----------
-    if img_dir == '':
-        print('还未设置img_dir！')
-        exit(0)
-    else:
-        if not os.path.exists(img_dir):
-            os.mkdir(img_dir)
-    #####检查http_head是否设置
-    if http_head == '':
-        print('还未设置http_head！')
-        exit(0)
-    if http_head[-1] != '/':
-        http_head = http_head + '/'
-    ##-----------------------------
 
     pics = child.xpath('.//w:pict', namespaces=docx_nsmap)
     if len(pics) != 1:
@@ -217,35 +229,35 @@ def w_pict2html(doc, child):
 
     fig = dict()
     fig['styles']={}
-    styles=pic.xpath('.//v:shape', namespaces=docx_nsmap).attrib['style']
+    styles=pic.xpath('.//v:shape', namespaces=docx_nsmap)[0].attrib['style']
     for style in styles.split(';'):
         a,b=style.split(':')
         fig['styles'][a]=b
-    fig['rId']=pic.xpath('.//v:imagedata', namespaces=docx_nsmap).attrib[docx_nsmap['r']+'id']
+    fig['rId']=pic.xpath('.//v:imagedata', namespaces=docx_nsmap)[0].attrib['{'+docx_nsmap['r']+'}id']
     fig['path'] = doc.part.rels[fig['rId']].target_ref
-    fig['img_part']=doc.part.related_parts[fig['rId']]
+    fig['img_part']=doc.part.rels[fig['rId']].target_part
     fig['width']=fig['styles']['width'].replace('pt', '')
     fig['height'] = fig['styles']['height'].replace('pt', '')
 
     ext = os.path.splitext(fig['path'] )[-1]
-    fname = str(uuid.uuid1()).replace('-', '')   ###convert all image to .png
+    fname = uuid.uuid1().hex   ###convert all image to .png
     out_img_path=''
     if ext=='.wmf':  ##扩展名为.wmf
         ## wmf2gd, imagemagick的convert效果都不太好，暂时不用
         ##暂时不用imagemagick的convert
-        with open(fig['path'], 'wb') as f :
-            f.write(fig['img_part']._blob)
+        with open( 'out.wmf', 'wb') as f :
+            f.write(fig['img_part'].blob)
         out_img_path=fname+'.svg'
-        status, output=subprocess.getstatusoutput('java -jar docx_utils/wmf2svg-0.9.8.jar '+fig['path']+' '+ out_img_path  )
+        status, output=subprocess.getstatusoutput('java -jar docx_utils/wmf2svg-0.9.8.jar  out.wmf ' + os.path.join(img_dir, out_img_path)  )
         if  status:
             print('Warning! '+fig['path'] +'转png失败！')
     else:
-        image=Image.open(io.BytesIO(fig['img_part']._blob))
+        image=Image.open(io.BytesIO(fig['img_part'].blob))
         out_img_path=fname+'.png'
         image.save(os.path.join(img_dir, out_img_path))          ###convert all image to .png by PIL
 
-    html = '<img src="' + http_head + out_img_path + '" width=' + "{:.4f}".format(fig["width"]) + \
-           ' height=' + "{:.4f}".format(fig["height"]) + '>'
+    html = '<img src="' + http_head + out_img_path + '" width=' + fig["width"] + \
+           ' height=' + fig["height"] + '>'
 
 
     return {'html':html, 'mode':'inline'}
@@ -256,30 +268,13 @@ def w_pict2html(doc, child):
 
 '''
 def w_drawing2html(doc, child):
-
     img_dir=settings.img_dir
     http_head=settings.http_head
-
-    ##--检查img_dir参数检查-----------
-    if img_dir == '':
-        print('还未设置img_dir！')
-        exit(0)
-    else:
-        if not os.path.exists(img_dir):
-            os.mkdir(img_dir)
-    #####检查http_head是否设置
-    if http_head == '':
-        print('还未设置http_head！')
-        exit(0)
-    if http_head[-1] != '/':
-        http_head = http_head + '/'
-    ##-----------------------------
 
     pics = child.xpath('.//w:drawing', namespaces=docx_nsmap)
     if len(pics) != 1:
         print("docx格式可能错误，w:drawing可能包含多张图片！")
         return 0
-
 
     pic = pics[0]
     mode=''
@@ -294,39 +289,25 @@ def w_drawing2html(doc, child):
     height = int(size_ele.attrib['cy']) / (360000 * 0.0264583)
     one_mes['width'] = width
     one_mes['height'] = height
-    # element = pic.xpath('.//wp:'+mode, namespaces=pic.nsmap)[0]
-    # a_graphic = pic.xpath('.//wp:'+mode+'//a:graphic', namespaces=docx_nsmap)
-    blip = pic.xpath('.//a:blip ', namespaces=docx_nsmap)[0]
-    blip_attr = blip.attrib
-    for attr in blip_attr:
-        if 'embed' in attr:
-            one_mes['rId'] = blip_attr[attr]
-            break
-    pic_name = one_mes['rId']
-    img = doc.part.rels[pic_name].target_ref
+
+    ####直接取出rId
+    rId=pic.xpath('.//a:blip ', namespaces=docx_nsmap)[0].attrib['{'+docx_nsmap['r']+'}embed']
+
+    img = doc.part.rels[rId].target_ref
     ext=os.path.splitext(img)[-1]
-    img_part = doc.part.related_parts[pic_name]
+    img_part = doc.part.rels[rId].target_part
 
     fname = str(uuid.uuid1()).replace('-', '')   ###convert all image to .png
     if ext=='.wmf':  ###
-        ## wmf2gd -t png -o abc.png test.wmf   --maxwidth=130 --maxpect
-        ##暂时不用imagemagick的convert
-        if os.name=='nt':###在windows上,
-            image = Image.open(io.BytesIO(img_part._blob))
-            image.save(os.path.join(img_dir, fname + '.png'))
-        else:###不是在windows上面
-            with open(fname+'.wmf', 'wb') as f:
-                f.write(img_part._blob)
-            status, output=subprocess.getstatusoutput('wmf2gd -t png -o '+ fname + '.png '+ fname+'.wmf ' + ' --maxsize --maxpect ')
-            if  status:
-                print('Warning! '+img +'转png失败！')
+        out_img=  fname+'.svg'
+        x=wmf2svg(img_part.blob,  os.path.join(img_dir, out_img))
     else:
+        out_img=fname+'.png'
         image=Image.open(io.BytesIO(img_part._blob))
-        image.save(os.path.join(img_dir, fname+ext))          ###convert all image to .png by PIL
+        image.save(os.path.join(img_dir, out_img))          ###convert all image to .png by PIL
 
-    html = '<img src="' + http_head + fname+ext + '" width=' + "{:.4f}".format(one_mes["width"]) + \
+    html = '<img src="' + http_head + out_img + '" width=' + "{:.4f}".format(one_mes["width"]) + \
            ' height=' + "{:.4f}".format(one_mes["height"]) + '>'
-
 
     return {'html':html, 'mode':mode}
 
@@ -354,9 +335,8 @@ def check_run(child):
     tag = get_tag(child)
     if tag == 'm:oMath' or tag == 'm:oMathPara' or tag=='w:tab':
         return  1
-
     i = 0
-    # print('child=', child)
+
     run = child.__copy__()
     rPr = run.xpath('.//w:rPr', namespaces=run.nsmap)  ##删除run的属性
 
@@ -368,7 +348,9 @@ def check_run(child):
 
     wt = run.xpath('./w:t', namespaces=run.nsmap)
     wdrawing = run.xpath('.//w:drawing', namespaces=run.nsmap)
-    i = len(wt) + len(wdrawing)
+    wpict=run.xpath('.//w:pict', namespaces=run.nsmap)
+    wobject = run.xpath('.//w:object', namespaces=run.nsmap)
+    i = len(wt) + len(wdrawing)+len(wpict)+len(wobject)
 
     return i
 
@@ -413,16 +395,13 @@ def paragraph2html(doc, index):
         if tag=='w:pPr':
             continue
         vv = check_run(child)
-
         if vv > 1:
             print('run中包含了多个类型 ')
             exit()
             continue
         elif vv == 0:
-            # print('run里面没有找到合适元素！')
-            # print('run=', child)
-            continue
-        html = ''
+            # print('run里面没有找到合适元素！,可能有未识别的')
+            pass
 
         if tag == 'w:t':  ##处理文本
             html = w_t2html(child)
@@ -431,10 +410,16 @@ def paragraph2html(doc, index):
             result = w_drawing2html(doc, child)
             if result['mode']=='inline':  ##不处理浮动图片，留到别处统一处理
                 htmls.append(result['html'])
-
+        elif tag == 'w:pict':
+            print('found w:pict')
+            html=w_pict2html(doc, child)['html']
+            htmls.append(html)
+        elif tag=='w:object':  ##处理可能的ole对象
+            pass
         elif tag == 'm:oMath' or tag == 'm:oMathPara':  ##处理数学公式
             html = o_math2html(child)
             htmls.append(html)
+
         elif tag == 'table':  ##处理表格
             pass
         # if html != ' ':   空格也应该原样输出，因为有时候存在特意的空格
@@ -478,7 +463,10 @@ def options2html(doc, row):
                 text = text + result['html']
         elif tag == 'm:oMath':
             text = text + o_math2html(child)
-        elif tag == '':
+        elif tag=='w:pict':
+            html = w_pict2html(doc, child)['html']
+            text=text+html
+        elif tag == 'w:object':
             pass
 
     return text
@@ -506,12 +494,6 @@ def paragraphs2htmls(doc, title_indexes):
     for index in title_indexes:
         html = paragraph2html(doc, index)
 
-        # reg = r'\d{1,2}[.．]\s{0,1}(\(|\（)\d{1,2}.{1}(\)|\）)'
-        # text = re.sub(reg , '' , text)
-        if re.match(r'^\（[\u4e00-\u9fa5]+\）' , html) is None:   ##不包含中文字符
-            pass
-        else:
-            html = ''
         if html.strip()!='':
             htmls.append(html)
     result=''
