@@ -136,6 +136,119 @@ def w_t2html(child):
         t = '<i>' + t + '</i>'
 
     return t
+###处理w:object
+def w_object2html(doc, child):
+    img_dir = settings.img_dir
+    http_head = settings.http_head
+
+    ole={}
+    ole['styles']={}
+
+    styles=child.xpath('.//v:shape', namespaces=docx_nsmap)[0].attrib['style']
+    for style in styles.split(';'):
+        a,b=style.split(':')
+        ole['styles'][a]=b
+    ole['width']=ole['styles']['width'].replace('pt', '')
+    ole['height'] = ole['styles']['height'].replace('pt', '')
+
+    ole_object = child.xpath('.//o:OLEObject', namespaces=docx_nsmap)[0]
+
+    if ole_object.attrib['ProgID']=="Equation.DSMT4":  #是mathtype嵌入的数学公式,转成html
+        '''
+        mathtype嵌入的数学公式,转成mathml是ruby的mathtype_to_mathml做的，(https://github.com/jure/mathtype_to_mathml)
+        1. intall mathtype_to_mathml:
+        gem install mathtype_to_mathml pry
+        2. usage: 
+        require "mathtype_to_mathml"
+        MathTypeToMathML::Converter.new('oleObject1.bin').convert
+        exit
+        '''
+        rId=ole_object.attrib[docx_nsmap['r'] + 'id']
+        ole['object_path'] = doc.part.rels[ole_object['rId']].target_ref
+        ole['ole_part'] = doc.part.related_parts[ole_object['rId']]
+        with open(ole['path'] , 'wb') as f:
+            f.write(ole['ole_part']._blob)
+        status, output=subprocess.getstatusoutput()
+        mathml=output
+        return {'html':mathml}
+    else:    ##read v:imagedata only, usually .wmf file， 暂时转换成svg
+        ole['rId'] = child.xpath('.//v:imagedata', namespaces=docx_nsmap).attrib[docx_nsmap['r'] + 'id']
+        ole['img_path'] = doc.part.rels[ole['rId']].target_ref
+        ole['img_part'] = doc.part.related_parts[ole['rId']]
+        ext = os.path.splitext(ole['path'])[-1]
+        if ext=='.wmf':
+            with open(ole['img_path'], 'wb') as f:
+                f.write(ole['img_part']._blob)
+            fname = str(uuid.uuid1()).replace('-', '')
+            out_img_path = fname + '.svg'
+            status, output = subprocess.getstatusoutput( 'java -jar docx_utils/wmf2svg-0.9.8.jar ' + ole['path'] + ' ' + out_img_path)
+            if status:
+                print('Warning! ' + ole['path'] + '转png失败！')
+            html = '<img src="' + http_head + out_img_path + '" width=' + "{:.4f}".format(ole["width"]) + \
+                   ' height=' + "{:.4f}".format(ole["height"]) + '>'
+
+            return {'html': html, 'mode': 'inline'}
+
+##------另外一种格式的图片，只有inline 模式-------------
+def w_pict2html(doc, child):
+
+    img_dir=settings.img_dir
+    http_head=settings.http_head
+    ##--检查img_dir参数检查-----------
+    if img_dir == '':
+        print('还未设置img_dir！')
+        exit(0)
+    else:
+        if not os.path.exists(img_dir):
+            os.mkdir(img_dir)
+    #####检查http_head是否设置
+    if http_head == '':
+        print('还未设置http_head！')
+        exit(0)
+    if http_head[-1] != '/':
+        http_head = http_head + '/'
+    ##-----------------------------
+
+    pics = child.xpath('.//w:pict', namespaces=docx_nsmap)
+    if len(pics) != 1:
+        print("docx格式可能错误，w:drawing可能包含多张图片！")
+        return 0
+    pic = pics[0]
+
+    fig = dict()
+    fig['styles']={}
+    styles=pic.xpath('.//v:shape', namespaces=docx_nsmap).attrib['style']
+    for style in styles.split(';'):
+        a,b=style.split(':')
+        fig['styles'][a]=b
+    fig['rId']=pic.xpath('.//v:imagedata', namespaces=docx_nsmap).attrib[docx_nsmap['r']+'id']
+    fig['path'] = doc.part.rels[fig['rId']].target_ref
+    fig['img_part']=doc.part.related_parts[fig['rId']]
+    fig['width']=fig['styles']['width'].replace('pt', '')
+    fig['height'] = fig['styles']['height'].replace('pt', '')
+
+    ext = os.path.splitext(fig['path'] )[-1]
+    fname = str(uuid.uuid1()).replace('-', '')   ###convert all image to .png
+    out_img_path=''
+    if ext=='.wmf':  ##扩展名为.wmf
+        ## wmf2gd, imagemagick的convert效果都不太好，暂时不用
+        ##暂时不用imagemagick的convert
+        with open(fig['path'], 'wb') as f :
+            f.write(fig['img_part']._blob)
+        out_img_path=fname+'.svg'
+        status, output=subprocess.getstatusoutput('java -jar docx_utils/wmf2svg-0.9.8.jar '+fig['path']+' '+ out_img_path  )
+        if  status:
+            print('Warning! '+fig['path'] +'转png失败！')
+    else:
+        image=Image.open(io.BytesIO(fig['img_part']._blob))
+        out_img_path=fname+'.png'
+        image.save(os.path.join(img_dir, out_img_path))          ###convert all image to .png by PIL
+
+    html = '<img src="' + http_head + out_img_path + '" width=' + "{:.4f}".format(fig["width"]) + \
+           ' height=' + "{:.4f}".format(fig["height"]) + '>'
+
+
+    return {'html':html, 'mode':'inline'}
 
 ##处理w:drawing元素
 '''
@@ -195,7 +308,7 @@ def w_drawing2html(doc, child):
     img_part = doc.part.related_parts[pic_name]
 
     fname = str(uuid.uuid1()).replace('-', '')   ###convert all image to .png
-    if ext=='.wmf':
+    if ext=='.wmf':  ###
         ## wmf2gd -t png -o abc.png test.wmf   --maxwidth=130 --maxpect
         ##暂时不用imagemagick的convert
         if os.name=='nt':###在windows上,
@@ -483,7 +596,7 @@ def get_xiaoti_content(doc, xiaoti_indexes, curr_index):
     return q
 
 if __name__ == "__main__":
-    path = '../src/2019年全国II卷文科综合高考真题.docx'
+    path = '../data/2019年全国II卷文科综合高考真题.docx'
     doc = docx.Document(path)
     all_ti_index = processPaper(doc)
     paragraphs = doc.paragraphs
