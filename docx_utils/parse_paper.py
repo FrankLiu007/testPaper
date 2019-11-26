@@ -294,7 +294,7 @@ def find_xiaoti_row(dati_start_row,doc):
 
 ####找出大题的行
 def   find_dati_row( doc):
-    paragraphs=doc.paragraphs;
+    paragraphs=doc.paragraphs
     num2 = {'一':'1','二':'2','三':'3','四':'4','五':'5','六':'6','七':'7','八':'8','九':'9', '十':'10'}
 
     mode_text=''

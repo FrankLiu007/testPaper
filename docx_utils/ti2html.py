@@ -10,30 +10,14 @@ import subprocess
 from . import settings
 from PIL import Image
 import io
-'''
-试卷的格式，我们认为只有2级，
-1.大题（一、填空题）
-2. 小题（19.）
 
-'''
 '''关于docx中的各种元素（数学公式、图片、表格、）
 如果用代码生成docx: 1个run里面,可以包含多个文本(w:t)、图片（w:drawing）、公式等，
 但是实际上，只要一编辑，1个run里面变只会有1个元素，然后在run里面设置这个元素的属性
 数学公式可以和run同级，为oMathPara，可以为run中的元素，为oMath
 图片必须为run中的元素（包裹在一个run里面），且该run只有这个图片元素，没有test等
 
-
-
 '''
-###尝试猜测题目类型
-'''
-题目类型：单选题，多选题，问答题，材料题（包含多个小题，他们可能是单选题、多选题、问答题），
-'''
-
-
-def guess_titype():
-    pass
-
 
 ##获取材料题，到底有多少小问（题）
 def get_question_quantity(paragraph, mode_text):
@@ -92,6 +76,10 @@ def get_tag(child):
     w_pPr='{'+docx_nsmap['w']+'}pPr'
     m_oMath='{'+docx_nsmap['m']+'}oMath'
     m_oMathPara='{'+docx_nsmap['m']+'}oMathPara'
+
+    w_tblPr='{'+docx_nsmap['w']+'}tblPr'
+    if w_pPr==child.tag:
+        pass
 
     if w_pPr==child.tag:
         return 'w:pPr'
@@ -161,7 +149,7 @@ def wmf2svg(blob, svg_path):
         return 0
     return 1
 ##mathtype2mml---
-def math_type2mml(ole_blob, mml):
+def math_type2mml(ole_blob):
     '''
     mathtype嵌入的数学公式,转成mathml是ruby的mathtype_to_mathml做的，(https://github.com/jure/mathtype_to_mathml)
     1. intall mathtype_to_mathml:
@@ -171,9 +159,10 @@ def math_type2mml(ole_blob, mml):
     MathTypeToMathML::Converter.new('oleObject1.bin').convert
     exit
     '''
-    fname=uuid.uuid1()+'.bin'
+    fname=uuid.uuid1().hex+'.bin'
     with open(fname, 'wb') as f:
         f.write(ole_blob)
+
     output = subprocess.check_output(['ruby', '-w', 'docx_utils/mathtype_ole2mathml.rb', fname])
     mathml = output.decode('utf-8').replace('<?xml version="1.0"?>', '').replace('block','inline')  ###暂时用inline，一般试卷中的公式都是inline
     return mathml
@@ -193,25 +182,27 @@ def w_object2html(doc, child):
     ole['width']=ole['styles']['width'].replace('pt', '')
     ole['height'] = ole['styles']['height'].replace('pt', '')
 
-    ole_object = child.xpath('.//o:OLEObject', namespaces=docx_nsmap)[0]
+    #ole_object = child.xpath('.//o:OLEObject', namespaces=docx_nsmap)[0]
 
-    if ole_object.attrib['ProgID']=="Equation.DSMT4":  #是mathtype嵌入的数学公式,转成html
-        rId = ole_object.attrib['{' + docx_nsmap['r'] + '}id']
-        ole['object_path'] = doc.part.rels[ole_object['rId']].target_ref
-        ole['ole_part'] = doc.part.rels[ole_object['rId']].target_part
-        mml=math_type2mml(ole['ole_part'].blob)
-        return {'html':mml}
-
+    # if ole_object.attrib['ProgID']=="Equation.DSMT4":  #是mathtype嵌入的数学公式,转成html
+    #     ole['rId'] = ole_object.attrib['{' + docx_nsmap['r'] + '}id']
+    #     ole['object_path'] = doc.part.rels[ole['rId']].target_ref
+    #     ole['ole_part'] = doc.part.rels[ole['rId']].target_part
+    #     mml=math_type2mml(ole['ole_part'].blob)
+    #     print('mml=',mml)
+    #     return {'html':mml}
+    if False:  ##mathtype ole to mathml 还不稳定，暂时注销
+        pass
     else:    ##read v:imagedata only, usually .wmf file， 暂时转换成svg
-        ole['rId'] = child.xpath('.//v:imagedata', namespaces=docx_nsmap).attrib[docx_nsmap['r'] + 'id']
+        ole['rId'] = child.xpath('.//v:imagedata', namespaces=docx_nsmap)[0].attrib['{'+docx_nsmap['r'] + '}id']
         ole['img_path'] = doc.part.rels[ole['rId']].target_ref
         ole['img_part'] = doc.part.rels[ole['rId']].target_part
-        ext = os.path.splitext(ole['path'])[-1]
+        ext = os.path.splitext(ole['img_path'])[-1]
         if ext=='.wmf':
-            out_img_path = str(uuid.uuid1()).replace('-', '') + '.svg'
-            wmf2svg(ole['img_part'].blob , out_img_path)
-            html = '<img src="' + http_head + out_img_path + '" width=' + "{:.4f}".format(ole["width"]) + \
-                   ' height=' + "{:.4f}".format(ole["height"]) + '>'
+            out_img_path = uuid.uuid1().hex + '.svg'
+            wmf2svg(ole['img_part'].blob , os.path.join(img_dir, out_img_path ))
+            html = '<img src="' + http_head + out_img_path + '" width=' + ole["width"] + \
+                   ' height=' + ole["height"] + '>'
 
             return {'html': html, 'mode': 'inline'}
 
@@ -312,7 +303,7 @@ def w_drawing2html(doc, child):
     return {'html':html, 'mode':mode}
 
 ##处理m:oMath元素
-def o_math2html(child):
+def o_math2html(doc, child):
     tag = child.tag.split('}')[-1]
 
     if tag == 'oMath':
@@ -385,10 +376,40 @@ def merge_wt(tree):  ###一个段落
 
     return result
 
-def paragraph2html(doc, index):
-    tree = etree.fromstring(doc.paragraphs[index]._element.xml)
-    children = tree.getchildren()
+##处理表格
+def w_tbl2html(doc, child):
+    tbl={}
+    rows=child.xpath('./w:gridCol', namespaces=docx_nsmap)
+    tbl['row_number']=len(rows)
+    tbl['rows']=[]
+    for row in rows:
+        width=row.attrib['{'+docx_nsmap['w']+'}w']
+        tbl['rows'].append({'width':width} )
+    result=''
+    row_elements=child.xpath('./w:tr', namespaces = docx_nsmap)
+
+    for i in range(0, len(row_elements)) :
+        column_elements=row_elements[i].xpath('./w:tc', namespaces=docx_nsmap)
+        for j in range(0,len(column_elements))  :
+            html=paragraph2html(doc, column_elements[j].xpath('./w:p', namespaces = docx_nsmap)[0])
+
+            result= result+ '<td>'+html+'</td>'
+        result ='<tr>'+ result+'</tr>'
+    result= '<table>'+ result+ '</table>'
+
+    return result
+
+####段落转html-----------------
+def paragraph2html(doc, parent_element):
+
+    children = parent_element.getchildren()
     htmls = []
+
+###表格，它本身就是一个段落，处理后返回
+    if parent_element.xpath('./w:tblPr', namespaces=docx_nsmap):
+        return  w_tbl2html(doc, parent_element)
+
+###不是表格的情况
     for child in children:
         tag = get_tag(child)
 
@@ -415,9 +436,10 @@ def paragraph2html(doc, index):
             html=w_pict2html(doc, child)['html']
             htmls.append(html)
         elif tag=='w:object':  ##处理可能的ole对象
-            pass
+            html = w_object2html(doc, child)['html']
+            htmls.append(html)
         elif tag == 'm:oMath' or tag == 'm:oMathPara':  ##处理数学公式
-            html = o_math2html(child)
+            html = o_math2html(doc, child)
             htmls.append(html)
 
         elif tag == 'table':  ##处理表格
@@ -462,7 +484,7 @@ def options2html(doc, row):
             if result['mode']=='inline':  ##不处理浮动图片，留到后面一起处理
                 text = text + result['html']
         elif tag == 'm:oMath':
-            text = text + o_math2html(child)
+            text = text + o_math2html(doc, child)
         elif tag=='w:pict':
             html = w_pict2html(doc, child)['html']
             text=text+html
@@ -492,7 +514,8 @@ def paragraphs2htmls(doc, title_indexes):
     htmls = []
 
     for index in title_indexes:
-        html = paragraph2html(doc, index)
+        element=etree.fromstring(doc.paragraphs[index]._element.xml)
+        html = paragraph2html(doc, element)
 
         if html.strip()!='':
             htmls.append(html)

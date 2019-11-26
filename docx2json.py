@@ -250,3 +250,15 @@ if __name__ == "__main__":
 
     with  open(os.path.join(pars['working_dir'], pars['out_json']), 'w', encoding='utf-8') as fp:
         json.dump(tis, fp, ensure_ascii=False, indent=4, separators=(',', ': '))
+
+
+
+#####测试table的
+    from docx_utils.ti2html import paragraph2html
+    from lxml import etree
+    path='d:/test/表格.docx'
+    doc=docx.Document(path)
+    htmls=[]
+    for par in doc.paragraphs:
+        element=etree.fromstring(par._element.xml)
+        htmls.append(paragraph2html(doc, element))
