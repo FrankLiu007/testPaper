@@ -44,7 +44,6 @@ def get_mode_string(text):
 # 大题模式为中文数字一 ， 小题模式为 阿拉伯数字 1
 def analys_layout(doc):
     '''
-
     :param doc:
     :return: tree
     格式：[ (row,paragraphs[row].text, mode_text),(...)]
@@ -130,7 +129,7 @@ def get_option(text):
     return options
 
 
-def parse_one_titype(curr_row, next_row, xiaoti_indexes, paragraphs):  ##处理1个大题，例如 “一、选择题”
+def parse_one_titype(curr_row, next_row, xiaoti_indexes, children):  ##处理1个大题，例如 “一、选择题”
     tis = []
     i = 0
 
@@ -138,15 +137,15 @@ def parse_one_titype(curr_row, next_row, xiaoti_indexes, paragraphs):  ##处理1
         # r,text,mode_text=xiaoti_indexes[i]
         if xiaoti_indexes[i][0] > curr_row:
             if i == len(xiaoti_indexes) - 1:   ###处理最后一个小题
-                ti = parse_ti(xiaoti_indexes, xiaoti_indexes[i][0], next_row, paragraphs)
+                ti = parse_ti(xiaoti_indexes, xiaoti_indexes[i][0], next_row, children)
 
                 tis.append(ti)
                 break
 
             if xiaoti_indexes[i + 1][0] < next_row:
-                ti = parse_ti(xiaoti_indexes, xiaoti_indexes[i][0], xiaoti_indexes[i + 1][0], paragraphs)
+                ti = parse_ti(xiaoti_indexes, xiaoti_indexes[i][0], xiaoti_indexes[i + 1][0], children)
             else:
-                ti = parse_ti(xiaoti_indexes, xiaoti_indexes[i][0], next_row, paragraphs)
+                ti = parse_ti(xiaoti_indexes, xiaoti_indexes[i][0], next_row, children)
                 tis.append(ti)
                 break
             tis.append(ti)
@@ -156,19 +155,19 @@ def parse_one_titype(curr_row, next_row, xiaoti_indexes, paragraphs):  ##处理1
 
 
 ####处理1个题
-def isObjective(curr_row, next_row, paragraphs):
+def isObjective(curr_row, next_row, children):
     # print('next_row=',next_row)
     for i in range(curr_row, next_row):
-        text = paragraphs[i].text.strip()
+        text = get_text(children[i]).strip()
         if re.match(r'[A-G][．\.]', text):
             return (True, i)
     return (False, -1)
 
 
 ####解析1道题
-def parse_ti(xiaoti_indexes, curr_row, next_row, paragraphs):
+def parse_ti(xiaoti_indexes, curr_row, next_row, children):
     # curr_row=xiaoti_indexes
-    objective, index = isObjective(curr_row, next_row, paragraphs)
+    objective, index = isObjective(curr_row, next_row, children)
     ti = {}
     ti['title'] = []
     if objective:
@@ -176,7 +175,7 @@ def parse_ti(xiaoti_indexes, curr_row, next_row, paragraphs):
         for i in range(curr_row, index):
             ti['title'].append(i)
         for j in range(index, next_row):
-            if re.match(r'[A-G][．\.]', paragraphs[j].text):
+            if re.match(r'[A-G][．\.]', get_text(children[j])):
                 options.append(j)
         ti['options'] = options
     else:
@@ -184,39 +183,6 @@ def parse_ti(xiaoti_indexes, curr_row, next_row, paragraphs):
             ti['title'].append(i)
 
     return ti
-
-###计算主要模式在tree的位置
-##2019.9.30,主模式确定后，副模式应该在主模式之前（行号更小）
-def get_main_modes(tree):
-    data = []
-    i = 0
-    while (i < len(tree)):
-        data.append((i, len(tree[i]), tree[i][0][2], tree[i][0][0]))  ##i为
-        i = i + 1
-    data.sort(key=lambda x: x[1], reverse=True)
-    print('data=', data)
-
-    primary_mode_index = data[0][0]  ###最长的肯定是主模式，
-    primary_mode_text = data[0][2]
-    min_row = data[0][-1]
-    second_mode_index = data[1][0]
-
-    if primary_mode_text[0] != '1':
-        print('试卷格式可能有问题')
-        print('模式字符串是：', primary_mode_text)
-
-    i = 1
-    while (i < len(data)):
-        if data[i][2][0] == primary_mode_text[0]:
-            i = i + 1
-            continue
-        if '一' in data[i][2] and data[i][-1] < min_row:
-            second_mode_index = data[i][0]
-            break
-        i = i + 1
-
-    return (second_mode_index, primary_mode_index)
-
 
 def check_run(child):
     i = 0
@@ -267,13 +233,16 @@ def remove_blank_paragraph(doc):
 
     return 0
 ##new version of analys_layout
-def find_xiaoti_row(dati_start_row,doc):
+def find_xiaoti_row(dati_start_row, doc):
     xiaoti_row=[]
 
-    paragraphs=doc.paragraphs
+    tree=etree.fromstring(doc.element.xml)
+    children = tree.xpath('.//w:body', namespaces=docx_nsmap)[0].getchildren()
+
     curr_number=0
-    for n in range(dati_start_row,len(doc.paragraphs)):
-        text=paragraphs[n].text.strip()
+    for n in range(dati_start_row,len(children)):
+        text=get_text(children[n]).strip()
+
         x=''
         if len(text)<3:
             continue
@@ -291,17 +260,29 @@ def find_xiaoti_row(dati_start_row,doc):
             xiaoti_row.append((n , text,x ))
 
     return xiaoti_row
+### get text from etree element
+def get_text(child):
+    texts = child.xpath('.//w:t/text()', namespaces=docx_nsmap)
+    if texts:
+        return ''.join(texts)
+    else:
+        return ''
 
 ####找出大题的行
 def   find_dati_row( doc):
-    paragraphs=doc.paragraphs
+    tree=etree.fromstring(doc.element.xml)
+    children = tree.xpath('.//w:body', namespaces=docx_nsmap)[0].getchildren()
+
     num2 = {'一':'1','二':'2','三':'3','四':'4','五':'5','六':'6','七':'7','八':'8','九':'9', '十':'10'}
 
     mode_text=''
     dati_row=[]
     ###get mode text
-    for i in range(0, len(paragraphs)):
-        text=paragraphs[i].text.strip()
+    for i in range(0, len(children)):
+        text=get_text(children[i])
+        if text =='':
+            continue
+
         x=''
         if len(text)<4:
             continue
@@ -321,8 +302,10 @@ def   find_dati_row( doc):
     curr_number = '一'
     ss = mode_text
     p = mode_text.find('一')
-    for i in range(0, len(paragraphs)):
-        text=paragraphs[i].text.strip()
+    for i in range(0, len(children)):
+        text=get_text(children[i])
+        if text =='':
+            continue
 
         if re.match(r'[\s\.、.]',mode_text[p+1] ) :  ###（一、一 一. ）等大题模式
             rr= '^'+mode_text[:p] + curr_number + r'[\s\.、.]'
@@ -342,10 +325,14 @@ def   find_dati_row( doc):
 
 
 def processPaper2(doc):
-    paragraphs=doc.paragraphs
+
+    tree=etree.fromstring(doc.element.xml)
+    children = tree.xpath('.//w:body', namespaces=docx_nsmap)[0].getchildren()
 
     dati_indexes=find_dati_row( doc)
     xiaoti_indexes=find_xiaoti_row(dati_indexes[0][0], doc)
+    if (len(dati_indexes)==0) or (len(xiaoti_indexes)==0):
+        return ()
 
     ####获取所有大题的  小题
     tis = []
@@ -355,45 +342,10 @@ def processPaper2(doc):
     while (i < len(dati_indexes)):  ##处理1种题型
         if i < len(dati_indexes) - 1:
             next_row, next_text, mode_text = dati_indexes[i + 1]
-            tis = parse_one_titype(curr_row, next_row, xiaoti_indexes, paragraphs)  ##处理1种题型的所有题目
+            tis = parse_one_titype(curr_row, next_row, xiaoti_indexes, children)  ##处理1种题型的所有题目
             # print('tis=', tis)
         else:
-            tis = parse_one_titype(curr_row, len(paragraphs), xiaoti_indexes, paragraphs)  ##处理最后一个大题，例如“三、综合题”
-            # print('tis=', tis)
-        all_ti.append((curr_row, tis))
-        i = i + 1
-        curr_row = next_row
-
-    return all_ti
-
-def processPaper(doc):
-    '''
-    默认，试卷，题目大题是 一、 这种形式
-    :param doc:
-    :return:
-    '''
-    paragraphs = doc.paragraphs
-    tree = analys_layout(doc)
-
-    # 获取一份试卷主要的大题和主干小题的在tree里的索引
-    dati_mode_index, xiao_mode_index = get_main_modes(tree)  ##试卷的主要2层模式
-
-    ####获取所有大题的  小题
-    tis = []
-
-    dati_indexes = tree[dati_mode_index]
-    xiaoti_indexes = tree[xiao_mode_index]
-
-    curr_row, text, mode_text = dati_indexes[0]
-    i = 0
-    all_ti = []
-    while (i < len(dati_indexes)):  ##处理1种题型
-        if i < len(dati_indexes) - 1:
-            next_row, next_text, mode_text = dati_indexes[i + 1]
-            tis = parse_one_titype(curr_row, next_row, xiaoti_indexes, paragraphs)  ##处理1种题型的所有题目
-            # print('tis=', tis)
-        else:
-            tis = parse_one_titype(curr_row, len(paragraphs), xiaoti_indexes, paragraphs)  ##处理最后一个大题，例如“三、综合题”
+            tis = parse_one_titype(curr_row, len(children), xiaoti_indexes, children)  ##处理最后一个大题，例如“三、综合题”
             # print('tis=', tis)
         all_ti.append((curr_row, tis))
         i = i + 1
@@ -415,6 +367,6 @@ def remove_brackets(sentence):
 '''
 
 if __name__ == "__main__":
-    path = 'src/2019年全国II卷文科综合高考真题.docx'
+    path = 'data/2019年全国II卷文科综合高考真题.docx'
     doc = docx.Document(path)
-    all_ti_index = processPaper(doc)
+    all_ti_index = processPaper2(doc)
