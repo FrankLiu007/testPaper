@@ -32,7 +32,6 @@ def get_question_quantity(element, mode_text):
 ####--------------------------------------
 ## 获取材料题的位置
 def find_title_row(doc, b_row, curr_row, mode_text):
-    body_element = etree.fromstring(doc.element.xml).xpath('.//w:body', namespaces=docx_nsmap)[0]
 
     if b_row > curr_row:
         print('开始行<结束行')
@@ -41,7 +40,7 @@ def find_title_row(doc, b_row, curr_row, mode_text):
         return -1
 
     for i in range(b_row, curr_row):
-        x = re.findall(mode_text, get_element_text(doc, i))
+        x = re.findall(mode_text, doc.elements[i]['text'])
         if len(x) != 0:
             return i
 
@@ -75,6 +74,7 @@ def get_tag(child):
     :param child: etree.Element,一般为一个run
     :return: 返回该run里面的内容的类型的字符串
     '''
+
     w_pPr='{'+docx_nsmap['w']+'}pPr'
     m_oMath='{'+docx_nsmap['m']+'}oMath'
     m_oMathPara='{'+docx_nsmap['m']+'}oMathPara'
@@ -116,6 +116,8 @@ def w_t2html(child):
         val = ee[0].attrib[kk]
         if val=="subscript":
             t='<sub>'+t+'</sub>'
+
+
         elif val=='superscript':
             t = '<sup>' + t + '</sup>'
 
@@ -212,16 +214,35 @@ def w_object2html(doc, child):
         pass
     else:    ##read v:imagedata only, usually .wmf file， 暂时转换成svg
         ole['rId'] = child.xpath('.//v:imagedata', namespaces=docx_nsmap)[0].attrib['{'+docx_nsmap['r'] + '}id']
-        ole['img_path'] = doc.part.rels[ole['rId']].target_ref
-        ole['img_part'] = doc.part.rels[ole['rId']].target_part
+        ole['img_path'] = doc.rIds[ole['rId']]['path']
+        # ole['img_part'] = doc.part.rels[ole['rId']].target_part
         ext = os.path.splitext(ole['img_path'])[-1]
         if ext=='.wmf':
             out_img_path = uuid.uuid1().hex + '.svg'
-            wmf2svg(ole['img_part'].blob , os.path.join(img_dir, out_img_path ))
+            wmf2svg(doc.rIds[ole['rId']]['blob'] , os.path.join(img_dir, out_img_path ))
             html = '<img  style="vertical-align:middle"  src="' + http_head + out_img_path + \
                    '" height="' + ole["height"] + '"/>'
 
             return {'html': html, 'mode': 'inline'}
+###创建img标签
+def create_img_tag(fig):
+    img=etree.Element('img')
+    img.attrib['style']=fig['style']
+    img.attrib['src']=fig['src']
+    img.attrib['height']=fig["height"]
+    return img
+
+####Pt In 转html的pt
+def PtIn2px(height):
+
+    if 'in' in height:
+        ##inch 转px
+        return  "{:.1f}".format(float(height[:-2])*72*4/3) + 'px'
+    elif 'pt' in height:
+        ##pt 转 px
+        return  "{:.1f}".format(float(height[:-2])*4/3) + 'px'
+    elif 'px' in height:
+        return  height
 
 ##------另外一种格式的图片，只有inline 模式-------------
 def w_pict2html(doc, child):
@@ -235,7 +256,7 @@ def w_pict2html(doc, child):
         return 0
     pic = pics[0]
 
-    fig = dict()
+    fig = {}
     fig['styles']={}
     styles=pic.xpath('.//v:shape', namespaces=docx_nsmap)[0].attrib['style']
     for style in styles.split(';'):
@@ -243,9 +264,9 @@ def w_pict2html(doc, child):
         fig['styles'][a]=b
     fig['rId']=pic.xpath('.//v:imagedata', namespaces=docx_nsmap)[0].attrib['{'+docx_nsmap['r']+'}id']
     fig['path'] = doc.part.rels[fig['rId']].target_ref
-    fig['img_part']=doc.part.rels[fig['rId']].target_part
-    fig['width']=fig['styles']['width'].replace('pt', '')
-    fig['height'] = fig['styles']['height'].replace('pt', '')
+    fig['blob']=doc.rIds[fig['rId']]['blob']
+    fig['width']=PtIn2px(fig['styles']['width'])
+    fig['height'] =PtIn2px(fig['styles']['height'])
 
     ext = os.path.splitext(fig['path'] )[-1]
     fname = uuid.uuid1().hex   ###convert all image to .png
@@ -255,7 +276,7 @@ def w_pict2html(doc, child):
         ##暂时不用imagemagick的convert
         fullpath=os.path.join(settings.tmp_dir,'out.wmf' )
         with open( fullpath, 'wb') as f :
-            f.write(fig['img_part'].blob)
+            f.write(fig['blob'])
         out_img_path=fname+'.svg'
         status, output=subprocess.getstatusoutput('java -jar docx_utils/wmf2svg-0.9.8.jar '+fullpath+ '  ' + os.path.join(img_dir, out_img_path) )
         if  status:
@@ -265,11 +286,11 @@ def w_pict2html(doc, child):
         out_img_path=fname+'.png'
         image.save(os.path.join(img_dir, out_img_path))          ###convert all image to .png by PIL
 
-    html = '<img style="vertical-align:middle" src="' + http_head + out_img_path  + \
-           '" height="' + fig["height"] + '"/>'
+    fig['style'] = "vertical-align:middle"
+    fig['src'] = http_head + out_img_path
+    img=create_img_tag(fig)
 
-
-    return {'html':html, 'mode':'inline'}
+    return {'html':etree.tostring(img).decode('utf8'), 'mode':'inline'}
 
 ###获取图片的裁剪的区域
 def get_crop_box(pic, size0):  ##担心有一天size被系统用了
@@ -302,7 +323,6 @@ def get_crop_box(pic, size0):  ##担心有一天size被系统用了
     else:
         return ()
 
-
 ##处理w:drawing元素
 '''
 需要处理inline模式和float模式的2种图片，
@@ -311,8 +331,6 @@ def get_crop_box(pic, size0):  ##担心有一天size被系统用了
 def w_drawing2html(doc, child):
     ##fig saved all information of the image
     img_dir=settings.img_dir
-    http_head=settings.http_head
-
     pics = child.xpath('.//w:drawing', namespaces=docx_nsmap)
     if len(pics) != 1:
         print("docx格式可能错误，w:drawing可能包含多张图片！")
@@ -330,34 +348,34 @@ def w_drawing2html(doc, child):
 
     width = int(size_ele.attrib['cx']) / (360000 * 0.0264583)
     height = int(size_ele.attrib['cy']) / (360000 * 0.0264583)
-    fig['width'] = width
-    fig['height'] = height
+    fig['width'] ="{:.0f}".format( width)
+    fig['height'] ="{:.0f}".format(height)
 
     ####直接取出rId
     rId=pic.xpath('.//a:blip ', namespaces=docx_nsmap)[0].attrib['{'+docx_nsmap['r']+'}embed']
 
-    fig['fullpath'] = doc.part.rels[rId].target_ref
+    fig['fullpath'] = doc.rIds[rId]['path']
     fig['ext']=os.path.splitext(fig['fullpath'])[-1]
 
-    fig['img_part'] = doc.part.rels[rId].target_part
+    fig['blob'] = doc.rIds[rId]['blob']
 
     fname = uuid.uuid1().hex   ###convert all image to .png
     if fig['ext']=='.wmf':  ###
         out_img=  fname+'.svg'
-        x=wmf2svg(fig['img_part'].blob,  os.path.join(img_dir, out_img))
+        x=wmf2svg(fig['blob'],  os.path.join(img_dir, out_img))
     else:###
         out_img=fname+'.png'
-        image=Image.open(io.BytesIO(fig['img_part'].blob))
+        image=Image.open(io.BytesIO(fig['blob']) )
         crop_box=get_crop_box(pic, image.size)
         if crop_box:
             image.crop(crop_box).save(os.path.join(img_dir, out_img))
         else:
             image.save(os.path.join(img_dir, out_img))          ###convert all image to .png by PIL
+    fig['style']="vertical-align:middle"
+    fig['src']=settings.http_head + out_img
+    img=create_img_tag(fig)
 
-    html = '<img  style="vertical-align:middle" src="' + http_head + out_img + \
-           '" height=' + "{:.1f}".format(fig["height"]) + '/>'
-
-    return {'html':html, 'mode':mode}
+    return {'html':etree.tostring(img).decode('utf8'), 'mode':mode}
 
 ##处理m:oMath元素
 def o_math2html(doc, child):
@@ -380,6 +398,7 @@ def o_math2html(doc, child):
 
 ###检测1个run里面是否有多种内容，这种情况是无效的！！
 def check_run(child):
+
     tag = get_tag(child)
     if tag == 'm:oMath' or tag == 'm:oMathPara' or tag=='w:tab':
         return  1
@@ -460,23 +479,21 @@ def w_tbl2html(doc, child):
 ####段落转html-----------------
 def paragraph2html(doc, parent_element):
 
-    children = parent_element.getchildren()
-    htmls = []
-
 ###表格，它本身就是一个段落，处理后返回
-    if parent_element.xpath('./w:tblPr', namespaces=docx_nsmap):
+    if parent_element.tag=='{'+docx_nsmap['w']+'}tblPr':
         return  w_tbl2html(doc, parent_element)
-
+    children = doc.elements
+    htmls = []
 ###不是表格的情况
-    for child in children:
-        tag = get_tag(child)
+    for child in parent_element.getchildren():
 
+        tag = get_tag(child)
         if tag=='w:pPr':
             continue
         vv = check_run(child)
         if vv > 1:
             print('警告！！！run中包含了多个类型，将只处理第一个类型 ')
-            continue
+            # continue
         elif vv == 0:
             # print('run里面没有找到合适元素！,可能有未识别的')
             pass
@@ -509,27 +526,25 @@ def check_options(options):
             print('获取options错误，请检查')
             return False
     return True
-###
-def get_element():
-    pass
+
 ###获取选项的文本 + 特殊格式
 ###默认认为选项的字体等信息是不重要的！！！！
 def options2html(doc, row):
     # result=[]
     text = ''
-    body_elements = get_body_elements(doc)
-    children = body_elements[row].getchildren()
+    children = doc.elements
 
-    for child in children:
+    for text,child in children.items():
+
         tag = get_tag(child)
 
         if tag=='w:pPr':
             continue
         vv = check_run(child)
         if vv > 1:
-            print('run中包含了多个类型 ')
+            print('run中包含了多个类型,将只处理第一个！')
             print('run=', child)
-            exit()
+
         elif vv == 0:
             # print('options2html: run里面没有找到合适元素！')
             continue
@@ -553,12 +568,9 @@ def options2html(doc, row):
 
 ###处理options，得到options的html
 def get_option_htmls(doc, options_indexes):
-
     option_html = ''
-    body_element=get_body_elements(doc)
-
     for index in options_indexes:
-        option_html += paragraph2html(doc, body_element[index])   ###所有options组合起来的html
+        option_html += paragraph2html(doc, doc.elements[index]['element'])   ###所有options组合起来的html
     options_htmls = split_options(option_html)   ###把每个optiion拆分出来
 
     if not check_options(options_htmls):
@@ -573,10 +585,10 @@ def paragraphs2htmls(doc, title_indexes):
     htmls = []
 
     for index in title_indexes:
-        element=get_body_elements(doc)[index]
+        element=doc.elements[index]['element']
 
         html = paragraph2html(doc, element)
-
+        print('处理段落：', doc.elements[index]['text'])
         if html.strip()!='':
             htmls.append(html)
     result=''
@@ -595,7 +607,7 @@ def get_float_image( doc, xiaoti_indexes, curr_xiaoti_index):
         indexes.extend(xiaoti_indexes[curr_xiaoti_index]['options'])
 
     for index in indexes:
-        element=get_body_elements(doc)[index]
+        element=doc.elements[index]['element']
         x=element.xpath('.//w:drawing/wp:anchor', namespaces=docx_nsmap)
         if x:
             result=w_drawing2html(doc, x[0].getparent().getparent())
@@ -603,23 +615,8 @@ def get_float_image( doc, xiaoti_indexes, curr_xiaoti_index):
                 htmls.append(result['html'])
     return ''.join(htmls)
 
-###
-def get_element_text(doc, index):
-    body_element = etree.fromstring(doc.element.xml).xpath('.//w:body', namespaces=docx_nsmap)[0]
-    children = body_element.getchildren()
-    return element2text(children[index])
-
-###element to text
-def element2text(element):
-    texts=element.xpath('.//w:t/text()', namespaces=docx_nsmap)
-    return ''.join(texts)
-
-def get_body_elements(doc):
-    return etree.fromstring(doc.element.xml).xpath('.//w:body', namespaces=docx_nsmap)[0].getchildren()
 
 def get_ti_content(doc, xiaoti_indexes, curr_xiaoti_index, curr_dati_row, mode_text):
-
-    body_elements=get_body_elements(doc)
 
     curr_row = xiaoti_indexes[curr_xiaoti_index]['title'][0]
     #####上一个题目的结尾的行号+1
@@ -645,7 +642,7 @@ def get_ti_content(doc, xiaoti_indexes, curr_xiaoti_index, curr_dati_row, mode_t
 
     i = 0
 
-    n = get_question_quantity( body_elements[title_start_row], mode_text)
+    n = get_question_quantity( doc.elements[title_start_row]['element'], mode_text)
     questions = []
     while (i < n):
         question = get_xiaoti_content(doc, xiaoti_indexes, curr_xiaoti_index + i)
@@ -671,7 +668,7 @@ def get_xiaoti_content(doc, xiaoti_indexes, curr_index):
     if 'options' in xiaoti_indexes[curr_index]:
         option_indexes = xiaoti_indexes[curr_index]['options']
         q['options'] = get_option_htmls(doc, option_indexes)
-        if '一项' in   get_element_text(doc, title_indexes[0]) :
+        if '一项' in   doc.elements[title_indexes[0]]['text'] :
             q['type']='SINGLE'
         else:
             q['type'] = 'MULTIPLE'

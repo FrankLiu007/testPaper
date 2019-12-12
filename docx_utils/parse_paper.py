@@ -3,6 +3,7 @@ import re
 from lxml import etree
 import uuid
 from docx_utils.namespaces import namespaces as docx_nsmap
+import pycnnum
 #####主要是进行版面分析，把每个题的标题、选项等部分所在的段落号，计算出来
 
 # 判断是否为标题
@@ -13,18 +14,6 @@ def isNumber(char):
         return True
     return False
 
-##获取下一个数字
-def get_next_number(text):
-    num1 = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-    num2 = ['一', '二', '三', '四', '五', '六', '七', '八', '九']
-    next_number = ''
-    if text.isdigit():
-        next_number = str(int(text) + 1)
-    else:
-        for i in range(0, len(num2)):
-            if num2[i] == text:
-                next_number = num2[i + 1]
-    return next_number
 
 ###计算模式字符串
 def get_mode_string(text):
@@ -158,7 +147,7 @@ def parse_one_titype(curr_row, next_row, xiaoti_indexes, children):  ##处理1�
 def isObjective(curr_row, next_row, children):
     # print('next_row=',next_row)
     for i in range(curr_row, next_row):
-        text = get_text(children[i]).strip()
+        text = children[i]['text'].strip()
         if re.match(r'[A-G][．\.]', text):
             return (True, i)
     return (False, -1)
@@ -175,7 +164,7 @@ def parse_ti(xiaoti_indexes, curr_row, next_row, children):
         for i in range(curr_row, index):
             ti['title'].append(i)
         for j in range(index, next_row):
-            if re.match(r'[A-G][．\.]', get_text(children[j])):
+            if re.match(r'[A-G][．\.]', children[j]['text']):
                 options.append(j)
         ti['options'] = options
     else:
@@ -232,16 +221,14 @@ def remove_blank_paragraph(doc):
     print('空白段落总数：', nn)
 
     return 0
-##new version of analys_layout
+
 def find_xiaoti_row(dati_start_row, doc):
     xiaoti_row=[]
-
-    tree=etree.fromstring(doc.element.xml)
-    children = tree.xpath('.//w:body', namespaces=docx_nsmap)[0].getchildren()
+    children = doc.elements
 
     curr_number=0
     for n in range(dati_start_row,len(children)):
-        text=get_text(children[n]).strip()
+        text=children[n]['text'].strip()
 
         x=''
         if len(text)<3:
@@ -260,75 +247,76 @@ def find_xiaoti_row(dati_start_row, doc):
             xiaoti_row.append((n , text,x ))
 
     return xiaoti_row
-### get text from etree element
-def get_text(child):
-    texts = child.xpath('.//w:t/text()', namespaces=docx_nsmap)
-    if texts:
-        return ''.join(texts)
-    else:
-        return ''
 
 ####找出大题的行
-def   find_dati_row( doc):
-    tree=etree.fromstring(doc.element.xml)
-    children = tree.xpath('.//w:body', namespaces=docx_nsmap)[0].getchildren()
-
-    num2 = {'一':'1','二':'2','三':'3','四':'4','五':'5','六':'6','七':'7','八':'8','九':'9', '十':'10'}
-
-    mode_text=''
-    dati_row=[]
-    ###get mode text
-    for i in range(0, len(children)):
-        text=get_text(children[i])
-        if text =='':
-            continue
-
-        x=''
-        if len(text)<4:
-            continue
-        for j in range(0,4):
-            if text[j] in num2:
-                x=x+text[j]
-                if mode_text=='' and x=='一':
-                    mode_text=text[:j+2]
-                    break
-        if mode_text:
-            # mode.append((i, mode_text))
-            break
-    if not mode_text:
-        print('没有找到大题特征字符：一')
-        exit(1)
-
-    curr_number = '一'
-    ss = mode_text
-    p = mode_text.find('一')
-    for i in range(0, len(children)):
-        text=get_text(children[i])
-        if text =='':
-            continue
-
-        if re.match(r'[\s\.、.]',mode_text[p+1] ) :  ###（一、一 一. ）等大题模式
-            rr= '^'+mode_text[:p] + curr_number + r'[\s\.、.]'
-            if re.match(rr, text):
-                dati_row.append((i, text, ss,))
-                next_number = get_next_number(curr_number)
-                ss = mode_text.replace('一', next_number)
-                curr_number = next_number
-        else:  ##不是（一、一 一. ）等大题模式，比如（第一部分 ）
-            if text.startswith(ss):
-                dati_row.append((i, ss, text))
-                next_number = get_next_number(curr_number)
-                ss = mode_text.replace('一', next_number)
-                curr_number = next_number
-
+def find_dati_row( doc):
+    children = doc.elements
+    dati_row = []
+    curr_num=1
+    for i in range(0,len(children)):
+        text = children[i]['text'].strip()
+        rr=r'^'+pycnnum.num2cn(curr_num)+r'[\s\.、．]'
+        if re.match(rr, text ):
+            dati_row.append((i, text, '一、'))
+            curr_num+=1
     return dati_row
+
+# def find_dati_row2( doc):
+#     children = doc.elements
+#
+#     num2 = {'一':'1','二':'2','三':'3','四':'4','五':'5','六':'6','七':'7','八':'8','九':'9', '十':'10'}
+#
+#     mode_text=''
+#     dati_row=[]
+#     ###get mode text
+#     curr_num=1
+#     for i in range(0, len(children)):
+#         text=children[i]['text']
+#         if text =='':
+#             continue
+#         x=''
+#         if len(text)<4:
+#             continue
+#         for j in range(0,4):
+#             if text[j] in num2:
+#                 x=x+text[j]
+#                 if mode_text=='' and x=='一':
+#                     mode_text=text[:j+2]
+#                     break
+#         if mode_text:
+#             # mode.append((i, mode_text))
+#             break
+#     if not mode_text:
+#         print('没有找到大题特征字符：一')
+#         exit()
+#
+#     curr_number = '一'
+#     ss = mode_text
+#     p = mode_text.find('一')
+#     for i in range(0, len(children)):
+#         text=children[i]['text']
+#         if text =='':
+#             continue
+#
+#         if re.match(r'[\s\.、.]',mode_text[p+1] ) :  ###（一、一 一. ）等大题模式
+#             rr= '^'+mode_text[:p] + curr_number + r'[\s\.、.]'
+#             if re.match(rr, text):
+#                 dati_row.append((i, text, ss,))
+#                 next_number = get_next_number(curr_number)
+#                 ss = mode_text.replace('一', next_number)
+#                 curr_number = next_number
+#         else:  ##不是（一、一 一. ）等大题模式，比如（第一部分 ）
+#             if text.startswith(ss):
+#                 dati_row.append((i, ss, text))
+#                 next_number = get_next_number(curr_number)
+#                 ss = mode_text.replace('一', next_number)
+#                 curr_number = next_number
+#
+#     return dati_row
 
 
 def processPaper2(doc):
-
-    tree=etree.fromstring(doc.element.xml)
-    children = tree.xpath('.//w:body', namespaces=docx_nsmap)[0].getchildren()
-
+    children = doc.elements
     dati_indexes=find_dati_row( doc)
     xiaoti_indexes=find_xiaoti_row(dati_indexes[0][0], doc)
     if (len(dati_indexes)==0) or (len(xiaoti_indexes)==0):

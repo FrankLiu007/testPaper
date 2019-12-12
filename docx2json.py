@@ -1,6 +1,6 @@
 import docx
 from docx_utils.parse_paper import  processPaper2
-from docx_utils.ti2html import get_ti_content,  get_element_text
+from docx_utils.ti2html import get_ti_content
 import re
 import json
 import sys
@@ -8,6 +8,7 @@ import os
 from docx_utils import settings
 from docx_utils import namespaces as docx_nsmap
 from lxml import etree
+import docx_utils.MyDocx as MyDocx
 '''
 ###获取答案
 #答案和试卷不一样，答案一定是先有题号，然后跟着答案。
@@ -52,13 +53,16 @@ def add_score_and_titype(ti, text):
 
     ###题型 titpye
     xx = re.findall(r'(.{1,8}题)', text)[0]
+    re.sub(r'^\d{1,2}[.．]\s{0,}', '<p>', xx)
     b = text.find('、')
     e = text.find('题')
+
     if b != -1 and e != -1:
         type_str = xx[b + 1:e + 1]
         if b > 3:
             print('题型识别可能出错：', xx[b + 1:e + 1])
-    ti['category'] = type_str
+    if 'type_str' in locals():
+        ti['category'] = type_str
 
     q_tpye = 'GENERAL'
     if '只有一项' in text or '的一项是' in text:
@@ -96,16 +100,16 @@ def get_tis(doc, all_ti_index):
         curr_index = 0
         while (curr_index < len(xiaoti_indexes)):
             curr_index, ti = get_ti_content(doc, xiaoti_indexes, curr_index, curr_dati_row, mode_text)
-            add_score_and_titype(ti, get_element_text( doc,curr_dati_row) )
+            add_score_and_titype(ti, doc.elements[curr_dati_row]['text'] )
             tis.append(ti)
     return tis
-
 
 # -----------------------------------------
 def docx_paper2json(pars):
     data_dir = pars['working_dir']
     paper_path = pars['question_docx']
-    doc = docx.Document(os.path.join(data_dir, paper_path))
+    doc = MyDocx.Document(os.path.join(data_dir, paper_path))
+
     all_ti_index = processPaper2(doc)
 
     ###处理试卷
@@ -235,12 +239,12 @@ if __name__ == "__main__":
     if len(sys.argv)<5:  ###跑例子用的默认参数,保证在ipython下面也可以直接跑
         print('参数错误，正确用法： docx2json.py 真题.docx 答案.docx')
         pars['working_dir'] = 'data'
-        pars['subject'] = '化学'
-        pars['question_docx'] = '2019年咸宁高中高一年级10月25日化学周练.docx'
+        pars['subject'] = '数学'
+        pars['question_docx'] = '崇阳一中2020届高三理科数学测试卷.docx'
         # pars['answer_docx'] = '2019年全国I卷理科数学高考真题答案.docx'
         pars['img_dir'] = 'img'
         pars['http_head'] = ' https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/'
-        pars['out_json'] = '化学.json'
+        pars['out_json'] = '数学.json'
 
     else:
         pars = parse_commandline(sys.argv)
