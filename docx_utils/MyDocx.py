@@ -111,10 +111,16 @@ class Document:
                 id=relation.attrib['Id']
                 resource['id']=id
                 path=relation.attrib['Target']
+
                 if path.startswith('..'):
                     path=path.replace('../', '')
                 else:
                     path='word/'+path
+                if 'TargetMode'in relation.attrib:   ####外部的资源文件，不要读取
+                    if relation.attrib['TargetMode']=="External":
+                        resource['path'] = path
+                        rIds[id] = resource.copy()
+                        continue
 
                 f2=zip_handle.open(path, 'r')
                 resource['blob']=f2.read()
