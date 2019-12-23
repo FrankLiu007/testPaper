@@ -14,84 +14,6 @@ def isNumber(char):
         return True
     return False
 
-
-# ###计算模式字符串
-# def get_mode_string(text):
-#     tt = text[0:3]
-#     k = 0
-#     mode_string = ''
-#     for i in range(0, 3):
-#         if isNumber(text[i]):
-#             k = i
-#             break
-#     if k == 0:
-#         if text[1] in ['\t', ' ']:
-#             mode_string = ''
-#     return mode_string
-
-#分析试卷的版面
-# 大题模式为中文数字一 ， 小题模式为 阿拉伯数字 1
-# def analys_layout(doc):
-#     '''
-#     :param doc:
-#     :return: tree
-#     格式：[ (row,paragraphs[row].text, mode_text),(...)]
-#     '''
-#     pars = []  ###可能
-#     paragraphs = doc.paragraphs
-#     row = 0
-#
-#     ##找出所有带数字的行和行号(  中文数字 一， 阿拉伯数字 1 )
-#     while (row < len(paragraphs)):
-#         text = paragraphs[row].text.strip()
-#         for n in range(0, 4):
-#             if n >= len(text):
-#                 continue
-#             if isNumber(text[n]):
-#                 pars.append((n, row, text))  ##n--数字出现的位置，i--段落号
-#                 break
-#         row = row + 1
-#
-#     ##找所有模式，行号为 1 或者 一
-#     modes = []
-#     for n, row, text in pars:
-#         if n == 0:
-#             if text[n] in ['1', '一'] and (not isNumber(text[n + 1])):
-#                 modes.append((n, row, text, text[n]))
-#         else:
-#             if text[n] in ['1', '一'] and (not isNumber(text[n - 1])) and (not isNumber(text[n + 1])):
-#                 modes.append((n, row, text, text[n]))
-#
-#     tree = []
-#     for i in range(0, len(modes)):  ##每个模式
-#         n, begin_row, text, mode_text = modes[i]  ##n为行号
-#         tmp_mode = []
-#         tmp_mode.append((begin_row, text, mode_text))
-#
-#         next_number = get_next_number(mode_text)
-#         if text[n+1]=='．':
-#             text=text[:n+1]+'.'+text[n+2:] ###全角半角“.”的转换，防止用户没有正确使用“.”号
-#
-#         for row in range(begin_row + 1, len(paragraphs)):  ###查找某个模式的所有的值
-#             tt=paragraphs[row].text.strip()
-#             if len(tt)<n+2:
-#                 continue
-#             x=tt.find('．')
-#             if x!=-1 and x <=n+2:
-#                 tt=tt[:x]+'.'+tt[x+1:]   ###全角半角"."的转换，防止用户没有正确使用"."号
-#
-#             if tt.startswith(text[:n] + mode_text + text[n + 1]):  ##发现了相同的模式，退出
-#                 break
-#             if tt.startswith(text[:n] + next_number + text[n + 1]):
-#                 # print('next_string:', text[:n] + next_number + text[n + 1], paragraphs[row].text)
-#                 next_number = get_next_number(next_number)
-#                 tmp_mode.append((row, tt, text[:n] + mode_text + text[n + 1]))
-#         if len(tmp_mode) > 1:
-#             tree.append(tmp_mode.copy())
-#
-#     return tree
-
-
 ##获取1个选项，[A-G]. 形式的
 def get_option(text):
     text = text.strip()
@@ -182,7 +104,7 @@ def get_title_rows(doc_elements, b_row, curr_row, mode_text):
 def parse_one_titype(curr_row, end_row, xiaoti_indexes, doc_elements, mode_text):
     tis = []
     i = 0
-    curr_row+=1
+    # curr_row+=1
 
     while i < len(xiaoti_indexes):
         if i==len(xiaoti_indexes)-1:   ###最后一个小题
@@ -251,7 +173,7 @@ def parse_question(xiaoti, end_row, doc_elements):
 
         question['options'] = options
     else:
-        question['stem']=list(range(start_row, end_row))
+        question['stem']=list(range(start_row, end_row+1))
         question['end_row'] = end_row
 
     return question
@@ -266,8 +188,6 @@ def check_run(child):
         print('docx格式出错了，len(w:rPr)!=1')
     elif len(rPr) == 1:
         run.remove(rPr[0])
-    # else: 没有rPr,啥都不用做
-
     wt = run.xpath('.//w:t', namespaces=run.nsmap)
     wdrawing = run.xpath('.//w:drawing', namespaces=run.nsmap)
     moMath = run.xpath('.//m:oMath', namespaces=docx_nsmap)
@@ -370,8 +290,9 @@ def AnalysQuestion(doc,start_row, end_row,mode_text ):
             xiaotis=get_dati_children(dati_indexes, i, xiaoti_indexes)
         else:
             next_row, next_text, mode_tt = dati_indexes[i + 1]
+            next_row-=1
             xiaotis=get_dati_children(dati_indexes, i, xiaoti_indexes)
-        tis = parse_one_titype(curr_row, next_row, xiaotis, doc_elements, mode_text)  ##处理1种题型的所有题目
+        tis = parse_one_titype(curr_row+1, next_row, xiaotis, doc_elements, mode_text)  ##处理1种题型的所有题目
         all_ti.append(tis.copy())
         i = i + 1
         curr_row = next_row
@@ -444,4 +365,4 @@ def remove_brackets(sentence):
 if __name__ == "__main__":
     path = 'data/2019年全国II卷文科综合高考真题.docx'
     doc = MyDocx.Document(path)
-    all_ti_index = processPaper2(doc)
+

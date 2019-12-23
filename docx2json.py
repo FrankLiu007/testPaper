@@ -14,22 +14,6 @@ import docx_utils.MyDocx as MyDocx
 # 试卷则不同，试卷的选择题里面有材料题（看一段材料，做几个选择题，请参照文综试卷的选择题部分）
 '''
 
-def get_answer(doc, answer_indexes):
-    all_answer = {}
-    for dati in answer_indexes:
-        curr_dati_row = dati[0]
-        xiaoti_indexes = dati[1]
-        curr_index = 0
-        while curr_index < len(xiaoti_indexes):
-            curr_index, ans = get_ti_content(doc, xiaoti_indexes, curr_index, curr_dati_row, '')
-            if len(ans['questions']) != 1:
-                print('答案格式错误！')
-            content = re.sub(r'^<p>\d{1,2}[.．]\s{0,}', '', ans['questions'][0]['stem'])
-
-            all_answer[ans['questions'][0]['number']] = content
-    return all_answer
-
-
 def merge_answer(tis, answers):
     for ti in tis:
         reference = ''
@@ -104,7 +88,11 @@ def docx_paper2json(pars):
     paper_path = pars['question_docx']
     doc = MyDocx.Document(os.path.join(data_dir, paper_path))
     answer_start_row=get_answer_start_row(doc)
-    all_ti_index = AnalysQuestion(doc, 0, answer_start_row-1, mode_text)
+    if answer_start_row==-1:
+        end_row=len(doc.elements)
+    else:
+        end_row=answer_start_row
+    all_ti_index = AnalysQuestion(doc, 0, end_row-1, mode_text)
 
     ###处理试卷
     print('开始处理试卷...')
@@ -230,7 +218,7 @@ if __name__ == "__main__":
         print('参数错误，正确用法： docx2json.py 真题.docx 答案.docx')
         pars['working_dir'] = 'data'
         pars['subject'] = '数学'
-        pars['question_docx'] = '高二地理周考卷9.docx'
+        pars['question_docx'] = '2019年全国I卷理科数学高考真题.docx'
         # pars['answer_docx'] = '2019年全国I卷理科数学高考真题答案.docx'
         pars['img_dir'] = 'img'
         pars['http_head'] = ' https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/'

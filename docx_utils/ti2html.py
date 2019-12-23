@@ -1,5 +1,4 @@
 import docx_utils.MyDocx as MyDocx
-from docx_utils.parse_paper import AnalysQuestion
 import re
 from lxml import etree
 from dwml import omml
