@@ -1,6 +1,5 @@
-import docx
-from docx_utils.parse_paper import  processPaper2
-from docx_utils.ti2html import get_ti_content
+from docx_utils.parse_paper import  AnalysQuestion, AnalysAnswer
+from docx_utils.ti2html import get_ti_content, paragraphs2htmls
 import re
 import json
 import sys
@@ -15,9 +14,9 @@ import docx_utils.MyDocx as MyDocx
 # 试卷则不同，试卷的选择题里面有材料题（看一段材料，做几个选择题，请参照文综试卷的选择题部分）
 '''
 
-def get_answer(doc, all_indexes):
+def get_answer(doc, answer_indexes):
     all_answer = {}
-    for dati in all_indexes:
+    for dati in answer_indexes:
         curr_dati_row = dati[0]
         xiaoti_indexes = dati[1]
         curr_index = 0
@@ -31,17 +30,18 @@ def get_answer(doc, all_indexes):
     return all_answer
 
 
-def merge_answer(tis, answer_list):
+def merge_answer(tis, answers):
     for ti in tis:
         reference = ''
         for q in ti['questions']:
 
-            q['solution'] = answer_list[q['number']]
-            reference = reference + q['number'] + '. ' + q['solution']
+            q['solution'] = answers[q['number']]['answer']
             if 'options' in q:
                 q['solution'] = q['solution'].replace('<p>', '').replace('</p>', '').strip()  ####选择题的答案不能是html
             else:
                 q.pop('solution')
+            reference = reference + q['number'] + '. 【答案】' + answers[q['number']]['answer']+"<p>【解析】</p>"+answers[q['number']]['explain']
+
 
         ti['reference'] = reference
     return 0
@@ -50,19 +50,11 @@ def merge_answer(tis, answer_list):
 #####给题目增加分数和题型
 def add_score_and_titype(ti, text):
     score = re.findall(r'每[小]{0,1}题(\d{1,2})分', text)  ##，每个小题的分数
-
     ###题型 titpye
-    xx = re.findall(r'(.{1,8}题)', text)[0]
-    re.sub(r'^\d{1,2}[.．]\s{0,}', '<p>', xx)
-    b = text.find('、')
-    e = text.find('题')
-
-    if b != -1 and e != -1:
-        type_str = xx[b + 1:e + 1]
-        if b > 3:
-            print('题型识别可能出错：', xx[b + 1:e + 1])
-    if 'type_str' in locals():
-        ti['category'] = type_str
+    txt=re.sub(r'^[\d一二三四五六七八九]{1,2}[\s.．、]{0,3}', '', text).strip()
+    e = txt.find('题')
+    type_str = txt[:e + 1]
+    ti['category'] = type_str
 
     q_tpye = 'GENERAL'
     if '只有一项' in text or '的一项是' in text:
@@ -88,53 +80,51 @@ def add_score_and_titype(ti, text):
     return 0
 
 def get_tis(doc, all_ti_index):
-    mode_text = r'完成\d{1,2}～\d{1,2}题'  ##模式字符串
+    all_tis = []
 
-    tis = []
-    # while(i<len(all_ti_index)):
     for dati in all_ti_index:
-        curr_dati_row = dati[0]
+        for ti_index in dati:
+            ti=get_ti_content(doc, ti_index)
+            all_tis.append(ti)
+    return all_tis
 
-        xiaoti_indexes = dati[1]  ####题目集合index
-        curr_row = xiaoti_indexes[0]  # 题型段落index
-        curr_index = 0
-        while (curr_index < len(xiaoti_indexes)):
-            curr_index, ti = get_ti_content(doc, xiaoti_indexes, curr_index, curr_dati_row, mode_text)
-            add_score_and_titype(ti, doc.elements[curr_dati_row]['text'] )
-            tis.append(ti)
-    return tis
+###-----------------------
+def get_answer_start_row(doc):
+    row=-1
+    for i in range(0,len(doc.elements)) :
+        if '参考答案' in doc.elements[i]['text']:
+            row= i+1
+            break
+    return row
 
 # -----------------------------------------
 def docx_paper2json(pars):
+    mode_text = r'(\d{1,2})[～\-~](\d{1,2})[小]{0,1}题'
     data_dir = pars['working_dir']
     paper_path = pars['question_docx']
     doc = MyDocx.Document(os.path.join(data_dir, paper_path))
-
-    all_ti_index = processPaper2(doc)
+    answer_start_row=get_answer_start_row(doc)
+    all_ti_index = AnalysQuestion(doc, 0, answer_start_row-1, mode_text)
 
     ###处理试卷
-    i = 0
     print('开始处理试卷...')
     tis = get_tis(doc, all_ti_index)
     ####处理答案
-    if 'answer_docx' in pars:
-        answer_path = pars['answer_docx']
+    if answer_start_row!=-1:
         print('开始处理答案...')
-        answer_fullpath=os.path.join(data_dir, answer_path)
-        if not os.path.exists(answer_fullpath):
-            print('答案文件不存在！忽略答案文件！')
-            return tis
-        doc = docx.Document(answer_fullpath)
-        all_answer_index = processPaper2(doc)
-        if not all_answer_index:
-            print('all_answer_index = processPaper2(doc)')
-            print('分析答案版面出错！')
-            return tis
-        answers = get_answer(doc, all_answer_index)
-        if not answers:
+        answer_indexes=AnalysAnswer(doc,answer_start_row,len(doc.elements)-1)
+        if not answer_indexes:
             print('answers = get_answer(doc, all_answer_index)')
             print('获取答案内容出错！')
             return tis
+        answers={}
+        for answer_index in answer_indexes:
+            answer={'answer':'','explain':'','num':answer_index['num']}
+            if answer_index['answer']:
+                answer['answer']=paragraphs2htmls(doc,answer_index['answer'])
+            if answer_index['explain']:
+                answer['explain']=paragraphs2htmls(doc,answer_index['explain'])
+            answers[answer['num']]=answer.copy()
         print('开始 合并试题和答案...')
         merge_answer(tis, answers)
 
@@ -240,7 +230,7 @@ if __name__ == "__main__":
         print('参数错误，正确用法： docx2json.py 真题.docx 答案.docx')
         pars['working_dir'] = 'data'
         pars['subject'] = '数学'
-        pars['question_docx'] = '崇阳一中2020届高三理科数学测试卷.docx'
+        pars['question_docx'] = '高二地理周考卷9.docx'
         # pars['answer_docx'] = '2019年全国I卷理科数学高考真题答案.docx'
         pars['img_dir'] = 'img'
         pars['http_head'] = ' https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/'
@@ -251,8 +241,6 @@ if __name__ == "__main__":
 
     print('开始检查输入参数...')
     check_pars(pars)
-
-
 
     print('开始检查运行环境...')
     check_env()
@@ -267,7 +255,6 @@ if __name__ == "__main__":
     elif subject == '英语':
         pass
     else:
-
         tis = docx_paper2json(pars)
 
     with  open(os.path.join(pars['working_dir'], pars['out_json']), 'w', encoding='utf-8') as fp:

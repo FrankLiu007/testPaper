@@ -1,5 +1,5 @@
-import docx
-from docx_utils.parse_paper import processPaper2
+import docx_utils.MyDocx as MyDocx
+from docx_utils.parse_paper import AnalysQuestion
 import re
 from lxml import etree
 from dwml import omml
@@ -21,8 +21,8 @@ import io
 
 ##获取材料题，到底有多少小问（题）
 def get_question_quantity(element, mode_text):
-    text = element2text(element)
-    r = re.findall(r'据此完成(\d{1,2})～(\d{1,2})题', text)
+    text = ''.join( element.xpath('.//w:t/text()', namespaces=docx_nsmap) )
+    r = re.findall(mode_text, text)
     start_ti_number, stop_ti_number = r[0]
     start_ti_number = int(start_ti_number)
     stop_ti_number = int(stop_ti_number)
@@ -43,9 +43,14 @@ def find_title_row(doc, b_row, curr_row, mode_text):
         x = re.findall(mode_text, doc.elements[i]['text'])
         if len(x) != 0:
             return i
-
     return -1
 
+##emu2px
+#  1 inch = 914400 EMU
+#  1 inch = 72*4/3
+def emu2px(emu):
+    px=int(emu)/914400*72*4/3
+    return px
 ## 获取各个选项
 def split_options(option_html):
     ops = []
@@ -230,9 +235,13 @@ def create_img_tag(fig):
     img.attrib['style']=fig['style']
     img.attrib['src']=fig['src']
     img.attrib['height']=fig["height"]
+    img.attrib['width'] = fig["width"]
     return img
 
 ####Pt In 转html的pt
+def sz2px(sz):
+    pt=sz/144*72*4/3
+    return pt
 def PtIn2px(height):
 
     if 'in' in height:
@@ -263,7 +272,7 @@ def w_pict2html(doc, child):
         a,b=style.split(':')
         fig['styles'][a]=b
     fig['rId']=pic.xpath('.//v:imagedata', namespaces=docx_nsmap)[0].attrib['{'+docx_nsmap['r']+'}id']
-    fig['path'] = doc.part.rels[fig['rId']].target_ref
+    fig['path'] = doc.rIds[fig['rId']]['path']
     fig['blob']=doc.rIds[fig['rId']]['blob']
     fig['width']=PtIn2px(fig['styles']['width'])
     fig['height'] =PtIn2px(fig['styles']['height'])
@@ -282,7 +291,7 @@ def w_pict2html(doc, child):
         if  status:
             print('Warning! '+fig['path'] +'转png失败！')
     else:
-        image=Image.open(io.BytesIO(fig['img_part'].blob))
+        image=Image.open(io.BytesIO(fig['blob']))
         out_img_path=fname+'.png'
         image.save(os.path.join(img_dir, out_img_path))          ###convert all image to .png by PIL
 
@@ -346,8 +355,8 @@ def w_drawing2html(doc, child):
     fig = dict()
     size_ele = pic.xpath('.//wp:extent ', namespaces=docx_nsmap)[0]
 
-    width = int(size_ele.attrib['cx']) / (360000 * 0.0264583)
-    height = int(size_ele.attrib['cy']) / (360000 * 0.0264583)
+    width = emu2px(size_ele.attrib['cx'])
+    height = emu2px(size_ele.attrib['cy'])
     fig['width'] ="{:.0f}".format( width)
     fig['height'] ="{:.0f}".format(height)
 
@@ -455,7 +464,7 @@ def merge_wt(tree):  ###一个段落
 ##处理表格
 def w_tbl2html(doc, child):
     tbl={}
-    rows=child.xpath('./w:gridCol', namespaces=docx_nsmap)
+    rows=child.xpath('./w:tblGrid/w:gridCol', namespaces=docx_nsmap)
     tbl['row_number']=len(rows)
     tbl['rows']=[]
     for row in rows:
@@ -480,7 +489,7 @@ def w_tbl2html(doc, child):
 def paragraph2html(doc, parent_element):
 
 ###表格，它本身就是一个段落，处理后返回
-    if parent_element.tag=='{'+docx_nsmap['w']+'}tblPr':
+    if parent_element.tag=='{'+docx_nsmap['w']+'}tbl':
         return  w_tbl2html(doc, parent_element)
     children = doc.elements
     htmls = []
@@ -581,33 +590,26 @@ def get_option_htmls(doc, options_indexes):
 
 ##for titel, 不包含选项的段落，可以直接转换
 def paragraphs2htmls(doc, title_indexes):
-
     htmls = []
-
     for index in title_indexes:
         element=doc.elements[index]['element']
 
         html = paragraph2html(doc, element)
-        print('处理段落：', doc.elements[index]['text'])
+        # print('处理段落：', doc.elements[index]['text'])
         if html.strip()!='':
             htmls.append(html)
     result=''
+
     for html in htmls:
         result=result+ '<p>'+html+'</p>'
-
-    return result
+    image_html = get_float_image(doc, title_indexes)
+    return result+image_html
 
 ###单独处理浮动的图片
-def get_float_image( doc, xiaoti_indexes, curr_xiaoti_index):
-
+def get_float_image( doc, row_list):
     htmls=[]
-    indexes=[]
-    indexes.extend(xiaoti_indexes[curr_xiaoti_index]['title'])
-    if 'options' in xiaoti_indexes[curr_xiaoti_index]:
-        indexes.extend(xiaoti_indexes[curr_xiaoti_index]['options'])
-
-    for index in indexes:
-        element=doc.elements[index]['element']
+    for row in row_list:
+        element=doc.elements[row]['element']
         x=element.xpath('.//w:drawing/wp:anchor', namespaces=docx_nsmap)
         if x:
             result=w_drawing2html(doc, x[0].getparent().getparent())
@@ -615,59 +617,30 @@ def get_float_image( doc, xiaoti_indexes, curr_xiaoti_index):
                 htmls.append(result['html'])
     return ''.join(htmls)
 
+####获取每个题的html文本
+def get_ti_content(doc, ti_index):
 
-def get_ti_content(doc, xiaoti_indexes, curr_xiaoti_index, curr_dati_row, mode_text):
-
-    curr_row = xiaoti_indexes[curr_xiaoti_index]['title'][0]
     #####上一个题目的结尾的行号+1
-    if curr_xiaoti_index == 0:
-        last_row = curr_dati_row
-    else:
-        if 'options' in xiaoti_indexes[curr_xiaoti_index - 1]:
-            # print('xiaoti_indexes[{0}]'.format(curr_xiaoti_index - 1), xiaoti_indexes[curr_xiaoti_index - 1])
-            last_row = xiaoti_indexes[curr_xiaoti_index - 1]['options'][-1]
-        else:
-            last_row = xiaoti_indexes[curr_xiaoti_index - 1]['title'][-1]
-
-    title_start_row = find_title_row(doc, last_row + 1, curr_row, mode_text)
-    if title_start_row == -1:  ###不是大题包含小题模式（先有材料，然后跟几个题）
-        ti = get_xiaoti_content(doc, xiaoti_indexes, curr_xiaoti_index)
-        image_html=get_float_image(doc, xiaoti_indexes, curr_xiaoti_index)
-        ti['stem']=ti['stem'] + image_html
-        return (curr_xiaoti_index + 1, {'title':'', 'questions':[ti] })
-
-    ti = {}     ####开始处理大题包含小题的模式（材料题）
-    lst = list(range(title_start_row, curr_row))
-    ti['title'] = paragraphs2htmls(doc, lst)
-
-    i = 0
-
-    n = get_question_quantity( doc.elements[title_start_row]['element'], mode_text)
-    questions = []
-    while (i < n):
-        question = get_xiaoti_content(doc, xiaoti_indexes, curr_xiaoti_index + i)
-        image_html = get_float_image(doc, xiaoti_indexes, curr_xiaoti_index+i)
-        question['stem'] = question['stem']  + image_html
-        questions.append(question)
-        i = i + 1
-    ti['questions'] = questions
-
-    return (curr_xiaoti_index + n, ti)
+    ti={'questions':[], 'title':''}
+    if ti_index['title']:
+        ti['title']=paragraphs2htmls(doc, ti_index['title'])
+    for question in ti_index['questions']:
+        q=get_xiaoti_content(doc,question)
+        ti['questions'].append(q)
+    return ti
 
 
 ##处理1个小题
-def get_xiaoti_content(doc, xiaoti_indexes, curr_index):
+def get_xiaoti_content(doc, question):
     q = {}
-    title_indexes = xiaoti_indexes[curr_index]['title']
-
-    xx = paragraphs2htmls(doc, title_indexes)
+    title_indexes = question['stem']
+    xx = paragraphs2htmls(doc, title_indexes) + get_float_image(doc, title_indexes)
     q['stem']=re.sub(r'^<p>\d{1,2}[.．]\s{0,}', '<p>', xx)   ###去除题号
 
     q['number'] = re.findall(r'^<p>(\d{1,2})[.．、]\s{0,}', xx)[0]   ###获取题号
 
-    if 'options' in xiaoti_indexes[curr_index]:
-        option_indexes = xiaoti_indexes[curr_index]['options']
-        q['options'] = get_option_htmls(doc, option_indexes)
+    if 'options' in question:
+        q['options'] = get_option_htmls(doc, question['options'])
         if '一项' in   doc.elements[title_indexes[0]]['text'] :
             q['type']='SINGLE'
         else:
@@ -678,23 +651,10 @@ def get_xiaoti_content(doc, xiaoti_indexes, curr_index):
 
 if __name__ == "__main__":
     path = '../data/2019年全国II卷文科综合高考真题.docx'
-    doc = docx.Document(path)
-    all_ti_index = processPaper2(doc)
+    doc = MyDocx.Document(path)
+    all_ti_index = AnalysQuestion(doc,0,len(doc.elements))
 
 
     i = 0
-    mode_text = r'完成\d～\d题'  ##模式字符串
+    mode_text = r'\d{1,2}[～-~]\d{1,2}[小]{0,1}题'   ##模式字符串
 
-    tis = []
-    # while(i<len(all_ti_index)):
-    for dati in all_ti_index:
-
-        curr_dati_row = dati[0]
-        # guess_titype(paragraphs[curr_dati_row].text)
-
-        xiaoti_indexes = dati[1]
-        curr_row = xiaoti_indexes[0]
-        curr_index = 0
-        while (curr_index < len(xiaoti_indexes)):
-            curr_index, ti = get_ti_content(doc, xiaoti_indexes, curr_index, curr_dati_row, mode_text)
-            tis.append(ti)

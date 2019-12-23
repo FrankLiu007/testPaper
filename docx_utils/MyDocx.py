@@ -17,10 +17,13 @@ class Document:
     def numPr2text(self, child):
         numId=child.xpath('.//w:pPr/w:numPr/w:numId', namespaces=docx_nsmap)[0].attrib[self.w_val]
         ilvl=child.xpath('.//w:pPr/w:numPr/w:ilvl', namespaces=docx_nsmap)[0].attrib[self.w_val]
+        if not ( numId in self.numbering):
+            return ''
         numFmt=self.numbering[numId][ilvl]['numFmt']
         lvlText=self.numbering[numId][ilvl]['lvlText']
 
         curr_num = self.numbering[numId][ilvl]['current']
+        tt=''
         if numFmt=="chineseCountingThousand":
             tt=re.sub(r"%\d{1,2}", pycnnum.num2cn(curr_num) ,lvlText)
             self.numbering[numId][ilvl]['current'] += 1
@@ -39,7 +42,9 @@ class Document:
         elif numFmt=="decimal":
             tt = re.sub(r"%\d{1,2}", str(curr_num), lvlText)
             self.numbering[numId][ilvl]['current'] += 1
-
+        else:  ###其它情况一概用中文的一（居然遇到japaneseCounting）
+            tt=re.sub(r"%\d{1,2}", pycnnum.num2cn(curr_num) ,lvlText)
+            self.numbering[numId][ilvl]['current'] += 1
         return tt
 
     def get_text(self, child):
