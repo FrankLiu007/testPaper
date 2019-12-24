@@ -331,6 +331,15 @@ def get_crop_box(pic, size0):  ##担心有一天size被系统用了
     else:
         return ()
 
+###是否是水印图，最明显的是学科网的
+##暂时只删除学科网的小黄点，只主要靠ocr
+def is_watermark(fig):
+    if float(fig['height'])<5  and float(fig['width'])<5 :
+        return True
+    else:
+        return False
+
+
 ##处理w:drawing元素
 '''
 需要处理inline模式和float模式的2种图片，
@@ -366,11 +375,16 @@ def w_drawing2html(doc, child):
     fig['ext']=os.path.splitext(fig['fullpath'])[-1]
 
     fig['blob'] = doc.rIds[rId]['blob']
-
+    if is_watermark(fig):
+        return {'html':'', 'mode':mode}
     fname = uuid.uuid1().hex   ###convert all image to .png
     if fig['ext']=='.wmf':  ###
         out_img=  fname+'.svg'
         x=wmf2svg(fig['blob'],  os.path.join(img_dir, out_img))
+    elif fig['ext']=='.emf':    ###暂时不处理emf图片
+        print('found emf image')
+        return {'html':'', 'mode':mode}
+
     else:###
         out_img=fname+'.png'
         image=Image.open(io.BytesIO(fig['blob']) )
@@ -511,8 +525,9 @@ def paragraph2html(doc, parent_element):
             htmls.append(html)
         elif tag == 'w:drawing':  ##处理图片
             result = w_drawing2html(doc, child)
-            if result['mode']=='inline':  ##不处理浮动图片，留到别处统一处理
-                htmls.append(result['html'])
+            if result['html']:
+                if result['mode']=='inline':  ##不处理浮动图片，留到别处统一处理
+                    htmls.append(result['html'])
         elif tag == 'w:pict':
             print('found w:pict')
             html=w_pict2html(doc, child)['html']
@@ -562,8 +577,9 @@ def options2html(doc, row):
             text = text+html
         elif tag == 'w:drawing':
             result = w_drawing2html(doc, child)
-            if result['mode']=='inline':  ##不处理浮动图片，留到后面一起处理
-                text = text + result['html']
+            if result['html']:
+                if result['mode']=='inline':  ##不处理浮动图片，留到后面一起处理
+                    text = text + result['html']
         elif tag == 'm:oMath':
             text = text + o_math2html(doc, child)
         elif tag=='w:pict':
@@ -612,8 +628,9 @@ def get_float_image( doc, row_list):
         x=element.xpath('.//w:drawing/wp:anchor', namespaces=docx_nsmap)
         if x:
             result=w_drawing2html(doc, x[0].getparent().getparent())
-            if result['mode']=='anchor':
-                htmls.append(result['html'])
+            if result['html']:
+                if result['mode']=='anchor':
+                    htmls.append(result['html'])
     return ''.join(htmls)
 
 ####获取每个题的html文本
@@ -633,7 +650,7 @@ def get_ti_content(doc, ti_index):
 def get_xiaoti_content(doc, question):
     q = {}
     title_indexes = question['stem']
-    xx = paragraphs2htmls(doc, title_indexes) + get_float_image(doc, title_indexes)
+    xx = paragraphs2htmls(doc, title_indexes)
     q['stem']=re.sub(r'^<p>\d{1,2}[.．]\s{0,}', '<p>', xx)   ###去除题号
 
     q['number'] = re.findall(r'^<p>(\d{1,2})[.．、]\s{0,}', xx)[0]   ###获取题号

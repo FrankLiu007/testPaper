@@ -218,7 +218,7 @@ if __name__ == "__main__":
         print('参数错误，正确用法： docx2json.py 真题.docx 答案.docx')
         pars['working_dir'] = 'data'
         pars['subject'] = '数学'
-        pars['question_docx'] = '高二物理滚动检测卷.docx'
+        pars['question_docx'] = 'yhd数学理试题1222.docx'
         # pars['answer_docx'] = '2019年全国I卷理科数学高考真题答案.docx'
         pars['img_dir'] = 'img'
         pars['http_head'] = ' https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/'
