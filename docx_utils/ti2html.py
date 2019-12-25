@@ -1,8 +1,9 @@
 import docx_utils.MyDocx as MyDocx
 import re
 from lxml import etree
-from dwml import omml
+# from dwml import omml   这个包维护比较少，还有部分bug，换包
 from docx_utils.namespaces import namespaces as docx_nsmap
+import docx_utils.MyDocx as MyDocx
 import uuid
 import os
 import subprocess
@@ -400,23 +401,22 @@ def w_drawing2html(doc, child):
     return {'html':etree.tostring(img).decode('utf8'), 'mode':mode}
 
 ##处理m:oMath元素
-def o_math2html(doc, child):
+def o_math2html(child):
     tag = child.tag.split('}')[-1]
-
     if tag == 'oMath':
         tt = etree.Element('oMathPara')
         tt.append(child.__copy__())  ####使用copy， 不影响原来的结构
     else:
         tt = child
-
-    mm = etree.tostring(tt).decode('utf-8')
-    for math in omml.load_string(mm):
-        text = math.latex
-        break
-
-    text = text.replace('<', '&lt;').replace('>', '&gt;')   ##处理大于号、小于号
-    html = '\(' + text + '\)'
-    return html
+    ##早期用的dwml转换公式为latex
+    # mm = etree.tostring(tt).decode('utf-8')
+    # for math in omml.load_string(mm):
+    #     text = math.latex
+    #     break
+    # text = text.replace('<', '&lt;').replace('>', '&gt;')   ##处理大于号、小于号
+    # html = '\(' + text + '\)'
+    xml=MyDocx.Document.omml2mml_transform(tt)   ###使用微软提供的xsl来转换
+    return   etree.tostring( xml).decode('utf8').replace('mml:math','math')
 
 ###检测1个run里面是否有多种内容，这种情况是无效的！！
 def check_run(child):
@@ -536,7 +536,7 @@ def paragraph2html(doc, parent_element):
             html = w_object2html(doc, child)['html']
             htmls.append(html)
         elif tag == 'm:oMath' or tag == 'm:oMathPara':  ##处理数学公式
-            html = o_math2html(doc, child)
+            html = o_math2html( child)
             htmls.append(html)
         elif tag == 'table':  ##处理表格,表格比较特殊，不会出现这种情况
             pass
@@ -581,7 +581,7 @@ def options2html(doc, row):
                 if result['mode']=='inline':  ##不处理浮动图片，留到后面一起处理
                     text = text + result['html']
         elif tag == 'm:oMath':
-            text = text + o_math2html(doc, child)
+            text = text + o_math2html( child)
         elif tag=='w:pict':
             html = w_pict2html(doc, child)['html']
             text=text+html

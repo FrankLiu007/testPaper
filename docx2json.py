@@ -15,62 +15,44 @@ import docx_utils.MyDocx as MyDocx
 '''
 
 def merge_answer(tis, answers):
+
     for ti in tis:
         reference = ''
         for q in ti['questions']:
-
-            q['solution'] = answers[q['number']]['answer']
-            if 'options' in q:
-                q['solution'] = q['solution'].replace('<p>', '').replace('</p>', '').strip()  ####选择题的答案不能是html
+            if q['objective']:
+                tt=answers[q['number']]['answer']
+                tt=tt.replace('<p>','').replace('</p>','').strip().split()
+                q['solution'] = ''.join(tt)
+                if len(q['solution'])==1:
+                    q['type']='SINGLE'
+                else:
+                    q['type'] = 'MULTIPLE'
             else:
-                q.pop('solution')
-            reference = reference + q['number'] + '. 【答案】' + answers[q['number']]['answer']+"<p>【解析】</p>"+answers[q['number']]['explain']
+                q['solution'] = answers[q['number']]['answer']
+            q.pop('objective')
+            reference = reference + q['number'] + '. 【答案】' + q['solution']+"<p>【解析】</p>"+answers[q['number']]['explain']
 
 
         ti['reference'] = reference
     return 0
 
-
-#####给题目增加分数和题型
-def add_score_and_titype(ti, text):
-    score = re.findall(r'每[小]{0,1}题(\d{1,2})分', text)  ##，每个小题的分数
-    ###题型 titpye
-    txt=re.sub(r'^[\d一二三四五六七八九]{1,2}[\s.．、]{0,3}', '', text).strip()
-    e = txt.find('题')
-    type_str = txt[:e + 1]
-    ti['category'] = type_str
-
-    q_tpye = 'GENERAL'
-    if '只有一项' in text or '的一项是' in text:
-        q_tpye = 'SINGLE'
-
-    if score:
-        ti['total'] = int(score[0]) * len(ti['questions'])
-    ss = 0
-    for q in ti['questions']:
-        if (not 'type' in q) or (q_tpye == ''):
-            q['type'] = q_tpye
-        if score:
-            q['score'] = int(score[0])
-        else:
-            s = re.findall(r'["(","（"](\d{1,2})分[")","）"]', q['stem'])
-            if s:
-                q['score'] = int(s[0])
-            else:
-                q['score'] = 0
-            ss = ss + q['score']
-    if not score:
-        ti['total'] = ss
-    return 0
-
+###---------------------------------------------------
 def get_tis(doc, all_ti_index):
-    all_tis = []
-
+    all_tis=[]
     for dati in all_ti_index:
         for ti_index in dati:
             ti=get_ti_content(doc, ti_index)
+            questions=ti['questions']
+            ti['category']=ti_index['category']
+            # ti['total'] = ti_index['total']
+            for i in range(0, len(questions)):
+                questions[i]['objective']=ti_index['questions'][i]['objective']  ##暂时objective
+                questions[i]['number']=ti_index['questions'][i]['number']  ##加入题号
+                questions[i]['type'] = ti_index['questions'][i]['type']  ##加入题号
+                questions[i]['score'] = ti_index['questions'][i]['score']  ##加入题号
             all_tis.append(ti)
     return all_tis
+
 
 ###-----------------------
 def get_answer_start_row(doc):
@@ -80,6 +62,12 @@ def get_answer_start_row(doc):
             row= i+1
             break
     return row
+##------------------利用答案确定题目的单选、多选属性-----------------------------
+def check_ti_type(tis):
+
+    for ti in tis:
+        for q in ti['questions']:
+            pass
 
 # -----------------------------------------
 def docx_paper2json(pars):
@@ -89,10 +77,10 @@ def docx_paper2json(pars):
     doc = MyDocx.Document(os.path.join(data_dir, paper_path))
     answer_start_row=get_answer_start_row(doc)
     if answer_start_row==-1:
-        end_row=len(doc.elements)
+        end_row=len(doc.elements)-1
     else:
-        end_row=answer_start_row
-    all_ti_index = AnalysQuestion(doc, 0, end_row-1, mode_text)
+        end_row=answer_start_row-2
+    all_ti_index = AnalysQuestion(doc, 0, end_row, mode_text)
 
     ###处理试卷
     print('开始处理试卷...')
@@ -136,9 +124,7 @@ def parse_commandline(argv):
         elif argv[i] == '-question_docx':
             pars['question_docx'] = argv[i + 1]
             i = i + 1
-        elif argv[i] == '-answer_docx':
-            pars['answer_docx'] = argv[i + 1]
-            i = i + 1
+
         elif argv[i] == '-img_dir':
             pars['img_dir'] = argv[i + 1]
             i = i + 1
@@ -160,7 +146,6 @@ def print_ussage():
     print('-img_dir  dir  设置图片目录')
     print('-subject  数学  设置学科')
     print('-question_docx  试卷docx文件')
-    print('-answer_docx  答案docx文件')
     print('-http_head  http_head  设置http头')
 
 
@@ -218,7 +203,7 @@ if __name__ == "__main__":
         print('参数错误，正确用法： docx2json.py 真题.docx 答案.docx')
         pars['working_dir'] = 'data'
         pars['subject'] = '数学'
-        pars['question_docx'] = 'yhd数学理试题1222.docx'
+        pars['question_docx'] = '高二地理周考卷9.docx'
         # pars['answer_docx'] = '2019年全国I卷理科数学高考真题答案.docx'
         pars['img_dir'] = 'img'
         pars['http_head'] = ' https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/'

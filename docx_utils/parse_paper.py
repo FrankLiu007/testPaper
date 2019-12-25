@@ -6,39 +6,46 @@ import pycnnum
 import docx_utils.MyDocx as MyDocx
 #####主要是进行版面分析，把每个题的标题、选项等部分所在的段落号，计算出来
 
-# 判断是否为标题
-def isNumber(char):
-    num1 = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-    num2 = ['一', '二', '三', '四', '五', '六', '七', '八', '九']
-    if char in num1 or char in num2:
-        return True
-    return False
+#####给题目增加分数和题型
+def add_score_and_titype(tis, dati_indexes, i, doc_elements):
+    text=doc_elements[dati_indexes[i][0]]['text']
+    score = re.findall(r'每[小]{0,1}题(\d{1,2})分', text)  ##，每个小题的分数
+    ###题型 titpye
+    txt=re.sub(r'^[\d一二三四五六七八九]{1,2}[\s.．、]{0,3}', '', text).strip()
+    e = txt.find('题')
+    category = txt[:e + 1]
 
-##获取1个选项，[A-G]. 形式的
-def get_option(text):
-    text = text.strip()
-    indexes = []
-    options = []
-    for item in re.finditer(r'[A-G]\s{0,2}[\.．]', text):
-        indexes.append((item.group(), item.span()))
-    print('in get_option,text=', text)
-    if indexes[0][1] != (0, 2):  ###校检结果，保证
-        print('获取选择题选项出错，请检查试题格式')
-        print('text=', text)
+    for ti in tis:
+        ti['category'] =category
+        q_tpye = 'GENERAL'
+        if '只有一项' in text or '的一项是' in text:
+            q_tpye = 'SINGLE'
+        if '单选' in text:
+            q_tpye = 'SINGLE'
+        if score:
+            ti['total'] = int(score[0]) * len(ti['questions'])
+        ss = 0
+        for q in ti['questions']:
 
-    i = 0
-    while (i < len(indexes)):
-        b = indexes[i][1][0]
-        if i == len(indexes) - 1:
-            options.append((option_text[0], text[b:].strip()))
-            break
-        e = indexes[i + 1][1][0]
-        option_text = indexes[i][0]
-        options.append((option_text[0], text[b:e].strip()))
-        b = e
-        i = i + 1
-    return options
-
+            q['number'] = re.findall(r'^(\d{1,2})[.．、]\s{0,}', doc_elements[q['stem'][0]]['text'])[0]
+            if (not 'type' in q) or (q_tpye == ''):
+                q['type'] = q_tpye
+            if score:
+                q['score'] = int(score[0])
+            else:
+                rr='[\(（].*(\d{1,2})分[\)）]'
+                tt=''
+                for stem in q['stem']:
+                    tt=tt+doc_elements[stem]['text']
+                s = re.findall(rr, tt)
+                if s:
+                    q['score'] = int(s[0])
+                else:
+                    q['score'] = 0
+                ss = ss + q['score']
+        if not score:
+            ti['total'] = ss
+    return tis
 ###判断1个段落是否为空
 def is_blank_paragraph(element):
 
@@ -293,6 +300,8 @@ def AnalysQuestion(doc,start_row, end_row,mode_text ):
             next_row-=1
             xiaotis=get_dati_children(dati_indexes, i, xiaoti_indexes)
         tis = parse_one_titype(curr_row+1, next_row, xiaotis, doc_elements, mode_text)  ##处理1种题型的所有题目
+        tis=add_score_and_titype(tis, dati_indexes, i, doc_elements)
+
         all_ti.append(tis.copy())
         i = i + 1
         curr_row = next_row

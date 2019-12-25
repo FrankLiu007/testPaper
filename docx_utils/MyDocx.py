@@ -6,13 +6,9 @@ import roman
 import pycnnum
 from docx_utils.namespaces import namespaces as docx_nsmap
 class Document:
-    ##公开属性
-    rIds={}
-    files = []
-    elements=[]
-    numbering={}
-    zip_handle=None
+    ##静态属性
     w_val = '{' + docx_nsmap['w'] + '}val'
+    omml2mml_transform = etree.XSLT(etree.parse('docx_utils/omml2mml.xsl'))
 
     def numPr2text(self, child):
         numId=child.xpath('.//w:pPr/w:numPr/w:numId', namespaces=docx_nsmap)[0].attrib[self.w_val]
@@ -152,7 +148,10 @@ class Document:
         self.numbering=self.get_numbering(zip_handle)
         pass
     def __init__(self, path):
-
+        self.rIds={}
+        self.files = []
+        self.elements=[]
+        self.numbering={}
         self.zip_handle=zipfile.ZipFile(path, 'r')
         self.read_document(self.zip_handle)
         self.zip_handle.close()
