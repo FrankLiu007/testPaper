@@ -27,12 +27,10 @@ def merge_answer(tis, answers):
                     q['type']='SINGLE'
                 else:
                     q['type'] = 'MULTIPLE'
-            else:
-                q['solution'] = answers[q['number']]['answer']
+            # else:
+            #     q['solution'] = answers[q['number']]['answer']
             q.pop('objective')
-            reference = reference + q['number'] + '. 【答案】' + q['solution']+"<p>【解析】</p>"+answers[q['number']]['explain']
-
-
+            reference = reference + q['number'] + '. 【答案】' + answers[q['number']]['answer']+"<p>【解析】</p>"+answers[q['number']]['explain']
         ti['reference'] = reference
     return 0
 
@@ -49,10 +47,9 @@ def get_tis(doc, all_ti_index):
                 questions[i]['objective']=ti_index['questions'][i]['objective']  ##暂时objective
                 questions[i]['number']=ti_index['questions'][i]['number']  ##加入题号
                 questions[i]['type'] = ti_index['questions'][i]['type']  ##加入题号
-                questions[i]['score'] = ti_index['questions'][i]['score']  ##加入题号
+                questions[i]['score'] = ti_index['questions'][i]['score']  ##加入分数
             all_tis.append(ti)
     return all_tis
-
 
 ###-----------------------
 def get_answer_start_row(doc):
@@ -203,7 +200,7 @@ if __name__ == "__main__":
         print('参数错误，正确用法： docx2json.py 真题.docx 答案.docx')
         pars['working_dir'] = 'data'
         pars['subject'] = '数学'
-        pars['question_docx'] = '高二地理周考卷9.docx'
+        pars['question_docx'] = 'd:/test.docx'
         # pars['answer_docx'] = '2019年全国I卷理科数学高考真题答案.docx'
         pars['img_dir'] = 'img'
         pars['http_head'] = ' https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/'
@@ -232,4 +229,3 @@ if __name__ == "__main__":
 
     with  open(os.path.join(pars['working_dir'], pars['out_json']), 'w', encoding='utf-8') as fp:
         json.dump(tis, fp, ensure_ascii=False, indent=4, separators=(',', ': '))
-

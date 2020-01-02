@@ -5,10 +5,57 @@ import re
 import roman
 import pycnnum
 from docx_utils.namespaces import namespaces as docx_nsmap
+import subprocess
+import uuid
 class Document:
     ##静态属性
     w_val = '{' + docx_nsmap['w'] + '}val'
     omml2mml_transform = etree.XSLT(etree.parse('docx_utils/omml2mml.xsl'))
+    def wmf_emf2png(self):
+        img_lst=[]
+        for rId in self.rIds:
+            rId=self.rIds[rId]
+            fname, ext=os.path.splitext(rId['path'])
+            if ext== '.wmf' or ext== '.emf':
+                img_lst.append(rId)
+
+        if not os.path.exists('tmp'):
+            os.mkdir('tmp')
+
+        for rId in img_lst:
+            fname=os.path.split(rId['path'])[-1]
+            path=os.path.join('tmp', fname)
+            with open(path, 'wb') as f:
+                f.write(rId['blob'])
+                f.close()
+
+        with open('flist.txt', 'w') as f:
+            for rId in img_lst:
+                pp=os.path.split(rId['path'])[-1]
+                fin=os.path.join('tmp', pp)
+                fout=fin[:-4]+'.png'
+                print(fin+'  '+fout+'  0   0', file=f)
+            f.close()
+        status,output=subprocess.getstatusoutput( os.path.join('docx_utils', 'WmfEmf2png.exe')+' -l flist.txt')
+
+        ###update file_blobs
+
+        for rId in img_lst:
+            # fname, ext=
+            pp = os.path.split(rId['path'])[-1]
+            path=rId['path']
+            self.file_blobs.pop(rId['path'])  ###删除emf文件
+            with open(os.path.join('tmp',pp[:-4]+'.png'), 'rb') as f:
+                self.file_blobs[path[:-4]+'.png']=f.read()
+                f.close()
+            old_path = rId['path'][5:]  ###remove "word/"
+            new_path=old_path[:-4]+'.png'
+            rId['blob']=self.file_blobs[path[:-4]+'.png']   ##这个要带word/
+            rId['path']=path[:-4]+'.png'
+            ###update 'word/_rels/document.xml.rels'
+            print('old_path:',old_path, 'new_path', new_path)
+            self.file_blobs['word/_rels/document.xml.rels']=self.file_blobs['word/_rels/document.xml.rels'].replace(old_path.encode(), new_path.encode())
+
 
     def numPr2text(self, child):
         numId=child.xpath('.//w:pPr/w:numPr/w:numId', namespaces=docx_nsmap)[0].attrib[self.w_val]
@@ -66,10 +113,8 @@ class Document:
         numIds={}
         abstractNums={}
         abstractNums={}
-        if path in self.files:
-            f = zip_handle.open(path, 'r')
-            tree = etree.fromstring(f.readlines()[1])
-            f.close()
+        if path in self.file_blobs:
+            tree = etree.fromstring(self.file_blobs[path].decode('utf8').splitlines()[1])
             w_val = '{' + docx_nsmap['w'] + '}val'
             w_numId='{' + docx_nsmap['w'] + '}numId'
             w_abstractNumId='{' + docx_nsmap['w'] + '}abstractNumId'
@@ -98,10 +143,8 @@ class Document:
     def process_rIds(self, zip_handle):
         path='word/_rels/document.xml.rels'
         rIds={}
-        if path in self.files:
-            f=zip_handle.open(path, 'r')
-            tree=etree.fromstring(f.readlines()[1])
-            f.close()
+        if path in self.file_blobs:
+            tree=etree.fromstring(self.file_blobs[path].decode('utf8').splitlines()[1])
             for relation in tree.xpath('.//*[local-name()="Relationship"]', namespaces=docx_nsmap):
                 resource={}
                 id=relation.attrib['Id']
@@ -117,45 +160,56 @@ class Document:
                         resource['path'] = path
                         rIds[id] = resource.copy()
                         continue
+                resource['blob']=self.file_blobs[path]
 
-                f2=zip_handle.open(path, 'r')
-                resource['blob']=f2.read()
-                f2.close()
                 resource['path']=path
                 rIds[id]=resource.copy()
 
             return rIds
-
-    def get_file_list(self, zip_handle):
-        files=[]
+    ##一次读取所有文件
+    def read_all_files(self, zip_handle):
+        file_blobs={}
         for f in zip_handle.filelist:
-            files.append(f.filename)
-        return files
+            hh=zip_handle.open(f.filename, 'r')
+            file_blobs[f.filename]=hh.read()
+            hh.close()
+        return file_blobs
 
     def read_document(self, zip_handle):
         self.inital_read(zip_handle)    ####做一些预处理工作
+        path='word/document.xml'
+        self.doc_xml=self.file_blobs[path].decode('utf8').splitlines()[1]  ###
 
-        f = zip_handle.open('word/document.xml','r')
-        self.doc_xml = f.readlines()[1]
-        f.close()
         self.doc_root=etree.fromstring(self.doc_xml)
         self.elements=self.get_elements()
 
     ####初始读一些参数，保证文档能正常
     def inital_read(self, zip_handle):
-        self.files=self.get_file_list(zip_handle)
+        self.file_blobs=self.read_all_files(zip_handle)
         self.rIds=self.process_rIds(zip_handle)
         self.numbering=self.get_numbering(zip_handle)
         pass
     def __init__(self, path):
         self.rIds={}
-        self.files = []
+        self.fname=path
+        self.file_blobs = {}
         self.elements=[]
         self.numbering={}
-        self.zip_handle=zipfile.ZipFile(path, 'r')
-        self.read_document(self.zip_handle)
-        self.zip_handle.close()
-
+        zip_handle=zipfile.ZipFile(path, 'r')
+        self.read_document(  zip_handle )
+        zip_handle.close()
+    ###保存zip文件
+    def save(self, outf=''):
+        if not outf:
+            outf=self.fname
+        zip_f=zipfile.ZipFile(outf,'w')
+        for f in self.file_blobs:
+            blob=self.file_blobs[f]
+            if blob:
+                zip_f.writestr(f, blob)
+        zip_f.close()
+    def __del__(self):
+        pass
 if __name__ == "__main__":
     path='d:/test/崇阳一中2020届高三理科数学测试卷.zip'
     doc=Document(path)

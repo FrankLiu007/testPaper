@@ -33,7 +33,7 @@ def add_score_and_titype(tis, dati_indexes, i, doc_elements):
             if score:
                 q['score'] = int(score[0])
             else:
-                rr='[\(（].*(\d{1,2})分[\)）]'
+                rr='[\(（]\D*(\d{1,2})分[\)）]'
                 tt=''
                 for stem in q['stem']:
                     tt=tt+doc_elements[stem]['text']
@@ -320,7 +320,7 @@ def AnalysAnswer(doc,start_row, end_row ):
     doc_elements = doc.elements
     dati_indexes=find_dati_row( doc, start_row, end_row)
     xiaoti_indexes=find_xiaoti_row( doc, start_row, end_row)
-    if (len(dati_indexes)==0) or (len(xiaoti_indexes)==0):
+    if  (len(xiaoti_indexes)==0):
         return ()
     all_ti = []
     ###分析参考答案的结构

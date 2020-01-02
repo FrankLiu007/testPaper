@@ -20,6 +20,10 @@ import io
 '''
 
 ##获取材料题，到底有多少小问（题）
+def get_full_tag_with_nameapce(str0):
+    n,s=str0.split(':')
+    return '{'+docx_nsmap[n] + '}'+ s
+
 def get_question_quantity(element, mode_text):
     text = ''.join( element.xpath('.//w:t/text()', namespaces=docx_nsmap) )
     r = re.findall(mode_text, text)
@@ -51,6 +55,17 @@ def find_title_row(doc, b_row, curr_row, mode_text):
 def emu2px(emu):
     px=int(emu)/914400*72*4/3
     return px
+
+def inch_pt2px(str0):
+    if 'in' in str0:
+        ##inch 转px
+        return  "{:.1f}".format(float(str0[:-2])*72*4/3)+'px'
+    elif 'pt' in str0:
+        ##pt 转 px
+       return  "{:.1f}".format(float(str0[:-2])*4/3)+'px'
+    elif 'px' in str0:
+        return str0[:-2]+'px'
+
 ## 获取各个选项
 def split_options(option_html):
     ops = []
@@ -176,8 +191,6 @@ def math_type2mml(ole_blob):
     output = subprocess.check_output(['ruby', '-w', 'docx_utils/mathtype_ole2mathml.rb', fname])
     mathml = output.decode('utf-8').replace('<?xml version="1.0"?>', '').replace('block','inline')  ###暂时用inline，一般试卷中的公式都是inline
     return mathml
-def get_image_height():
-    pass
 
 ###处理w:object
 def w_object2html(doc, child):
@@ -186,26 +199,15 @@ def w_object2html(doc, child):
 
     ole={}
     ole['styles']={}
-
     styles=child.xpath('.//v:shape', namespaces=docx_nsmap)[0].attrib['style']
-
     for style in styles.split(';'):
         if ':' in style:
             a,b=style.split(':')
             ole['styles'][a]=b
-    #暂时不用width
-    # width=ole['styles']['width'].replace('pt', '')
-    # ole['width']=str(int(width)*4/3)+'px'
-    height = ole['styles']['height']
-    if 'in' in height:
-        ##inch 转px
 
-        ole['height']="{:.1f}".format(float(height[:-2])*72*4/3) + 'px'
-    elif 'pt' in height:
-        ##pt 转 px
-        ole['height']="{:.1f}".format(float(height[:-2])*4/3) + 'px'
-    elif 'px' in height:
-        ole['height']=height
+    ole['height']=inch_pt2px( ole['styles']['height'])
+    ole['width']=inch_pt2px(ole['styles']['width'])
+
     #ole_object = child.xpath('.//o:OLEObject', namespaces=docx_nsmap)[0]
 
     # if ole_object.attrib['ProgID']=="Equation.DSMT4":  #是mathtype嵌入的数学公式,转成html
@@ -218,17 +220,28 @@ def w_object2html(doc, child):
     if False:  ##mathtype ole to mathml 还不稳定，暂时注销
         pass
     else:    ##read v:imagedata only, usually .wmf file， 暂时转换成svg
-        ole['rId'] = child.xpath('.//v:imagedata', namespaces=docx_nsmap)[0].attrib['{'+docx_nsmap['r'] + '}id']
+        ole['rId'] = child.xpath('.//v:imagedata', namespaces=docx_nsmap)[0].attrib[get_full_tag_with_nameapce('r:id')]
         ole['img_path'] = doc.rIds[ole['rId']]['path']
-        # ole['img_part'] = doc.part.rels[ole['rId']].target_part
         ext = os.path.splitext(ole['img_path'])[-1]
-        if ext=='.wmf':
+
+
+        if   ext=='.wmf':
             out_img_path = uuid.uuid1().hex + '.svg'
             wmf2svg(doc.rIds[ole['rId']]['blob'] , os.path.join(img_dir, out_img_path ))
-            html = '<img  style="vertical-align:middle"  src="' + http_head + out_img_path + \
-                   '" height="' + ole["height"] + '"/>'
-
-            return {'html': html, 'mode': 'inline'}
+            ole['style'] = "vertical-align:middle"
+            ole['src'] = http_head + out_img_path
+            img = create_img_tag(ole)
+            html = etree.tostring(img).decode('utf-8')
+        elif ext=='.png':
+            out_img_path = uuid.uuid1().hex + '.png'
+            with open(os.path.join(img_dir, out_img_path),'wb') as f:
+                f.write(doc.rIds[ole['rId']]['blob'])
+                f.close()
+            ole['style']="vertical-align:middle"
+            ole['src']=http_head + out_img_path
+            img=create_img_tag(ole)
+            html=etree.tostring(img).decode('utf-8')
+        return {'html': html, 'mode': 'inline'}
 ###创建img标签
 def create_img_tag(fig):
     img=etree.Element('img')
@@ -237,21 +250,6 @@ def create_img_tag(fig):
     img.attrib['height']=fig["height"]
     img.attrib['width'] = fig["width"]
     return img
-
-####Pt In 转html的pt
-def sz2px(sz):
-    pt=sz/144*72*4/3
-    return pt
-def PtIn2px(height):
-
-    if 'in' in height:
-        ##inch 转px
-        return  "{:.1f}".format(float(height[:-2])*72*4/3) + 'px'
-    elif 'pt' in height:
-        ##pt 转 px
-        return  "{:.1f}".format(float(height[:-2])*4/3) + 'px'
-    elif 'px' in height:
-        return  height
 
 ##------另外一种格式的图片，只有inline 模式-------------
 def w_pict2html(doc, child):
@@ -271,11 +269,11 @@ def w_pict2html(doc, child):
     for style in styles.split(';'):
         a,b=style.split(':')
         fig['styles'][a]=b
-    fig['rId']=pic.xpath('.//v:imagedata', namespaces=docx_nsmap)[0].attrib['{'+docx_nsmap['r']+'}id']
+    fig['rId']=pic.xpath('.//v:imagedata', namespaces=docx_nsmap)[0].attrib[get_full_tag_with_nameapce('r:id')]
     fig['path'] = doc.rIds[fig['rId']]['path']
     fig['blob']=doc.rIds[fig['rId']]['blob']
-    fig['width']=PtIn2px(fig['styles']['width'])
-    fig['height'] =PtIn2px(fig['styles']['height'])
+    fig['width']=inch_pt2px(fig['styles']['width'])
+    fig['height'] =inch_pt2px(fig['styles']['height'])
 
     ext = os.path.splitext(fig['path'] )[-1]
     fname = uuid.uuid1().hex   ###convert all image to .png
