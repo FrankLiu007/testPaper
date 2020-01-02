@@ -1,356 +1,89 @@
 [
     {
-        "title": "",
         "questions": [
             {
-                "stem": "<p>已知集合\\(M=\\{x\\left|-4&lt;x&lt;2\\right.\\}，N=\\{x\\left|x^{2}-x-6\\right.&lt;\\left.0\\right\\}\\)，则\\(M∩N\\) =</p>",
+                "stem": "<p>已知集合<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/01dcb17e2bd811eab7a0bc8385e4c2b6.png\" height=\"30.3px\" width=\"96.0px\"/>，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/01dd9d582bd811ea9744bc8385e4c2b6.png\" height=\"30.3px\" width=\"151.6px\"/>，则<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/01de64142bd811ea9c0fbc8385e4c2b6.png\" height=\"20.2px\" width=\"55.6px\"/>（   ）</p>",
                 "number": "1",
                 "options": [
                     {
                         "label": "A",
-                        "content": "\\(\\{x\\left|-4&lt;x&lt;\\right.\\left.3\\right\\}\\)"
+                        "content": "<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/01e19cd42bd811ea893ebc8385e4c2b6.png\" height=\"20.2px\" width=\"35.4px\"/>"
                     },
                     {
                         "label": "B",
-                        "content": "\\(\\{x\\left|-4&lt;x&lt;\\right.\\left.-2\\right\\}\\)"
+                        "content": "<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/01e28c642bd811ea89acbc8385e4c2b6.png\" height=\"20.2px\" width=\"45.5px\"/>"
                     },
                     {
                         "label": "C",
-                        "content": "\\(\\{x\\left|-2&lt;x&lt;\\right.\\left.2\\right\\}\\)"
+                        "content": "<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/01e3497e2bd811eaaa9fbc8385e4c2b6.png\" height=\"20.2px\" width=\"101.1px\"/>"
                     },
                     {
                         "label": "D",
-                        "content": "\\(\\{x\\left|2&lt;x&lt;\\right.\\left.3\\right\\}\\)"
+                        "content": "<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/01e40e862bd811eaa638bc8385e4c2b6.png\" height=\"20.2px\" width=\"35.4px\"/>"
                     }
                 ],
                 "type": "SINGLE",
                 "score": 5,
-                "solution": "C"
+                "solution": "A"
             }
         ],
+        "title": "",
         "category": "选择题",
-        "total": 5,
-        "reference": "1. <p>C</p>"
+        "reference": "1. 【答案】<p>A</p><p>【解析】</p><p><img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02b919c82bd811ea8165bc8385e4c2b6.png\" height=\"21.5px\" width=\"143.0px\"/>，集合B是求函数的值域，所以，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02b9b5ac2bd811eab970bc8385e4c2b6.png\" height=\"21.5px\" width=\"63.0px\"/>，所以<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02ba2a9a2bd811ea8752bc8385e4c2b6.png\" height=\"21.5px\" width=\"85.5px\"/></p>"
     },
     {
-        "title": "",
         "questions": [
             {
-                "stem": "<p>设复数<i>z</i>满足\\(\\left|z-i\\right|=1\\)，<i>z</i>在复平面内对应的点为(<i>x</i>，<i>y</i>)，则</p>",
+                "stem": "<p>已知复数<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/01e4d9902bd811eaa9dcbc8385e4c2b6.png\" height=\"35.4px\" width=\"70.7px\"/>（<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/01e56ad22bd811eab6c9bc8385e4c2b6.png\" height=\"15.1px\" width=\"10.1px\"/>为虚数单位），则<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/01e606a22bd811eabf0dbc8385e4c2b6.png\" height=\"15.1px\" width=\"10.1px\"/>的虚部为（   ）</p>",
                 "number": "2",
                 "options": [
                     {
                         "label": "A",
-                        "content": "\\((x+1)^{2}+y^{2}=1\\)"
+                        "content": "<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/01e73eb42bd811ea9acfbc8385e4c2b6.png\" height=\"35.4px\" width=\"25.3px\"/>"
                     },
                     {
                         "label": "B",
-                        "content": "\\((x-1)^{2}+y^{2}=1\\)"
+                        "content": "<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/01e801142bd811eab770bc8385e4c2b6.png\" height=\"35.4px\" width=\"35.4px\"/>"
                     },
                     {
                         "label": "C",
-                        "content": "\\(x^{2}+(y-1)^{2}=1\\)"
+                        "content": "<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/01e89ce22bd811ea8217bc8385e4c2b6.png\" height=\"35.4px\" width=\"35.4px\"/>"
                     },
                     {
                         "label": "D",
-                        "content": "\\(x^{2}+(y+1)^{2}=1\\)"
+                        "content": "<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/01e95fa82bd811ea81b8bc8385e4c2b6.png\" height=\"35.4px\" width=\"45.5px\"/>"
                     }
                 ],
                 "type": "SINGLE",
                 "score": 5,
-                "solution": "C"
+                "solution": "B"
             }
         ],
+        "title": "",
         "category": "选择题",
-        "total": 5,
-        "reference": "2. <p>C　</p>"
+        "reference": "2. 【答案】<p>B</p><p>【解析】</p><p><img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02bac9122bd811eaaf10bc8385e4c2b6.png\" height=\"43.0px\" width=\"267.0px\"/>，虚部为<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02bb89242bd811ea8c64bc8385e4c2b6.png\" height=\"45.5px\" width=\"37.5px\"/>．</p>"
     },
     {
-        "title": "",
         "questions": [
             {
-                "stem": "<p>已知\\( a=log_{2}0.2，b=2^{0.2}，c=0.2^{0.3}\\)，则</p>",
+                "stem": "<p>设<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/01ea49702bd811eab148bc8385e4c2b6.png\" height=\"25.3px\" width=\"116.2px\"/>，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/01eae5462bd811eaa68cbc8385e4c2b6.png\" height=\"25.3px\" width=\"116.2px\"/>，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/01eb816e2bd811ea80f0bc8385e4c2b6.png\" height=\"30.3px\" width=\"80.9px\"/>，则<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/01ebf8a42bd811ea9d0cbc8385e4c2b6.png\" height=\"20.2px\" width=\"40.4px\"/>的大小关系是（   ）</p>",
                 "number": "3",
                 "options": [
                     {
                         "label": "A",
-                        "content": "\\(a&lt;b&lt;c\\)"
+                        "content": "<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/01ed2dbe2bd811ea8ad0bc8385e4c2b6.png\" height=\"20.2px\" width=\"60.6px\"/>"
                     },
                     {
                         "label": "B",
-                        "content": "\\(a&lt;c&lt;b\\)"
+                        "content": "<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/01edf0762bd811eab801bc8385e4c2b6.png\" height=\"20.2px\" width=\"60.6px\"/>"
                     },
                     {
                         "label": "C",
-                        "content": "\\(c&lt;a&lt;b\\)"
+                        "content": "<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/01ee65582bd811ea97adbc8385e4c2b6.png\" height=\"20.2px\" width=\"60.6px\"/>"
                     },
                     {
                         "label": "D",
-                        "content": "\\(b&lt;c&lt;a\\)"
-                    }
-                ],
-                "type": "SINGLE",
-                "score": 5,
-                "solution": "B"
-            }
-        ],
-        "category": "选择题",
-        "total": 5,
-        "reference": "3. <p>B　</p>"
-    },
-    {
-        "title": "",
-        "questions": [
-            {
-                "stem": "<p>古希腊时期，人们认为最美人体的头顶至肚脐的长度与肚脐至足底的长度之比是\\(\\frac{\\sqrt{5}-1}{2}\\)（\\(\\frac{\\sqrt{5}-1}{2}\\)≈0.618，称为黄金分割比例)，著名的“断臂维纳斯”便是如此．此外，最美人体的头顶至咽喉的长度与咽喉至肚脐的长度之比也是\\(\\frac{\\sqrt{5}-1}{2}\\)．若某人满足上述两个黄金分割比例，且腿长为105 cm，头顶至脖子下端的长度为26 cm，则其身高可能是</p><p><img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/edfe71dc0cce11ea9968bc8385e4c2b6.png\" width=56.0001 height=157.1114></p>",
-                "number": "4",
-                "options": [
-                    {
-                        "label": "A",
-                        "content": "165 cm"
-                    },
-                    {
-                        "label": "B",
-                        "content": "175 cm"
-                    },
-                    {
-                        "label": "C",
-                        "content": "185 cm"
-                    },
-                    {
-                        "label": "D",
-                        "content": "190 cm"
-                    }
-                ],
-                "type": "SINGLE",
-                "score": 5,
-                "solution": "B"
-            }
-        ],
-        "category": "选择题",
-        "total": 5,
-        "reference": "4. <p>B　</p>"
-    },
-    {
-        "title": "",
-        "questions": [
-            {
-                "stem": "<p>函数<i>f</i>(<i>x</i>)=<img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/ee0bd6360cce11ea8699bc8385e4c2b6.wmf\" width=66.0001 height=42.0001>在\\([-π,π]\\)的图像大致为</p>",
-                "number": "5",
-                "options": [
-                    {
-                        "label": "A",
-                        "content": "<img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/ee3145e40cce11ea934fbc8385e4c2b6.png\" width=155.0002 height=70.0001>"
-                    },
-                    {
-                        "label": "B",
-                        "content": "<img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/ee3451300cce11eaac79bc8385e4c2b6.png\" width=157.0002 height=76.0001>"
-                    },
-                    {
-                        "label": "C",
-                        "content": "<img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/ee3624920cce11eab520bc8385e4c2b6.png\" width=166.0002 height=81.0001>"
-                    },
-                    {
-                        "label": "D",
-                        "content": "<img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/ee37833e0cce11ea89d2bc8385e4c2b6.png\" width=165.0002 height=83.0001>"
-                    }
-                ],
-                "type": "SINGLE",
-                "score": 5,
-                "solution": "D"
-            }
-        ],
-        "category": "选择题",
-        "total": 5,
-        "reference": "5. <p>D　</p>"
-    },
-    {
-        "title": "",
-        "questions": [
-            {
-                "stem": "<p>我国古代典籍《周易》用“卦”描述万物的变化．每一“重卦”由从下到上排列的6个爻组成，爻分为阳爻“——”和阴爻“— —”，如图就是一重卦．在所有重卦中随机取一重卦，则该重卦恰有3个阳爻的概率是</p><p><img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/ee3b78240cce11ea8d2bbc8385e4c2b6.tif\" width=114.0001 height=102.1139></p>",
-                "number": "6",
-                "options": [
-                    {
-                        "label": "A",
-                        "content": "\\(\\frac{5}{16}\\)"
-                    },
-                    {
-                        "label": "B",
-                        "content": "\\(\\frac{11}{32}\\)"
-                    },
-                    {
-                        "label": "C",
-                        "content": "\\(\\frac{21}{32}\\)"
-                    },
-                    {
-                        "label": "D",
-                        "content": "\\(\\frac{11}{16}\\) "
-                    }
-                ],
-                "type": "SINGLE",
-                "score": 5,
-                "solution": "A"
-            }
-        ],
-        "category": "选择题",
-        "total": 5,
-        "reference": "6. <p>A　</p>"
-    },
-    {
-        "title": "",
-        "questions": [
-            {
-                "stem": "<p>已知非零向量<i><b>a</b></i>，<i><b>b</b></i>满足\\(|a|=2|b|\\)，且\\((a-b)⊥\\)<i><b>b</b></i>，则<i><b>a</b></i>与<i><b>b</b></i>的夹角为</p>",
-                "number": "7",
-                "options": [
-                    {
-                        "label": "A",
-                        "content": "\\(\\frac{π}{6}\\)"
-                    },
-                    {
-                        "label": "B",
-                        "content": "\\(\\frac{π}{3}\\)"
-                    },
-                    {
-                        "label": "C",
-                        "content": "\\(\\frac{2π}{3}\\)"
-                    },
-                    {
-                        "label": "D",
-                        "content": "\\(\\frac{5π}{6}\\) "
-                    }
-                ],
-                "type": "SINGLE",
-                "score": 5,
-                "solution": "B"
-            }
-        ],
-        "category": "选择题",
-        "total": 5,
-        "reference": "7. <p>B　</p>"
-    },
-    {
-        "title": "",
-        "questions": [
-            {
-                "stem": "<p>如图是求\\(\\frac{1}{2+\\frac{1}{2+\\frac{1}{2}}}\\)的程序框图，图中空白框中应填入</p><p><img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/ee4251580cce11eab84ebc8385e4c2b6.tif\" width=167.0002 height=269.2475></p>",
-                "number": "8",
-                "options": [
-                    {
-                        "label": "A",
-                        "content": "A=\\(\\frac{1}{2+A}\\)"
-                    },
-                    {
-                        "label": "B",
-                        "content": "A=\\(2+\\frac{1}{A}\\)"
-                    },
-                    {
-                        "label": "C",
-                        "content": "A=\\(\\frac{1}{1+2A}\\)"
-                    },
-                    {
-                        "label": "D",
-                        "content": "A=\\(1+\\frac{1}{2A}\\)"
-                    }
-                ],
-                "type": "SINGLE",
-                "score": 5,
-                "solution": "A"
-            }
-        ],
-        "category": "选择题",
-        "total": 5,
-        "reference": "8. <p>A　</p>"
-    },
-    {
-        "title": "",
-        "questions": [
-            {
-                "stem": "<p>记为等差数列\\(\\{a_{n}\\}\\)的前<i>n</i>项和．已知\\(S_{4}=0，a_{5}=5\\)，则</p>",
-                "number": "9",
-                "options": [
-                    {
-                        "label": "A",
-                        "content": "\\(a_{n}=2n-5\\)"
-                    },
-                    {
-                        "label": "B",
-                        "content": "\\( a_{n}=3n-10\\)"
-                    },
-                    {
-                        "label": "C",
-                        "content": "\\(S_{n}=2n^{2}-8n\\)"
-                    },
-                    {
-                        "label": "D",
-                        "content": "\\(S_{n}=\\frac{1}{2}n^{2}-2n\\)"
-                    }
-                ],
-                "type": "SINGLE",
-                "score": 5,
-                "solution": "A"
-            }
-        ],
-        "category": "选择题",
-        "total": 5,
-        "reference": "9. <p>A　</p>"
-    },
-    {
-        "title": "",
-        "questions": [
-            {
-                "stem": "<p>已知椭圆<i>C</i>的焦点为\\(F_{1}(-1,0)，F_{2}(1,0)\\)，过<i>F</i><sub>2</sub>的直线与<i>C</i>交于<i>A</i>，<i>B</i>两点．若\\(|AF_{2}|=2|F_{2}B|\\)，\\(|AB|=|BF_{1}|\\)，则<i>C</i>的方程为</p>",
-                "number": "10",
-                "options": [
-                    {
-                        "label": "A",
-                        "content": "\\(\\frac{x^{2}}{2}+y^{2}=1\\)"
-                    },
-                    {
-                        "label": "B",
-                        "content": "\\(\\frac{x^{2}}{3}+\\frac{y^{2}}{2}=1\\)"
-                    },
-                    {
-                        "label": "C",
-                        "content": "\\(\\frac{x^{2}}{4}+\\frac{y^{2}}{3}=1\\)"
-                    },
-                    {
-                        "label": "D",
-                        "content": "\\(\\frac{x^{2}}{5}+\\frac{y^{2}}{4}=1\\)"
-                    }
-                ],
-                "type": "SINGLE",
-                "score": 5,
-                "solution": "B"
-            }
-        ],
-        "category": "选择题",
-        "total": 5,
-        "reference": "10. <p>B　</p>"
-    },
-    {
-        "title": "",
-        "questions": [
-            {
-                "stem": "<p>关于函数\\(f(x)=\\sin(|)x|+|\\sin( )x|\\)有下述四个结论：</p><p>①<i>f</i>(<i>x</i>)是偶函数②<i>f</i>(<i>x</i>)在区间（\\(\\frac{π}{2}\\)，\\(π\\)）单调递增</p><p>③<i>f</i>(<i>x</i>)在\\([-π,π]\\)有4个零点④<i>f</i>(<i>x</i>)的最大值为2</p><p>其中所有正确结论的编号是</p>",
-                "number": "11",
-                "options": [
-                    {
-                        "label": "A",
-                        "content": "①②④"
-                    },
-                    {
-                        "label": "B",
-                        "content": "②④"
-                    },
-                    {
-                        "label": "C",
-                        "content": "①④"
-                    },
-                    {
-                        "label": "D",
-                        "content": "①③"
+                        "content": "<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/01ef281c2bd811eaba11bc8385e4c2b6.png\" height=\"20.2px\" width=\"60.6px\"/>"
                     }
                 ],
                 "type": "SINGLE",
@@ -358,32 +91,95 @@
                 "solution": "C"
             }
         ],
+        "title": "",
         "category": "选择题",
-        "total": 5,
-        "reference": "11. <p>C　</p>"
+        "reference": "3. 【答案】<p>C</p><p>【解析】</p><p><img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02bcc0d22bd811eaa123bc8385e4c2b6.png\" height=\"32.0px\" width=\"157.5px\"/>，所以<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02be1f6e2bd811eab650bc8385e4c2b6.png\" height=\"18.5px\" width=\"61.5px\"/></p>"
     },
     {
-        "title": "",
         "questions": [
             {
-                "stem": "<p>已知三棱锥<i>P</i>−<i>ABC</i>的四个顶点在球<i>O</i>的球面上，<i>PA</i>=<i>PB</i>=<i>PC</i>，△<i>ABC</i>是边长为2的正三角形，<i>E</i>，<i>F</i>分别是<i>PA</i>，<i>A</i><i>B</i>的中点，∠<i>CEF</i>=90°，则球<i>O</i>的体积为</p>",
-                "number": "12",
+                "stem": "<p>设函数<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/01f015dc2bd811ea9758bc8385e4c2b6.png\" height=\"50.5px\" width=\"136.4px\"/>，若角<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/01f0fbf02bd811ea8568bc8385e4c2b6.png\" height=\"15.1px\" width=\"15.1px\"/>的终边经过点<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/01f1976e2bd811ea8502bc8385e4c2b6.png\" height=\"20.2px\" width=\"65.7px\"/>，则<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/01f25d0a2bd811ea9c82bc8385e4c2b6.png\" height=\"20.2px\" width=\"80.9px\"/>的值为（   ）</p>",
+                "number": "4",
                 "options": [
                     {
                         "label": "A",
-                        "content": "\\(8\\sqrt{6}π\\)"
+                        "content": "1"
                     },
                     {
                         "label": "B",
-                        "content": "\\(4\\sqrt{6}π\\)"
+                        "content": "3"
                     },
                     {
                         "label": "C",
-                        "content": "\\(2\\sqrt{6}π\\)"
+                        "content": "4"
                     },
                     {
                         "label": "D",
-                        "content": "\\(\\sqrt{6}π\\)"
+                        "content": "9"
+                    }
+                ],
+                "type": "SINGLE",
+                "score": 5,
+                "solution": "B"
+            }
+        ],
+        "title": "",
+        "category": "选择题",
+        "reference": "4. 【答案】<p>B</p><p>【解析】</p><p><img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02bebb402bd811ea9738bc8385e4c2b6.png\" height=\"48.0px\" width=\"414.0px\"/>，</p><p>所以<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02bf31002bd811ea828abc8385e4c2b6.png\" height=\"21.5px\" width=\"148.0px\"/>．</p>"
+    },
+    {
+        "questions": [
+            {
+                "stem": "<p>已知公差不为<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/01f58e1e2bd811eabe40bc8385e4c2b6.png\" height=\"20.2px\" width=\"15.1px\"/>的等差数列<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/01f62aca2bd811ea858bbc8385e4c2b6.png\" height=\"25.3px\" width=\"30.3px\"/>的首项<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/01f6761c2bd811eab358bc8385e4c2b6.png\" height=\"25.3px\" width=\"40.4px\"/>，且<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/01f738e42bd811eaa9d6bc8385e4c2b6.png\" height=\"25.3px\" width=\"60.6px\"/>成等比数列，数列<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/01f7d4ba2bd811eaa6ebbc8385e4c2b6.png\" height=\"25.3px\" width=\"30.3px\"/>的前<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/01f849982bd811eaa489bc8385e4c2b6.png\" height=\"15.1px\" width=\"15.1px\"/>项和<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/01f8e7f02bd811ea9f26bc8385e4c2b6.png\" height=\"25.3px\" width=\"20.2px\"/>满足<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/01f981702bd811eaa664bc8385e4c2b6.png\" height=\"25.3px\" width=\"111.1px\"/>，数列<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/01fa1d102bd811eab1febc8385e4c2b6.png\" height=\"25.3px\" width=\"30.3px\"/>满足<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/01fabb862bd811ea95d6bc8385e4c2b6.png\" height=\"25.3px\" width=\"121.3px\"/>，则数列<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/01fb54c62bd811eaaf9abc8385e4c2b6.png\" height=\"25.3px\" width=\"30.3px\"/>的前<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/01fc179e2bd811eaa472bc8385e4c2b6.png\" height=\"20.2px\" width=\"10.1px\"/>项和为（   ）</p>",
+                "number": "5",
+                "options": [
+                    {
+                        "label": "A",
+                        "content": "31"
+                    },
+                    {
+                        "label": "B",
+                        "content": "34"
+                    },
+                    {
+                        "label": "C",
+                        "content": "62"
+                    },
+                    {
+                        "label": "D",
+                        "content": "59"
+                    }
+                ],
+                "type": "SINGLE",
+                "score": 5,
+                "solution": "B"
+            }
+        ],
+        "title": "",
+        "category": "选择题",
+        "reference": "5. 【答案】<p>B</p><p>【解析】</p><p>设<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02c040d82bd811ea97f4bc8385e4c2b6.png\" height=\"24.0px\" width=\"30.5px\"/>的公差为<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02c2b33e2bd811eaa66ebc8385e4c2b6.png\" height=\"18.5px\" width=\"14.5px\"/>，因为<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02c34c082bd811ea90e6bc8385e4c2b6.png\" height=\"24.0px\" width=\"58.5px\"/>成等比数列，所以<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02c3e7f42bd811ea919cbc8385e4c2b6.png\" height=\"25.5px\" width=\"70.5px\"/>，即<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02c4aaa22bd811ea8f58bc8385e4c2b6.png\" height=\"24.0px\" width=\"169.5px\"/>，整理得：<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02c594742bd811ea9c3bbc8385e4c2b6.png\" height=\"21.5px\" width=\"69.0px\"/>，因为<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02c630342bd811ea8d46bc8385e4c2b6.png\" height=\"18.5px\" width=\"38.5px\"/>，所以<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02c6a5182bd811ea894abc8385e4c2b6.png\" height=\"18.5px\" width=\"36.0px\"/>．所以<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02c76d3e2bd811eaaa82bc8385e4c2b6.png\" height=\"24.0px\" width=\"233.5px\"/>，</p><p><img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02c7dcd02bd811ea8693bc8385e4c2b6.png\" height=\"24.0px\" width=\"69.0px\"/>，当<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02c8789c2bd811ea8b65bc8385e4c2b6.png\" height=\"18.5px\" width=\"41.5px\"/>时，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02c93b642bd811eaa444bc8385e4c2b6.png\" height=\"25.5px\" width=\"194.5px\"/>，</p><p>所以<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02ca730a2bd811eaa049bc8385e4c2b6.png\" height=\"24.0px\" width=\"266.5px\"/>，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02cb361a2bd811ea95f6bc8385e4c2b6.png\" height=\"24.0px\" width=\"177.5px\"/>．</p>"
+    },
+    {
+        "questions": [
+            {
+                "stem": "<p>下列有关命题的说法正确的是（   ）</p>",
+                "number": "6",
+                "options": [
+                    {
+                        "label": "A",
+                        "content": "<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02005a902bd811ea8c1bbc8385e4c2b6.png\" height=\"20.2px\" width=\"70.7px\"/>，使得<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/020146b02bd811ea9789bc8385e4c2b6.png\" height=\"40.4px\" width=\"106.1px\"/>成立．"
+                    },
+                    {
+                        "label": "B",
+                        "content": "命题<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/020254d82bd811eaa25ebc8385e4c2b6.png\" height=\"15.1px\" width=\"15.1px\"/>：任意<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0202f3942bd811eabfebbc8385e4c2b6.png\" height=\"15.1px\" width=\"40.4px\"/>，都有<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0203b37e2bd811eabb7dbc8385e4c2b6.png\" height=\"20.2px\" width=\"60.6px\"/>，则<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02044f502bd811ea8bcbbc8385e4c2b6.png\" height=\"15.1px\" width=\"25.3px\"/>：存在<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/020672a22bd811eaa384bc8385e4c2b6.png\" height=\"25.3px\" width=\"45.5px\"/>，使得<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0206e5a42bd811ea8a04bc8385e4c2b6.png\" height=\"25.3px\" width=\"65.7px\"/>．"
+                    },
+                    {
+                        "label": "C",
+                        "content": "命题“若<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/020851c82bd811ea97aabc8385e4c2b6.png\" height=\"20.2px\" width=\"35.4px\"/>且<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0208e0182bd811eab3b9bc8385e4c2b6.png\" height=\"20.2px\" width=\"35.4px\"/>，则<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0209a2e42bd811ea8649bc8385e4c2b6.png\" height=\"20.2px\" width=\"60.6px\"/>且<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/020a8ca82bd811eabb43bc8385e4c2b6.png\" height=\"20.2px\" width=\"45.5px\"/>”的逆命题为真命题．"
+                    },
+                    {
+                        "label": "D",
+                        "content": "若数列<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/020c89822bd811eab1aabc8385e4c2b6.png\" height=\"25.3px\" width=\"30.3px\"/>是等比数列，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/020d4ae82bd811eab5fdbc8385e4c2b6.png\" height=\"25.3px\" width=\"80.9px\"/>则<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/020de5b62bd811ea8c6abc8385e4c2b6.png\" height=\"25.3px\" width=\"75.8px\"/>是<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/020e84142bd811eaa6d0bc8385e4c2b6.png\" height=\"20.2px\" width=\"75.8px\"/>的必要不充分条件．"
                     }
                 ],
                 "type": "SINGLE",
@@ -391,162 +187,343 @@
                 "solution": "D"
             }
         ],
+        "title": "",
         "category": "选择题",
-        "total": 5,
-        "reference": "12. <p>D　</p>"
+        "reference": "6. 【答案】<p>D</p><p>【解析】</p><p>选项A，设<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02cd0bf82bd811eab4f6bc8385e4c2b6.png\" height=\"18.5px\" width=\"54.5px\"/>，则<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02cdd4462bd811ea88c7bc8385e4c2b6.png\" height=\"21.5px\" width=\"53.0px\"/>，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02ceb7462bd811ea9b35bc8385e4c2b6.png\" height=\"41.5px\" width=\"60.0px\"/>在<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02cf78a82bd811eaa846bc8385e4c2b6.png\" height=\"21.5px\" width=\"53.0px\"/>上单调递减，所以当<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02d0148a2bd811eab471bc8385e4c2b6.png\" height=\"18.5px\" width=\"30.5px\"/>时，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02d0fe4a2bd811eaa48ebc8385e4c2b6.png\" height=\"17.5px\" width=\"14.5px\"/>取得最小值3，故A错误；</p><p>选项B，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02d3bb982bd811eabd43bc8385e4c2b6.png\" height=\"17.5px\" width=\"24.0px\"/>：存在<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02d4f3782bd811eab289bc8385e4c2b6.png\" height=\"24.0px\" width=\"45.5px\"/>，使得<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02d5b5fa2bd811eaa7eabc8385e4c2b6.png\" height=\"24.0px\" width=\"63.0px\"/>，所以B错误．</p><p>选项C，逆命题为：“若<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02d8c1222bd811eaa223bc8385e4c2b6.png\" height=\"18.5px\" width=\"60.0px\"/>且<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02da1fca2bd811eab44bbc8385e4c2b6.png\" height=\"18.5px\" width=\"45.5px\"/>，则<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02dae2a62bd811eaaae2bc8385e4c2b6.png\" height=\"18.5px\" width=\"37.5px\"/>且<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02dbcc502bd811ea84ecbc8385e4c2b6.png\" height=\"18.5px\" width=\"37.5px\"/>”当<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02dc69482bd811eaa7eabc8385e4c2b6.png\" height=\"41.5px\" width=\"77.5px\"/>时，满足<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02dd78dc2bd811eab033bc8385e4c2b6.png\" height=\"18.5px\" width=\"60.0px\"/>且<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02de14ae2bd811ea88e0bc8385e4c2b6.png\" height=\"18.5px\" width=\"45.5px\"/>，但不满足<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02dec7762bd811ea9c9abc8385e4c2b6.png\" height=\"18.5px\" width=\"37.5px\"/>且<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02e0363a2bd811ea96a9bc8385e4c2b6.png\" height=\"18.5px\" width=\"37.5px\"/>，所以C错误．</p><p>选项D，若数列<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02e4edd22bd811ea8282bc8385e4c2b6.png\" height=\"24.0px\" width=\"30.5px\"/>是等比数列，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02e562b02bd811ea9c37bc8385e4c2b6.png\" height=\"21.5px\" width=\"74.5px\"/>，则<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02e7d2062bd811ea97dbbc8385e4c2b6.png\" height=\"27.0px\" width=\"74.5px\"/>，</p><p>反过来，若数列<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02e957a22bd811eabddfbc8385e4c2b6.png\" height=\"24.0px\" width=\"30.5px\"/>是等比数列，当公比为1时，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02eb521c2bd811ea8c48bc8385e4c2b6.png\" height=\"27.0px\" width=\"74.5px\"/>，不能推出<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02ec1bee2bd811ea8a4fbc8385e4c2b6.png\" height=\"21.5px\" width=\"74.5px\"/>，故D正确．</p>"
     },
     {
-        "title": "",
         "questions": [
             {
-                "stem": "<p>曲线\\(y=3(x^{2}+x)e^{x}\\)在点\\((0，0)\\)处的切线方程为____________．</p>",
+                "stem": "<p>设不等式组<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/020f92c82bd811eaa170bc8385e4c2b6.png\" height=\"65.7px\" width=\"90.9px\"/>表示的平面区域为<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02100c8a2bd811ea8565bc8385e4c2b6.png\" height=\"15.1px\" width=\"15.1px\"/>，则（   ）</p>",
+                "number": "7",
+                "options": [
+                    {
+                        "label": "A",
+                        "content": "<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0210f0e22bd811eab8a8bc8385e4c2b6.png\" height=\"15.1px\" width=\"15.1px\"/>的面积是<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0211dd522bd811ea9ab1bc8385e4c2b6.png\" height=\"30.3px\" width=\"15.1px\"/>"
+                    },
+                    {
+                        "label": "B",
+                        "content": "<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02124f8a2bd811eabbd6bc8385e4c2b6.png\" height=\"15.1px\" width=\"15.1px\"/>内的点到<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0212eb542bd811eab7a6bc8385e4c2b6.png\" height=\"15.1px\" width=\"15.1px\"/>轴的距离有最大值"
+                    },
+                    {
+                        "label": "C",
+                        "content": "点<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0213fc062bd811eab1d5bc8385e4c2b6.png\" height=\"20.2px\" width=\"50.5px\"/>在<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0214a0182bd811eabb20bc8385e4c2b6.png\" height=\"15.1px\" width=\"15.1px\"/>内时，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02150cc02bd811ea8e1abc8385e4c2b6.png\" height=\"35.4px\" width=\"55.6px\"/>"
+                    },
+                    {
+                        "label": "D",
+                        "content": "若点<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/021644e42bd811ea9a76bc8385e4c2b6.png\" height=\"25.3px\" width=\"85.9px\"/>，则<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0217081a2bd811eaa185bc8385e4c2b6.png\" height=\"25.3px\" width=\"70.7px\"/>"
+                    }
+                ],
+                "type": "SINGLE",
+                "score": 5,
+                "solution": "C"
+            }
+        ],
+        "title": "",
+        "category": "选择题",
+        "reference": "7. 【答案】<p>C</p><p>【解析】</p><p>作可行域如图所示，其中<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0313f3ee2bd811ea8899bc8385e4c2b6.png\" height=\"21.5px\" width=\"90.5px\"/>，可行域为开放区域，面积趋向于<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/03148fca2bd811ea82c1bc8385e4c2b6.png\" height=\"14.5px\" width=\"25.5px\"/>；<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/03153ada2bd811ea9d3ebc8385e4c2b6.png\" height=\"14.5px\" width=\"16.0px\"/>内的点到<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0315c7702bd811ea91ddbc8385e4c2b6.png\" height=\"14.5px\" width=\"13.0px\"/>轴的距离没有最大值；点<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/031717c22bd811eabba9bc8385e4c2b6.png\" height=\"21.5px\" width=\"50.5px\"/>在<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0319e3542bd811eabc42bc8385e4c2b6.png\" height=\"14.5px\" width=\"16.0px\"/>内时，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/031b68f42bd811eab530bc8385e4c2b6.png\" height=\"41.5px\" width=\"37.5px\"/>表示动点<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/031c551e2bd811ea9303bc8385e4c2b6.png\" height=\"21.5px\" width=\"50.5px\"/>与定点<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/031d261c2bd811eaa7babc8385e4c2b6.png\" height=\"21.5px\" width=\"57.5px\"/>连线的斜率，由图可知，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/031d8dae2bd811eaac6abc8385e4c2b6.png\" height=\"45.5px\" width=\"94.5px\"/>，故C正确；点<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/031e4d1c2bd811eab612bc8385e4c2b6.png\" height=\"21.5px\" width=\"69.0px\"/>，满足<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/031ee8ee2bd811eaa028bc8385e4c2b6.png\" height=\"24.0px\" width=\"72.0px\"/>，故D错误．</p><img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/031fabb82bd811ea9fa2bc8385e4c2b6.png\" height=\"213\" width=\"240\"/>"
+    },
+    {
+        "questions": [
+            {
+                "stem": "<p>将向量列<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0217ca022bd811ea874ebc8385e4c2b6.png\" height=\"25.3px\" width=\"257.7px\"/>组成的系列称为向量列<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02188cc22bd811ea917ebc8385e4c2b6.png\" height=\"25.3px\" width=\"30.3px\"/>，并记向量列<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0219289a2bd811ea9002bc8385e4c2b6.png\" height=\"25.3px\" width=\"30.3px\"/>的前<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02199d882bd811eab47cbc8385e4c2b6.png\" height=\"15.1px\" width=\"15.1px\"/>项和为<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/021a3b922bd811eaabb0bc8385e4c2b6.png\" height=\"25.3px\" width=\"166.7px\"/>，如果一个向量列从第二项起每一项与前一项的和都等于同一个向量 <img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/021b97f42bd811eab3f0bc8385e4c2b6.png\" height=\"25.3px\" width=\"15.1px\"/>，那么称这样的向量列为等和向量列。已知向量列<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/021c33cc2bd811eab4fbbc8385e4c2b6.png\" height=\"25.3px\" width=\"30.3px\"/>为等和向量列，若<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/021c81b02bd811ea966fbc8385e4c2b6.png\" height=\"25.3px\" width=\"126.3px\"/>，则与向量<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/021d1d8c2bd811eaaa25bc8385e4c2b6.png\" height=\"25.3px\" width=\"25.3px\"/>一定是垂直的向量坐标是（   ）</p>",
+                "number": "8",
+                "options": [
+                    {
+                        "label": "A",
+                        "content": "<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/021e5bc22bd811ea8ccfbc8385e4c2b6.png\" height=\"20.2px\" width=\"50.5px\"/>"
+                    },
+                    {
+                        "label": "B",
+                        "content": "<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/021f17f62bd811ea8d68bc8385e4c2b6.png\" height=\"20.2px\" width=\"50.5px\"/>"
+                    },
+                    {
+                        "label": "C",
+                        "content": "<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0221fc2c2bd811eaa72bbc8385e4c2b6.png\" height=\"20.2px\" width=\"60.6px\"/>"
+                    },
+                    {
+                        "label": "D",
+                        "content": "<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/022333d22bd811ea9869bc8385e4c2b6.png\" height=\"20.2px\" width=\"60.6px\"/>"
+                    }
+                ],
+                "type": "SINGLE",
+                "score": 5,
+                "solution": "C"
+            }
+        ],
+        "title": "",
+        "category": "选择题",
+        "reference": "8. 【答案】<p>C</p><p>【解析】</p><p><img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0337fd6e2bd811eab7ddbc8385e4c2b6.png\" height=\"27.0px\" width=\"329.5px\"/>，……，所以<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0338974a2bd811ea8fb0bc8385e4c2b6.png\" height=\"27.0px\" width=\"170.5px\"/>，</p><p>则与<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0339808c2bd811ea9b53bc8385e4c2b6.png\" height=\"27.0px\" width=\"24.0px\"/>一定是垂直的向量坐标<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/033a1f1a2bd811ea8048bc8385e4c2b6.png\" height=\"21.5px\" width=\"60.0px\"/>．</p>"
+    },
+    {
+        "questions": [
+            {
+                "stem": "<p>函数<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0224449e2bd811eaaf44bc8385e4c2b6.png\" height=\"20.2px\" width=\"60.6px\"/>的定义域为<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0224e06c2bd811ea98a6bc8385e4c2b6.png\" height=\"15.1px\" width=\"15.1px\"/>，且<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02257c462bd811eabd32bc8385e4c2b6.png\" height=\"20.2px\" width=\"151.6px\"/>其中<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0225f78c2bd811eab9cfbc8385e4c2b6.png\" height=\"20.2px\" width=\"35.4px\"/>，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02268cf82bd811eab37abc8385e4c2b6.png\" height=\"15.1px\" width=\"15.1px\"/>为常数，若对任意</p><p><img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02272d582bd811eaad99bc8385e4c2b6.png\" height=\"25.3px\" width=\"90.9px\"/>，都有<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0227c68a2bd811ea8730bc8385e4c2b6.png\" height=\"40.4px\" width=\"106.1px\"/>，则函数<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/022860802bd811eaa564bc8385e4c2b6.png\" height=\"20.2px\" width=\"60.6px\"/>的图象可以是（   ）</p>",
+                "number": "9",
+                "options": [
+                    {
+                        "label": "A",
+                        "content": "<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/022a5f002bd811eaa764bc8385e4c2b6.png\" height=\"121\" width=\"110\"/>"
+                    },
+                    {
+                        "label": "B",
+                        "content": "<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/022c5dfe2bd811ea97afbc8385e4c2b6.png\" height=\"115\" width=\"111\"/>"
+                    },
+                    {
+                        "label": "C",
+                        "content": "<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/022e051e2bd811ea99aabc8385e4c2b6.png\" height=\"120\" width=\"103\"/>"
+                    },
+                    {
+                        "label": "D",
+                        "content": " <img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/022fb0fe2bd811ea987dbc8385e4c2b6.png\" height=\"112\" width=\"104\"/>"
+                    }
+                ],
+                "type": "SINGLE",
+                "score": 5,
+                "solution": "A"
+            }
+        ],
+        "title": "",
+        "category": "选择题",
+        "reference": "9. 【答案】<p>A</p><p>【解析】</p><p>因为对任意<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/033adf222bd811eabd38bc8385e4c2b6.png\" height=\"24.0px\" width=\"92.0px\"/>，都有<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/033bcaf82bd811eaa397bc8385e4c2b6.png\" height=\"45.5px\" width=\"116.0px\"/>，所以函数<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/033c64b82bd811eaafdfbc8385e4c2b6.png\" height=\"21.5px\" width=\"34.5px\"/>为单调递增函数，即<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/033d27922bd811ea92b9bc8385e4c2b6.png\" height=\"21.5px\" width=\"182.5px\"/>，所以<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/033e38402bd811ea9b0cbc8385e4c2b6.png\" height=\"21.5px\" width=\"112.0px\"/>，因为<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/034511682bd811ea9a86bc8385e4c2b6.png\" height=\"21.5px\" width=\"112.0px\"/>，故<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0345864c2bd811eabe3dbc8385e4c2b6.png\" height=\"21.5px\" width=\"38.5px\"/>为单调递增函数，选项A为指数型函数，不妨设<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/03468ddc2bd811ea9f48bc8385e4c2b6.png\" height=\"24.0px\" width=\"43.0px\"/>，满足题意，故选A．</p>"
+    },
+    {
+        "questions": [
+            {
+                "stem": "<p>已知函数<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/023181fa2bd811ea886fbc8385e4c2b6.png\" height=\"45.5px\" width=\"272.9px\"/>，若函数<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02321dc02bd811ea98d4bc8385e4c2b6.png\" height=\"20.2px\" width=\"101.1px\"/>的零点都在区间<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0232b9a42bd811ea8bdfbc8385e4c2b6.png\" height=\"20.2px\" width=\"136.4px\"/>内，当<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0233556c2bd811eab7e3bc8385e4c2b6.png\" height=\"20.2px\" width=\"35.4px\"/>取最小值时，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0233f6642bd811ea9044bc8385e4c2b6.png\" height=\"35.4px\" width=\"80.9px\"/>等于（   ）</p>",
+                "number": "10",
+                "options": [
+                    {
+                        "label": "A",
+                        "content": "3"
+                    },
+                    {
+                        "label": "B",
+                        "content": "4"
+                    },
+                    {
+                        "label": "C",
+                        "content": "5"
+                    },
+                    {
+                        "label": "D",
+                        "content": "6"
+                    }
+                ],
+                "type": "SINGLE",
+                "score": 5,
+                "solution": "B"
+            }
+        ],
+        "title": "",
+        "category": "选择题",
+        "reference": "10. 【答案】<p>B</p><p>【解析】</p><p><img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0347f8a22bd811eaa599bc8385e4c2b6.png\" height=\"24.0px\" width=\"526.5px\"/>，</p><p>可知当<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0348916c2bd811eabb81bc8385e4c2b6.png\" height=\"18.5px\" width=\"38.5px\"/>时，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/034907982bd811eaac14bc8385e4c2b6.png\" height=\"21.5px\" width=\"63.0px\"/>成立，</p><p>又<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0349a22c2bd811ea9d80bc8385e4c2b6.png\" height=\"24.0px\" width=\"521.0px\"/>，</p><p>可知当<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/034a3e062bd811eabffdbc8385e4c2b6.png\" height=\"18.5px\" width=\"34.5px\"/>时，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/034ad9c82bd811ea9d36bc8385e4c2b6.png\" height=\"21.5px\" width=\"63.0px\"/>成立，所以对任意<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/034b4f062bd811eab978bc8385e4c2b6.png\" height=\"18.5px\" width=\"41.5px\"/>，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/034c153a2bd811eab541bc8385e4c2b6.png\" height=\"21.5px\" width=\"63.0px\"/>，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/034cae362bd811eaa231bc8385e4c2b6.png\" height=\"21.5px\" width=\"36.0px\"/>单调递增，所以函数<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/034cfb382bd811ea872ebc8385e4c2b6.png\" height=\"21.5px\" width=\"36.0px\"/>只有一个零点，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/034d70462bd811eab433bc8385e4c2b6.png\" height=\"21.5px\" width=\"80.0px\"/>，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/034dbe0c2bd811ea8443bc8385e4c2b6.png\" height=\"41.5px\" width=\"224.0px\"/>，所以<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/034ecf0c2bd811ea80fcbc8385e4c2b6.png\" height=\"21.5px\" width=\"36.0px\"/>的零点位于区间<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/034f6a882bd811eabfe0bc8385e4c2b6.png\" height=\"21.5px\" width=\"45.5px\"/> ，所以函数<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/034fdf622bd811ea902abc8385e4c2b6.png\" height=\"21.5px\" width=\"103.0px\"/>的零点位于区间<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/03502db62bd811ea8f47bc8385e4c2b6.png\" height=\"21.5px\" width=\"37.5px\"/>，即<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0350ab7a2bd811ea9b38bc8385e4c2b6.png\" height=\"21.5px\" width=\"76.0px\"/>，所以<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/03518bf02bd811eab9c0bc8385e4c2b6.png\" height=\"34.5px\" width=\"176.0px\"/><img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0351d9e42bd811eaa4f1bc8385e4c2b6.png\" height=\"33.0px\" width=\"145.0px\"/></p>"
+    },
+    {
+        "questions": [
+            {
+                "stem": "<p>已知<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0236fc662bd811eabb7cbc8385e4c2b6.png\" height=\"40.4px\" width=\"151.6px\"/>同时满足下列三个条件：</p><p>①<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0237e62e2bd811ea908cbc8385e4c2b6.png\" height=\"25.3px\" width=\"121.3px\"/>时<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02385b222bd811ea9bd8bc8385e4c2b6.png\" height=\"25.3px\" width=\"50.5px\"/>最小值为<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0238f6e22bd811ea83b6bc8385e4c2b6.png\" height=\"40.4px\" width=\"15.1px\"/>，②<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0239b9a82bd811eaa598bc8385e4c2b6.png\" height=\"40.4px\" width=\"90.9px\"/>是奇函数，③<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/023a0b9a2bd811eabf5fbc8385e4c2b6.png\" height=\"40.4px\" width=\"85.9px\"/>．</p><p>若<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/023aca682bd811ea8d17bc8385e4c2b6.png\" height=\"20.2px\" width=\"35.4px\"/>在<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/023b18522bd811ea8c1fbc8385e4c2b6.png\" height=\"25.3px\" width=\"35.4px\"/>上没有最大值，则实数<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/023bb42e2bd811eaab72bc8385e4c2b6.png\" height=\"15.1px\" width=\"10.1px\"/>的范围是（   ）</p>",
+                "number": "11",
+                "options": [
+                    {
+                        "label": "A",
+                        "content": "<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/023cc4cc2bd811ea9719bc8385e4c2b6.png\" height=\"35.4px\" width=\"45.5px\"/>"
+                    },
+                    {
+                        "label": "B",
+                        "content": "<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/023d39b42bd811ea89cabc8385e4c2b6.png\" height=\"35.4px\" width=\"60.6px\"/>"
+                    },
+                    {
+                        "label": "C",
+                        "content": "<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/023dfc802bd811ea9229bc8385e4c2b6.png\" height=\"35.4px\" width=\"70.7px\"/>"
+                    },
+                    {
+                        "label": "D",
+                        "content": "<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/023ebf482bd811ea89d6bc8385e4c2b6.png\" height=\"35.4px\" width=\"75.8px\"/>"
+                    }
+                ],
+                "type": "SINGLE",
+                "score": 5,
+                "solution": "D"
+            }
+        ],
+        "title": "",
+        "category": "选择题",
+        "reference": "11. 【答案】<p>D</p><p>【解析】</p><p>由①可知<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/03524ebe2bd811ea9deebc8385e4c2b6.png\" height=\"38.0px\" width=\"171.0px\"/>，</p><p>由②，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0353fb582bd811eabe0cbc8385e4c2b6.png\" height=\"39.0px\" width=\"301.5px\"/>为奇函数，所以<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0354735a2bd811eaae59bc8385e4c2b6.png\" height=\"36.0px\" width=\"105.5px\"/>，</p><p>当<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0354e5082bd811eabbe7bc8385e4c2b6.png\" height=\"37.5px\" width=\"40.0px\"/>时，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/035559f42bd811ea8b4fbc8385e4c2b6.png\" height=\"40.0px\" width=\"125.0px\"/>，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0355f5c82bd811eaaddebc8385e4c2b6.png\" height=\"41.5px\" width=\"210.5px\"/>，满足③，</p><p>当<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/03566aa82bd811eabefebc8385e4c2b6.png\" height=\"41.5px\" width=\"52.0px\"/>时，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0356df7a2bd811eaaff2bc8385e4c2b6.png\" height=\"37.5px\" width=\"121.0px\"/>，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0357561e2bd811eaaee6bc8385e4c2b6.png\" height=\"40.5px\" width=\"215.5px\"/>，不满足③，</p><p>所以<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0357c93a2bd811eaa616bc8385e4c2b6.png\" height=\"42.5px\" width=\"132.0px\"/>，其图像如图所示，其图像过点<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/03583e222bd811eabf7ebc8385e4c2b6.png\" height=\"39.0px\" width=\"133.0px\"/>，要保证<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0358d9fe2bd811ea999cbc8385e4c2b6.png\" height=\"21.5px\" width=\"36.0px\"/>在<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0359515e2bd811ea8478bc8385e4c2b6.png\" height=\"27.0px\" width=\"34.5px\"/>上没有最大值，则<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0359c3ba2bd811ea8aecbc8385e4c2b6.png\" height=\"16.0px\" width=\"9.0px\"/>的取值范围是<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/035a5f882bd811ea9f20bc8385e4c2b6.png\" height=\"45.0px\" width=\"78.5px\"/>．</p><img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/035ad46e2bd811eab54bbc8385e4c2b6.png\" height=\"132\" width=\"284\"/>"
+    },
+    {
+        "questions": [
+            {
+                "stem": "<p>已知函数<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/023f84b62bd811ea831abc8385e4c2b6.png\" height=\"25.3px\" width=\"171.8px\"/><img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/023fd0082bd811ea93bebc8385e4c2b6.png\" height=\"20.2px\" width=\"50.5px\"/> ，在函数<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02406cb42bd811ea9733bc8385e4c2b6.png\" height=\"20.2px\" width=\"35.4px\"/>图象上任取两点<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/024155902bd811ea8d27bc8385e4c2b6.png\" height=\"20.2px\" width=\"30.3px\"/>，若直线<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0241cd0a2bd811ea9ddabc8385e4c2b6.png\" height=\"15.1px\" width=\"25.3px\"/>的斜率的绝对值都不小于<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02423f5c2bd811ea860bbc8385e4c2b6.png\" height=\"20.2px\" width=\"10.1px\"/>，则实数<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02428d522bd811ea8c68bc8385e4c2b6.png\" height=\"15.1px\" width=\"15.1px\"/>的取值范围是（）</p>",
+                "number": "12",
+                "options": [
+                    {
+                        "label": "A",
+                        "content": "<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0243c60a2bd811ea9595bc8385e4c2b6.png\" height=\"20.2px\" width=\"50.5px\"/>"
+                    },
+                    {
+                        "label": "B",
+                        "content": "<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/024487b42bd811eab603bc8385e4c2b6.png\" height=\"50.5px\" width=\"96.0px\"/>"
+                    },
+                    {
+                        "label": "C",
+                        "content": "<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0244fc9c2bd811ea8334bc8385e4c2b6.png\" height=\"55.6px\" width=\"111.1px\"/>"
+                    },
+                    {
+                        "label": "D",
+                        "content": "<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0245c1f02bd811eabd52bc8385e4c2b6.png\" height=\"50.5px\" width=\"85.9px\"/>"
+                    }
+                ],
+                "type": "SINGLE",
+                "score": 5,
+                "solution": "B"
+            }
+        ],
+        "title": "",
+        "category": "选择题",
+        "reference": "12. 【答案】<p>B</p><p>【解析】</p><p><img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/035bea9c2bd811ea91a9bc8385e4c2b6.png\" height=\"40.5px\" width=\"150.0px\"/>，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/035ca7ee2bd811eaaad9bc8385e4c2b6.png\" height=\"27.0px\" width=\"36.0px\"/>在<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/035d1f402bd811ea9fedbc8385e4c2b6.png\" height=\"27.0px\" width=\"50.5px\"/>单调递减，</p><p><img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/035d91ae2bd811eabc98bc8385e4c2b6.png\" height=\"48.0px\" width=\"235.0px\"/>    设<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/035e2d862bd811eabf09bc8385e4c2b6.png\" height=\"24.0px\" width=\"246.5px\"/></p><p>设<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/035e7b742bd811eaa45fbc8385e4c2b6.png\" height=\"21.5px\" width=\"113.0px\"/>则<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/035f173e2bd811eaa5dfbc8385e4c2b6.png\" height=\"21.5px\" width=\"36.5px\"/>在<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/035f8c1a2bd811eabe87bc8385e4c2b6.png\" height=\"21.5px\" width=\"49.0px\"/>上单调递减</p><p>则<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/036028002bd811eaab29bc8385e4c2b6.png\" height=\"40.5px\" width=\"184.5px\"/>对<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/036075e22bd811eaa9a1bc8385e4c2b6.png\" height=\"21.5px\" width=\"73.5px\"/>恒成立 </p><p>则<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0361ad862bd811eaa25bbc8385e4c2b6.png\" height=\"24.0px\" width=\"148.5px\"/>对<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0361fb742bd811eaa648bc8385e4c2b6.png\" height=\"21.5px\" width=\"73.5px\"/>恒成立      则<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/03630c3a2bd811ea8258bc8385e4c2b6.png\" height=\"24.0px\" width=\"173.5px\"/></p><p>解之得<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/03635a182bd811eabe72bc8385e4c2b6.png\" height=\"42.5px\" width=\"79.0px\"/>或<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0363cef02bd811ea8e33bc8385e4c2b6.png\" height=\"40.0px\" width=\"75.0px\"/>    又<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/03646d582bd811eab998bc8385e4c2b6.png\" height=\"18.5px\" width=\"37.0px\"/>，所以<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0364b8c02bd811ea975abc8385e4c2b6.png\" height=\"45.5px\" width=\"85.5px\"/></p>"
+    },
+    {
+        "questions": [
+            {
+                "stem": "<p>已知向量<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02465b462bd811ea9254bc8385e4c2b6.png\" height=\"25.3px\" width=\"131.4px\"/>，若<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0246a9242bd811ea88a5bc8385e4c2b6.png\" height=\"20.2px\" width=\"60.6px\"/>，则<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/024744fa2bd811ea9fd7bc8385e4c2b6.png\" height=\"30.3px\" width=\"60.6px\"/><u>        </u>．</p>",
                 "number": "13",
                 "type": "GENERAL",
                 "score": 5
             }
         ],
+        "title": "",
         "category": "填空题",
-        "total": 5,
-        "reference": "13. <p><i>y</i>=3<i>x</i></p>"
+        "reference": "13. 【答案】<p><img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/03652d982bd811ea9e05bc8385e4c2b6.png\" height=\"22.5px\" width=\"33.0px\"/></p><p>【解析】</p><p><img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/03657b882bd811ea9576bc8385e4c2b6.png\" height=\"25.0px\" width=\"191.0px\"/>，则<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0365f0682bd811eaa190bc8385e4c2b6.png\" height=\"25.5px\" width=\"101.5px\"/>，所以<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/036665482bd811ea9719bc8385e4c2b6.png\" height=\"32.0px\" width=\"93.0px\"/>．</p>"
     },
     {
-        "title": "",
         "questions": [
             {
-                "stem": "<p>记<i>S</i><i><sub>n</sub></i>为等比数列{<i>a</i><i><sub>n</sub></i>}的前<i>n</i>项和．若\\(a_{1}=\\frac{1}{3}，a_{4}^{2}=a_{6}\\)，则<i>S</i><sub>5</sub>=____________．</p>",
+                "stem": "<p>公元前6世纪，古希腊的毕达哥拉斯学派通过研究正五边形和正十边形的作图，发现了黄金分割值约为0．618，这一数值也可表示为<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/024967b42bd811ea9655bc8385e4c2b6.png\" height=\"20.2px\" width=\"85.9px\"/>． 若<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/024a29362bd811ea9fc5bc8385e4c2b6.png\" height=\"20.2px\" width=\"70.7px\"/>，则<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/024aeffa2bd811ea920fbc8385e4c2b6.png\" height=\"45.5px\" width=\"101.1px\"/><u>    </u><u>   </u>．</p>",
                 "number": "14",
                 "type": "GENERAL",
                 "score": 5
             }
         ],
+        "title": "",
         "category": "填空题",
-        "total": 5,
-        "reference": "14. <p>\\(\\frac{121}{3}\\)</p>"
+        "reference": "14. 【答案】<p><img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0366da1a2bd811eabc30bc8385e4c2b6.png\" height=\"41.5px\" width=\"27.0px\"/></p><p>【解析】</p><p><img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0367280c2bd811ea94e5bc8385e4c2b6.png\" height=\"27.0px\" width=\"245.0px\"/>，</p><p>所以<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0367c8e82bd811eaa18ebc8385e4c2b6.png\" height=\"45.5px\" width=\"290.0px\"/>．</p>"
     },
     {
-        "title": "",
         "questions": [
             {
-                "stem": "<p>甲、乙两队进行篮球决赛，采取七场四胜制（当一队赢得四场胜利时，该队获胜，决赛结束）．根据前期比赛成绩，甲队的主客场安排依次为“主主客客主客主”．设甲队主场取胜的概率为0.6，客场取胜的概率为0.5，且各场比赛结果相互独立，则甲队以4∶1获胜的概率是____________．</p>",
+                "stem": "<p>已知定义在实数集<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/024c23b02bd811ea9c17bc8385e4c2b6.png\" height=\"15.1px\" width=\"15.1px\"/>上的函数<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/024cc26e2bd811ea9ab6bc8385e4c2b6.png\" height=\"20.2px\" width=\"35.4px\"/>满足<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/024d345c2bd811eaae03bc8385e4c2b6.png\" height=\"20.2px\" width=\"55.6px\"/>，且<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/024da9362bd811ea85e8bc8385e4c2b6.png\" height=\"20.2px\" width=\"35.4px\"/>的导函数<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/024e1e142bd811ea9bd7bc8385e4c2b6.png\" height=\"20.2px\" width=\"40.4px\"/>满足<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/024e92fa2bd811ea86febc8385e4c2b6.png\" height=\"20.2px\" width=\"85.9px\"/>，则不等式<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/024f07d22bd811ea9d04bc8385e4c2b6.png\" height=\"20.2px\" width=\"111.1px\"/>的解集为<u>            </u>．（结果用区间表示）</p>",
                 "number": "15",
                 "type": "GENERAL",
                 "score": 5
             }
         ],
+        "title": "",
         "category": "填空题",
-        "total": 5,
-        "reference": "15. <p>18</p>"
+        "reference": "15. 【答案】<p><img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/03685fc02bd811eabad6bc8385e4c2b6.png\" height=\"21.5px\" width=\"36.0px\"/> </p><p>【解析】</p><p>设<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0368fb862bd811ea913fbc8385e4c2b6.png\" height=\"18.5px\" width=\"49.0px\"/>，则不等式<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/036949762bd811eaaea0bc8385e4c2b6.png\" height=\"21.5px\" width=\"110.5px\"/>等价于<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0369be4c2bd811eabc3abc8385e4c2b6.png\" height=\"21.5px\" width=\"94.5px\"/>，设<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/036a0c4a2bd811eab0cebc8385e4c2b6.png\" height=\"21.5px\" width=\"113.0px\"/>，则<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/036a82822bd811eaa17abc8385e4c2b6.png\" height=\"21.5px\" width=\"54.5px\"/>，且<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/036af7fe2bd811ea9f37bc8385e4c2b6.png\" height=\"21.0px\" width=\"163.0px\"/>单调递减，由<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/036b91da2bd811eaa2acbc8385e4c2b6.png\" height=\"21.5px\" width=\"54.5px\"/>可得<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/036c2da62bd811eaa46fbc8385e4c2b6.png\" height=\"21.5px\" width=\"73.5px\"/>，所以<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/036cc97e2bd811ea9718bc8385e4c2b6.png\" height=\"18.5px\" width=\"30.5px\"/>，即<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/036ddcec2bd811ea8560bc8385e4c2b6.png\" height=\"18.5px\" width=\"49.0px\"/>，解得<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/036e76122bd811eab33fbc8385e4c2b6.png\" height=\"18.5px\" width=\"60.0px\"/>，所以原不等式的解集为<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/036eeaf62bd811ea948abc8385e4c2b6.png\" height=\"21.5px\" width=\"36.0px\"/>．</p>"
     },
     {
-        "title": "",
         "questions": [
             {
-                "stem": "<p>已知双曲线<i>C</i>：\\(\\frac{x^{2}}{a^{2}}-\\frac{y^{2}}{b^{2}}=1(a&gt;0,b&gt;0)\\)的左、右焦点分别为<i>F</i><sub>1</sub>，<i>F</i><sub>2</sub>，过<i>F</i><sub>1</sub>的直线与<i>C</i>的两条渐近线分别交于<i>A</i>，<i>B</i>两点．若\\(\\vec{F_{1}A}=\\vec{AB}\\)，\\(\\vec{F_{1}B}⋅\\vec{F_{2}B}=0\\)，则<i>C</i>的离心率为____________．</p>",
+                "stem": "<p>已知各项均为正数的两个无穷数列<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/025066782bd811eaa83bbc8385e4c2b6.png\" height=\"20.2px\" width=\"30.3px\"/>和<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0250db522bd811eab7c7bc8385e4c2b6.png\" height=\"20.2px\" width=\"25.3px\"/>满足：<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/025177362bd811eab094bc8385e4c2b6.png\" height=\"45.5px\" width=\"116.2px\"/><img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0252af8a2bd811ea87e2bc8385e4c2b6.png\" height=\"40.4px\" width=\"131.4px\"/>，且<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/025327902bd811eaac2ebc8385e4c2b6.png\" height=\"20.2px\" width=\"30.3px\"/>是等比数列，给定以下四个结论：①数列<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0253c6ac2bd811eab2aabc8385e4c2b6.png\" height=\"20.2px\" width=\"30.3px\"/>的所有项都不大于<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02545b5c2bd811eab989bc8385e4c2b6.png\" height=\"20.2px\" width=\"25.3px\"/>；②数列<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0254d3cc2bd811eab110bc8385e4c2b6.png\" height=\"20.2px\" width=\"25.3px\"/>的所有项都大于<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02556c342bd811ea843cbc8385e4c2b6.png\" height=\"20.2px\" width=\"25.3px\"/>；③数列<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0255e0f62bd811ea993ebc8385e4c2b6.png\" height=\"20.2px\" width=\"30.3px\"/>的公比等于<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/025658242bd811ea85a4bc8385e4c2b6.png\" height=\"17.5px\" width=\"9.0px\"/>；④数列<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0256caba2bd811eaac63bc8385e4c2b6.png\" height=\"21.5px\" width=\"27.5px\"/>一定是等比数列。其中正确结论的序号是<u>            </u>．</p>",
                 "number": "16",
                 "type": "GENERAL",
                 "score": 5
             }
         ],
+        "title": "",
         "category": "填空题",
-        "total": 5,
-        "reference": "16. <p>2</p>"
+        "reference": "16. 【答案】<p>①③④</p><p>【解析】</p><p>因为<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/037296302bd811ea84e3bc8385e4c2b6.png\" height=\"41.0px\" width=\"199.0px\"/> 所以<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/03737ba42bd811ea8756bc8385e4c2b6.png\" height=\"25.0px\" width=\"83.0px\"/>  ①</p><p>下证等比数列<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/03759e302bd811ea9d49bc8385e4c2b6.png\" height=\"24.0px\" width=\"31.0px\"/>的公比<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/037611fa2bd811eabe70bc8385e4c2b6.png\" height=\"21.5px\" width=\"34.5px\"/></p><p>若<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0376d4c02bd811eab5a7bc8385e4c2b6.png\" height=\"21.5px\" width=\"34.5px\"/>，则<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0377be862bd811ea8cabbc8385e4c2b6.png\" height=\"43.0px\" width=\"263.5px\"/>  此时<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/037833642bd811ea9d10bc8385e4c2b6.png\" height=\"27.0px\" width=\"65.5px\"/>，与①矛盾</p><p>若<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/037a578a2bd811eaa45abc8385e4c2b6.png\" height=\"21.5px\" width=\"57.5px\"/>，则<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/037af4082bd811eaae8fbc8385e4c2b6.png\" height=\"42.5px\" width=\"235.5px\"/>    此时<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/037bdb182bd811ea8355bc8385e4c2b6.png\" height=\"24.0px\" width=\"49.0px\"/>，与①矛盾故<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/037e49b62bd811ea81bebc8385e4c2b6.png\" height=\"21.5px\" width=\"34.5px\"/>   </p><p>故<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0381c9f82bd811ea9a2ebc8385e4c2b6.png\" height=\"49.0px\" width=\"80.0px\"/>   下证<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0383caa42bd811eaa66ebc8385e4c2b6.png\" height=\"27.0px\" width=\"53.5px\"/>，若<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/038597ba2bd811ea9acbbc8385e4c2b6.png\" height=\"27.0px\" width=\"53.5px\"/>   则<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0386cf622bd811ea85b1bc8385e4c2b6.png\" height=\"49.0px\" width=\"159.0px\"/></p><p>由<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/038792342bd811eaa50cbc8385e4c2b6.png\" height=\"53.0px\" width=\"233.0px\"/>   所以<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0388a4462bd811eaa7dcbc8385e4c2b6.png\" height=\"24.0px\" width=\"52.5px\"/>中至少有两项相同，矛盾</p><p>所以<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/038a79c22bd811ea8b1dbc8385e4c2b6.png\" height=\"27.0px\" width=\"141.5px\"/>   所以正确的序号是①③④</p>"
     },
     {
-        "title": "",
         "questions": [
             {
-                "stem": "<p>（12分）</p><p>\\(△ABC\\)的内角<i>A</i>，<i>B</i>，<i>C</i>的对边分别为<i>a</i>，<i>b</i>，<i>c</i>，设\\((sinB-sinC)^{2}=sin^{2}A-sinBsinC\\).</p><p>（1）求<i>A</i>；</p><p>（2）若\\(\\sqrt{2}a+b=2c\\)，求sin<i>C</i>．</p>",
+                "stem": "<p>(本题满分12分)在<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0258ec1e2bd811ea82a4bc8385e4c2b6.png\" height=\"18.5px\" width=\"50.5px\"/>中，已知点<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02593a762bd811ea9782bc8385e4c2b6.png\" height=\"17.5px\" width=\"17.5px\"/>在边<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0259d5dc2bd811ea9a58bc8385e4c2b6.png\" height=\"18.5px\" width=\"27.0px\"/>上，且<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/025a71ba2bd811ea94fbbc8385e4c2b6.png\" height=\"22.5px\" width=\"83.0px\"/>，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/025abfa82bd811ea9a62bc8385e4c2b6.png\" height=\"45.5px\" width=\"119.0px\"/>，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/025b34802bd811ea8edebc8385e4c2b6.png\" height=\"22.5px\" width=\"69.0px\"/>．（1）若<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/025bf75e2bd811eab0eebc8385e4c2b6.png\" height=\"24.0px\" width=\"70.5px\"/>，求<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/025c453e2bd811eaaeb5bc8385e4c2b6.png\" height=\"18.5px\" width=\"37.5px\"/>的值；（2）若<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/025d08062bd811eab399bc8385e4c2b6.png\" height=\"22.5px\" width=\"64.0px\"/>，求<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/025d7cfa2bd811ea888cbc8385e4c2b6.png\" height=\"18.5px\" width=\"27.0px\"/>边上的中线<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/025e18b82bd811eaa54abc8385e4c2b6.png\" height=\"17.5px\" width=\"27.0px\"/>的长． </p><img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0270a9a42bd811ea8ba8bc8385e4c2b6.png\" height=\"93\" width=\"160\"/><img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/027193682bd811ea9866bc8385e4c2b6.png\" height=\"162\" width=\"180\"/>",
                 "number": "17",
                 "type": "GENERAL",
                 "score": 12
             }
         ],
+        "title": "",
         "category": "解答题",
-        "total": 12,
-        "reference": "17. <p>解：（1）由已知得\\(sin^{2}B+sin^{2}C-sin^{2}A=sinBsinC\\)，故由正弦定理得\\(b^{2}+c^{2}-a^{2}=bc\\)．</p><p>由余弦定理得\\(\\cos(A)=\\frac{b^{2}+c^{2}-a^{2}}{2bc}=\\frac{1}{2}\\)．</p><p>因为\\(0^{°}&lt;A&lt;180^{°}\\)，所以\\(A=60^{°}\\)．</p><p>（2）由（1）知\\(B=120^{°}-C\\)，由题设及正弦定理得\\(\\sqrt{2}\\sin(A)+\\sin(\\left(120^{°}-C\\right))=2\\sin(C)\\)，</p><p>即\\(\\frac{\\sqrt{6}}{2}+\\frac{\\sqrt{3}}{2}\\cos(C)+\\frac{1}{2}\\sin(C)=2\\sin(C)\\)，可得\\(\\cos(\\left(C+60^{°}\\right))=-\\frac{\\sqrt{2}}{2}\\)．</p><p>由于\\(0^{°}&lt;C&lt;120^{°}\\)，所以\\(\\sin(\\left(C+60^{°}\\right))=\\frac{\\sqrt{2}}{2}\\)，故</p><p>\\(\\sin(\\left(C+60^{°}\\right))=\\frac{\\sqrt{2}}{2}\\)</p><p>\\(=\\sin(\\left(C+60^{°}\\right))\\cos(6)0^{°}-\\cos(\\left(C+60^{°}\\right))\\sin(6)0^{°}\\)</p><p>\\(=\\frac{\\sqrt{6}+\\sqrt{2}}{4}\\)．</p>"
+        "reference": "17. 【答案】<p>【解析】</p><p>(1) <img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0396552e2bd811ea8417bc8385e4c2b6.png\" height=\"45.5px\" width=\"382.5px\"/></p><p><img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/03973ef82bd811eaac2dbc8385e4c2b6.png\" height=\"66.5px\" width=\"254.0px\"/>．……………6分</p><p>（2）<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/039a710c2bd811eabb85bc8385e4c2b6.png\" height=\"45.5px\" width=\"152.0px\"/>      ∵<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/039c1d942bd811eaaef8bc8385e4c2b6.png\" height=\"21.5px\" width=\"90.5px\"/>∴<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/039ce0582bd811eab002bc8385e4c2b6.png\" height=\"41.5px\" width=\"108.0px\"/></p><p><img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/039e18382bd811eaa975bc8385e4c2b6.png\" height=\"41.5px\" width=\"268.0px\"/>………………8分</p><p>又<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/03a0fc3a2bd811eaa4d8bc8385e4c2b6.png\" height=\"25.5px\" width=\"134.5px\"/>，</p><p><img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/03a2dc382bd811eab1f1bc8385e4c2b6.png\" height=\"41.5px\" width=\"588.0px\"/></p><p>所以<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/03a5183e2bd811ea9f81bc8385e4c2b6.png\" height=\"17.5px\" width=\"50.5px\"/>       ………………12分</p>"
     },
     {
-        "title": "",
         "questions": [
             {
-                "stem": "<p>（12分）</p><p>如图，直四棱柱<i>ABCD</i><i>–</i><i>A</i><sub>1</sub><i>B</i><sub>1</sub><i>C</i><sub>1</sub><i>D</i><sub>1</sub>的底面是菱形，<i>AA</i><sub>1</sub>=4，<i>AB</i>=2，∠<i>BAD</i>=60°，<i>E</i>，<i>M</i>，<i>N</i>分别是<i>BC</i>，<i>BB</i><sub>1</sub>，<i>A</i><sub>1</sub><i>D</i>的中点．</p><p><img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/ee6110020cce11eabf29bc8385e4c2b6.png\" width=107.0001 height=132.0002></p><p>（1）证明：<i>MN</i>∥平面<i>C</i><sub>1</sub><i>DE</i>；</p><p>（2）求二面角<i>A</i><i>−</i><i>MA</i><sub>1</sub><i>−</i><i>N</i>的正弦值．</p>",
+                "stem": "<p>(本题满分12分)如图所示，四棱锥<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/028313942bd811eaaa78bc8385e4c2b6.png\" height=\"18.5px\" width=\"73.5px\"/>中，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02839ab42bd811eabb46bc8385e4c2b6.png\" height=\"24.0px\" width=\"219.0px\"/>，四边形<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0284245a2bd811eabbe9bc8385e4c2b6.png\" height=\"18.5px\" width=\"48.0px\"/>为等腰梯形，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02849be62bd811eabb90bc8385e4c2b6.png\" height=\"41.5px\" width=\"202.5px\"/>,<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02850f502bd811eaa2e0bc8385e4c2b6.png\" height=\"17.5px\" width=\"16.0px\"/>为<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/028582f62bd811ea8a18bc8385e4c2b6.png\" height=\"17.5px\" width=\"25.5px\"/>的中点．</p><p>（1）求证：<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/028645ba2bd811ea9f14bc8385e4c2b6.png\" height=\"21.5px\" width=\"99.0px\"/>．</p><p>（2）求面<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/028756662bd811ea9e17bc8385e4c2b6.png\" height=\"17.0px\" width=\"37.0px\"/>与平面<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0287cb482bd811eaac49bc8385e4c2b6.png\" height=\"19.0px\" width=\"37.0px\"/>所成的二面角<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0288193e2bd811ea8905bc8385e4c2b6.png\" height=\"19.0px\" width=\"12.5px\"/>的正弦值．</p>",
                 "number": "18",
                 "type": "GENERAL",
                 "score": 12
             }
         ],
+        "title": "",
         "category": "解答题",
-        "total": 12,
-        "reference": "18. <p>解：（1）连结<i>B</i><sub>1</sub><i>C</i>，<i>ME</i>．</p><p>因为<i>M</i>，<i>E</i>分别为<i>BB</i><sub>1</sub>，<i>BC</i>的中点，</p><p>所以<i>ME</i>∥<i>B</i><sub>1</sub><i>C</i>，且<i>ME</i>=\\(\\frac{1}{2}\\)<i>B</i><sub>1</sub><i>C</i>．</p><p>又因为<i>N</i>为<i>A</i><sub>1</sub><i>D</i>的中点，所以<i>ND</i>=\\(\\frac{1}{2}\\)<i>A</i><sub>1</sub><i>D</i>．</p><p>由题设知<i>A</i><sub>1</sub><i>B</i><sub>1</sub><i>DC</i>，可得<i>B</i><sub>1</sub><i>C</i><i>A</i><sub>1</sub><i>D</i>，故<i>ME</i><i>ND</i>，</p><p>因此四边形<i>M</i><i>N</i><i>DE</i>为平行四边形，<i>MN</i>∥<i>ED</i>．</p><p>又<i>MN</i>\\(⊄\\)平面<i>EDC</i><sub>1</sub>，所以<i>MN</i>∥平面<i>C</i><sub>1</sub><i>DE</i>．</p><p>（2）由已知可得<i>DE</i>⊥<i>D</i><i>A</i>．</p><p>以<i>D</i>为坐标原点，\\(\\vec{DA}\\)的方向为<i>x</i>轴正方向，建立如图所示的空间直角坐标系<i>D</i>−<i>xyz</i>，则</p><p><img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/ee9b57e20cce11eab222bc8385e4c2bpng\" width=20004 height=37117></p><p>\\(A(2,0,0)\\)，<i>A</i><sub>1</sub>(2，0，4)，\\(M(1,\\sqrt{3},2)\\)，\\(N(1,0,2)\\)，\\(\\vec{A_{1}A}=(0,0,-4)\\)，\\(\\vec{A_{1}M}=(-1,\\sqrt{3},-2)\\)，\\(\\vec{A_{1}N}=(-1,0,-2)\\)，\\(\\vec{MN}=(0,-\\sqrt{3},0)\\)．</p><p>设\\(m=(x,y,z)\\)为平面<i>A</i><sub>1</sub><i>MA</i>的法向量，则\\(\\left\\{\\begin{matrix}m⋅\\vec{A_{1}M}=0\\\\m⋅\\vec{A_{1}A}=0\\end{matrix}\\right.\\)，</p><p>所以\\(\\left\\{\\begin{matrix}-x+\\sqrt{3}y-2z=0，\\\\-4z=\\end{matrix}\\right.\\)可取\\(m=(\\sqrt{3},1,0)\\)．</p><p>设\\(n=(p,q,r)\\)为平面<i>A</i><sub>1</sub><i>MN</i>的法向量，则\\(\\left\\{\\begin{matrix}n⋅\\vec{MN}=0，\\\\n⋅\\vec{A_{1}N}=\\end{matrix}\\right.\\)</p><p>所以\\(\\left\\{\\begin{matrix}-\\sqrt{3}q=0，\\\\-p-2r=\\end{matrix}\\right.\\)可取\\(n=(2,0,-1)\\)．</p><p>于是\\(\\cos(⟨)m,n⟩=\\frac{m⋅n}{|m‖n|}=\\frac{2\\sqrt{3}}{2×\\sqrt{5}}=\\frac{\\sqrt{15}}{5}\\)，</p><p>所以二面角\\(A-MA_{1}-N\\)的正弦值为\\(\\frac{\\sqrt{10}}{5}\\)．</p>"
+        "reference": "18. 【答案】<p>【解析】</p><p>（1）取<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/03a934002bd811eab90dbc8385e4c2b6.png\" height=\"17.5px\" width=\"27.0px\"/>中点<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/03aa6ba22bd811eab063bc8385e4c2b6.png\" height=\"17.5px\" width=\"17.5px\"/>，连接<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/03aba3522bd811ea9841bc8385e4c2b6.png\" height=\"18.5px\" width=\"63.0px\"/>，则<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/03ad76e22bd811ea816fbc8385e4c2b6.png\" height=\"17.5px\" width=\"27.0px\"/>是<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/03af71342bd811eabb4bbc8385e4c2b6.png\" height=\"17.5px\" width=\"52.0px\"/>的中位线，所以<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/03b1b9ac2bd811ea8a8dbc8385e4c2b6.png\" height=\"41.5px\" width=\"80.0px\"/>，又因为<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/03b38d2c2bd811ea97c3bc8385e4c2b6.png\" height=\"41.5px\" width=\"80.0px\"/>，所以<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/03b539ae2bd811eaa270bc8385e4c2b6.png\" height=\"27.0px\" width=\"64.0px\"/>，所以四边形<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/03b60ab02bd811eabbddbc8385e4c2b6.png\" height=\"18.5px\" width=\"47.0px\"/>是平行四边形，所以<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/03b6e6402bd811eaa406bc8385e4c2b6.png\" height=\"18.5px\" width=\"57.5px\"/>，………4分</p><p>又因为<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/03ba185c2bd811ea8e83bc8385e4c2b6.png\" height=\"18.5px\" width=\"41.5px\"/>平面<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/03bb09ae2bd811ea8ea2bc8385e4c2b6.png\" height=\"18.5px\" width=\"37.5px\"/>，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/03bb9dec2bd811ea90ddbc8385e4c2b6.png\" height=\"18.5px\" width=\"41.5px\"/>平面<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/03bc87ac2bd811ea8dfabc8385e4c2b6.png\" height=\"18.5px\" width=\"37.5px\"/>，所以<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/03bd98642bd811eabc19bc8385e4c2b6.png\" height=\"18.5px\" width=\"36.0px\"/>平面<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/03be5b362bd811ea9f53bc8385e4c2b6.png\" height=\"18.5px\" width=\"37.5px\"/>………………6分</p><p>（2）<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/03c202362bd811ea9ef8bc8385e4c2b6.png\" height=\"25.5px\" width=\"285.5px\"/>，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/03c29e082bd811ea96bcbc8385e4c2b6.png\" height=\"21.5px\" width=\"216.0px\"/>， </p><p><img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/03c3d7462bd811eaa1debc8385e4c2b6.png\" height=\"45.5px\" width=\"288.0px\"/> <img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/03c471862bd811eab133bc8385e4c2b6.png\" height=\"27.0px\" width=\"253.5px\"/>,</p><p><img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/03f7ba7a2bd811eaa407bc8385e4c2b6.png\" height=\"42.5px\" width=\"215.0px\"/>，       ………………8分</p><p><img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/03f9dbe82bd811eaa419bc8385e4c2b6.png\" height=\"66.5px\" width=\"364.5px\"/></p><p><img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/03fa79be2bd811eaa637bc8385e4c2b6.png\" height=\"27.0px\" width=\"281.5px\"/></p><p>∴<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/03fb13942bd811ea900bbc8385e4c2b6.png\" height=\"46.5px\" width=\"275.0px\"/>………………12分</p><img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/03fbfd622bd811ea95babc8385e4c2b6.png\" height=\"216\" width=\"223\"/>"
     },
     {
-        "title": "",
         "questions": [
             {
-                "stem": "<p>（12分）</p><p>已知抛物线<i>C</i>：<i>y</i><sup>2</sup>=3<i>x</i>的焦点为<i>F</i>，斜率为的直线<i>l</i>与<i>C</i>的交点为<i>A</i>，<i>B</i>，与<i>x</i>轴的交点为<i>P</i>．</p><p>（1）若|<i>AF</i>|+|<i>BF</i>|=4，求<i>l</i>的方程；</p><p>（2）若<img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/ee67c0ec0cce11ea8662bc8385e4c2b6.wmf\" width=70.0001 height=22.0000>，求|<i>AB</i>|．</p>",
+                "stem": "<p>(本题满分12分)首届中国<i>国际进口博览会</i>于2018年11月5日至10日在上海的国家会展中心举办。国家展、企业展、经贸论坛、高新产品汇集……首届进博会亮点纷呈。一个更加开放和自信的中国，正用实际行动为世界构筑共同发展平台，展现推动全球贸易与合作的中国方案。某跨国公司带来了高端智能家居产品参展，供采购商洽谈采购，并决定大量投放中国市场。已知该产品年固定研发成本30万美元，每生产一台需另投入90美元。设该公司一年内生产该产品<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/028c5c0c2bd811eab249bc8385e4c2b6.png\" height=\"14.5px\" width=\"13.0px\"/>万台且全部售完，每万台的销售收入为<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/028cd0f42bd811eab6bbbc8385e4c2b6.png\" height=\"21.5px\" width=\"36.0px\"/>万美元，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/028d45dc2bd811ea855dbc8385e4c2b6.png\" height=\"65.5px\" width=\"241.0px\"/></p><p>（1）写出年利润<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/028ea6ae2bd811ea920cbc8385e4c2b6.png\" height=\"18.5px\" width=\"14.5px\"/>（万美元）关于年产量<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/028ef25c2bd811ea9801bc8385e4c2b6.png\" height=\"14.5px\" width=\"13.0px\"/>（万台）的函数解析式；（利润＝销售收入－成本）</p><p>（2）当年产量为多少万台时，该公司获得的利润最大？并求最大利润．</p>",
                 "number": "19",
                 "type": "GENERAL",
                 "score": 12
             }
         ],
+        "title": "",
         "category": "解答题",
-        "total": 12,
-        "reference": "19. <p>解：设直线\\(l:y=\\frac{3}{2}x+t,A\\left(x_{1},y_{1}\\right),B\\left(x_{2},y_{2}\\right)\\)．</p><p>（1）由题设得\\(F\\left(\\frac{3}{4},0\\right)\\)，故\\(|AF|+|BF|=x_{1}+x_{2}+\\frac{3}{2}\\)，由题设可得\\(x_{1}+x_{2}=\\frac{5}{2}\\)．</p><p>由\\(\\left\\{\\begin{matrix}y=\\frac{3}{2}x+t\\\\y^{2}=3x\\end{matrix}\\right.\\)，可得\\(9x^{2}+12(t-1)x+4t^{2}=0\\)，则\\(x_{1}+x_{2}=-\\frac{12(t-1)}{9}\\)．</p><p>从而\\(-\\frac{12(t-1)}{9}=\\frac{5}{2}\\)，得\\(t=-\\frac{7}{8}\\)．</p><p>所以\\(l\\)的方程为\\(y=\\frac{3}{2}x-\\frac{7}{8}\\)．</p><p>（2）由\\(\\vec{AP}=3\\vec{PB}\\)可得\\(y_{1}=-3y_{2}\\)．</p><p>由\\(\\left\\{\\begin{matrix}y=\\frac{3}{2}x+t\\\\y^{2}=3x\\end{matrix}\\right.\\)，可得\\(y^{2}-2y+2t=0\\)．</p><p>所以\\(y_{1}+y_{2}=2\\)．从而\\(-3y_{2}+y_{2}=2\\)，故\\(y_{2}=-1,y_{1}=3\\)．</p><p>代入\\(C\\)的方程得\\(x_{1}=3,x_{2}=\\frac{1}{3}\\)．</p><p>故\\(|AB|=\\frac{4\\sqrt{13}}{3}\\)．</p>"
+        "reference": "19. 【答案】<p>【解析】</p><p>（1）当<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/043929de2bd811eaa943bc8385e4c2b6.png\" height=\"18.5px\" width=\"73.5px\"/>时，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/044c82542bd811eabb1abc8385e4c2b6.png\" height=\"24.0px\" width=\"270.5px\"/></p><p>当<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/044d6c1c2bd811eabe6fbc8385e4c2b6.png\" height=\"18.5px\" width=\"45.5px\"/>时，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/04544c6c2bd811ea9cf6bc8385e4c2b6.png\" height=\"37.5px\" width=\"293.0px\"/></p><p>函数解析式为：<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/045584a62bd811eaa078bc8385e4c2b6.png\" height=\"57.5px\" width=\"218.0px\"/>   ……………4分</p><p>（2）当<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/04588fd22bd811ea8280bc8385e4c2b6.png\" height=\"18.5px\" width=\"73.5px\"/>时，因为<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/04596c882bd811eab6bdbc8385e4c2b6.png\" height=\"24.0px\" width=\"146.5px\"/>，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/045a3bbe2bd811eaa15cbc8385e4c2b6.png\" height=\"18.5px\" width=\"14.5px\"/>在<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/045aff1c2bd811eab394bc8385e4c2b6.png\" height=\"21.5px\" width=\"45.5px\"/>上单调递增，</p><p>所以当<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/045bc15c2bd811eab5aebc8385e4c2b6.png\" height=\"18.5px\" width=\"45.5px\"/>时，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/045d46f02bd811ea85acbc8385e4c2b6.png\" height=\"24.0px\" width=\"130.5px\"/>                 ………………6分</p><p>当<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/04603a642bd811eabf3dbc8385e4c2b6.png\" height=\"18.5px\" width=\"45.5px\"/>时，</p><p><img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0460edf02bd811ea8807bc8385e4c2b6.png\" height=\"38.0px\" width=\"465.0px\"/>  <img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/046273862bd811eab196bc8385e4c2b6.png\" height=\"47.0px\" width=\"240.0px\"/>      ………………9分</p><p>当且仅当<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0464a1862bd811ea9e3fbc8385e4c2b6.png\" height=\"41.5px\" width=\"108.0px\"/>即<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0466b6522bd811ea975bbc8385e4c2b6.png\" height=\"18.5px\" width=\"45.5px\"/>时等号成立  ………………10分</p><p>因为<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/046c09d82bd811ea97abbc8385e4c2b6.png\" height=\"18.5px\" width=\"83.0px\"/>所以<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/046ec7242bd811ea98abbc8385e4c2b6.png\" height=\"18.5px\" width=\"45.5px\"/>时，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/046fd7da2bd811ea8578bc8385e4c2b6.png\" height=\"18.5px\" width=\"14.5px\"/>的最大值为2380万美元．      ……………11分</p><p>答：当年产量为29万台时，该公司在该产品中获得的利润最大，最大利润为2380万美元． …12分</p>"
     },
     {
-        "title": "",
         "questions": [
             {
-                "stem": "<p>（12分）</p><p>已知函数\\(f(x)=\\sin(x)-ln(1+x)\\)，\\(f^{'}(x)\\)为\\(f(x)\\)的导数．证明：</p><p>（1）\\(f^{'}(x)\\)在区间\\((-1,\\frac{π}{2})\\)存在唯一极大值点；</p><p>（2）\\(f(x)\\)有且仅有2个零点．</p>",
+                "stem": "<p>(本题满分12分) 已知圆C:<math xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:m=\"http://schemas.openxmlformats.org/officeDocument/2006/math\"><mml:msup><mml:mrow><mml:mi mathvariant=\"normal\">x</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msup><mml:mo>+</mml:mo><mml:msup><mml:mrow><mml:mfenced separators=\"|\"><mml:mrow><mml:mi mathvariant=\"normal\">y</mml:mi><mml:mo>-</mml:mo><mml:mn>3</mml:mn></mml:mrow></mml:mfenced></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msup><mml:mo>=</mml:mo><mml:mn>4</mml:mn></math>，直线<math xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:m=\"http://schemas.openxmlformats.org/officeDocument/2006/math\"><mml:mi mathvariant=\"normal\">m</mml:mi><mml:mo>:</mml:mo></math> <math xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:m=\"http://schemas.openxmlformats.org/officeDocument/2006/math\"><mml:mi mathvariant=\"normal\">x</mml:mi><mml:mo>+</mml:mo><mml:mn>3</mml:mn><mml:mi mathvariant=\"normal\">y</mml:mi><mml:mo>+</mml:mo><mml:mn>6</mml:mn><mml:mo>=</mml:mo><mml:mn>0</mml:mn></math>，过<math xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:m=\"http://schemas.openxmlformats.org/officeDocument/2006/math\"><mml:mi mathvariant=\"normal\">A</mml:mi><mml:mo>(</mml:mo><mml:mo>-</mml:mo><mml:mn>1,0</mml:mn><mml:mo>)</mml:mo></math>的一条动直线<math xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:m=\"http://schemas.openxmlformats.org/officeDocument/2006/math\"><mml:mi mathvariant=\"normal\">l</mml:mi></math>与直线<math xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:m=\"http://schemas.openxmlformats.org/officeDocument/2006/math\"><mml:mi mathvariant=\"normal\">m</mml:mi></math>相交于N，与圆C相交于P,Q两点，M是PQ中点．</p><p>(1)当<math xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:m=\"http://schemas.openxmlformats.org/officeDocument/2006/math\"><mml:mfenced open=\"|\" close=\"|\" separators=\"|\"><mml:mrow><mml:mi mathvariant=\"normal\">P</mml:mi><mml:mi mathvariant=\"normal\">Q</mml:mi></mml:mrow></mml:mfenced><mml:mo>=</mml:mo><mml:mn>2</mml:mn><mml:msqrt><mml:mn>3</mml:mn></mml:msqrt></math>时，求直线<math xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:m=\"http://schemas.openxmlformats.org/officeDocument/2006/math\"><mml:mi mathvariant=\"normal\">l</mml:mi></math>的方程；</p><p>(2)设<math xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:m=\"http://schemas.openxmlformats.org/officeDocument/2006/math\"><mml:mi mathvariant=\"normal\">t</mml:mi><mml:mo>=</mml:mo><mml:mover accent=\"true\"><mml:mrow><mml:mi mathvariant=\"normal\">A</mml:mi><mml:mi mathvariant=\"normal\">M</mml:mi></mml:mrow><mml:mo>&#8401;</mml:mo></mml:mover><mml:mo>&#8901;</mml:mo><mml:mover accent=\"true\"><mml:mrow><mml:mi mathvariant=\"normal\">A</mml:mi><mml:mi mathvariant=\"normal\">N</mml:mi></mml:mrow><mml:mo>&#8401;</mml:mo></mml:mover></math>，试问<math xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:m=\"http://schemas.openxmlformats.org/officeDocument/2006/math\"><mml:mi mathvariant=\"normal\">t</mml:mi></math>是否为定值,若为定值,请求出<math xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:m=\"http://schemas.openxmlformats.org/officeDocument/2006/math\"><mml:mi mathvariant=\"normal\">t</mml:mi></math>的值；若不为定值，请说明理由．</p>",
                 "number": "20",
                 "type": "GENERAL",
                 "score": 12
             }
         ],
+        "title": "",
         "category": "解答题",
-        "total": 12,
-        "reference": "20. <p>解：（1）设\\(g(x)=f'(x)\\)，则\\(g(x)=\\cos(x)-\\frac{1}{1+x}\\)，\\(g'(x)=-\\sin(x)+\\frac{1}{(1+x)^{2}}\\).</p><p>当\\(x\\in \\left(-1,\\frac{π}{2}\\right)\\)时，\\(g'(x)\\)单调递减，而\\(g'(0)&gt;0,g'(\\frac{π}{2})&lt;0\\)，可得\\(g'(x)\\)在\\(\\left(-1,\\frac{π}{2}\\right)\\)有唯一零点，</p><p>设为\\(α\\).</p><p>则当\\(x\\in (-1,α)\\)时，\\(g'(x)&gt;0\\)；当\\(x\\in \\left(α,\\frac{π}{2}\\right)\\)时，\\(g'(x)&lt;0\\).</p><p>所以\\(g(x)\\)在\\((-1,α)\\)单调递增，在\\(\\left(α,\\frac{π}{2}\\right)\\)单调递减，故\\(g(x)\\)在\\(\\left(-1,\\frac{π}{2}\\right)\\)存在唯一极大值点，即\\(f'(x)\\)在\\(\\left(-1,\\frac{π}{2}\\right)\\)存在唯一极大值点.</p><p>（2）\\(f(x)\\)的定义域为\\((-1,+\\infty )\\).</p><p>（i）当\\(x\\in (-1,0]\\)时，由（1）知，\\(f'(x)\\)在\\((-1,0)\\)单调递增，而\\(f'(0)=0\\)，所以当\\(x\\in (-1,0)\\)时，\\(f'(x)&lt;0\\)，故\\(f(x)\\)在\\((-1,0)\\)单调递减，又\\(f(0)=0\\)，从而\\(x=0\\)是\\(f(x)\\)在\\((-1,0]\\)的唯一零点.</p><p>（ii）当\\(x\\in \\left.0,\\frac{π}{2}\\right.\\)时，由（1）知，\\(f'(x)\\)在\\((0,α)\\)单调递增，在\\(\\left(α,\\frac{π}{2}\\right)\\)单调递减，而\\(f'(0)=0\\)，\\(f'\\left(\\frac{π}{2}\\right)&lt;0\\)，所以存在\\(β\\in \\left(α,\\frac{π}{2}\\right)\\)，使得\\(f'(β)=0\\)，且当\\(x\\in (0,β)\\)时，\\(f'(x)&gt;0\\)；当\\(x\\in \\left(β,\\frac{π}{2}\\right)\\)时，\\(f'(x)&lt;0\\).故\\(f(x)\\)在\\((0,β)\\)单调递增，在\\(\\left(β,\\frac{π}{2}\\right)\\)单调递减.</p><p>又\\(f(0)=0\\)，\\(f\\left(\\frac{π}{2}\\right)=1-ln(1+\\frac{π}{2})&gt;0\\)，所以当\\(x\\in \\left.0,\\frac{π}{2}\\right.\\)时，\\(f(x)&gt;0\\).从而，\\(f(x)\\) 在\\(\\left.0,\\frac{π}{2}\\right.\\)没有零点.</p><p>（iii）当\\(x\\in \\left.\\frac{π}{2},π\\right.\\)时，\\(f'(x)&lt;0\\)，所以\\(f(x)\\)在\\(\\left(\\frac{π}{2},π\\right)\\)单调递减.而\\(f\\left(\\frac{π}{2}\\right)&gt;0\\)，\\(f(π)&lt;0\\)，所以\\(f(x)\\)在\\(\\left.\\frac{π}{2},π\\right.\\)有唯一零点.</p><p>（iv）当\\(x\\in (π,+\\infty )\\)时，\\(ln(x+1)&gt;1\\)，所以\\(f(x)\\) &lt;0，从而\\(f(x)\\)在\\((π,+\\infty )\\)没有零点.</p><p>综上，\\(f(x)\\)有且仅有2个零点.</p>"
+        "reference": "20. 【答案】<p>（1）<math xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:m=\"http://schemas.openxmlformats.org/officeDocument/2006/math\"><mml:mi mathvariant=\"normal\">x</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></math>或<math xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:m=\"http://schemas.openxmlformats.org/officeDocument/2006/math\"><mml:mn>4</mml:mn><mml:mi mathvariant=\"normal\">x</mml:mi><mml:mtext>-</mml:mtext><mml:mn>3</mml:mn><mml:mtext>y</mml:mtext><mml:mo>+</mml:mo><mml:mn>4</mml:mn><mml:mo>=</mml:mo><mml:mn>0</mml:mn></math>  （2）<math xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:m=\"http://schemas.openxmlformats.org/officeDocument/2006/math\"><mml:mi mathvariant=\"normal\">t</mml:mi><mml:mo>=</mml:mo><mml:mo>-</mml:mo><mml:mn>5</mml:mn></math></p><p>【解析】</p><p>(1) 当直线<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0491cc882bd811eaab47bc8385e4c2b6.png\" height=\"19\" width=\"9\"/>与<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/049269822bd811eabc8cbc8385e4c2b6.png\" height=\"15\" width=\"13\"/>轴垂直时,易知<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/049e6e1e2bd811eab9c9bc8385e4c2b6.png\" height=\"19\" width=\"45\"/>符合题意;  </p><p>当直线与<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/04a12b5a2bd811eaa796bc8385e4c2b6.png\" height=\"15\" width=\"13\"/>轴不垂直时,设直线<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/04a9b43a2bd811eaaf64bc8385e4c2b6.png\" height=\"19\" width=\"9\"/>的方程为<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/04aa765c2bd811ea99b7bc8385e4c2b6.png\" height=\"21\" width=\"79\"/>,</p><p>由于<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/04abab782bd811eab514bc8385e4c2b6.png\" height=\"28\" width=\"76\"/>, 所以<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/04ac95302bd811eaa239bc8385e4c2b6.png\" height=\"27\" width=\"63\"/>由<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/04ad57fa2bd811ea8eaabc8385e4c2b6.png\" height=\"51\" width=\"127\"/>,</p><p>解得<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/04af04902bd811ea93fcbc8385e4c2b6.png\" height=\"41\" width=\"41\"/>.  故直线<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/04b08ae42bd811eaa88cbc8385e4c2b6.png\" height=\"19\" width=\"9\"/>的方程为<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/04b2848c2bd811eaa572bc8385e4c2b6.png\" height=\"19\" width=\"45\"/>或<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/04b6ee5a2bd811eab3a5bc8385e4c2b6.png\" height=\"21\" width=\"96\"/>  </p><p>(2)当<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/04bc1af62bd811ea85b4bc8385e4c2b6.png\" height=\"19\" width=\"9\"/>与<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/04bd79942bd811eaaaa5bc8385e4c2b6.png\" height=\"15\" width=\"13\"/>轴垂直时,易得<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/04c27f362bd811eabbc9bc8385e4c2b6.png\" height=\"21\" width=\"59\"/>,<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/04c4ca2e2bd811eab104bc8385e4c2b6.png\" height=\"41\" width=\"69\"/>,又<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/04c5d8682bd811eabdadbc8385e4c2b6.png\" height=\"21\" width=\"55\"/>则<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/04c6c2102bd811ea8c74bc8385e4c2b6.png\" height=\"27\" width=\"83\"/> </p><p><img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/04cc8a762bd811ea97d3bc8385e4c2b6.png\" height=\"41\" width=\"88\"/>,故<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/04d3639a2bd811eaa718bc8385e4c2b6.png\" height=\"24\" width=\"96\"/>. 即<math xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:m=\"http://schemas.openxmlformats.org/officeDocument/2006/math\"><mml:mi mathvariant=\"normal\">t</mml:mi><mml:mo>=</mml:mo><mml:mo>-</mml:mo><mml:mn>5</mml:mn></math>  </p><p>当<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/04da8a9c2bd811eab826bc8385e4c2b6.png\" height=\"19\" width=\"9\"/>的斜率存在时,设直线<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/04dc85182bd811ea99ffbc8385e4c2b6.png\" height=\"19\" width=\"9\"/>的方程为<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/04e053062bd811eabf47bc8385e4c2b6.png\" height=\"21\" width=\"79\"/>,代入圆的方程得 </p><p><img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/04e164502bd811ea8e35bc8385e4c2b6.png\" height=\"24\" width=\"271\"/>.</p><p>则<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/04e6b74a2bd811eaa349bc8385e4c2b6.png\" height=\"44\" width=\"172\"/> <img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/04f074982bd811eab2e8bc8385e4c2b6.png\" height=\"44\" width=\"171\"/>, </p><p>即<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/04f3cdc22bd811eababfbc8385e4c2b6.png\" height=\"44\" width=\"152\"/>,  <img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/04f9e4062bd811ea8a62bc8385e4c2b6.png\" height=\"23\" width=\"45\"/><img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/04fdd8f82bd811eaa663bc8385e4c2b6.png\" height=\"44\" width=\"112\"/>. </p><p>又由<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/050aa17e2bd811ea8acbbc8385e4c2b6.png\" height=\"48\" width=\"103\"/>得<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/050d85b62bd811eab02ebc8385e4c2b6.png\" height=\"41\" width=\"128\"/>, 则<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/050e96e42bd811eaa9efbc8385e4c2b6.png\" height=\"41\" width=\"140\"/>. </p><p>故<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/050fa71e2bd811eaa48cbc8385e4c2b6.png\" height=\"16\" width=\"23\"/><img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/051ce4762bd811ea98f7bc8385e4c2b6.png\" height=\"48\" width=\"459\"/>. </p><p>综上,<math xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:m=\"http://schemas.openxmlformats.org/officeDocument/2006/math\"><mml:mi mathvariant=\"normal\">t</mml:mi></math>的值为定值,且<math xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:m=\"http://schemas.openxmlformats.org/officeDocument/2006/math\"><mml:mi mathvariant=\"normal\">t</mml:mi><mml:mo>=</mml:mo><mml:mo>-</mml:mo><mml:mn>5</mml:mn></math>    </p><p> 解法二（几何法）:</p><p>连结<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0521c31a2bd811ea9ef4bc8385e4c2b6.png\" height=\"19\" width=\"25\"/>,延长交<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0525a15a2bd811eaad06bc8385e4c2b6.png\" height=\"15\" width=\"17\"/>于点<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/052727002bd811ea823fbc8385e4c2b6.png\" height=\"17\" width=\"16\"/>，计算CA斜率知<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0528c1542bd811ea934cbc8385e4c2b6.png\" height=\"19\" width=\"57\"/>.又<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0529bd4a2bd811eaa664bc8385e4c2b6.png\" height=\"19\" width=\"55\"/>于<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/052aa70c2bd811ea82d4bc8385e4c2b6.png\" height=\"17\" width=\"21\"/>, </p><p>故△<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/052cc86c2bd811eaa1e6bc8385e4c2b6.png\" height=\"19\" width=\"37\"/>∽△<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/052d8be62bd811eabe57bc8385e4c2b6.png\" height=\"19\" width=\"41\"/>.于是有<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/052e9be22bd811eab620bc8385e4c2b6.png\" height=\"27\" width=\"152\"/>. </p><p>由<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/052fad6e2bd811eaa18cbc8385e4c2b6.png\" height=\"44\" width=\"159\"/>得<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0531ce062bd811eab656bc8385e4c2b6.png\" height=\"27\" width=\"100\"/> </p><p>故<math xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:m=\"http://schemas.openxmlformats.org/officeDocument/2006/math\"><mml:mi mathvariant=\"normal\">t</mml:mi><mml:mo>=</mml:mo><mml:mover accent=\"true\"><mml:mrow><mml:mi mathvariant=\"normal\">A</mml:mi><mml:mi mathvariant=\"normal\">M</mml:mi></mml:mrow><mml:mo>&#8401;</mml:mo></mml:mover><mml:mo>&#8901;</mml:mo><mml:mover accent=\"true\"><mml:mrow><mml:mi mathvariant=\"normal\">A</mml:mi><mml:mi mathvariant=\"normal\">N</mml:mi></mml:mrow><mml:mo>&#8401;</mml:mo></mml:mover><mml:mo>=</mml:mo><mml:mo>-</mml:mo></math><img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/053353982bd811eabad6bc8385e4c2b6.png\" height=\"35\" width=\"111\"/></p><img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0535271c2bd811eab48abc8385e4c2b6.png\" height=\"174\" width=\"227\"/>"
     },
     {
-        "title": "",
         "questions": [
             {
-                "stem": "<p>（12分）</p><p>为治疗某种疾病，研制了甲、乙两种新药，希望知道哪种新药更有效，为此进行动物试验．试验方案如下：每一轮选取两只白鼠对药效进行对比试验．对于两只白鼠，随机选一只施以甲药，另一只施以乙药．一轮的治疗结果得出后，再安排下一轮试验．当其中一种药治愈的白鼠比另一种药治愈的白鼠多4只时，就停止试验，并认为治愈只数多的药更有效．为了方便描述问题，约定：对于每轮试验，若施以甲药的白鼠治愈且施以乙药的白鼠未治愈则甲药得1分，乙药得\\(-1\\)分；若施以乙药的白鼠治愈且施以甲药的白鼠未治愈则乙药得1分，甲药得\\(-1\\)分；若都治愈或都未治愈则两种药均得0分．甲、乙两种药的治愈率分别记为<i>α</i>和<i>β</i>，一轮试验中甲药的得分记为<i>X</i>．</p><p>（1）求\\(X\\)的分布列；</p><p>（2）若甲药、乙药在试验开始时都赋予4分，\\(p_{i}(i=0,1,\\cdots ,8)\\)表示“甲药的累计得分为\\(i\\)时，最终认为甲药比乙药更有效”的概率，则\\(p_{0}=0\\)，\\(p_{8}=1\\)，\\(p_{i}=ap_{i-1}+bp_{i}+cp_{i+1}(i=1,2,\\cdots ,7)\\)，其中\\(a=P(X=-1)\\)，\\(b=P(X=0)\\)，\\(c=P(X=1)\\)．假设\\(α=0.5\\)，\\(β=0.8\\)．</p><p>(i)证明：\\(\\{p_{i+1}-p_{i}\\}(i=0,1,2,\\cdots ,7)\\)为等比数列；</p><p>(ii)求\\(p_{4}\\)，并根据\\(p_{4}\\)的值解释这种试验方案的合理性．</p>",
+                "stem": "<p>(本题满分12分)已知函数<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/029813e42bd811ea99acbc8385e4c2b6.png\" height=\"41.5px\" width=\"74.5px\"/>，不等式<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02988ade2bd811eaa80bbc8385e4c2b6.png\" height=\"49.0px\" width=\"114.5px\"/>对<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0298ffd82bd811eabee5bc8385e4c2b6.png\" height=\"21.5px\" width=\"73.5px\"/>恒成立．</p><p>（1）求函数<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/029a3bcc2bd811ea9990bc8385e4c2b6.png\" height=\"21.5px\" width=\"33.0px\"/>的极值和函数<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/029aaa242bd811ea8d4dbc8385e4c2b6.png\" height=\"21.5px\" width=\"33.0px\"/>的图象在点<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/029c2fba2bd811eaa500bc8385e4c2b6.png\" height=\"21.5px\" width=\"50.5px\"/>处的切线方程；</p><p>（2）求实数<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/029d43622bd811ea8320bc8385e4c2b6.png\" height=\"17.5px\" width=\"16.0px\"/>的取值的集合<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/029e03382bd811eaa747bc8385e4c2b6.png\" height=\"17.5px\" width=\"14.5px\"/>；</p><p>（3）设<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/029eee0a2bd811ea91d6bc8385e4c2b6.png\" height=\"24.0px\" width=\"47.0px\"/>，函数<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/029f61d82bd811eaa581bc8385e4c2b6.png\" height=\"41.5px\" width=\"177.0px\"/>，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02a0034c2bd811ea9308bc8385e4c2b6.png\" height=\"43.5px\" width=\"75.0px\"/>，其中<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02a09a362bd811ea81edbc8385e4c2b6.png\" height=\"14.5px\" width=\"12.5px\"/>为自然对数的底数，若关于<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02a163542bd811ea9d20bc8385e4c2b6.png\" height=\"14.5px\" width=\"13.0px\"/>的不等式<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02a1d1362bd811ea9572bc8385e4c2b6.png\" height=\"41.5px\" width=\"194.5px\"/>至少有一个解<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02a26d002bd811eabe8fbc8385e4c2b6.png\" height=\"24.0px\" width=\"61.0px\"/>，求<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02a2e2062bd811ea8028bc8385e4c2b6.png\" height=\"15.0px\" width=\"16.0px\"/>的取值范围．</p><p><b>请考生在第</b><b>22</b><b>－</b><b>23</b><b>两</b><b>题中任选一题作答，如果多做，则按所做的第一题计分。</b></p>",
                 "number": "21",
                 "type": "GENERAL",
                 "score": 12
             }
         ],
+        "title": "",
         "category": "解答题",
-        "total": 12,
-        "reference": "21. <p>解：（1）<i>X</i>的所有可能取值为\\(-1,0,1\\).</p><p>\\(\\begin{matrix}P(X=-1)=(1-α)β，\\\\P(X=0)=αβ+(1-α)(1-β)，\\\\P(X=1)=α(1-β)，\\end{matrix}\\) </p><p>所以\\(X\\)的分布列为</p><p><img src=\"https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/eefeb79e0cce11eaa75cbc8385e4c2bpng\" width=44672 height=12001></p><p>（2）（i）由（1）得\\(a=4, b=5, c=1\\).</p><p>因此\\(p_{i}=4p_{i-1}+5 p_{i}+1p_{i+1}\\)，故\\(1\\left(p_{i+1}-p_{i}\\right)=4\\left(p_{i}-p_{i-1}\\right)\\)，即</p><p>\\(p_{i+1}-p_{i}=4\\left(p_{i}-p_{i-1}\\right)\\).</p><p>又因为\\(p_{1}-p_{0}=p_{1}\\ne 0\\)，所以\\(\\left\\{p_{i+1}-p_{i}\\right\\}(i=0,1,2,\\cdots ,7)\\)为公比为4，首项为\\(p_{1}\\)的等比数列．</p><p>（ii）由（i）可得</p><p>\\(p_{8} =p_{8}-p_{7}+p_{7}-p_{6}+\\cdots +p_{1}-p_{0}+p_{0} =\\left(p_{8}-p_{7}\\right)+\\left(p_{7}-p_{6}\\right)+\\cdots +\\left(p_{1}-p_{0}\\right)=\\frac{4^{8}-1}{3}p_{1}\\).</p><p>由于\\(p_{8}=1\\)，故\\(p_{1}=\\frac{3}{4^{8}-1}\\)，所以</p><p>\\(p_{4} =\\left(p_{4}-p_{3}\\right)+\\left(p_{3}-p_{2}\\right)+\\left(p_{2}-p_{1}\\right)+\\left(p_{1}-p_{0}\\right)=\\frac{4^{4}-1}{3}p_{1} =\\frac{1}{257}.\\) </p><p>\\(p_{4}\\)表示最终认为甲药更有效的概率，由计算结果可以看出，在甲药治愈率为5，乙药治愈率为8时，认为甲药更有效的概率为\\(p_{4}=\\frac{1}{257}≈0039\\)，此时得出错误结论的概率非常小，说明这种试验方案合理.</p>"
+        "reference": "21. 【答案】<p>【解析】</p><p>（1）<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/053c9eac2bd811eaaa35bc8385e4c2b6.png\" height=\"41.5px\" width=\"98.0px\"/>，则<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/053d10e22bd811eaab61bc8385e4c2b6.png\" height=\"21.5px\" width=\"60.0px\"/>时，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/053d895e2bd811ea9cc4bc8385e4c2b6.png\" height=\"21.5px\" width=\"133.5px\"/>时，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/053dfaa82bd811eaa0b4bc8385e4c2b6.png\" height=\"21.5px\" width=\"64.0px\"/></p><p>故<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/053ebd762bd811ea83a0bc8385e4c2b6.png\" height=\"21.5px\" width=\"33.0px\"/>在<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/053f324a2bd811eaad64bc8385e4c2b6.png\" height=\"21.5px\" width=\"36.0px\"/>递增，在<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/053faf9e2bd811ea971ebc8385e4c2b6.png\" height=\"21.5px\" width=\"49.0px\"/>递减，…………………．．1分</p><p>故<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/054105d82bd811ea99c4bc8385e4c2b6.png\" height=\"41.5px\" width=\"233.5px\"/>；  ……………………2分</p><p>又<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0541c89a2bd811eab9e7bc8385e4c2b6.png\" height=\"21.5px\" width=\"108.5px\"/>，故函数<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/054218502bd811eabab5bc8385e4c2b6.png\" height=\"21.5px\" width=\"33.0px\"/>的图象在点<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0542d94c2bd811ea8d58bc8385e4c2b6.png\" height=\"21.5px\" width=\"50.5px\"/>处的切线方程为：<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/05434e402bd811eaa976bc8385e4c2b6.png\" height=\"21.5px\" width=\"57.5px\"/>  ………．．3分</p><p>（2）显然，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0544d8342bd811ea9ac1bc8385e4c2b6.png\" height=\"21.5px\" width=\"44.0px\"/>不合题意。</p><p>当<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/054596922bd811eab63abc8385e4c2b6.png\" height=\"21.5px\" width=\"38.5px\"/>时，由<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/05461a862bd811ea8c44bc8385e4c2b6.png\" height=\"49.0px\" width=\"114.5px\"/>得<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0546a74a2bd811ea87dfbc8385e4c2b6.png\" height=\"41.5px\" width=\"154.0px\"/>，则有<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0546f53a2bd811ea9dccbc8385e4c2b6.png\" height=\"74.0px\" width=\"102.5px\"/>， …．．4分</p><p>故依题意知<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0547def62bd811ea91a4bc8385e4c2b6.png\" height=\"77.5px\" width=\"107.0px\"/>对<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/054853cc2bd811ea8a8abc8385e4c2b6.png\" height=\"21.5px\" width=\"73.5px\"/>恒成立，由前面的结论知，当<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/05493d922bd811ea930abc8385e4c2b6.png\" height=\"41.5px\" width=\"57.5px\"/>时，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0549b2702bd811ea94f8bc8385e4c2b6.png\" height=\"83.5px\" width=\"68.5px\"/>取得最大值<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/054a27662bd811eaaa26bc8385e4c2b6.png\" height=\"41.5px\" width=\"14.5px\"/>，故<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/054ac32c2bd811ea92aebc8385e4c2b6.png\" height=\"43.5px\" width=\"62.5px\"/>又可知，当<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/054b11122bd811eab59dbc8385e4c2b6.png\" height=\"17.5px\" width=\"38.5px\"/>时，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/054b85fa2bd811eaa1e6bc8385e4c2b6.png\" height=\"43.5px\" width=\"33.0px\"/>取得最大值<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/054bfacc2bd811ea9656bc8385e4c2b6.png\" height=\"41.5px\" width=\"14.5px\"/>，故<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/054c99802bd811ea95ddbc8385e4c2b6.png\" height=\"43.5px\" width=\"62.5px\"/>      </p><p>故<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/054d37422bd811eaac9bbc8385e4c2b6.png\" height=\"43.5px\" width=\"59.0px\"/>，    ……．．5分       综上得<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/054e1c422bd811ea8cbdbc8385e4c2b6.png\" height=\"17.5px\" width=\"38.5px\"/>        …………………．．6分</p><p>（3）设<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/054f53e22bd811ea9b3bbc8385e4c2b6.png\" height=\"41.5px\" width=\"214.5px\"/>，则<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/054fc8d22bd811ea9d3dbc8385e4c2b6.png\" height=\"43.5px\" width=\"182.5px\"/>………………．．7分</p><p>当<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0550d9762bd811ea8725bc8385e4c2b6.png\" height=\"18.0px\" width=\"44.5px\"/>时，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/05514e582bd811eaa741bc8385e4c2b6.png\" height=\"45.5px\" width=\"329.0px\"/>，</p><p>所以不存在<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0551ed9c2bd811eab24bbc8385e4c2b6.png\" height=\"23.5px\" width=\"30.5px\"/><img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/055238282bd811eaade4bc8385e4c2b6.png\" height=\"20.5px\" width=\"32.5px\"/>使得<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0552860a2bd811ea92bcbc8385e4c2b6.png\" height=\"23.5px\" width=\"60.0px\"/>成立．      故<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/055348d82bd811ea97bcbc8385e4c2b6.png\" height=\"18.0px\" width=\"44.5px\"/>不合题意。…………．．9分</p><p>当<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0554825a2bd811ea8bc2bc8385e4c2b6.png\" height=\"18.0px\" width=\"39.5px\"/>时，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0554fb9e2bd811eabdb1bc8385e4c2b6.png\" height=\"43.0px\" width=\"308.5px\"/></p><p>因为<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/05556a4c2bd811ea9efdbc8385e4c2b6.png\" height=\"23.0px\" width=\"310.5px\"/>，  所以<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0556562c2bd811ea8919bc8385e4c2b6.png\" height=\"21.5px\" width=\"60.0px\"/>在<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0556cd2c2bd811eaab47bc8385e4c2b6.png\" height=\"20.5px\" width=\"32.5px\"/>恒成立，</p><p>故<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0557664c2bd811eaa4ffbc8385e4c2b6.png\" height=\"21.5px\" width=\"33.0px\"/>在<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0557ea522bd811ea99ddbc8385e4c2b6.png\" height=\"20.5px\" width=\"32.5px\"/>单调递减，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0558756e2bd811ea9616bc8385e4c2b6.png\" height=\"43.5px\" width=\"237.5px\"/>， ………．．10分</p><p>则依题意有<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/055986142bd811ea82d1bc8385e4c2b6.png\" height=\"43.5px\" width=\"153.5px\"/>  …………．．11分</p><p>解之得<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/055a96dc2bd811eab5aabc8385e4c2b6.png\" height=\"43.5px\" width=\"110.5px\"/>     故<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/055b0bb42bd811eaaba8bc8385e4c2b6.png\" height=\"15\" width=\"16\"/>的取值范围 <img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/055bd0742bd811ea8f81bc8385e4c2b6.png\" height=\"50.5px\" width=\"126.5px\"/>………．．12分</p>"
     },
     {
-        "title": "",
         "questions": [
             {
-                "stem": "<p>[选修4—4：坐标系与参数方程]（10分）</p><p>在直角坐标系<i>xOy</i>中，曲线<i>C</i>的参数方程为（<i>t</i>为参数）．以坐标原点<i>O</i>为极点，<i>x</i>轴的正半轴为极轴建立极坐标系，直线<i>l</i>的极坐标方程为．</p><p>（1）求<i>C</i>和<i>l</i>的直角坐标方程；</p><p>（2）求<i>C</i>上的点到<i>l</i>距离的最小值．</p>",
+                "stem": "<p>（本小题满分10分）已知在平面直角坐标系<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02a468cc2bd811eaa8f6bc8385e4c2b6.png\" height=\"21.5px\" width=\"32.0px\"/>中，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02a4ded02bd811eaba0fbc8385e4c2b6.png\" height=\"18.5px\" width=\"16.0px\"/>为坐标原点，曲线<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02a57b3a2bd811eaa809bc8385e4c2b6.png\" height=\"56.0px\" width=\"152.0px\"/>（<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02a5ed0a2bd811ea88f8bc8385e4c2b6.png\" height=\"14.5px\" width=\"16.0px\"/>为参数），在以平面直角坐标系的原点为极点，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02a662022bd811eaa478bc8385e4c2b6.png\" height=\"14.5px\" width=\"13.0px\"/>轴的正半轴为极轴，取相同单位长度的极坐标系中，直线<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02a6d6d42bd811ea9871bc8385e4c2b6.png\" height=\"18.5px\" width=\"10.5px\"/>的极坐标方程为<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02a775182bd811ea9497bc8385e4c2b6.png\" height=\"41.5px\" width=\"110.5px\"/>．</p><p>（1）求曲线<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02a8356e2bd811ea9d44bc8385e4c2b6.png\" height=\"18.5px\" width=\"16.0px\"/>的普通方程和直线<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02a8aa582bd811eaaea9bc8385e4c2b6.png\" height=\"18.5px\" width=\"10.5px\"/>的直角坐标方程；</p><p>（2）直线<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02a9728c2bd811ea91b8bc8385e4c2b6.png\" height=\"18.5px\" width=\"10.5px\"/>与<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02a9e2222bd811ea8276bc8385e4c2b6.png\" height=\"14.5px\" width=\"13.0px\"/>轴的交点<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02aa56e22bd811eaa602bc8385e4c2b6.png\" height=\"16.0px\" width=\"16.0px\"/>，经过点<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02aacbb62bd811ea9f71bc8385e4c2b6.png\" height=\"16.0px\" width=\"16.0px\"/>的直线<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02ab40982bd811eabf35bc8385e4c2b6.png\" height=\"14.5px\" width=\"17.5px\"/>与曲线<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02abdc762bd811eabb50bc8385e4c2b6.png\" height=\"18.5px\" width=\"16.0px\"/>交于<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02ac514c2bd811eaa0babc8385e4c2b6.png\" height=\"20.0px\" width=\"32.0px\"/>两点，若<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02acc6302bd811ea850bbc8385e4c2b6.png\" height=\"28.0px\" width=\"113.0px\"/>，求直线<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02ad620a2bd811eaaeebbc8385e4c2b6.png\" height=\"14.5px\" width=\"17.5px\"/>的倾斜角．</p>",
                 "number": "22",
                 "type": "GENERAL",
                 "score": 10
             }
         ],
+        "title": "",
         "category": "解答题",
-        "total": 10,
-        "reference": "22. <p>解：（1）因为\\(-1&lt;\\frac{1-t^{2}}{1+t^{2}}\\leq 1\\)，且\\(x^{2}+\\left(\\frac{y}{2}\\right)^{2}=\\left(\\frac{1-t^{2}}{1+t^{2}}\\right)^{2}+\\frac{4t^{2}}{\\left(1+t^{2}\\right)^{2}}=1\\)，所以<i>C</i>的直角坐标方程为\\(x^{2}+\\frac{y^{2}}{4}=1(x\\ne -1)\\).</p><p>\\(l\\)的直角坐标方程为\\(2x+\\sqrt{3}y+11=0\\).</p><p>（2）由（1）可设<i>C</i>的参数方程为\\(\\left\\{\\begin{matrix}x=\\cos(α),\\\\y=2\\sin(α)\\end{matrix}\\right.\\)（\\(α\\)为参数，\\(-π&lt;α&lt;π\\)）.</p><p><i>C</i>上的点到\\(l\\)的距离为\\(\\frac{|2\\cos(α)+2\\sqrt{3}\\sin(α)+11|}{\\sqrt{7}}=\\frac{4\\cos(\\left(α-\\frac{π}{3}\\right))+11}{\\sqrt{7}}\\).</p><p>当\\(α=-\\frac{2π}{3}\\)时，\\(4\\cos(\\left(α-\\frac{π}{3}\\right))+11\\)取得最小值7，故<i>C</i>上的点到\\(l\\)距离的最小值为\\(\\sqrt{7}\\).</p>"
+        "reference": "22. 【答案】<p>【解析】</p><p>（1）曲线C的普通方程为<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/055d541e2bd811ea9bebbc8385e4c2b6.png\" height=\"24.0px\" width=\"76.0px\"/></p><p>直线<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/055dc9002bd811ea85aabc8385e4c2b6.png\" height=\"18.5px\" width=\"10.5px\"/>的直角坐标方程为<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/055e44302bd811eaa954bc8385e4c2b6.png\" height=\"25.5px\" width=\"103.0px\"/>………………4分</p><p>（2）点<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/055f279e2bd811ea8ce9bc8385e4c2b6.png\" height=\"16.0px\" width=\"16.0px\"/>的坐标为<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/055f9c942bd811eab0a8bc8385e4c2b6.png\" height=\"21.5px\" width=\"37.5px\"/>，设直线<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/056038502bd811eaa3e7bc8385e4c2b6.png\" height=\"14.5px\" width=\"17.5px\"/>的参数方程为<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0560ad2e2bd811ea9254bc8385e4c2b6.png\" height=\"48.0px\" width=\"100.0px\"/> （<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0560fd2c2bd811eaae25bc8385e4c2b6.png\" height=\"16.0px\" width=\"9.0px\"/>为参数，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/05616ff02bd811eaaa80bc8385e4c2b6.png\" height=\"18.5px\" width=\"14.5px\"/>为倾斜角）联立直线<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0561bdee2bd811ea870ebc8385e4c2b6.png\" height=\"14.5px\" width=\"17.5px\"/>与曲线<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/056259b02bd811ea85e0bc8385e4c2b6.png\" height=\"18.5px\" width=\"16.0px\"/>的方程得：<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0562ceb02bd811eabfe1bc8385e4c2b6.png\" height=\"21.5px\" width=\"124.0px\"/>………………6分</p><p>设<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/056343802bd811eab479bc8385e4c2b6.png\" height=\"18.5px\" width=\"40.0px\"/>对应的参数分别为<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0563b8582bd811eabc39bc8385e4c2b6.png\" height=\"24.0px\" width=\"29.0px\"/>，则<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/05642d342bd811ea9f1abc8385e4c2b6.png\" height=\"61.0px\" width=\"123.0px\"/> </p><p><img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0564a2022bd811eaa8b8bc8385e4c2b6.png\" height=\"28.0px\" width=\"304.0px\"/>     ………8分</p><p><img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/056516f62bd811eabf1fbc8385e4c2b6.png\" height=\"45.5px\" width=\"99.0px\"/>且满足<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/05658bda2bd811eabd68bc8385e4c2b6.png\" height=\"18.5px\" width=\"38.5px\"/>    故直线<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/056600ba2bd811ea9a85bc8385e4c2b6.png\" height=\"14.5px\" width=\"17.5px\"/>的倾斜角是<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/05664ea42bd811ea99c0bc8385e4c2b6.png\" height=\"41.5px\" width=\"17.5px\"/>或<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0566c5642bd811eaba09bc8385e4c2b6.png\" height=\"41.5px\" width=\"27.0px\"/>……………10分</p><p>（说明，不检验扣1分）</p>"
     },
     {
-        "title": "",
         "questions": [
             {
-                "stem": "<p>[选修4—5：不等式选讲]（10分）</p><p>已知<i>a</i>，<i>b</i>，<i>c</i>为正数，且满足<i>abc</i>=1．证明：</p><p>（1）\\(\\frac{1}{a}+\\frac{1}{b}+\\frac{1}{c}\\leq a^{2}+b^{2}+c^{2}\\)；</p><p>（2）\\((a+b)^{3}+(b+c)^{3}+(c+a)^{3}\\geq 24\\)．</p>",
+                "stem": "<p>（本小题满分10分）选修4－5，不等式选讲</p><p>已知函数<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02af0e862bd811eabcd9bc8385e4c2b6.png\" height=\"59.0px\" width=\"133.0px\"/>  <img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02af83702bd811ea885ebc8385e4c2b6.png\" height=\"27.0px\" width=\"138.5px\"/>．</p><p>（1）当<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02b01f402bd811eaa170bc8385e4c2b6.png\" height=\"18.5px\" width=\"37.5px\"/>时，若<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02b0bb1c2bd811ea862bbc8385e4c2b6.png\" height=\"27.0px\" width=\"110.5px\"/>对任意<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02b156e22bd811eab9ffbc8385e4c2b6.png\" height=\"21.5px\" width=\"74.5px\"/>恒成立，求实数<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02b240a82bd811ea867ebc8385e4c2b6.png\" height=\"18.5px\" width=\"13.0px\"/>的取值范围；</p><p>（2）当<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02b3036e2bd811eabba4bc8385e4c2b6.png\" height=\"18.5px\" width=\"45.5px\"/>时，求不等式<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02b37a9e2bd811ea8a67bc8385e4c2b6.png\" height=\"21.5px\" width=\"72.0px\"/>的解集．</p><img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/02b489122bd811ea9d51bc8385e4c2b6.png\" height=\"36\" width=\"35\"/>",
                 "number": "23",
                 "type": "GENERAL",
                 "score": 10
             }
         ],
+        "title": "",
         "category": "解答题",
-        "total": 10,
-        "reference": "23. <p>解：（1）因为\\(a^{2}+b^{2}\\geq 2ab,b^{2}+c^{2}\\geq 2bc,c^{2}+a^{2}\\geq 2ac\\)，又\\(abc=1\\)，故有</p><p>\\(a^{2}+b^{2}+c^{2}\\geq ab+bc+ca=\\frac{ab+bc+ca}{abc}=\\frac{1}{a}+\\frac{1}{b}+\\frac{1}{c}\\).</p><p>所以\\(\\frac{1}{a}+\\frac{1}{b}+\\frac{1}{c}\\leq a^{2}+b^{2}+c^{2}\\).</p><p>（2）因为\\(a, b, c\\)为正数且\\(abc=1\\)，故有</p><p>\\((a+b)^{3}+(b+c)^{3}+(c+a)^{3}\\geq 3\\sqrt[3]{(a+b)^{3}(b+c)^{3}(a+c)^{3}}\\)</p><p>\\(=3(a+b)(b+c)(a+c)\\)</p><p>\\(\\geq 3×(2\\sqrt{ab})×(2\\sqrt{bc})×(2\\sqrt{ac})\\)</p><p>=</p><p>所以\\((a+b)^{3}+(b+c)^{3}+(c+a)^{3}\\geq 24\\).</p>"
+        "reference": "23. 【答案】<p>【解析】</p><p>（1）当<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/056849182bd811eab4c6bc8385e4c2b6.png\" height=\"18.5px\" width=\"37.5px\"/>时，<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0568bdf62bd811eaa032bc8385e4c2b6.png\" height=\"27.0px\" width=\"110.5px\"/>转化为<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/05690bee2bd811eaaf21bc8385e4c2b6.png\" height=\"27.0px\" width=\"117.5px\"/></p><p><img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/056980ca2bd811ea98dbbc8385e4c2b6.png\" height=\"13.0px\" width=\"14.5px\"/><img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/0569ceb02bd811eaba5cbc8385e4c2b6.png\" height=\"27.0px\" width=\"222.5px\"/>       <img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/056a43862bd811eaa932bc8385e4c2b6.png\" height=\"18.5px\" width=\"53.0px\"/>……………4分</p><p>（2）当<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/056ae0c02bd811eab4a2bc8385e4c2b6.png\" height=\"18.5px\" width=\"45.5px\"/>时，由<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/056b55ba2bd811ea8a70bc8385e4c2b6.png\" height=\"21.5px\" width=\"72.0px\"/>得<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/056bcb022bd811eaae96bc8385e4c2b6.png\" height=\"47.0px\" width=\"115.0px\"/>或<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/056c4c0a2bd811eaafe3bc8385e4c2b6.png\" height=\"59.0px\" width=\"105.0px\"/>………6分</p><p>即<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/056d27ca2bd811ea989fbc8385e4c2b6.png\" height=\"48.0px\" width=\"69.0px\"/>或<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/056d9ddc2bd811eaa80bbc8385e4c2b6.png\" height=\"60.5px\" width=\"66.0px\"/>解得<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/056e12ca2bd811eab293bc8385e4c2b6.png\" height=\"41.5px\" width=\"78.5px\"/>或<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/056e879c2bd811eab534bc8385e4c2b6.png\" height=\"22.5px\" width=\"90.5px\"/>………8分</p><p>故不等式的解集为<img style=\"vertical-align:middle\" src=\" https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/056fc0782bd811ea94c3bc8385e4c2b6.png\" height=\"46.0px\" width=\"118.0px\"/>………10分</p>"
     }
 ]

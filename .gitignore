@@ -1,5 +1,8 @@
 .idea
 ~$*
+*.pyc
 img/
 __pycache__/
 img/
+tmp/
+flist.txt
