@@ -185,10 +185,12 @@ def math_type2mml(ole_blob):
     exit
     '''
     fname=uuid.uuid1().hex+'.bin'
-    with open(fname, 'wb') as f:
+    if not os.path.exists('tmp'):
+        os.mkdir('tmp')
+    with open( os.path.join('tmp',fname), 'wb') as f:
         f.write(ole_blob)
 
-    output = subprocess.check_output(['ruby', '-w', 'docx_utils/mathtype_ole2mathml.rb', fname])
+    output = subprocess.check_output(['ruby', '-w', 'docx_utils/mathtype_ole2mathml.rb', os.path.join('tmp',fname)])
     mathml = output.decode('utf-8').replace('<?xml version="1.0"?>', '').replace('block','inline')  ###暂时用inline，一般试卷中的公式都是inline
     return mathml
 
@@ -208,40 +210,42 @@ def w_object2html(doc, child):
     ole['height']=inch_pt2px( ole['styles']['height'])
     ole['width']=inch_pt2px(ole['styles']['width'])
 
-    #ole_object = child.xpath('.//o:OLEObject', namespaces=docx_nsmap)[0]
+    ole_object = child.xpath('.//o:OLEObject', namespaces=docx_nsmap)[0]
+    ole['rId'] = ole_object.attrib[get_full_tag_with_nameapce('r:id')]
+    ole['object_path'] = doc.rIds[ole['rId']]['path']
+    ole['blob'] = doc.rIds[ole['rId']]['blob']
+    ole['style'] = "vertical-align:middle"
 
-    # if ole_object.attrib['ProgID']=="Equation.DSMT4":  #是mathtype嵌入的数学公式,转成html
-    #     ole['rId'] = ole_object.attrib['{' + docx_nsmap['r'] + '}id']
-    #     ole['object_path'] = doc.part.rels[ole['rId']].target_ref
-    #     ole['ole_part'] = doc.part.rels[ole['rId']].target_part
-    #     mml=math_type2mml(ole['ole_part'].blob)
-    #     print('mml=',mml)
-    #     return {'html':mml}
-    if False:  ##mathtype ole to mathml 还不稳定，暂时注销
-        pass
-    else:    ##read v:imagedata only, usually .wmf file， 暂时转换成svg
-        ole['rId'] = child.xpath('.//v:imagedata', namespaces=docx_nsmap)[0].attrib[get_full_tag_with_nameapce('r:id')]
-        ole['img_path'] = doc.rIds[ole['rId']]['path']
-        ext = os.path.splitext(ole['img_path'])[-1]
+    ProgID=ole_object.attrib['ProgID']
+    print('mathtype',ole_object.attrib['ProgID'])
+    if ProgID=="Equation.DSMT4":  #是mathtype嵌入的数学公式,转成html
+        fname = uuid.uuid1().hex
+        if settings.mathtype_convert_to=="mathml":
+            mml=math_type2mml(ole['blob'])
+            return {'html':mml, 'mode': 'inline'}
+        elif settings.mathtype_convert_to=="png":
+            img_rId= child.xpath('.//v:imagedata', namespaces=docx_nsmap)[0].attrib[get_full_tag_with_nameapce('r:id')]
+            ole['img_path'] = doc.rIds[img_rId]['path']
+            ext = os.path.splitext(ole['img_path'])[-1]
+            if ext == '.wmf':
+                out_img_path = fname + '.svg'
+                ole['src'] = http_head + fname + '.svg'
+                wmf2svg(doc.rIds[img_rId]['blob'], os.path.join(img_dir, out_img_path))
 
+            elif ext == '.png':
+                out_img_path = fname + '.png'
+                with open(os.path.join(img_dir, out_img_path), 'wb') as f:
+                    f.write(doc.rIds[img_rId]['blob'])
+                    f.close()
+                ole['src'] = http_head + out_img_path
 
-        if   ext=='.wmf':
-            out_img_path = uuid.uuid1().hex + '.svg'
-            wmf2svg(doc.rIds[ole['rId']]['blob'] , os.path.join(img_dir, out_img_path ))
-            ole['style'] = "vertical-align:middle"
-            ole['src'] = http_head + out_img_path
             img = create_img_tag(ole)
             html = etree.tostring(img).decode('utf-8')
-        elif ext=='.png':
-            out_img_path = uuid.uuid1().hex + '.png'
-            with open(os.path.join(img_dir, out_img_path),'wb') as f:
-                f.write(doc.rIds[ole['rId']]['blob'])
-                f.close()
-            ole['style']="vertical-align:middle"
-            ole['src']=http_head + out_img_path
-            img=create_img_tag(ole)
-            html=etree.tostring(img).decode('utf-8')
-        return {'html': html, 'mode': 'inline'}
+            return {'html': html, 'mode': 'inline'}
+    else:    ##read v:imagedata only, usually .wmf file， 暂时转换成svg
+        pass
+
+    return {'html': '', 'mode': 'inline'}
 ###创建img标签
 def create_img_tag(fig):
     img=etree.Element('img')
@@ -644,14 +648,28 @@ def get_ti_content(doc, ti_index):
     return ti
 
 
+def split_ti_and_number(html):
+    html0=html
+    html="<body>"+html+"</body>"
+    tree=etree.fromstring(html.strip())
+    texts = ''.join( tree.xpath(".//text()") )
+
+    if  texts.strip():
+        xx=re.findall(r'^(\d{1,2}[.．]\s{0,})', texts.strip())
+        if xx:
+            num=re.findall(r'^(\d{1,2})[.．]\s{0,}', xx[0])[0]
+            return ( num, html0.replace(xx[0], '') )
+    return (-1, html0)
 ##处理1个小题
 def get_xiaoti_content(doc, question):
     q = {}
     title_indexes = question['stem']
     xx = paragraphs2htmls(doc, title_indexes)
-    q['stem']=re.sub(r'^<p>\d{1,2}[.．]\s{0,}', '<p>', xx)   ###去除题号
+    q['number'], q['stem'] = split_ti_and_number(xx)  ##更加安全，可靠的方式，避免题号和选项有加粗的问题
 
-    q['number'] = re.findall(r'^<p>(\d{1,2})[.．、]\s{0,}', xx)[0]   ###获取题号
+    # q['stem']=re.sub(r'^<p>\d{1,2}[.．]\s{0,}', '<p>', xx)   ###去除题号
+
+    # q['number'] = re.findall(r'^<p>(\d{1,2})[.．、]\s{0,}', xx)[0]   ###获取题号
 
     if 'options' in question:
         q['options'] = get_option_htmls(doc, question['options'])
@@ -666,9 +684,7 @@ def get_xiaoti_content(doc, question):
 if __name__ == "__main__":
     path = '../data/2019年全国II卷文科综合高考真题.docx'
     doc = MyDocx.Document(path)
-    all_ti_index = AnalysQuestion(doc,0,len(doc.elements))
-
-
+    # all_ti_index = AnalysQuestion(doc,0,len(doc.elements))
     i = 0
     mode_text = r'\d{1,2}[～-~]\d{1,2}[小]{0,1}题'   ##模式字符串
 

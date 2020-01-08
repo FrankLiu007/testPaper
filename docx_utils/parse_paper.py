@@ -154,6 +154,8 @@ def parse_one_titype(curr_row, end_row, xiaoti_indexes, doc_elements, mode_text)
 def isObjective(curr_row, next_row, children):
     # print('next_row=',next_row)
     for i in range(curr_row, next_row+1):
+        if children[i]['element'].tag == '{' + docx_nsmap['w'] + '}tbl':  ###表格段落
+            continue
         text = children[i]['text'].strip()
         if re.match(r'[A-G][．\.]', text):
             return (True, i)
