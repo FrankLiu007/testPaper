@@ -4,16 +4,52 @@ import uuid
 from docx_utils.namespaces import namespaces as docx_nsmap
 import pycnnum
 import docx_utils.MyDocx as MyDocx
+from . import settings
 #####主要是进行版面分析，把每个题的标题、选项等部分所在的段落号，计算出来
+
+#####分析语文试卷
+def pharse_yuwen(doc, start_row, end_row, mode_text):
+    doc_elements = doc.elements
+    dati_indexes = find_dati_row(doc, start_row, end_row)
+    xiaoti_indexes = find_xiaoti_row(doc, dati_indexes[0][0] + 1, end_row)
+    if (len(dati_indexes) == 0) or (len(xiaoti_indexes) == 0):
+        return ()
+
+    ####获取所有大题的  小题
+    tis = []
+    curr_row, text, mode_tt = dati_indexes[0]
+    i = 0
+    all_ti = []
+    while i < len(dati_indexes):  ##处理1种题型
+
+        if i == len(dati_indexes) - 1:  ##如果是最后一个大题
+            next_row = end_row
+            xiaotis = get_dati_children(doc, dati_indexes, i, xiaoti_indexes)
+        else:
+            next_row, next_text, mode_tt = dati_indexes[i + 1]
+            next_row -= 1
+            xiaotis = get_dati_children(doc, dati_indexes, i, xiaoti_indexes)
+
+        tis = parse_one_titype(curr_row + 1, next_row, xiaotis, doc_elements, mode_text)  ##处理1种题型的所有题目
+        tis = add_score_and_titype(tis, dati_indexes, i, doc_elements)
+
+        all_ti.append(tis.copy())
+        i = i + 1
+        curr_row = next_row
 
 #####给题目增加分数和题型
 def add_score_and_titype(tis, dati_indexes, i, doc_elements):
-    text=doc_elements[dati_indexes[i][0]]['text']
+    text=doc_elements[dati_indexes[i][0]]['text'].strip()
     score = re.findall(r'每[小]{0,1}题(\d{1,2})分', text)  ##，每个小题的分数
     ###题型 titpye
-    txt=re.sub(r'^[\d一二三四五六七八九]{1,2}[\s.．、]{0,3}', '', text).strip()
-    e = txt.find('题')
-    category = txt[:e + 1]
+    # txt=re.sub(r'^[\d一二三四五六七八九]{1,2}[\s\.．、]{0,3}', '', text).strip()
+    # e = txt.find('题')
+    # category = txt[:e + 1]
+    xx=re.findall(r'^[一二三四五六七八九][\s\.．、]{0,1}(.*)', text)[0]
+    if ('(' in xx) or ('（'in xx):
+        category=re.findall(r'(.*)[\(（]', xx)[0]
+    else:
+        category=xx
 
     for ti in tis:
         ti['category'] =category
@@ -48,7 +84,6 @@ def add_score_and_titype(tis, dati_indexes, i, doc_elements):
     return tis
 ###判断1个段落是否为空
 def is_blank_paragraph(element):
-
     tt=element.xpath('.//w:t/text()')
     if  ''.join(tt).strip():
         return False
@@ -61,21 +96,6 @@ def is_blank_paragraph(element):
     return True
 
 
-def parse_tis(dati_indexes,xiaoti_indexes, doc_elements, mode_text):  ##处理1个大题，例如 “一、选择题”
-    tis={}        ###ti={ 'title':'title' , questions:[]}
-    i=0
-
-    curr_dati_num=0
-    for  j in range(0, len( xiaoti_indexes)):
-        if dati_indexes[curr_dati_num][0] < xiaoti_indexes[j][0]:
-            if dati_indexes[curr_dati_num+1][0] > xiaoti_indexes[j][0]:
-                ###该小题属于当前大题
-                pass
-            else:
-                ###该小题不属于当前大题
-                curr_dati_num+=1
-
-        next=xiaoti_indexes[j+1]
 #-------------------------------------------------------
 ##获取材料题，到底有多少小问（题）
 def get_question_quantity(doc_elements, title_rows, mode_text):
@@ -92,7 +112,8 @@ def get_question_quantity(doc_elements, title_rows, mode_text):
 #####找到材料题的所有材料行
 def get_title_rows(doc_elements, b_row, curr_row, mode_text):
     has_material=False
-
+    mode_text=settings.mode_text
+    subject=settings.subject
     if b_row >= curr_row:
         print('开始行<=结束行')
         return []
@@ -111,12 +132,12 @@ def get_title_rows(doc_elements, b_row, curr_row, mode_text):
 def parse_one_titype(curr_row, end_row, xiaoti_indexes, doc_elements, mode_text):
     tis = []
     i = 0
-    # curr_row+=1
-
+    category=re.findall(r'^[一二三四五六七八九]\s{0,}[\s\.．、](.*)[\(（]{1,}', doc_elements[curr_row]['text'].strip())    ###获取题目的题型
+    curr_row=curr_row+1   ##略过大题这1行
     while i < len(xiaoti_indexes):
         if i==len(xiaoti_indexes)-1:   ###最后一个小题
             question = parse_question(xiaoti_indexes[i],  end_row, doc_elements)
-            tis.append({'questions':[question], 'title':[]})
+            tis.append({'questions':[question], 'title':[], 'category':category})
             i=i+1
             continue
 
@@ -124,7 +145,7 @@ def parse_one_titype(curr_row, end_row, xiaoti_indexes, doc_elements, mode_text)
             title_rows=get_title_rows(doc_elements,curr_row, xiaoti_indexes[i][0], mode_text)
 
             if title_rows:  ###处理多问的小题
-                ti = {'questions':[], 'title':[]}
+                ti = {'questions':[], 'title':[], 'category':category}
                 n=get_question_quantity(doc_elements, title_rows  ,mode_text)
                 for j in range(0,n):
                     if i+j==len(xiaoti_indexes)-1:
@@ -139,12 +160,12 @@ def parse_one_titype(curr_row, end_row, xiaoti_indexes, doc_elements, mode_text)
             else: ####不可能是最后一个小题，最后1个小题，已经在循环开始时，就被处理了！
                 question = parse_question(xiaoti_indexes[i],  xiaoti_indexes[i + 1][0] - 1, doc_elements)
                 curr_row = question['end_row'] + 1
-                tis.append({'questions':[question], 'title':[]})
+                tis.append({'questions':[question], 'title':[], 'category':category})
                 i = i + 1
         elif xiaoti_indexes[i][0]==curr_row:    ###不是材料题
             question = parse_question(xiaoti_indexes[i],  xiaoti_indexes[i+1][0]-1, doc_elements)
             curr_row=question['end_row']+1
-            tis.append({'questions':[question], 'title':[]})
+            tis.append({'questions':[question], 'title':[], 'category':category})
             i=i+1
 
     return tis
@@ -165,25 +186,31 @@ def isObjective(curr_row, next_row, children):
 ####解析1道题
 def parse_question(xiaoti, end_row, doc_elements):
     # curr_row=xiaoti_indexes
-    mode_text = r'(\d{1,2})[～\-~](\d{1,2})[小]{0,1}题'
+    mode_text = settings.mode_text
     start_row=xiaoti[0]
     objective, index = isObjective(start_row, end_row, doc_elements)
     question = {}
     question['end_row']=0
     question['objective']=objective
     question['stem'] = []
-    if objective:
+    if objective:  ###客观题，要处理选项
         options = []
         question['stem']=list(range(start_row, index))
         for j in range(index, end_row+1):
-            if re.match(r'[A-G][．\.]', doc_elements[j]['text']):
+            if re.match(r'^[A-G][．\.]', doc_elements[j]['text'].strip()):
                 options.append(j)
                 question['end_row']=j
 
         question['options'] = options
-    else:
-        question['stem']=list(range(start_row, end_row+1))
-        question['end_row'] = end_row
+    else: ###主观题，要注意可能有多行
+        for j in range(start_row, end_row + 1):
+            tt=re.findall(r'^[\(（][一二三四五六七八九][\)）](.*)\(.*\)', doc_elements[j]['text'])####语文学科会出现的问题
+            kk=re.findall(mode_text, doc_elements[j]['text'])   ####语文学科会出现的问题
+            if (not tt) and (not kk):
+                question['stem'].append(j)
+            else:
+                question['end_row'] = j-1
+                break
 
     return question
 
@@ -267,7 +294,7 @@ def find_dati_row( doc, start_row, end_row):
     return dati_row
 
 ###获取某个大题包含的小题（一包含哪几个1，2，3）
-def get_dati_children(dati_indexes, i, xiaoti_indexes):
+def get_dati_children(doc, dati_indexes, i, xiaoti_indexes):
     xiaoti_list = []
     curr_row=dati_indexes[i][0]
 
@@ -280,7 +307,29 @@ def get_dati_children(dati_indexes, i, xiaoti_indexes):
             xiaoti_list.append(xiaoti_indexes[jj])
     return xiaoti_list
 
-def AnalysQuestion(doc,start_row, end_row,mode_text ):
+def correct4yuwen(doc, all_ti):
+    for dati in all_ti:
+        for ti in dati:
+            if ti['title']:   ##保证有title
+                i=ti['title'][0]
+                tt=re.findall(r'^[\(（][一二三四五六七八九][\)）](.*)\(.*\)', doc.elements[i]['text'])
+                if tt:
+                    ti['category']=tt[0]
+                    ti['title'].remove(i)
+
+
+    return all_ti
+def parse_paper(doc,start_row, end_row,mode_text ):
+    if settings.subject=="语文":
+        all_ti=parse_common(doc, start_row, end_row, mode_text)
+        return correct4yuwen(doc, all_ti)
+    elif settings.subject=='英语':
+        pass
+    else:
+        return parse_common(doc,start_row, end_row,mode_text )
+
+
+def parse_common(doc,start_row, end_row,mode_text ):
     doc_elements = doc.elements
     dati_indexes=find_dati_row( doc, start_row, end_row)
     xiaoti_indexes=find_xiaoti_row( doc, dati_indexes[0][0]+1, end_row)
@@ -296,17 +345,18 @@ def AnalysQuestion(doc,start_row, end_row,mode_text ):
 
         if i==len(dati_indexes) - 1:  ##如果是最后一个大题
             next_row=end_row
-            xiaotis=get_dati_children(dati_indexes, i, xiaoti_indexes)
+            xiaotis=get_dati_children(doc, dati_indexes, i, xiaoti_indexes)
         else:
             next_row, next_text, mode_tt = dati_indexes[i + 1]
             next_row-=1
-            xiaotis=get_dati_children(dati_indexes, i, xiaoti_indexes)
-        tis = parse_one_titype(curr_row+1, next_row, xiaotis, doc_elements, mode_text)  ##处理1种题型的所有题目
+            xiaotis=get_dati_children(doc, dati_indexes, i, xiaoti_indexes)
+
+        tis = parse_one_titype(curr_row, next_row, xiaotis, doc_elements, mode_text)  ##处理1种题型的所有题目
         tis=add_score_and_titype(tis, dati_indexes, i, doc_elements)
 
         all_ti.append(tis.copy())
         i = i + 1
-        curr_row = next_row
+        curr_row = next_row+1
 
     return all_ti
 ###判读某行是否为大题行
@@ -318,14 +368,16 @@ def is_dati_row(dati_index,row):
 
 
 ###分析答案的结构
-def AnalysAnswer(doc,start_row, end_row ):
+def parse_answer(doc,start_row, end_row ):
     doc_elements = doc.elements
     dati_indexes=find_dati_row( doc, start_row, end_row)
     xiaoti_indexes=find_xiaoti_row( doc, start_row, end_row)
     if  (len(xiaoti_indexes)==0):
+        print('未找到参考答案！')
         return ()
     all_ti = []
     ###分析参考答案的结构
+    curr_ti_num=1
     for i in range(0,len(xiaoti_indexes)):
         if i == len(xiaoti_indexes) - 1:
             b_row = xiaoti_indexes[i][0]
@@ -338,22 +390,18 @@ def AnalysAnswer(doc,start_row, end_row ):
         ti_index={'answer':[],'explain':[],'num':ti_num}
         curr_status='答案'     ###第一次，默认是答案
 
-        for j in range(b_row+1, e_row ):
-            tt=re.findall(r'【(.{2,5})】', doc_elements[j]['text'].strip())
+        for j in range(b_row, e_row ):
             if dati_indexes:             ###如果大题存在，且该行是大题行，跳出
                 if is_dati_row(dati_indexes,j):
                     break
+            tt=re.findall(r'【(.{2,5})】', doc_elements[j]['text'].strip())
             if tt:
                 if tt[0].strip()=='解析':
                     curr_status='解析'
-                    continue
                 elif tt[0].strip()=='答案':
                     curr_status='答案'
-                    continue
                 else :   ####
                     curr_status='未识别'
-                    continue
-
             if curr_status=='解析':
                 ti_index['explain'].append(j)
             elif curr_status=='答案':

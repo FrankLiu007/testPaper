@@ -8,7 +8,7 @@ from docx_utils.namespaces import namespaces as docx_nsmap
 import subprocess
 import uuid
 class Document:
-    ##静态属性
+    ##-----------静态属性
     w_val = '{' + docx_nsmap['w'] + '}val'
     omml2mml_transform = etree.XSLT(etree.parse('docx_utils/omml2mml.xsl'))
     def wmf_emf2png(self):
@@ -64,9 +64,8 @@ class Document:
             return ''
         numFmt=self.numbering[numId][ilvl]['numFmt']
         lvlText=self.numbering[numId][ilvl]['lvlText']
-
         curr_num = self.numbering[numId][ilvl]['current']
-        tt=''
+
         if numFmt=="chineseCountingThousand":
             tt=re.sub(r"%\d{1,2}", pycnnum.num2cn(curr_num) ,lvlText)
             self.numbering[numId][ilvl]['current'] += 1
@@ -115,6 +114,7 @@ class Document:
         abstractNums={}
         if path in self.file_blobs:
             tree = etree.fromstring(self.file_blobs[path].decode('utf8').splitlines()[1])
+
             w_val = '{' + docx_nsmap['w'] + '}val'
             w_numId='{' + docx_nsmap['w'] + '}numId'
             w_abstractNumId='{' + docx_nsmap['w'] + '}abstractNumId'
@@ -211,5 +211,5 @@ class Document:
     def __del__(self):
         pass
 if __name__ == "__main__":
-    path='d:/test/崇阳一中2020届高三理科数学测试卷.zip'
+    path='d:/test/高三理科数学测试卷.zip'
     doc=Document(path)

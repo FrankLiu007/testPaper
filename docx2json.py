@@ -1,4 +1,4 @@
-from docx_utils.parse_paper import  AnalysQuestion, AnalysAnswer
+from docx_utils.parse_paper import  parse_paper, parse_answer
 from docx_utils.ti2html import get_ti_content, paragraphs2htmls
 import re
 import json
@@ -21,8 +21,10 @@ def merge_answer(tis, answers):
         for q in ti['questions']:
             if q['objective']:
                 tt=answers[q['number']]['answer']
-                tt=tt.replace('<p>','').replace('</p>','').strip().split()
-                q['solution'] = ''.join(tt)
+                # tt=tt.replace('<p>','').replace('</p>','').strip().split()
+                tt = re.findall(r'<p[\s]{0,}.*?>(.*?)</p>', tt)
+
+                q['solution'] = ''.join(tt).strip()
                 if len(q['solution'])==1:
                     q['type']='SINGLE'
                 else:
@@ -68,7 +70,8 @@ def check_ti_type(tis):
 
 # -----------------------------------------
 def docx_paper2json(pars):
-    mode_text = r'(\d{1,2})[～\-~](\d{1,2})[小]{0,1}题'
+    # mode_text = r'(\d{1,2})[～\-~](\d{1,2})[小]{0,1}题'
+    mode_text=settings.mode_text
     data_dir = pars['working_dir']
     paper_path = pars['question_docx']
     doc = MyDocx.Document(os.path.join(data_dir, paper_path))
@@ -77,7 +80,7 @@ def docx_paper2json(pars):
         end_row=len(doc.elements)-1
     else:
         end_row=answer_start_row-2
-    all_ti_index = AnalysQuestion(doc, 0, end_row, mode_text)
+    all_ti_index = parse_paper(doc, 0, end_row, mode_text)
 
     ###处理试卷
     print('开始处理试卷...')
@@ -85,7 +88,7 @@ def docx_paper2json(pars):
     ####处理答案
     if answer_start_row!=-1:
         print('开始处理答案...')
-        answer_indexes=AnalysAnswer(doc,answer_start_row,len(doc.elements)-1)
+        answer_indexes=parse_answer(doc,answer_start_row,len(doc.elements)-1)
         if not answer_indexes:
             print('answers = get_answer(doc, all_answer_index)')
             print('获取答案内容出错！')
@@ -94,15 +97,71 @@ def docx_paper2json(pars):
         for answer_index in answer_indexes:
             answer={'answer':'','explain':'','num':answer_index['num']}
             if answer_index['answer']:
-                answer['answer']=paragraphs2htmls(doc,answer_index['answer'])
+                html=paragraphs2htmls(doc,answer_index['answer'], wt_style_ignore=True)  ##答案的文字部分不需要样式
+                answer['answer']=clean_answer(html)
             if answer_index['explain']:
-                answer['explain']=paragraphs2htmls(doc,answer_index['explain'])
+                html=paragraphs2htmls(doc,answer_index['explain'], wt_style_ignore=True) ##答案的文字部分不需要样式
+                answer['explain']=clean_answer(html)
             answers[answer['num']]=answer.copy()
         print('开始 合并试题和答案...')
         merge_answer(tis, answers)
+        check_result(tis)
 
     return tis
+###删除html两端的空格(&nbsp;)
+def remove_nbsp(html):
+    html=html.strip()
+    e=len(html)
+    while True:
+        l=html.rfind('&nbsp;',0, e)
+        if l==0:
+            html=html[6:]
+        elif l==-1:
+            return html
+        elif l==len(html)-6:
+            html=html[:l]
+        else:
+            e=l
 
+def clean_answer(html):
+    paragraphs=re.findall(r'(<p[\s]{0,}.*?>.*?</p>)', html)
+    result=[]
+    for paragraph in paragraphs:
+        b=paragraph.find('>')
+        e=paragraph.find('<', b)
+        txt=paragraph[b+1:e]
+        txt=re.sub(r'\d{1,2}[\s\.、．]','',txt).replace('【答案】', '').replace('【解析】', '')
+        txt=remove_nbsp(txt)
+        if txt=='':
+            continue
+        result.append(paragraph[:b+1]+txt+paragraph[e:])
+    return ''.join(result)
+
+    # txt.re
+    # xx=re.match(r'<p[\s]{0,}.*?>.*?</p>', html)   ###第一个段落（p标签）
+    #
+    # text=html[xx.start():xx.end()]
+    # text=remove_nbsp(text)
+    #
+    # b = html.find('>')
+    # e = html.find('<', b)
+    # tt=html[b:e]
+    # num=re.findall(r'(\d{1,2}[\s\.、．])', tt)
+    # if num :
+    #     tt=tt.replace(num[0],'')
+    # tt = tt.replace('【答案】', '').replace('【解析】', '')
+    # return html[:b]+tt+html[e+1:]
+
+
+
+####重新检查结果
+def check_result(tis):
+    check_objective(tis)
+    pass
+###解决没有选项的选择题
+def check_objective(tis):
+
+    pass
 
 ###处理命令行参数
 def parse_commandline(argv):
@@ -187,6 +246,36 @@ def check_env():
         print('未找到wmf2svg模块')
         exit(0)
 
+def save_html(tis, fname):
+    zz='''
+<!DOCTYPE html>
+<html>
+<head>
+  <script type="text/javascript"
+     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+</head>
+<body>
+'''
+    outf=open(fname, 'w')
+
+    print(zz, file=outf)
+    for ti in tis:
+        print(ti['category'], file=outf)
+        print(ti['title'] , file=outf)
+        for q in ti['questions']:
+            tt=q['number'] +'、(' + str(q['score'])+'分)  题型：'+ q['type'] + q['stem']
+            if 'options' in q:
+                for option in q['options']:
+                    tt=tt+option['label']+option['content'] +'<br/>'
+
+            print(tt +'<br/>', file=outf)
+        print(ti['reference'] , file=outf)
+    zz='''
+</body>
+</html>'''
+    print(zz, file=outf)
+    outf.close()
 
 if __name__ == "__main__":
     ###run 本脚本的例子：
@@ -199,12 +288,14 @@ if __name__ == "__main__":
     if len(sys.argv)<5:  ###跑例子用的默认参数,保证在ipython下面也可以直接跑
         print('参数错误，正确用法： docx2json.py 真题.docx 答案.docx')
         pars['working_dir'] = 'data'
-        pars['subject'] = '数学'
-        pars['question_docx'] = 'd:/test.docx'
+        pars['subject'] = '语文'
+        pars['question_docx'] = '标准测试-语文周练（6月2日）.docx'
         # pars['answer_docx'] = '2019年全国I卷理科数学高考真题答案.docx'
+        # 标准测试-数学理试题12-22.docx  标准测试-高二地理周考卷9.docx  标准测试-语文周练（6月2日）.docx
+
         pars['img_dir'] = 'img'
         pars['http_head'] = ' https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/'
-        pars['out_json'] = '数学.json'
+        pars['out_json'] = '地理.json'
 
     else:
         pars = parse_commandline(sys.argv)
@@ -217,15 +308,10 @@ if __name__ == "__main__":
 
     settings.img_dir = os.path.join(pars['working_dir'], pars['img_dir'])
     settings.http_head = pars['http_head']
-    subject = pars['subject']
+    settings.mathtype_convert_to="mathml"  ###mathml or png
+    settings.subject = pars['subject']
 
-    if subject == '语文':
-        # in ['数学','物理','化学', '历史', '地理','生物']:
-        pass
-    elif subject == '英语':
-        pass
-    else:
-        tis = docx_paper2json(pars)
+    tis = docx_paper2json(pars)
 
     with  open(os.path.join(pars['working_dir'], pars['out_json']), 'w', encoding='utf-8') as fp:
         json.dump(tis, fp, ensure_ascii=False, indent=4, separators=(',', ': '))

@@ -55,7 +55,7 @@ def find_title_row(doc, b_row, curr_row, mode_text):
 def emu2px(emu):
     px=int(emu)/914400*72*4/3
     return px
-
+###1inch =
 def inch_pt2px(str0):
     if 'in' in str0:
         ##inch 转px
@@ -68,6 +68,7 @@ def inch_pt2px(str0):
 
 ## 获取各个选项
 def split_options(option_html):
+    option_html=''.join( re.findall(r'<p[\s]{0,}.*?>(.*?)</p>', option_html))
     ops = []
     last_index = 0
     for i in range(ord('B') , ord('Z')):
@@ -125,9 +126,10 @@ def get_tag(child):
         return 'w:object'
 
 ##处理w:t元素
-def w_t2html(child):
+def w_t2html(child, wt_style_ignore=False):
+
     t = child.xpath('.//w:t/text()', namespaces=child.nsmap)[0]
-    t=t.replace('<', '&lt;').replace('>', '&gt;')
+    t=t.replace('<', '&lt;').replace('>', '&gt;').replace(' ', '&nbsp;')
 
     kk = '{' + docx_nsmap['w'] + '}val'
     ##1.处理上下标
@@ -136,11 +138,10 @@ def w_t2html(child):
         val = ee[0].attrib[kk]
         if val=="subscript":
             t='<sub>'+t+'</sub>'
-
-
         elif val=='superscript':
             t = '<sup>' + t + '</sup>'
-
+    if wt_style_ignore:   ####处理选项等时候，不需要下面的属性
+        return t
     ##2.处理下划线
     ee = child.xpath('./w:rPr/w:u', namespaces=docx_nsmap)
     if ee:
@@ -500,15 +501,64 @@ def w_tbl2html(doc, child):
 
     return result
 
+def calculate_indents(child):
+    x=0    ###缩进x个字符，方便web显示
+    w_firstline=get_full_tag_with_nameapce('w:firstLine')
+    w_hanging=get_full_tag_with_nameapce('w:hanging')
+    w_left=get_full_tag_with_nameapce('w:left')
+    w_right = get_full_tag_with_nameapce('w:right')
+    ind=child.xpath('.//w:ind', namespaces=docx_nsmap)
+    indents={}
+    if ind:
+        for key, value in ind[0].attrib.items():
+            indents[key]=float(value)/20
+        if w_firstline in indents:
+            x=float(indents[w_firstline])/10  ####twips to em
+        elif w_hanging in indents:
+            x=float(indents[w_hanging])/10   ####twips to em
+        if w_left in indents:
+            x=x+float(indents[w_left]/10)
+        return x
+    return 0
+###
+def set_paragraph_property(child):
+    pPr=child.xpath('.//w:pPr', namespaces=docx_nsmap)
+    p_element = etree.Element('p')
+    if not pPr: ###没有找到w:pPr元素
+        return p_element
+    pPr=pPr[0]
+    # style = "text-indent: 2em;"
+    ind=calculate_indents(child)
+    if ind:
+        p_element.attrib['style']="text-indent: "+ str(ind)  +"em;"
+
+    aline= pPr.xpath('.//w:jc', namespaces=docx_nsmap)
+    if aline:  ###左对齐和两端对齐，在docx里面没有任何的显示
+        xx=aline[0].attrib[get_full_tag_with_nameapce('w:val')]
+        if xx=='right':
+            p_element.attrib['align']='right'
+        elif xx == 'center':
+            p_element.attrib['align'] = 'center'
+        elif xx == 'distribute':
+            p_element.attrib['align'] = 'justify'
+
+    return p_element
 ####段落转html-----------------
-def paragraph2html(doc, parent_element):
+def paragraph2html(doc, parent_element, wt_style_ignore=False):
 
 ###表格，它本身就是一个段落，处理后返回
     if parent_element.tag=='{'+docx_nsmap['w']+'}tbl':
         return  w_tbl2html(doc, parent_element)
-    children = doc.elements
+
     htmls = []
+###处理word里面的行编号-----不准确，暂时放一下！！！
+    numPr = parent_element.xpath('.//w:pPr/w:numPr', namespaces=docx_nsmap)
+    if numPr:
+        htmls.append( doc.numPr2text(parent_element) )
 ###不是表格的情况
+
+    p_element=set_paragraph_property(parent_element)
+
     for child in parent_element.getchildren():
 
         tag = get_tag(child)
@@ -523,7 +573,7 @@ def paragraph2html(doc, parent_element):
             pass
 
         if tag == 'w:t':  ##处理文本
-            html = w_t2html(child)
+            html = w_t2html(child, wt_style_ignore=wt_style_ignore)
             htmls.append(html)
         elif tag == 'w:drawing':  ##处理图片
             result = w_drawing2html(doc, child)
@@ -543,7 +593,8 @@ def paragraph2html(doc, parent_element):
         elif tag == 'table':  ##处理表格,表格比较特殊，不会出现这种情况
             pass
         # if html != ' ':   空格也应该原样输出，因为有时候存在特意的空格
-    return ''.join(htmls)
+    xx=etree.tostring(p_element).decode('utf8').replace('/>','>')+ ''.join(htmls) +'</p>'
+    return  xx
 
 def check_options(options):
     for i in range(1, len(options)):
@@ -552,51 +603,12 @@ def check_options(options):
             return False
     return True
 
-###获取选项的文本 + 特殊格式
-###默认认为选项的字体等信息是不重要的！！！！
-def options2html(doc, row):
-    # result=[]
-    text = ''
-    children = doc.elements
-
-    for text,child in children.items():
-
-        tag = get_tag(child)
-
-        if tag=='w:pPr':
-            continue
-        vv = check_run(child)
-        if vv > 1:
-            print('run中包含了多个类型,将只处理第一个！')
-            print('run=', child)
-
-        elif vv == 0:
-            # print('options2html: run里面没有找到合适元素！')
-            continue
-
-        if tag == 'w:t':
-            html=w_t2html(child)
-            text = text+html
-        elif tag == 'w:drawing':
-            result = w_drawing2html(doc, child)
-            if result['html']:
-                if result['mode']=='inline':  ##不处理浮动图片，留到后面一起处理
-                    text = text + result['html']
-        elif tag == 'm:oMath':
-            text = text + o_math2html( child)
-        elif tag=='w:pict':
-            html = w_pict2html(doc, child)['html']
-            text=text+html
-        elif tag == 'w:object':
-            html=w_object2html(doc, child)['html']
-            text = text + html
-    return text
 
 ###处理options，得到options的html
 def get_option_htmls(doc, options_indexes):
     option_html = ''
     for index in options_indexes:
-        option_html += paragraph2html(doc, doc.elements[index]['element'])   ###所有options组合起来的html
+        option_html += paragraph2html(doc, doc.elements[index]['element'], wt_style_ignore=True)   ###所有options组合起来的html
     options_htmls = split_options(option_html)   ###把每个optiion拆分出来
 
     if not check_options(options_htmls):
@@ -606,19 +618,19 @@ def get_option_htmls(doc, options_indexes):
     return options_htmls
 
 ##for titel, 不包含选项的段落，可以直接转换
-def paragraphs2htmls(doc, title_indexes):
+def paragraphs2htmls(doc, title_indexes, wt_style_ignore=False):
     htmls = []
     for index in title_indexes:
         element=doc.elements[index]['element']
 
-        html = paragraph2html(doc, element)
+        html = paragraph2html(doc, element, wt_style_ignore=wt_style_ignore)
         # print('处理段落：', doc.elements[index]['text'])
         if html.strip()!='':
             htmls.append(html)
     result=''
 
     for html in htmls:
-        result=result+ '<p>'+html+'</p>'
+        result=result+ html
     image_html = get_float_image(doc, title_indexes)
     return result+image_html
 
@@ -649,17 +661,18 @@ def get_ti_content(doc, ti_index):
 
 
 def split_ti_and_number(html):
-    html0=html
-    html="<body>"+html+"</body>"
-    tree=etree.fromstring(html.strip())
-    texts = ''.join( tree.xpath(".//text()") )
-
-    if  texts.strip():
-        xx=re.findall(r'^(\d{1,2}[.．]\s{0,})', texts.strip())
-        if xx:
-            num=re.findall(r'^(\d{1,2})[.．]\s{0,}', xx[0])[0]
-            return ( num, html0.replace(xx[0], '') )
-    return (-1, html0)
+    # html0=html
+    # html="<body>"+html+"</body>"
+    # tree=etree.fromstring(html.strip())
+    # texts = ''.join( tree.xpath(".//text()") )
+    tt=re.sub(r'^<p[\s]{0,}.*?>.*?(\d{1,2}[.．]\s{0,})','', html)
+    num=re.findall(r'^<p[\s]{0,}.*?>.*?(\d{1,2}[.．]\s{0,})', html)[0]
+    # if  texts.strip():
+    #     xx=re.findall(r'^(\d{1,2}[.．]\s{0,})', texts.strip())
+    #     if xx:
+    #         num=re.findall(r'^(\d{1,2})[.．]\s{0,}', xx[0])[0]
+    #         return ( num, html0.replace(xx[0], '') )
+    return (num, tt)
 ##处理1个小题
 def get_xiaoti_content(doc, question):
     q = {}
@@ -667,9 +680,6 @@ def get_xiaoti_content(doc, question):
     xx = paragraphs2htmls(doc, title_indexes)
     q['number'], q['stem'] = split_ti_and_number(xx)  ##更加安全，可靠的方式，避免题号和选项有加粗的问题
 
-    # q['stem']=re.sub(r'^<p>\d{1,2}[.．]\s{0,}', '<p>', xx)   ###去除题号
-
-    # q['number'] = re.findall(r'^<p>(\d{1,2})[.．、]\s{0,}', xx)[0]   ###获取题号
 
     if 'options' in question:
         q['options'] = get_option_htmls(doc, question['options'])
