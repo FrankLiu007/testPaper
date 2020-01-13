@@ -661,12 +661,14 @@ def get_ti_content(doc, ti_index):
 
 
 def split_ti_and_number(html):
-    # html0=html
-    # html="<body>"+html+"</body>"
-    # tree=etree.fromstring(html.strip())
-    # texts = ''.join( tree.xpath(".//text()") )
-    tt=re.sub(r'^<p[\s]{0,}.*?>.*?(\d{1,2}[.．]\s{0,})','', html)
-    num=re.findall(r'^<p[\s]{0,}.*?>.*?(\d{1,2}[.．]\s{0,})', html)[0]
+    # 先找到所有段落，第一个段落里面的题号要删除
+    pp=re.findall(r'(<p[\s]{0,}.*?>.*?</p>)',html)
+    b = pp[0].find('>')
+    txt=re.sub(r'\d{1,2}[\s\.．]','', pp[0][b+1:])
+    pp[0]=pp[0][:b+1]+txt
+    tt=''.join(pp)
+
+    num=re.findall(r'^<p[\s]{0,}.*?>.*?(\d{1,2}[\.．]\s{0,})', html)[0]
     # if  texts.strip():
     #     xx=re.findall(r'^(\d{1,2}[.．]\s{0,})', texts.strip())
     #     if xx:

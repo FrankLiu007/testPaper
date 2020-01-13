@@ -358,6 +358,15 @@ def parse_common(doc,start_row, end_row,mode_text ):
         i = i + 1
         curr_row = next_row+1
 
+    if settings.subject=='语文':
+        row=dati_indexes[-1][0]
+        txt= doc_elements[row]['text']
+        stem=list(range(row+1,end_row+1))
+        score=re.findall(r'[\(（](\d{1,2})分[\)）]', txt)[0]
+        num=str(len(xiaoti_indexes)+1)
+        if ('作文' in txt) or ('写作' in txt):
+            all_ti[-1]=[{'questions':[{'objective':False, 'stem':stem, 'score':score, 'number':num ,'type':'GENERAL'}], 'title':[], 'category':'作文'}]
+
     return all_ti
 ###判读某行是否为大题行
 def is_dati_row(dati_index,row):

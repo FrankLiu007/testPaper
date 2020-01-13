@@ -257,7 +257,7 @@ def save_html(tis, fname):
 </head>
 <body>
 '''
-    outf=open(fname, 'w')
+    outf=open(fname, 'w', encoding="utf-8")
 
     print(zz, file=outf)
     for ti in tis:
