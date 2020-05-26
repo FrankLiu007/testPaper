@@ -1,5 +1,6 @@
 
 namespaces={
+    'w14':'http://schemas.microsoft.com/office/word/2010/wordml',
     'wpc': 'http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas',
     'cx': 'http://schemas.microsoft.com/office/drawing/2014/chartex',
     'cx1': 'http://schemas.microsoft.com/office/drawing/2015/9/8/chartex',

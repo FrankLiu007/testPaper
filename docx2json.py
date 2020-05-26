@@ -47,7 +47,8 @@ def get_tis(doc, all_ti_index):
             # ti['total'] = ti_index['total']
             for i in range(0, len(questions)):
                 questions[i]['objective']=ti_index['questions'][i]['objective']  ##暂时objective
-                questions[i]['number']=ti_index['questions'][i]['number']  ##加入题号
+                if 'number' in ti_index['questions'][i]:
+                    questions[i]['number']=ti_index['questions'][i]['number']  ##加入题号
                 questions[i]['type'] = ti_index['questions'][i]['type']  ##加入题号
                 questions[i]['score'] = ti_index['questions'][i]['score']  ##加入分数
             all_tis.append(ti)
@@ -270,7 +271,8 @@ def save_html(tis, fname):
                     tt=tt+option['label']+option['content'] +'<br/>'
 
             print(tt +'<br/>', file=outf)
-        print(ti['reference'] , file=outf)
+        if 'reference' in ti:
+            print(ti['reference'] , file=outf)
     zz='''
 </body>
 </html>'''
@@ -279,18 +281,18 @@ def save_html(tis, fname):
 
 if __name__ == "__main__":
     ###run 本脚本的例子：
-    ## python docx2json.py  -working_dir data  -subject 文综  -question_docx 2019年全国II卷文科综合高考真题.docx  -answer_docx 2019年全国II卷文科综合高考真题-答案.docx -img_dir img -http_head https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/  -out_json 文综.json
-    # python docx2json.py  -working_dir data  -subject 数学  -question_docx  2019年全国I卷理科数学高考真题.docx  -answer_docx 2019年全国I卷理科数学高考真题答案.docx -img_dir img -http_head https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/  -out_json 文综.json
+    ## python docx2json.py  -working_dir data  -subject 文综  -question_docx 2019年全国II卷文科综合高考真题.docx -img_dir img -http_head https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/  -out_json 文综.json
+    # python docx2json.py  -working_dir data  -subject 数学  -question_docx  2019年全国I卷理科数学高考真题.docx   -img_dir img -http_head https://ehomework.oss-cn-hangzhou.aliyuncs.com/item/  -out_json 文综.json
 
     settings.init()
     pars = {}
 
     if len(sys.argv)<5:  ###跑例子用的默认参数,保证在ipython下面也可以直接跑
-        print('参数错误，正确用法： docx2json.py 真题.docx 答案.docx')
+        print('参数错误，正确用法： docx2json.py 真题.docx ')
         pars['working_dir'] = 'data'
-        pars['subject'] = '语文'
-        pars['question_docx'] = '标准测试-语文周练（6月2日）.docx'
-        # pars['answer_docx'] = '2019年全国I卷理科数学高考真题答案.docx'
+        pars['subject'] = '英语'
+        pars['question_docx'] = '标准测试-2018年全国英语真题.docx'
+        # 标准测试-2018年全国英语真题.docx
         # 标准测试-数学理试题12-22.docx  标准测试-高二地理周考卷9.docx  标准测试-语文周练（6月2日）.docx
 
         pars['img_dir'] = 'img'

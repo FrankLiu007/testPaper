@@ -11,6 +11,11 @@ class Document:
     ##-----------静态属性
     w_val = '{' + docx_nsmap['w'] + '}val'
     omml2mml_transform = etree.XSLT(etree.parse('docx_utils/omml2mml.xsl'))
+
+    def get_full_tag(self,str0):
+        n, s = str0.split(':')
+        return '{' + docx_nsmap[n] + '}' + s
+
     def wmf_emf2png(self):
         img_lst=[]
         for rId in self.rIds:
@@ -70,10 +75,10 @@ class Document:
             tt=re.sub(r"%\d{1,2}", pycnnum.num2cn(curr_num) ,lvlText)
             self.numbering[numId][ilvl]['current'] += 1
         elif numFmt=="lowerLetter":
-            tt = re.sub(r"%\d{1,2}", chr(ord('a')+curr_num), lvlText)
+            tt = re.sub(r"%\d{1,2}", chr(ord('a')+curr_num-1), lvlText)
             self.numbering[numId][ilvl]['current'] += 1
         elif numFmt=="upperLetter":
-            tt = re.sub(r"%\d{1,2}", chr(ord('A')+curr_num), lvlText)
+            tt = re.sub(r"%\d{1,2}", chr(ord('A')+curr_num-1), lvlText)
             self.numbering[numId][ilvl]['current'] += 1
         elif numFmt=="lowerRoman":
             tt = re.sub(r"%\d{1,2}", roman.toRoman(curr_num), lvlText)
@@ -94,6 +99,8 @@ class Document:
         tt=''
         if numPr:
             tt=self.numPr2text(child)
+            paraId=child.attrib[self.get_full_tag('w:rsidP')]
+            self.numPr[paraId]=tt
         text=child.xpath('.//w:t/text()', namespaces= docx_nsmap)
         return tt + ''.join(text)
 ###
@@ -110,7 +117,7 @@ class Document:
         path = 'word/numbering.xml'
         numbering={}
         numIds={}
-        abstractNums={}
+
         abstractNums={}
         if path in self.file_blobs:
             tree = etree.fromstring(self.file_blobs[path].decode('utf8').splitlines()[1])
@@ -195,8 +202,9 @@ class Document:
         self.file_blobs = {}
         self.elements=[]
         self.numbering={}
+        self.numPr={}
         zip_handle=zipfile.ZipFile(path, 'r')
-        self.read_document(  zip_handle )
+        self.read_document( zip_handle )
         zip_handle.close()
     ###保存zip文件
     def save(self, outf=''):

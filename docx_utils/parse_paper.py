@@ -1,41 +1,11 @@
 import re
-from lxml import etree
-import uuid
 from docx_utils.namespaces import namespaces as docx_nsmap
 import pycnnum
 import docx_utils.MyDocx as MyDocx
 from . import settings
+from .parse_english import parse_english
 #####主要是进行版面分析，把每个题的标题、选项等部分所在的段落号，计算出来
 
-#####分析语文试卷
-def pharse_yuwen(doc, start_row, end_row, mode_text):
-    doc_elements = doc.elements
-    dati_indexes = find_dati_row(doc, start_row, end_row)
-    xiaoti_indexes = find_xiaoti_row(doc, dati_indexes[0][0] + 1, end_row)
-    if (len(dati_indexes) == 0) or (len(xiaoti_indexes) == 0):
-        return ()
-
-    ####获取所有大题的  小题
-    tis = []
-    curr_row, text, mode_tt = dati_indexes[0]
-    i = 0
-    all_ti = []
-    while i < len(dati_indexes):  ##处理1种题型
-
-        if i == len(dati_indexes) - 1:  ##如果是最后一个大题
-            next_row = end_row
-            xiaotis = get_dati_children(doc, dati_indexes, i, xiaoti_indexes)
-        else:
-            next_row, next_text, mode_tt = dati_indexes[i + 1]
-            next_row -= 1
-            xiaotis = get_dati_children(doc, dati_indexes, i, xiaoti_indexes)
-
-        tis = parse_one_titype(curr_row + 1, next_row, xiaotis, doc_elements, mode_text)  ##处理1种题型的所有题目
-        tis = add_score_and_titype(tis, dati_indexes, i, doc_elements)
-
-        all_ti.append(tis.copy())
-        i = i + 1
-        curr_row = next_row
 
 #####给题目增加分数和题型
 def add_score_and_titype(tis, dati_indexes, i, doc_elements):
@@ -278,20 +248,35 @@ def find_xiaoti_row(doc, start_row, end_row):
 
     return xiaoti_row
 
-####找出大题的行
-def find_dati_row( doc, start_row, end_row):
+####找出英语大题的行
+def find_dati_row( doc, start_row, end_row, mode_text):
     doc_elements = doc.elements
+
     dati_row = []
     curr_num=1
     for i in range(start_row,end_row+1):
         text = doc_elements[i]['text'].strip()
         if '参考答案' in text:
             break
-        rr=r'^'+pycnnum.num2cn(curr_num)+r'[\s\.、．]'
+        rr=r'^'+mode_text[0]+pycnnum.num2cn(curr_num)+mode_text[-1]
         if re.match(rr, text ):
-            dati_row.append((i, text, '一、'))
+            dati_row.append((i, text, ''.join(mode_text)) )
             curr_num+=1
     return dati_row
+####找出大题的行
+# def find_dati_row( doc, start_row, end_row):
+#     doc_elements = doc.elements
+#     dati_row = []
+#     curr_num=1
+#     for i in range(start_row,end_row+1):
+#         text = doc_elements[i]['text'].strip()
+#         if '参考答案' in text:
+#             break
+#         rr=r'^'+pycnnum.num2cn(curr_num)+r'[\s\.、．]'
+#         if re.match(rr, text ):
+#             dati_row.append((i, text, '一、'))
+#             curr_num+=1
+#     return dati_row
 
 ###获取某个大题包含的小题（一包含哪几个1，2，3）
 def get_dati_children(doc, dati_indexes, i, xiaoti_indexes):
@@ -316,22 +301,24 @@ def correct4yuwen(doc, all_ti):
                 if tt:
                     ti['category']=tt[0]
                     ti['title'].remove(i)
-
-
     return all_ti
+
 def parse_paper(doc,start_row, end_row,mode_text ):
     if settings.subject=="语文":
         all_ti=parse_common(doc, start_row, end_row, mode_text)
         return correct4yuwen(doc, all_ti)
     elif settings.subject=='英语':
-        pass
+        return  parse_english(doc,start_row, end_row,mode_text)
     else:
         return parse_common(doc,start_row, end_row,mode_text )
 
 
 def parse_common(doc,start_row, end_row,mode_text ):
     doc_elements = doc.elements
-    dati_indexes=find_dati_row( doc, start_row, end_row)
+    if settings.subject=='英语':
+        pass
+    else:
+        dati_indexes=find_dati_row( doc, start_row, end_row, ['','X',r'[\s\.、．]'])
     xiaoti_indexes=find_xiaoti_row( doc, dati_indexes[0][0]+1, end_row)
     if (len(dati_indexes)==0) or (len(xiaoti_indexes)==0):
         return ()
@@ -364,7 +351,7 @@ def parse_common(doc,start_row, end_row,mode_text ):
         stem=list(range(row+1,end_row+1))
         score=re.findall(r'[\(（](\d{1,2})分[\)）]', txt)[0]
         num=str(len(xiaoti_indexes)+1)
-        if ('作文' in txt) or ('写作' in txt):
+        if ('作文' in txt) or ('写作' in txt):   ###重新处理作文部分
             all_ti[-1]=[{'questions':[{'objective':False, 'stem':stem, 'score':score, 'number':num ,'type':'GENERAL'}], 'title':[], 'category':'作文'}]
 
     return all_ti
@@ -379,7 +366,10 @@ def is_dati_row(dati_index,row):
 ###分析答案的结构
 def parse_answer(doc,start_row, end_row ):
     doc_elements = doc.elements
-    dati_indexes=find_dati_row( doc, start_row, end_row)
+    if settings.subject=='英语':
+        dati_indexes=find_dati_row( doc, start_row, end_row, ['第','X','部分'])
+    else:
+        dati_indexes=find_dati_row( doc, start_row, end_row, ['','X',r'[\s\.、．]'])
     xiaoti_indexes=find_xiaoti_row( doc, start_row, end_row)
     if  (len(xiaoti_indexes)==0):
         print('未找到参考答案！')

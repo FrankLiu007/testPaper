@@ -20,7 +20,7 @@ import io
 '''
 
 ##获取材料题，到底有多少小问（题）
-def get_full_tag_with_nameapce(str0):
+def get_full_tag(str0):
     n,s=str0.split(':')
     return '{'+docx_nsmap[n] + '}'+ s
 
@@ -212,7 +212,7 @@ def w_object2html(doc, child):
     ole['width']=inch_pt2px(ole['styles']['width'])
 
     ole_object = child.xpath('.//o:OLEObject', namespaces=docx_nsmap)[0]
-    ole['rId'] = ole_object.attrib[get_full_tag_with_nameapce('r:id')]
+    ole['rId'] = ole_object.attrib[get_full_tag('r:id')]
     ole['object_path'] = doc.rIds[ole['rId']]['path']
     ole['blob'] = doc.rIds[ole['rId']]['blob']
     ole['style'] = "vertical-align:middle"
@@ -225,7 +225,7 @@ def w_object2html(doc, child):
             mml=math_type2mml(ole['blob'])
             return {'html':mml, 'mode': 'inline'}
         elif settings.mathtype_convert_to=="png":
-            img_rId= child.xpath('.//v:imagedata', namespaces=docx_nsmap)[0].attrib[get_full_tag_with_nameapce('r:id')]
+            img_rId= child.xpath('.//v:imagedata', namespaces=docx_nsmap)[0].attrib[get_full_tag('r:id')]
             ole['img_path'] = doc.rIds[img_rId]['path']
             ext = os.path.splitext(ole['img_path'])[-1]
             if ext == '.wmf':
@@ -274,7 +274,7 @@ def w_pict2html(doc, child):
     for style in styles.split(';'):
         a,b=style.split(':')
         fig['styles'][a]=b
-    fig['rId']=pic.xpath('.//v:imagedata', namespaces=docx_nsmap)[0].attrib[get_full_tag_with_nameapce('r:id')]
+    fig['rId']=pic.xpath('.//v:imagedata', namespaces=docx_nsmap)[0].attrib[get_full_tag('r:id')]
     fig['path'] = doc.rIds[fig['rId']]['path']
     fig['blob']=doc.rIds[fig['rId']]['blob']
     fig['width']=inch_pt2px(fig['styles']['width'])
@@ -503,10 +503,10 @@ def w_tbl2html(doc, child):
 
 def calculate_indents(child):
     x=0    ###缩进x个字符，方便web显示
-    w_firstline=get_full_tag_with_nameapce('w:firstLine')
-    w_hanging=get_full_tag_with_nameapce('w:hanging')
-    w_left=get_full_tag_with_nameapce('w:left')
-    w_right = get_full_tag_with_nameapce('w:right')
+    w_firstline=get_full_tag('w:firstLine')
+    w_hanging=get_full_tag('w:hanging')
+    w_left=get_full_tag('w:left')
+    w_right = get_full_tag('w:right')
     ind=child.xpath('.//w:ind', namespaces=docx_nsmap)
     indents={}
     if ind:
@@ -534,7 +534,7 @@ def set_paragraph_property(child):
 
     aline= pPr.xpath('.//w:jc', namespaces=docx_nsmap)
     if aline:  ###左对齐和两端对齐，在docx里面没有任何的显示
-        xx=aline[0].attrib[get_full_tag_with_nameapce('w:val')]
+        xx=aline[0].attrib[get_full_tag('w:val')]
         if xx=='right':
             p_element.attrib['align']='right'
         elif xx == 'center':
@@ -554,7 +554,8 @@ def paragraph2html(doc, parent_element, wt_style_ignore=False):
 ###处理word里面的行编号-----不准确，暂时放一下！！！
     numPr = parent_element.xpath('.//w:pPr/w:numPr', namespaces=docx_nsmap)
     if numPr:
-        htmls.append( doc.numPr2text(parent_element) )
+        paraId = parent_element.attrib[get_full_tag('w:rsidP')]
+        htmls.append( doc.numPr[paraId] )
 ###不是表格的情况
 
     p_element=set_paragraph_property(parent_element)
